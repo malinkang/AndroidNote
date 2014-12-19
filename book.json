@@ -1,0 +1,8 @@
+{
+    "plugins": ["disqus","toc","infinitescroll"],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "malinkang"
+        }
+    }  
+}

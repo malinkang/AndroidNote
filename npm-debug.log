@@ -1,0 +1,89 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'gitbook-plugin-infinitescrollll',
+1 verbose cli   '-g' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'gitbook-plugin-infinitescrollll', null ]
+5 verbose cache add name=undefined spec="gitbook-plugin-infinitescrollll" args=["gitbook-plugin-infinitescrollll",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'gitbook-plugin-infinitescrollll',
+6 verbose parsed url   path: 'gitbook-plugin-infinitescrollll',
+6 verbose parsed url   href: 'gitbook-plugin-infinitescrollll' }
+7 silly lockFile af41328f-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll
+8 verbose lock gitbook-plugin-infinitescrollll /Users/malinkang/.npm/af41328f-gitbook-plugin-infinitescrollll.lock
+9 silly lockFile af41328f-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll
+10 silly lockFile af41328f-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll
+11 verbose addNamed [ 'gitbook-plugin-infinitescrollll', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile caa16ce8-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll@
+14 verbose lock gitbook-plugin-infinitescrollll@ /Users/malinkang/.npm/caa16ce8-gitbook-plugin-infinitescrollll.lock
+15 silly addNameRange { name: 'gitbook-plugin-infinitescrollll',
+15 silly addNameRange   range: '*',
+15 silly addNameRange   hasData: false }
+16 verbose request where is /gitbook-plugin-infinitescrollll
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 0b8dbb0c13d8cf37
+19 verbose url raw /gitbook-plugin-infinitescrollll
+20 verbose url resolving [ 'https://registry.npmjs.org/',
+20 verbose url resolving   './gitbook-plugin-infinitescrollll' ]
+21 verbose url resolved https://registry.npmjs.org/gitbook-plugin-infinitescrollll
+22 verbose request where is https://registry.npmjs.org/gitbook-plugin-infinitescrollll
+23 info trying registry request attempt 1 at 00:22:15
+24 http GET https://registry.npmjs.org/gitbook-plugin-infinitescrollll
+25 http 404 https://registry.npmjs.org/gitbook-plugin-infinitescrollll
+26 verbose headers { date: 'Thu, 18 Dec 2014 16:22:16 GMT',
+26 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 verbose headers   'content-type': 'application/json',
+26 verbose headers   'cache-control': 'max-age=0',
+26 verbose headers   'content-length': '52',
+26 verbose headers   'accept-ranges': 'bytes',
+26 verbose headers   via: '1.1 varnish',
+26 verbose headers   age: '0',
+26 verbose headers   'x-served-by': 'cache-ty68-TYO',
+26 verbose headers   'x-cache': 'MISS',
+26 verbose headers   'x-cache-hits': '0',
+26 verbose headers   'x-timer': 'S1418919736.341601,VS0,VE123',
+26 verbose headers   'keep-alive': 'timeout=10, max=50',
+26 verbose headers   connection: 'Keep-Alive' }
+27 silly registry.get cb [ 404,
+27 silly registry.get   { date: 'Thu, 18 Dec 2014 16:22:16 GMT',
+27 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=0',
+27 silly registry.get     'content-length': '52',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     'x-served-by': 'cache-ty68-TYO',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1418919736.341601,VS0,VE123',
+27 silly registry.get     'keep-alive': 'timeout=10, max=50',
+27 silly registry.get     connection: 'Keep-Alive' } ]
+28 silly lockFile caa16ce8-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll@
+29 silly lockFile caa16ce8-gitbook-plugin-infinitescrollll gitbook-plugin-infinitescrollll@
+30 error 404 404 Not Found: gitbook-plugin-infinitescrollll
+30 error 404
+30 error 404 'gitbook-plugin-infinitescrollll' is not in the npm registry.
+30 error 404 You should bug the author to publish it
+30 error 404
+30 error 404 Note that you can also install from a
+30 error 404 tarball, folder, or http url, or git url.
+31 error System Darwin 14.0.0
+32 error command "node" "/usr/local/bin/npm" "install" "gitbook-plugin-infinitescrollll" "-g"
+33 error cwd /Users/malinkang/Documents/Git/AndroidNote
+34 error node -v v0.10.33
+35 error npm -v 1.4.28
+36 error code E404
+37 verbose exit [ 1, true ]
