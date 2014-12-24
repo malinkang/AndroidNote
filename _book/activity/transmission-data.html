@@ -27,9 +27,13 @@
         
 <link rel="stylesheet" href="../gitbook/style.css">
 
+    
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
 
         
-    <div class="book" data-level="4.1" data-basepath=".." data-revision="1418919799259">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="1419231249652">
     
 
 <div class="book-summary">
@@ -156,13 +160,29 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+        <li class="chapter " data-level="1.5" data-path="ui/LayoutInflater.html">
+            
+                
+                    <a href="../ui/LayoutInflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/actionbar.html">
             
                 
                     <a href="../ui/actionbar.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.5.</b>
+                            <b>1.6.</b>
                         
                          ActionBar
                     </a>
@@ -172,13 +192,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+        <li class="chapter " data-level="1.7" data-path="ui/toast.html">
             
                 
                     <a href="../ui/toast.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.6.</b>
+                            <b>1.7.</b>
                         
                          Toast
                     </a>
@@ -188,13 +208,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+        <li class="chapter " data-level="1.8" data-path="ui/notification.html">
             
                 
                     <a href="../ui/notification.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.7.</b>
+                            <b>1.8.</b>
                         
                          Notification
                     </a>
@@ -637,11 +657,11 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_2">
+                    <section class="normal" id="section-gitbook_3">
                     
-                        <p>Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。</p>
-<p>序列化对象可以使用Java的<code>Serializable</code>的接口<code>Parcelable</code>接口。转化成JSON字符串，可以使用<code>Gson</code>等库。</p>
-<h2 id="1serializable">1.Serializable</h2>
+                        <p>Android&#x4E2D;&#xFF0C;Activity&#x548C;Fragment&#x4E4B;&#x95F4;&#x4F20;&#x9012;&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5C06;&#x5BF9;&#x8C61;&#x5E8F;&#x5217;&#x5316;&#x5E76;&#x5B58;&#x5165;Bundle&#x6216;&#x8005;Intent&#x4E2D;&#x8FDB;&#x884C;&#x4F20;&#x9012;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x5316;&#x4E3A;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FDB;&#x884C;&#x4F20;&#x9012;&#x3002;</p>
+<p>&#x5E8F;&#x5217;&#x5316;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Java&#x7684;<code>Serializable</code>&#x7684;&#x63A5;&#x53E3;<code>Parcelable</code>&#x63A5;&#x53E3;&#x3002;&#x8F6C;&#x5316;&#x6210;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Gson</code>&#x7B49;&#x5E93;&#x3002;</p>
+<h2 id="1serializable"><a name="1serializable" class="plugin-anchor" href="#1serializable"><span class="fa fa-link"></span></a>1.Serializable</h2>
 <p>Model</p>
 <pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>{
@@ -659,24 +679,24 @@
     <span class="hljs-comment">//...</span>
 }
 </code></pre>
-<p>传递数据</p>
+<p>&#x4F20;&#x9012;&#x6570;&#x636E;</p>
 <pre><code class="lang-java">
  Book book=<span class="hljs-keyword">new</span> Book();
-        book.setTitle(<span class="hljs-string">"Java编程思想"</span>);
+        book.setTitle(<span class="hljs-string">&quot;Java&#x7F16;&#x7A0B;&#x601D;&#x60F3;&quot;</span>);
         Author author=<span class="hljs-keyword">new</span> Author();
         author.setId(<span class="hljs-number">1</span>);
-        author.setName(<span class="hljs-string">"Bruce Eckel"</span>);
+        author.setName(<span class="hljs-string">&quot;Bruce Eckel&quot;</span>);
         book.setAuthor(author);
         Intent intent=<span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>,SecondActivity.class);
-        intent.putExtra(<span class="hljs-string">"book"</span>,book);
+        intent.putExtra(<span class="hljs-string">&quot;book&quot;</span>,book);
         startActivity(intent);
 </code></pre>
-<p>接收数据</p>
-<pre><code class="lang-java"> Book book= (Book) getIntent().getSerializableExtra(<span class="hljs-string">"book"</span>);
-        Log.d(TAG,<span class="hljs-string">"book title-&gt;"</span>+book.getTitle());
-        Log.d(TAG,<span class="hljs-string">"book author name-&gt;"</span>+book.getAuthor().getName());
+<p>&#x63A5;&#x6536;&#x6570;&#x636E;</p>
+<pre><code class="lang-java"> Book book= (Book) getIntent().getSerializableExtra(<span class="hljs-string">&quot;book&quot;</span>);
+        Log.d(TAG,<span class="hljs-string">&quot;book title-&gt;&quot;</span>+book.getTitle());
+        Log.d(TAG,<span class="hljs-string">&quot;book author name-&gt;&quot;</span>+book.getAuthor().getName());
 </code></pre>
-<h2 id="2json">2.转化为JSON字符串</h2>
+<h2 id="2json"><a name="2json" class="plugin-anchor" href="#2json"><span class="fa fa-link"></span></a>2.&#x8F6C;&#x5316;&#x4E3A;JSON&#x5B57;&#x7B26;&#x4E32;</h2>
 <p>Model</p>
 <pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span></span>{
@@ -693,32 +713,32 @@
     <span class="hljs-comment">//...</span>
 }
 </code></pre>
-<p>传递数据</p>
+<p>&#x4F20;&#x9012;&#x6570;&#x636E;</p>
 <pre><code class="lang-java">         Book book=<span class="hljs-keyword">new</span> Book();
-        book.setTitle(<span class="hljs-string">"Java编程思想"</span>);
+        book.setTitle(<span class="hljs-string">&quot;Java&#x7F16;&#x7A0B;&#x601D;&#x60F3;&quot;</span>);
         Author author=<span class="hljs-keyword">new</span> Author();
         author.setId(<span class="hljs-number">1</span>);
-        author.setName(<span class="hljs-string">"Bruce Eckel"</span>);
+        author.setName(<span class="hljs-string">&quot;Bruce Eckel&quot;</span>);
         book.setAuthor(author);
         Intent intent=<span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>,SecondActivity.class);
-        intent.putExtra(<span class="hljs-string">"book"</span>,<span class="hljs-keyword">new</span> Gson().toJson(book));
+        intent.putExtra(<span class="hljs-string">&quot;book&quot;</span>,<span class="hljs-keyword">new</span> Gson().toJson(book));
         startActivity(intent);
 </code></pre>
-<p>接收数据</p>
-<pre><code class="lang-java"> String bookJson=getIntent().getStringExtra(<span class="hljs-string">"book"</span>);
+<p>&#x63A5;&#x6536;&#x6570;&#x636E;</p>
+<pre><code class="lang-java"> String bookJson=getIntent().getStringExtra(<span class="hljs-string">&quot;book&quot;</span>);
         Book book=<span class="hljs-keyword">new</span> Gson().fromJson(bookJson,Book.class);
-        Log.d(TAG,<span class="hljs-string">"book title-&gt;"</span>+book.getTitle());
-        Log.d(TAG,<span class="hljs-string">"book author name-&gt;"</span>+book.getAuthor().getName());
+        Log.d(TAG,<span class="hljs-string">&quot;book title-&gt;&quot;</span>+book.getTitle());
+        Log.d(TAG,<span class="hljs-string">&quot;book author name-&gt;&quot;</span>+book.getAuthor().getName());
 </code></pre>
-<h2 id="3parcelable">3.使用Parcelable</h2>
-<p>实现<code>Parcelable</code>接口需要实现两个方法</p>
+<h2 id="3parcelable"><a name="3parcelable" class="plugin-anchor" href="#3parcelable"><span class="fa fa-link"></span></a>3.&#x4F7F;&#x7528;Parcelable</h2>
+<p>&#x5B9E;&#x73B0;<code>Parcelable</code>&#x63A5;&#x53E3;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;</p>
 <ul>
-<li><p>describeContents方法。内容接口描述，默认返回0就可以;</p>
+<li><p>describeContents&#x65B9;&#x6CD5;&#x3002;&#x5185;&#x5BB9;&#x63A5;&#x53E3;&#x63CF;&#x8FF0;&#xFF0C;&#x9ED8;&#x8BA4;&#x8FD4;&#x56DE;0&#x5C31;&#x53EF;&#x4EE5;;</p>
 </li>
-<li><p>writeToParcel方法。将传递的数据打包到Parcel容器中。</p>
+<li><p>writeToParcel&#x65B9;&#x6CD5;&#x3002;&#x5C06;&#x4F20;&#x9012;&#x7684;&#x6570;&#x636E;&#x6253;&#x5305;&#x5230;Parcel&#x5BB9;&#x5668;&#x4E2D;&#x3002;</p>
 </li>
 </ul>
-<p>除了要实现这两个方法还必须创建一个<code>Parcelable.Creator</code>接口的实例，用于读取Parcel容器中的数据</p>
+<p>&#x9664;&#x4E86;&#x8981;&#x5B9E;&#x73B0;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x8FD8;&#x5FC5;&#x987B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>Parcelable.Creator</code>&#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x4E8E;&#x8BFB;&#x53D6;Parcel&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6570;&#x636E;</p>
 <p>Model</p>
 <pre><code class="lang-java">
 
@@ -737,8 +757,8 @@
 
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeToParcel</span><span class="hljs-params">(Parcel dest, <span class="hljs-keyword">int</span> flags)</span> </span>{
-        <span class="hljs-comment">//该方法将类的数据写入外部提供的Parcel中.即打包需要传递的数据到Parcel容器保存，</span>
-        <span class="hljs-comment">// 以便从parcel容器获取数据</span>
+        <span class="hljs-comment">//&#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x7C7B;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5916;&#x90E8;&#x63D0;&#x4F9B;&#x7684;Parcel&#x4E2D;.&#x5373;&#x6253;&#x5305;&#x9700;&#x8981;&#x4F20;&#x9012;&#x7684;&#x6570;&#x636E;&#x5230;Parcel&#x5BB9;&#x5668;&#x4FDD;&#x5B58;&#xFF0C;</span>
+        <span class="hljs-comment">// &#x4EE5;&#x4FBF;&#x4ECE;parcel&#x5BB9;&#x5668;&#x83B7;&#x53D6;&#x6570;&#x636E;</span>
         dest.writeString(name);
         dest.writeInt(id);
 
@@ -746,7 +766,7 @@
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Creator&lt;Author&gt; CREATOR=<span class="hljs-keyword">new</span> Creator&lt;Author&gt;() {
         <span class="hljs-annotation">@Override</span>
         <span class="hljs-function"><span class="hljs-keyword">public</span> Author <span class="hljs-title">createFromParcel</span><span class="hljs-params">(Parcel source)</span> </span>{
-            <span class="hljs-comment">//从Parcel容器中读取传递数据值，封装成Parcelable对象返回逻辑层。</span>
+            <span class="hljs-comment">//&#x4ECE;Parcel&#x5BB9;&#x5668;&#x4E2D;&#x8BFB;&#x53D6;&#x4F20;&#x9012;&#x6570;&#x636E;&#x503C;&#xFF0C;&#x5C01;&#x88C5;&#x6210;Parcelable&#x5BF9;&#x8C61;&#x8FD4;&#x56DE;&#x903B;&#x8F91;&#x5C42;&#x3002;</span>
             Author author=<span class="hljs-keyword">new</span> Author();
             author.setName(source.readString());
             author.setId(source.readInt());
@@ -755,7 +775,7 @@
 
         <span class="hljs-annotation">@Override</span>
         <span class="hljs-keyword">public</span> Author[] newArray(<span class="hljs-keyword">int</span> size) {
-            <span class="hljs-comment">//创建一个类型为T，长度为size的数组，仅一句话（return new T[size])即可。方法是供外部类反序列化本类数组使用。</span>
+            <span class="hljs-comment">//&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x4E3A;T&#xFF0C;&#x957F;&#x5EA6;&#x4E3A;size&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x4EC5;&#x4E00;&#x53E5;&#x8BDD;&#xFF08;return new T[size])&#x5373;&#x53EF;&#x3002;&#x65B9;&#x6CD5;&#x662F;&#x4F9B;&#x5916;&#x90E8;&#x7C7B;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x672C;&#x7C7B;&#x6570;&#x7EC4;&#x4F7F;&#x7528;&#x3002;</span>
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Author[size];
         }
     };
@@ -793,32 +813,32 @@
     };
 }
 </code></pre>
-<p>传递数据</p>
+<p>&#x4F20;&#x9012;&#x6570;&#x636E;</p>
 <pre><code class="lang-java">
   Book book=<span class="hljs-keyword">new</span> Book();
-        book.setTitle(<span class="hljs-string">"Java编程思想"</span>);
+        book.setTitle(<span class="hljs-string">&quot;Java&#x7F16;&#x7A0B;&#x601D;&#x60F3;&quot;</span>);
         Author author=<span class="hljs-keyword">new</span> Author();
         author.setId(<span class="hljs-number">1</span>);
-        author.setName(<span class="hljs-string">"Bruce Eckel"</span>);
+        author.setName(<span class="hljs-string">&quot;Bruce Eckel&quot;</span>);
         book.setAuthor(author);
         Intent intent=<span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>,SecondActivity.class);
-        intent.putExtra(<span class="hljs-string">"book"</span>,book);
+        intent.putExtra(<span class="hljs-string">&quot;book&quot;</span>,book);
         startActivity(intent);
 </code></pre>
-<p>接收数据</p>
-<pre><code class="lang-java">        Book book=getIntent().getParcelableExtra(<span class="hljs-string">"book"</span>);
-        Log.d(TAG,<span class="hljs-string">"book title-&gt;"</span>+book.getTitle());
-        Log.d(TAG,<span class="hljs-string">"book author name-&gt;"</span>+book.getAuthor().getName());
+<p>&#x63A5;&#x6536;&#x6570;&#x636E;</p>
+<pre><code class="lang-java">        Book book=getIntent().getParcelableExtra(<span class="hljs-string">&quot;book&quot;</span>);
+        Log.d(TAG,<span class="hljs-string">&quot;book title-&gt;&quot;</span>+book.getTitle());
+        Log.d(TAG,<span class="hljs-string">&quot;book author name-&gt;&quot;</span>+book.getAuthor().getName());
 </code></pre>
-<h2 id="4">4.性能分析</h2>
-<p><a href="http://prolificinteractive.com/blog/2014/07/18/why-we-love-parcelable/" target="_blank">经过测试</a>，我们得到下图的效果</p>
+<h2 id="4"><a name="4" class="plugin-anchor" href="#4"><span class="fa fa-link"></span></a>4.&#x6027;&#x80FD;&#x5206;&#x6790;</h2>
+<p><a href="http://prolificinteractive.com/blog/2014/07/18/why-we-love-parcelable/" target="_blank">&#x7ECF;&#x8FC7;&#x6D4B;&#x8BD5;</a>&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x4E0B;&#x56FE;&#x7684;&#x6548;&#x679C;</p>
 <p><img src="images/parcelable-vs-seralizable.png" alt=""></p>
-<p>可以看出，通过转换为字符串的速度是最慢的。Seralizable次之，Parcelable比Seralizable快10倍。所以从性能上考虑，我们必定优先选择Parcelable。但是Parcelable有大量重复的模板代码，如何简化这些操作，将是下面主要讲解的内容。</p>
-<h2 id="5parcel">5.简化Parcel操作</h2>
-<p>如果你使用android Studio 可以通过安装<a href="https://github.com/mcharmas/android-parcelable-intellij-plugin" target="_blank">android-parcelable-intellij-plugin</a>插件，或者自己<a href="http://dmytrodanylyk.com/pages/blog/templates.html" target="_blank">配置模板</a>进行操作。</p>
-<h3 id="51-parceler">5.1 parceler</h3>
-<p>除了上面的操作，还有大量的第三方库来简化Parcelable操作。当然使用这些库也许会降低Parcelable的性能。<a href="https://github.com/johncarl81/parceler" target="_blank">Parceler</a>就是这样一个库。</p>
-<p>Parceler使用非常简单，在定义Model时用<code>@Parcel</code>进行注解，在传递数据的时候使用<code>Parcels</code>的<code>wrap</code>方法来包装成一个<code>Parcelable</code>对象。获取数据时用<code>Parcels</code>的<code>unwrap</code>方法来获取对象。</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x901A;&#x8FC7;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x901F;&#x5EA6;&#x662F;&#x6700;&#x6162;&#x7684;&#x3002;Seralizable&#x6B21;&#x4E4B;&#xFF0C;Parcelable&#x6BD4;Seralizable&#x5FEB;10&#x500D;&#x3002;&#x6240;&#x4EE5;&#x4ECE;&#x6027;&#x80FD;&#x4E0A;&#x8003;&#x8651;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x5B9A;&#x4F18;&#x5148;&#x9009;&#x62E9;Parcelable&#x3002;&#x4F46;&#x662F;Parcelable&#x6709;&#x5927;&#x91CF;&#x91CD;&#x590D;&#x7684;&#x6A21;&#x677F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4F55;&#x7B80;&#x5316;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x662F;&#x4E0B;&#x9762;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h2 id="5parcel"><a name="5parcel" class="plugin-anchor" href="#5parcel"><span class="fa fa-link"></span></a>5.&#x7B80;&#x5316;Parcel&#x64CD;&#x4F5C;</h2>
+<p>&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528;android Studio &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B89;&#x88C5;<a href="https://github.com/mcharmas/android-parcelable-intellij-plugin" target="_blank">android-parcelable-intellij-plugin</a>&#x63D2;&#x4EF6;&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;<a href="http://dmytrodanylyk.com/pages/blog/templates.html" target="_blank">&#x914D;&#x7F6E;&#x6A21;&#x677F;</a>&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="51-parceler"><a name="51-parceler" class="plugin-anchor" href="#51-parceler"><span class="fa fa-link"></span></a>5.1 parceler</h3>
+<p>&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD8;&#x6709;&#x5927;&#x91CF;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x6765;&#x7B80;&#x5316;Parcelable&#x64CD;&#x4F5C;&#x3002;&#x5F53;&#x7136;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x5E93;&#x4E5F;&#x8BB8;&#x4F1A;&#x964D;&#x4F4E;Parcelable&#x7684;&#x6027;&#x80FD;&#x3002;<a href="https://github.com/johncarl81/parceler" target="_blank">Parceler</a>&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5E93;&#x3002;</p>
+<p>Parceler&#x4F7F;&#x7528;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x5728;&#x5B9A;&#x4E49;Model&#x65F6;&#x7528;<code>@Parcel</code>&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#xFF0C;&#x5728;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;<code>Parcels</code>&#x7684;<code>wrap</code>&#x65B9;&#x6CD5;&#x6765;&#x5305;&#x88C5;&#x6210;&#x4E00;&#x4E2A;<code>Parcelable</code>&#x5BF9;&#x8C61;&#x3002;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x65F6;&#x7528;<code>Parcels</code>&#x7684;<code>unwrap</code>&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x3002;</p>
 <p>Model</p>
 <pre><code class="lang-java">
 <span class="hljs-annotation">@Parcel</span> 
@@ -840,25 +860,25 @@
     <span class="hljs-comment">//setter &amp; getter</span>
 }
 </code></pre>
-<p>传递对象</p>
+<p>&#x4F20;&#x9012;&#x5BF9;&#x8C61;</p>
 <pre><code class="lang-java">
 Book book=<span class="hljs-keyword">new</span> Book();
-book.setTitle(<span class="hljs-string">"Java编程思想"</span>);
+book.setTitle(<span class="hljs-string">&quot;Java&#x7F16;&#x7A0B;&#x601D;&#x60F3;&quot;</span>);
 Author author=<span class="hljs-keyword">new</span> Author();
 author.setId(<span class="hljs-number">1</span>);
-author.setName(<span class="hljs-string">"Bruce Eckel"</span>);
+author.setName(<span class="hljs-string">&quot;Bruce Eckel&quot;</span>);
 book.setAuthor(author);
         Intent intent=<span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>,SecondActivity.class);
-        intent.putExtra(<span class="hljs-string">"book"</span>, Parcels.wrap(book));
+        intent.putExtra(<span class="hljs-string">&quot;book&quot;</span>, Parcels.wrap(book));
         startActivity(intent);
 </code></pre>
-<p>接收对象</p>
+<p>&#x63A5;&#x6536;&#x5BF9;&#x8C61;</p>
 <pre><code class="lang-java">
-  Book book= Parcels.unwrap(getIntent().getParcelableExtra(<span class="hljs-string">"book"</span>));
-  Log.d(TAG,<span class="hljs-string">"book title-&gt;"</span>+book.getTitle());
-  Log.d(TAG,<span class="hljs-string">"book author name-&gt;"</span>+book.getAuthor().getName());
+  Book book= Parcels.unwrap(getIntent().getParcelableExtra(<span class="hljs-string">&quot;book&quot;</span>));
+  Log.d(TAG,<span class="hljs-string">&quot;book title-&gt;&quot;</span>+book.getTitle());
+  Log.d(TAG,<span class="hljs-string">&quot;book author name-&gt;&quot;</span>+book.getAuthor().getName());
 </code></pre>
-<p>除了Parceler之外，还有如<a href="https://github.com/frankiesardo/auto-parcel" target="_blank">auto-parcel</a>,<a href="https://github.com/foxykeep/ParcelableCodeGenerator" target="_blank">ParcelableCodeGenerator</a>,<a href="https://github.com/baoyongzhang/ParcelableGenerator" target="_blank">ParcelableGenerator</a>等第三方库，这里我将不进行讲解，有兴趣的朋友，可以自行研究。</p>
+<p>&#x9664;&#x4E86;Parceler&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x5982;<a href="https://github.com/frankiesardo/auto-parcel" target="_blank">auto-parcel</a>,<a href="https://github.com/foxykeep/ParcelableCodeGenerator" target="_blank">ParcelableCodeGenerator</a>,<a href="https://github.com/baoyongzhang/ParcelableGenerator" target="_blank">ParcelableGenerator</a>&#x7B49;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x5C06;&#x4E0D;&#x8FDB;&#x884C;&#x8BB2;&#x89E3;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x670B;&#x53CB;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x7814;&#x7A76;&#x3002;</p>
 
                     
                     </section>
@@ -878,10 +898,6 @@ book.setAuthor(author);
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-infinitescroll/plugin.js"></script>
     
 
     

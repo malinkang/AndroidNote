@@ -29,9 +29,13 @@
         
 <link rel="stylesheet" href="../gitbook/style.css">
 
+    
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
 
         
-    <div class="book" data-level="10.1" data-basepath=".." data-revision="1418919799259">
+    <div class="book" data-level="10.1" data-basepath=".." data-revision="1419231249652">
     
 
 <div class="book-summary">
@@ -158,13 +162,29 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+        <li class="chapter " data-level="1.5" data-path="ui/LayoutInflater.html">
+            
+                
+                    <a href="../ui/LayoutInflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/actionbar.html">
             
                 
                     <a href="../ui/actionbar.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.5.</b>
+                            <b>1.6.</b>
                         
                          ActionBar
                     </a>
@@ -174,13 +194,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+        <li class="chapter " data-level="1.7" data-path="ui/toast.html">
             
                 
                     <a href="../ui/toast.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.6.</b>
+                            <b>1.7.</b>
                         
                          Toast
                     </a>
@@ -190,13 +210,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+        <li class="chapter " data-level="1.8" data-path="ui/notification.html">
             
                 
                     <a href="../ui/notification.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.7.</b>
+                            <b>1.8.</b>
                         
                          Notification
                     </a>
@@ -639,20 +659,20 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_4">
+                    <section class="normal" id="section-gitbook_5">
                     
-                        <h1 id="butterknife">ButterKnife</h1>
-<p>ButterKnife是一个Android View注入的库。</p>
-<h2 id="1-eclipse">1 配置Eclipse</h2>
-<p>在使用ButterKnife需要先配置一下Eclipse。</p>
-<p>项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致</p>
+                        <h1 id="butterknife"><a name="butterknife" class="plugin-anchor" href="#butterknife"><span class="fa fa-link"></span></a>ButterKnife</h1>
+<p>ButterKnife&#x662F;&#x4E00;&#x4E2A;Android View&#x6CE8;&#x5165;&#x7684;&#x5E93;&#x3002;</p>
+<h2 id="1-eclipse"><a name="1-eclipse" class="plugin-anchor" href="#1-eclipse"><span class="fa fa-link"></span></a>1 &#x914D;&#x7F6E;Eclipse</h2>
+<p>&#x5728;&#x4F7F;&#x7528;ButterKnife&#x9700;&#x8981;&#x5148;&#x914D;&#x7F6E;&#x4E00;&#x4E0B;Eclipse&#x3002;</p>
+<p>&#x9879;&#x76EE;&#x53F3;&#x952E;-Properties-Java Complier-Annotation Processing &#x786E;&#x4FDD;&#x8BBE;&#x7F6E;&#x548C;&#x4E0B;&#x56FE;&#x4E00;&#x81F4;</p>
 <p><img src="http://jakewharton.github.io/butterknife/static/ide-eclipse1.png" alt=""></p>
-<p>接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs...,选中ButterKnife的jar包</p>
+<p>&#x63A5;&#x7740;&#x5C55;&#x5F00;Annotation Processing&#x9009;&#x62E9;Factory Path,&#x9009;&#x4E2D;Enable project specific settings&#x3002;&#x7136;&#x540E;&#x70B9;&#x51FB; Add JARs...,&#x9009;&#x4E2D;ButterKnife&#x7684;jar&#x5305;</p>
 <p><img src="http://jakewharton.github.io/butterknife/static/ide-eclipse2.png" alt=""></p>
-<p>然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。</p>
-<p>确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。</p>
-<h2 id="2-">2 使用注解</h2>
-<p>在Activity中使用注解</p>
+<p>&#x7136;&#x540E;&#x70B9;&#x51FB;ok&#x4FDD;&#x5B58;&#x8BBE;&#x7F6E;&#xFF0C;Eclipse&#x5C06;&#x95EE;&#x4F60;&#x662F;&#x5426;&#x91CD;&#x65B0;&#x6784;&#x5EFA;&#x65B0;&#x9879;&#x76EE;&#xFF0C;&#x70B9;&#x51FB;Yes&#x3002;</p>
+<p>&#x786E;&#x4FDD;&#x4F60;&#x9879;&#x76EE;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x91CC;&#x6709;&#x4E00;&#x4E2A;.apt_generated&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x5305;&#x542B;YOURACTIVITY$$ViewInjector.java&#x8FD9;&#x6837;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<h2 id="2-"><a name="2-" class="plugin-anchor" href="#2-"><span class="fa fa-link"></span></a>2 &#x4F7F;&#x7528;&#x6CE8;&#x89E3;</h2>
+<p>&#x5728;Activity&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;</p>
 <pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
   <span class="hljs-annotation">@InjectView</span>(R.id.title) TextView title;
   <span class="hljs-annotation">@InjectView</span>(R.id.subtitle) TextView subtitle;
@@ -662,11 +682,11 @@
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
     setContentView(R.layout.simple_activity);
     ButterKnife.inject(<span class="hljs-keyword">this</span>);
-    <span class="hljs-comment">// TODO Use "injected" views...</span>
+    <span class="hljs-comment">// TODO Use &quot;injected&quot; views...</span>
   }
 }
 </code></pre>
-<p>Fragment中使用注解</p>
+<p>Fragment&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;</p>
 <pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FancyFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
   <span class="hljs-annotation">@InjectView</span>(R.id.button1) Button button1;
@@ -675,12 +695,12 @@
   <span class="hljs-annotation">@Override</span> <span class="hljs-function">View <span class="hljs-title">onCreateView</span><span class="hljs-params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>{
     View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="hljs-keyword">false</span>);
     ButterKnife.inject(<span class="hljs-keyword">this</span>, view);
-    <span class="hljs-comment">// TODO Use "injected" views...</span>
+    <span class="hljs-comment">// TODO Use &quot;injected&quot; views...</span>
     <span class="hljs-keyword">return</span> view;
   }
 }
 </code></pre>
-<p>Adapter中使用注解</p>
+<p>Adapter&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseAdapter</span> </span>{
   <span class="hljs-annotation">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">getView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, View view, ViewGroup parent)</span> </span>{
     ViewHolder holder;
@@ -692,7 +712,7 @@
       view.setTag(holder);
     }
 
-    holder.name.setText(<span class="hljs-string">"John Doe"</span>);
+    holder.name.setText(<span class="hljs-string">&quot;John Doe&quot;</span>);
     <span class="hljs-comment">// etc...</span>
 
     <span class="hljs-keyword">return</span> convertView;
@@ -708,25 +728,25 @@
   }
 }
 </code></pre>
-<h2 id="3">3.事件注入</h2>
-<p>点击事件注入</p>
+<h2 id="3"><a name="3" class="plugin-anchor" href="#3"><span class="fa fa-link"></span></a>3.&#x4E8B;&#x4EF6;&#x6CE8;&#x5165;</h2>
+<p>&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x6CE8;&#x5165;</p>
 <pre><code class="lang-java">
 <span class="hljs-annotation">@OnClick</span>(R.id.submit)
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHi</span><span class="hljs-params">(Button button)</span> </span>{
-  button.setText(<span class="hljs-string">"Hello!"</span>);
+  button.setText(<span class="hljs-string">&quot;Hello!&quot;</span>);
 }
 </code></pre>
-<p>多个控件具有相同的事件</p>
+<p>&#x591A;&#x4E2A;&#x63A7;&#x4EF6;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x4E8B;&#x4EF6;</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@OnClick</span>({ R.id.door1, R.id.door2, R.id.door3 })
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pickDoor</span><span class="hljs-params">(DoorView door)</span> </span>{
   <span class="hljs-keyword">if</span> (door.hasPrizeBehind()) {
-    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"You win!"</span>, LENGTH_SHORT).show();
+    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;You win!&quot;</span>, LENGTH_SHORT).show();
   } <span class="hljs-keyword">else</span> {
-    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Try again"</span>, LENGTH_SHORT).show();
+    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;Try again&quot;</span>, LENGTH_SHORT).show();
   }
 }
 </code></pre>
-<h2 id="4">4.重置注入</h2>
+<h2 id="4"><a name="4" class="plugin-anchor" href="#4"><span class="fa fa-link"></span></a>4.&#x91CD;&#x7F6E;&#x6CE8;&#x5165;</h2>
 <pre><code>public class FancyFragment extends Fragment {
   @InjectView(R.id.button1) Button button1;
   @InjectView(R.id.button2) Button button2;
@@ -743,21 +763,21 @@
     ButterKnife.reset(this);
   }
 }
-</code></pre><h2 id="">可选注入</h2>
-<p>默认情况下@InjectView和@OnClick注入是必选的，如果view未找到将出现异常。为了避免出现异常，添加一个@Optional注解。</p>
-<h2 id="">其它</h2>
-<p>ButterKnife还包含了两个findById方法。</p>
+</code></pre><h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x53EF;&#x9009;&#x6CE8;&#x5165;</h2>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;@InjectView&#x548C;@OnClick&#x6CE8;&#x5165;&#x662F;&#x5FC5;&#x9009;&#x7684;&#xFF0C;&#x5982;&#x679C;view&#x672A;&#x627E;&#x5230;&#x5C06;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#x3002;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#xFF0C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;@Optional&#x6CE8;&#x89E3;&#x3002;</p>
+<h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x5176;&#x5B83;</h2>
+<p>ButterKnife&#x8FD8;&#x5305;&#x542B;&#x4E86;&#x4E24;&#x4E2A;findById&#x65B9;&#x6CD5;&#x3002;</p>
 <pre><code>
 View view = LayoutInflater.from(context).inflate(R.layout.thing, null);
 TextView firstName = ButterKnife.findById(view, R.id.first_name);
 TextView lastName = ButterKnife.findById(view, R.id.last_name);
 ImageView photo = ButterKnife.findById(view, R.id.photo);
-</code></pre><h2 id="">混淆</h2>
-<p>为避免混淆的时代码被移除，所以要在proguard-project.txt中添加如下代码避免混淆</p>
+</code></pre><h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6DF7;&#x6DC6;</h2>
+<p>&#x4E3A;&#x907F;&#x514D;&#x6DF7;&#x6DC6;&#x7684;&#x65F6;&#x4EE3;&#x7801;&#x88AB;&#x79FB;&#x9664;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5728;proguard-project.txt&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x907F;&#x514D;&#x6DF7;&#x6DC6;</p>
 <pre><code>-dontwarn butterknife.internal.**
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}
-</code></pre><h2 id="">阅读更多</h2>
+</code></pre><h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x9605;&#x8BFB;&#x66F4;&#x591A;</h2>
 <p><a href="http://jakewharton.github.io/butterknife/" target="_blank">Butterknife</a></p>
 
                     
@@ -780,10 +800,6 @@ ImageView photo = ButterKnife.findById(view, R.id.photo);
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-infinitescroll/plugin.js"></script>
     
 
     

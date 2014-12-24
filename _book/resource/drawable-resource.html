@@ -27,9 +27,13 @@
         
 <link rel="stylesheet" href="../gitbook/style.css">
 
+    
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
 
         
-    <div class="book" data-level="2.1" data-basepath=".." data-revision="1418919799259">
+    <div class="book" data-level="2.1" data-basepath=".." data-revision="1419231249652">
     
 
 <div class="book-summary">
@@ -156,13 +160,29 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+        <li class="chapter " data-level="1.5" data-path="ui/LayoutInflater.html">
+            
+                
+                    <a href="../ui/LayoutInflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/actionbar.html">
             
                 
                     <a href="../ui/actionbar.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.5.</b>
+                            <b>1.6.</b>
                         
                          ActionBar
                     </a>
@@ -172,13 +192,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+        <li class="chapter " data-level="1.7" data-path="ui/toast.html">
             
                 
                     <a href="../ui/toast.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.6.</b>
+                            <b>1.7.</b>
                         
                          Toast
                     </a>
@@ -188,13 +208,13 @@
         </li>
     
         
-        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+        <li class="chapter " data-level="1.8" data-path="ui/notification.html">
             
                 
                     <a href="../ui/notification.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.7.</b>
+                            <b>1.8.</b>
                         
                          Notification
                     </a>
@@ -639,85 +659,85 @@
                 
                     <section class="normal" id="section-gitbook_13">
                     
-                        <h1 id="drawable-resource">Drawable Resource</h1>
-<h2 id="layer-list">Layer List</h2>
-<p><a href="http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html" target="_blank">LayerDrawable</a>是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。</p>
-<p>语法</p>
+                        <h1 id="drawable-resource"><a name="drawable-resource" class="plugin-anchor" href="#drawable-resource"><span class="fa fa-link"></span></a>Drawable Resource</h1>
+<h2 id="layer-list"><a name="layer-list" class="plugin-anchor" href="#layer-list"><span class="fa fa-link"></span></a>Layer List</h2>
+<p><a href="http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html" target="_blank">LayerDrawable</a>&#x662F;&#x4E00;&#x4E2A;&#x80FD;&#x591F;&#x7BA1;&#x7406;&#x4E00;&#x7EC4;drawable&#x7684;drawable&#x5BF9;&#x8C61;&#x3002;&#x4E00;&#x7EC4;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5C06;&#x4F1A;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x7ED8;&#x5236;&#x3002;</p>
+<p>&#x8BED;&#x6CD5;</p>
 <pre><code class="lang-xml">
-<span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">layer-list</span>
-    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span> &gt;</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">&quot;http://schemas.android.com/apk/res/android&quot;</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span>
-        <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@[package:]drawable/drawable_resource"</span>
-        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@[+][package:]id/resource_name"</span>
-        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">"dimension"</span>
-        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">"dimension"</span>
-        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">"dimension"</span>
-        <span class="hljs-attribute">android:left</span>=<span class="hljs-value">"dimension"</span> /&gt;</span>
+        <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">&quot;@[package:]drawable/drawable_resource&quot;</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">&quot;@[+][package:]id/resource_name&quot;</span>
+        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">&quot;dimension&quot;</span>
+        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">&quot;dimension&quot;</span>
+        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">&quot;dimension&quot;</span>
+        <span class="hljs-attribute">android:left</span>=<span class="hljs-value">&quot;dimension&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">layer-list</span>&gt;</span>
 </code></pre>
-<h2 id="shape-drawable">Shape Drawable</h2>
-<p>语法</p>
+<h2 id="shape-drawable"><a name="shape-drawable" class="plugin-anchor" href="#shape-drawable"><span class="fa fa-link"></span></a>Shape Drawable</h2>
+<p>&#x8BED;&#x6CD5;</p>
 <pre><code class="lang-xml">
-<span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">shape</span>
-    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
-    <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">["rectangle"</span> | "<span class="hljs-attribute">oval</span>" | "<span class="hljs-attribute">line</span>" | "<span class="hljs-attribute">ring</span>"] &gt;</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">[&quot;rectangle&quot;</span> | &quot;<span class="hljs-attribute">oval</span>&quot; | &quot;<span class="hljs-attribute">line</span>&quot; | &quot;<span class="hljs-attribute">ring</span>&quot;] &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">corners</span>
-        <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:topLeftRadius</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:topRightRadius</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:bottomLeftRadius</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:bottomRightRadius</span>=<span class="hljs-value">"integer"</span> /&gt;</span>
+        <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:topLeftRadius</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:topRightRadius</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:bottomLeftRadius</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:bottomRightRadius</span>=<span class="hljs-value">&quot;integer&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">gradient</span>
-        <span class="hljs-attribute">android:angle</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:centerX</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:centerY</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:centerColor</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:endColor</span>=<span class="hljs-value">"color"</span>
-        <span class="hljs-attribute">android:gradientRadius</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:startColor</span>=<span class="hljs-value">"color"</span>
-        <span class="hljs-attribute">android:type</span>=<span class="hljs-value">["linear"</span> | "<span class="hljs-attribute">radial</span>" | "<span class="hljs-attribute">sweep</span>"]
-        <span class="hljs-attribute">android:useLevel</span>=<span class="hljs-value">["true"</span> | "<span class="hljs-attribute">false</span>"] /&gt;</span>
+        <span class="hljs-attribute">android:angle</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:centerX</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:centerY</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:centerColor</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:endColor</span>=<span class="hljs-value">&quot;color&quot;</span>
+        <span class="hljs-attribute">android:gradientRadius</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:startColor</span>=<span class="hljs-value">&quot;color&quot;</span>
+        <span class="hljs-attribute">android:type</span>=<span class="hljs-value">[&quot;linear&quot;</span> | &quot;<span class="hljs-attribute">radial</span>&quot; | &quot;<span class="hljs-attribute">sweep</span>&quot;]
+        <span class="hljs-attribute">android:useLevel</span>=<span class="hljs-value">[&quot;true&quot;</span> | &quot;<span class="hljs-attribute">false</span>&quot;] /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">padding</span>
-        <span class="hljs-attribute">android:left</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">"integer"</span> /&gt;</span>
+        <span class="hljs-attribute">android:left</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">&quot;integer&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">size</span>
-        <span class="hljs-attribute">android:width</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:height</span>=<span class="hljs-value">"integer"</span> /&gt;</span>
+        <span class="hljs-attribute">android:width</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:height</span>=<span class="hljs-value">&quot;integer&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">solid</span>
-        <span class="hljs-attribute">android:color</span>=<span class="hljs-value">"color"</span> /&gt;</span>
+        <span class="hljs-attribute">android:color</span>=<span class="hljs-value">&quot;color&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">stroke</span>
-        <span class="hljs-attribute">android:width</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:color</span>=<span class="hljs-value">"color"</span>
-        <span class="hljs-attribute">android:dashWidth</span>=<span class="hljs-value">"integer"</span>
-        <span class="hljs-attribute">android:dashGap</span>=<span class="hljs-value">"integer"</span> /&gt;</span>
+        <span class="hljs-attribute">android:width</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:color</span>=<span class="hljs-value">&quot;color&quot;</span>
+        <span class="hljs-attribute">android:dashWidth</span>=<span class="hljs-value">&quot;integer&quot;</span>
+        <span class="hljs-attribute">android:dashGap</span>=<span class="hljs-value">&quot;integer&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">shape</span>&gt;</span>
 </code></pre>
-<h3 id="shape"><shape></h3>
-<p><code>android:shape</code>定义形状，可用的值包括<code>rectangle(矩形)</code>、<code>oval(椭圆形)</code>、<code>line(线)</code>、<code>ring(圆形)</code></p>
-<p><strong>下列属性只有当<code>android:shape=&quot;ring&quot;</code>时才能使用。</strong></p>
+<h3 id="shape"><a name="shape" class="plugin-anchor" href="#shape"><span class="fa fa-link"></span></a><shape></shape></h3>
+<p><code>android:shape</code>&#x5B9A;&#x4E49;&#x5F62;&#x72B6;&#xFF0C;&#x53EF;&#x7528;&#x7684;&#x503C;&#x5305;&#x62EC;<code>rectangle(&#x77E9;&#x5F62;)</code>&#x3001;<code>oval(&#x692D;&#x5706;&#x5F62;)</code>&#x3001;<code>line(&#x7EBF;)</code>&#x3001;<code>ring(&#x5706;&#x5F62;)</code></p>
+<p><strong>&#x4E0B;&#x5217;&#x5C5E;&#x6027;&#x53EA;&#x6709;&#x5F53;<code>android:shape=&quot;ring&quot;</code>&#x65F6;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#x3002;</strong></p>
 <ul>
-<li><code>android:innerRadius</code>尺寸值。 圆形内部半径。</li>
-<li><code>android:innerRadiusRatio</code>float值。内部半径和圆形宽度比例。例如，如果<code>android:innerRadiusRatio=&quot;5&quot;</code>时，内部半斤等于圆形宽度除以5。如果设置了<code>android:innerRadius</code>，该值讲不起作用。默认值为<code>9</code>。</li>
-<li><code>android:thickness</code>尺寸值。圆形的厚度。</li>
-<li><code>android:thicknessRatio</code>float值。厚度与圆形宽度的比例。默认值是<code>3</code>。</li>
-<li><code>android:useLevel</code>是否作为一个<code>LevelListDrawable</code>。</li>
+<li><code>android:innerRadius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002; &#x5706;&#x5F62;&#x5185;&#x90E8;&#x534A;&#x5F84;&#x3002;</li>
+<li><code>android:innerRadiusRatio</code>float&#x503C;&#x3002;&#x5185;&#x90E8;&#x534A;&#x5F84;&#x548C;&#x5706;&#x5F62;&#x5BBD;&#x5EA6;&#x6BD4;&#x4F8B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;<code>android:innerRadiusRatio=&quot;5&quot;</code>&#x65F6;&#xFF0C;&#x5185;&#x90E8;&#x534A;&#x65A4;&#x7B49;&#x4E8E;&#x5706;&#x5F62;&#x5BBD;&#x5EA6;&#x9664;&#x4EE5;5&#x3002;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E86;<code>android:innerRadius</code>&#xFF0C;&#x8BE5;&#x503C;&#x8BB2;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;<code>9</code>&#x3002;</li>
+<li><code>android:thickness</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x5706;&#x5F62;&#x7684;&#x539A;&#x5EA6;&#x3002;</li>
+<li><code>android:thicknessRatio</code>float&#x503C;&#x3002;&#x539A;&#x5EA6;&#x4E0E;&#x5706;&#x5F62;&#x5BBD;&#x5EA6;&#x7684;&#x6BD4;&#x4F8B;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x662F;<code>3</code>&#x3002;</li>
+<li><code>android:useLevel</code>&#x662F;&#x5426;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;<code>LevelListDrawable</code>&#x3002;</li>
 </ul>
-<h3 id="corners"><corners></h3>
+<h3 id="corners"><a name="corners" class="plugin-anchor" href="#corners"><span class="fa fa-link"></span></a><corners></corners></h3>
 <ul>
-<li><code>android:radius</code>尺寸值。所有角的半径。</li>
-<li><code>android:topLeftRadius</code>尺寸值。左上角的半径。</li>
-<li><code>android:topRightRadius</code>尺寸值。右上角的半径。</li>
-<li><code>android:bottomLeftRadius</code>尺寸值。左下角的半径。</li>
-<li><code>android:bottomRightRadius</code>尺寸值。右下角的半径。</li>
+<li><code>android:radius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x6240;&#x6709;&#x89D2;&#x7684;&#x534A;&#x5F84;&#x3002;</li>
+<li><code>android:topLeftRadius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x534A;&#x5F84;&#x3002;</li>
+<li><code>android:topRightRadius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x534A;&#x5F84;&#x3002;</li>
+<li><code>android:bottomLeftRadius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x534A;&#x5F84;&#x3002;</li>
+<li><code>android:bottomRightRadius</code>&#x5C3A;&#x5BF8;&#x503C;&#x3002;&#x53F3;&#x4E0B;&#x89D2;&#x7684;&#x534A;&#x5F84;&#x3002;</li>
 </ul>
-<h3 id="gradient"><gradient></h3>
-<p>定义颜色渐变。</p>
+<h3 id="gradient"><a name="gradient" class="plugin-anchor" href="#gradient"><span class="fa fa-link"></span></a><gradient></gradient></h3>
+<p>&#x5B9A;&#x4E49;&#x989C;&#x8272;&#x6E10;&#x53D8;&#x3002;</p>
 <ul>
-<li><code>android:angle</code>Integer值。渐变的角度。0是从左到右，90是从底部到顶部。值必须是<code>45</code>的倍数。默认是<code>0</code>。</li>
+<li><code>android:angle</code>Integer&#x503C;&#x3002;&#x6E10;&#x53D8;&#x7684;&#x89D2;&#x5EA6;&#x3002;0&#x662F;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#xFF0C;90&#x662F;&#x4ECE;&#x5E95;&#x90E8;&#x5230;&#x9876;&#x90E8;&#x3002;&#x503C;&#x5FC5;&#x987B;&#x662F;<code>45</code>&#x7684;&#x500D;&#x6570;&#x3002;&#x9ED8;&#x8BA4;&#x662F;<code>0</code>&#x3002;</li>
 <li><code>android:centerX</code></li>
 <li><code>android:centerY</code></li>
 <li><code>android:centerColor</code></li>
@@ -726,35 +746,35 @@
 <li><code>android:startColor</code></li>
 <li><code>android:type</code></li>
 </ul>
-<h3 id="padding"><padding></h3>
-<h3 id="size"><size></h3>
-<h3 id="solid"><solid></h3>
-<p>实心的颜色，填充Shape</p>
-<h3 id="stroke"><stroke></h3>
-<p>Shape的边线。</p>
+<h3 id="padding"><a name="padding" class="plugin-anchor" href="#padding"><span class="fa fa-link"></span></a><padding></padding></h3>
+<h3 id="size"><a name="size" class="plugin-anchor" href="#size"><span class="fa fa-link"></span></a><size></size></h3>
+<h3 id="solid"><a name="solid" class="plugin-anchor" href="#solid"><span class="fa fa-link"></span></a><solid></solid></h3>
+<p>&#x5B9E;&#x5FC3;&#x7684;&#x989C;&#x8272;&#xFF0C;&#x586B;&#x5145;Shape</p>
+<h3 id="stroke"><a name="stroke" class="plugin-anchor" href="#stroke"><span class="fa fa-link"></span></a><stroke></stroke></h3>
+<p>Shape&#x7684;&#x8FB9;&#x7EBF;&#x3002;</p>
 <ul>
 <li><code>android:width</code></li>
 <li><code>android:color</code></li>
 <li><code>android:dashGap</code></li>
 <li><code>android:dashWidth</code></li>
 </ul>
-<p>示例</p>
+<p>&#x793A;&#x4F8B;</p>
 <pre><code class="lang-xml">
-<span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">shape</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
-    <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">"rectangle"</span>&gt;</span>
+<span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">shape</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">&quot;rectangle&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">gradient</span>
-        <span class="hljs-attribute">android:startColor</span>=<span class="hljs-value">"#FFFF0000"</span>
-        <span class="hljs-attribute">android:endColor</span>=<span class="hljs-value">"#80FF00FF"</span>
-        <span class="hljs-attribute">android:angle</span>=<span class="hljs-value">"45"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">padding</span> <span class="hljs-attribute">android:left</span>=<span class="hljs-value">"7dp"</span>
-        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">"7dp"</span>
-        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">"7dp"</span>
-        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">"7dp"</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">corners</span> <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">"8dp"</span> /&gt;</span>
+        <span class="hljs-attribute">android:startColor</span>=<span class="hljs-value">&quot;#FFFF0000&quot;</span>
+        <span class="hljs-attribute">android:endColor</span>=<span class="hljs-value">&quot;#80FF00FF&quot;</span>
+        <span class="hljs-attribute">android:angle</span>=<span class="hljs-value">&quot;45&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">padding</span> <span class="hljs-attribute">android:left</span>=<span class="hljs-value">&quot;7dp&quot;</span>
+        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">&quot;7dp&quot;</span>
+        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">&quot;7dp&quot;</span>
+        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">&quot;7dp&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">corners</span> <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">&quot;8dp&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">shape</span>&gt;</span>
 </code></pre>
-<h2 id="">阅读更多</h2>
+<h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x9605;&#x8BFB;&#x66F4;&#x591A;</h2>
 
                     
                     </section>
@@ -774,10 +794,6 @@
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-infinitescroll/plugin.js"></script>
     
 
     

@@ -6,6 +6,7 @@
     * [RecyclerView](ui/recyclerview.md)
   - [AdapterView]
   - [Adapter]
+  - [LayoutInflater](ui/LayoutInflater.md)
   - [ActionBar](ui/actionbar.md)
   - [Toast](ui/toast.md)
   -	[Notification](ui/notification.md)

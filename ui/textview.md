@@ -47,7 +47,106 @@ mTextView.setText("<font color='red'>红色</font>");
 
 ```java
 mTextView.setText(Html.from("<font color='red'>红色</font>"));
+
 ```
+
+## 3. 在TextVeiew中设置字体
+
+在前面我们提到通过`typeface`属性可以设置字体，但该属性只支持`sans`, `serif`, `monospace`三种字体。如果想设置更多的字体只能通过代码来实现，但这样不太方便。开源库[Calligraphy](https://github.com/chrisjenx/Calligraphy)让自定义字体更加的方便。
+
+Calligraphy使用非常简单，到Github项目主页下载最新的Jar，或者使用Gradle构建
+
+```
+dependencies {
+    compile 'uk.co.chrisjenx:calligraphy:1.2.0'
+}
+
+```
+
+将你的自定义字体添加到 `assets/fonts/` 目录下。
+
+Calligraphy中没有添加相关的属性，所以你需要自己添加自定义属性。
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fontPath" format="string"/>
+</resources>
+
+```
+
+在开始使用之前需要在你的`Application`类中进行初始化配置。
+
+```java
+protected void onCreate() {
+    super.onCreate();
+    CalligraphyConfig.initDefault("fonts/Roboto-Regular.ttf", R.attr.fontPath);
+    //....
+}
+
+```
+
+`initDefault`方法设置默认自定义字体并进行初始化。
+
+Calligraphy 1.0.0之后可以不用定义CalligraphyConfig，但是这样就无法设置默认字体了。
+
+在activity中注入Context
+
+```java
+@Override
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+}
+```
+接下来就可以在布局文件中设置字体了
+
+```xml
+<TextView
+    android:text="@string/hello_world"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    fontPath="fonts/Roboto-Bold.ttf"/>
+```
+注意：这时IDE将会提示错误，需要在TextView或者它的父`ViewGroup`中添加`tools:ignore="MissingPrefix" `而且需要添加tools的命名空间`xmlns:tools=" http://schemas.android.com/tools"`。
+
+在TextAppearance中自定义字体。
+
+```xml
+<style name="TextAppearance.FontPath" parent="android:TextAppearance">
+    <!-- Custom Attr-->
+    <item name="fontPath">fonts/RobotoCondensed-Regular.ttf</item>
+</style>
+```
+
+```xml
+<TextView
+    android:text="@string/hello_world"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="@style/TextAppearance.FontPath"/>
+```
+在Styles中设置
+
+```xml
+<style name="TextViewCustomFont">
+    <item name="fontPath">fonts/RobotoCondensed-Regular.ttf</item>
+</style>
+```
+在Theme中自定义字体
+
+```xml
+<style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
+</style>
+
+<style name="AppTheme.Widget"/>
+
+<style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+    <item name="fontPath">fonts/Roboto-ThinItalic.ttf</item>
+</style>
+```
+
+
 ## 阅读更多
 
 
