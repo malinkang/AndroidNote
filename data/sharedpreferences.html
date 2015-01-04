@@ -1,0 +1,934 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>SharedPreferences | Android学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+    
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
+
+        
+    <div class="book" data-level="6.1" data-basepath=".." data-revision="1420132363254">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> [UI]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" >
+            
+            <span><b>1.1.</b> [Layouts]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" >
+            
+            <span><b>1.2.</b> [Components]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.2.1" data-path="ui/textview.html">
+            
+                
+                    <a href="../ui/textview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                         TextView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.2" data-path="ui/webview.html">
+            
+                
+                    <a href="../ui/webview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.2.</b>
+                        
+                         WebView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.3" data-path="ui/recyclerview.html">
+            
+                
+                    <a href="../ui/recyclerview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.3.</b>
+                        
+                         RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" >
+            
+            <span><b>1.3.</b> [AdapterView]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" >
+            
+            <span><b>1.4.</b> [Adapter]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+            
+                
+                    <a href="../ui/actionbar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         ActionBar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+            
+                
+                    <a href="../ui/toast.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Toast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+            
+                
+                    <a href="../ui/notification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         Notification
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.8" data-path="ui/layoutinflater.html">
+            
+                
+                    <a href="../ui/layoutinflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.9" >
+            
+            <span><b>1.9.</b> [Resource]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.10" data-path="resource/drawable-resource.html">
+            
+                
+                    <a href="../resource/drawable-resource.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                         DrawableResource
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> [Intent]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> [Activity] </span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="activity/transmission-data.html">
+            
+                
+                    <a href="../activity/transmission-data.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         数据传递
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> [Fragment]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> [Service]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> [存储]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="6.1" data-path="data/sharedpreferences.html">
+            
+                
+                    <a href="../data/sharedpreferences.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         SharedPreferences
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" >
+            
+            <span><b>6.2.</b> [数据库]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.2.1" data-path="data/activeandroid.html">
+            
+                
+                    <a href="../data/activeandroid.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.1.</b>
+                        
+                         ActiveAndroid
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> [数据交换]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" >
+            
+            <span><b>7.1.</b> [JSON]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1.1" data-path="parse/gson.html">
+            
+                
+                    <a href="../parse/gson.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.1.</b>
+                        
+                         Gson
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> [网络编程]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" >
+            
+            <span><b>8.1.</b> [网络请求]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1.1" data-path="net/retrofit.html">
+            
+                
+                    <a href="../net/retrofit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.1.</b>
+                        
+                         Retrofit
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.1.2" data-path="net/volley.html">
+            
+                
+                    <a href="../net/volley.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.2.</b>
+                        
+                         Volley
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2" >
+            
+            <span><b>8.2.</b> [网络图片加载]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.2.1" data-path="net/android-universal-image-loader.html">
+            
+                
+                    <a href="../net/android-universal-image-loader.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.1.</b>
+                        
+                         Android-Universal-Image-Loader
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2.2" data-path="net/picasso.html">
+            
+                
+                    <a href="../net/picasso.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.2.</b>
+                        
+                         Picasso
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" >
+            
+            <span><b>9.</b> [注解]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="annotation/butterknife.html">
+            
+                
+                    <a href="../annotation/butterknife.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         ButterKnife
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" data-path="annotation/androidannotations.html">
+            
+                
+                    <a href="../annotation/androidannotations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         AndroidAnnotations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Android学习笔记</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_6">
+                    
+                        <h2 id="1sharedpreferenceseditor"><a name="1sharedpreferenceseditor" class="plugin-anchor" href="#1sharedpreferenceseditor"><span class="fa fa-link"></span></a>1.SharedPreferences&#x548C;Editor&#x4F7F;&#x7528;</h2>
+<p><a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a>&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x7684;&#x4E00;&#x4E9B;&#x504F;&#x597D;&#x8BBE;&#x7F6E;&#x3002;SharedPreferences&#x6570;&#x636E;&#x4EE5;xml&#x683C;&#x5F0F;&#x5B58;&#x50A8;&#x5728;<code>/data/data/&lt;package name&gt;/shared_prefs</code>&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p>
+<h3 id="11-sharedpreference"><a name="11-sharedpreference" class="plugin-anchor" href="#11-sharedpreference"><span class="fa fa-link"></span></a>1.1 &#x521B;&#x5EFA;SharedPreference</h3>
+<p>SharedPreferences&#x63A5;&#x53E3;&#x7528;&#x4E8E;&#x8BFB;&#x53D6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;Preferences&#x6570;&#x636E;&#x3002;</p>
+<p>&#x521B;&#x5EFA;SharedPreference&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;<code>Context</code>&#x7684;<code>getSharedPreferences(String name,int mode)</code>&#x65B9;&#x6CD5;&#x6765;&#x521B;&#x5EFA;&#xFF0C;&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;<a href="https://developer.android.com/reference/android/preference/PreferenceManager.html" target="_blank">PreferenceManager</a>&#x6765;&#x521B;&#x5EFA;&#x3002;</p>
+<h4 id="111-getsharedpreferences"><a name="111-getsharedpreferences" class="plugin-anchor" href="#111-getsharedpreferences"><span class="fa fa-link"></span></a>1.1.1 &#x4F7F;&#x7528;getSharedPreferences&#x65B9;&#x6CD5;</h4>
+<p>getSharedPreferences(String name,int mode)&#x65B9;&#x6CD5;&#x7684;&#x4E24;&#x4E2A;&#x53C2;&#x6570;name&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;mode&#x652F;&#x6301;&#x5982;&#x4E0B;&#x51E0;&#x4E2A;&#x503C;&#x3002;</p>
+<ul>
+<li>Context.MODE_PRIVATE:&#x53EA;&#x80FD;&#x88AB;&#x672C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#x53D6;&#x3002;</li>
+<li>Context.MODE_WORLD_READABLE:&#x80FD;&#x88AB;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x5199;&#x3002;</li>
+<li>Context.MODE_WORLD_WRITEABLE:&#x80FD;&#x88AB;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#x5199;&#x3002;</li>
+</ul>
+<h4 id="112-preferencemanager"><a name="112-preferencemanager" class="plugin-anchor" href="#112-preferencemanager"><span class="fa fa-link"></span></a>1.1.2 &#x4F7F;&#x7528;PreferenceManager&#x6765;&#x521B;&#x5EFA;</h4>
+<p>PrefernceManager&#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;</p>
+<ul>
+<li>getDefaultSharedPreferences(Context context):&#x83B7;&#x53D6;&#x9ED8;&#x8BA4;&#x7684;Preference</li>
+<li>getSharedPreferences()</li>
+</ul>
+<h4 id="113-sharedpreference"><a name="113-sharedpreference" class="plugin-anchor" href="#113-sharedpreference"><span class="fa fa-link"></span></a>1.1.3 SharedPreference&#x5E38;&#x7528;&#x65B9;&#x6CD5;</h4>
+<ul>
+<li>public abstract boolean contains (String key)&#xFF1A;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5305;&#x542B;&#x7279;&#x5B9A;key&#x7684;&#x6570;&#x636E;&#x3002;</li>
+<li>public abstract Map<string, ?=""> getAll ()&#xFF1A;&#x83B7;&#x53D6;&#x5168;&#x90E8;&#x7684;key-value&#x5BF9;&#x3002;</string,></li>
+<li>public abstract void registerOnSharedPreferenceChangeListener (SharedPreferences.OnSharedPreferenceChangeListener listener)&#xFF1A;&#x6CE8;&#x518C;<code>OnSharedPreferenceChangeListener</code>&#x76D1;&#x542C;&#x5668;&#x3002;</li>
+</ul>
+<h3 id="12-editor"><a name="12-editor" class="plugin-anchor" href="#12-editor"><span class="fa fa-link"></span></a>1.2 &#x4F7F;&#x7528;Editor&#x4FDD;&#x5B58;&#x6570;&#x636E;</h3>
+<p>SharedPreference &#x63A5;&#x53E3;&#x4E0D;&#x63D0;&#x4F9B;&#x5199;&#x5165;&#x6570;&#x636E;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;SharedPreference&#x7684;&#x5185;&#x90E8;&#x63A5;&#x53E3;Editor&#x6765;&#x4FDD;&#x5B58;&#x6570;&#x636E;&#x3002;&#x8C03;&#x7528;SharedPreference&#x7684;<code>edit()</code>&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x83B7;&#x53D6;&#x5B83;&#x6240;&#x5BF9;&#x5E94;&#x7684;Editor&#x5BF9;&#x8C61;&#x3002;Editor&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;&#x3002;</p>
+<ul>
+<li>clear()&#xFF1A;&#x6E05;&#x7A7A;&#x6240;&#x6709;&#x6570;&#x636E;&#x3002;</li>
+<li>putXxx():&#x5B58;&#x50A8;&#x6570;&#x636E;&#xFF0C;SharedPreference&#x652F;&#x6301;&#x5B58;&#x50A8;<code>boolean</code>&#xFF0C;<code>float</code>&#xFF0C;<code>int</code>,<code>long</code>,<code>string</code>,<code>Set&lt;string&gt;(Api 11&#x65B0;&#x589E;)</code>&#x3002;</li>
+<li>apply()&#x548C;commit()&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x7F16;&#x8F91;&#x5B8C;&#x6210;&#x63D0;&#x4EA4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x63D0;&#x4EA4;&#x5219;&#x5B58;&#x50A8;&#x4E0D;&#x751F;&#x6548;&#x3002;</li>
+</ul>
+<h2 id="2esperandro"><a name="2esperandro" class="plugin-anchor" href="#2esperandro"><span class="fa fa-link"></span></a>2.&#x5F00;&#x6E90;&#x9879;&#x76EE;esperandro</h2>
+<p>&#x5728;Android&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;SharedPreferences&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x6BCF;&#x6B21;&#x8BB0;&#x4F4F;&#x8BBE;&#x7F6E;&#x7684;preference&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x4E14;&#x5982;&#x679C;&#x4E24;&#x6B21;&#x4F7F;&#x7528;&#x4E86;&#x76F8;&#x540C;&#x7684;key&#x5C31;&#x4F1A;&#x8986;&#x76D6;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;preference&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;<code>esperandro</code>&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x4E14;&#x5927;&#x5927;&#x7B80;&#x5316;&#x4E86;<code>SharedPreferences</code>&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="21sharedpreference"><a name="21sharedpreference" class="plugin-anchor" href="#21sharedpreference"><span class="fa fa-link"></span></a>2.1&#x5B9A;&#x4E49;SharedPreference</h3>
+<p><code>esperandro</code>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;preference&#x901A;&#x8FC7;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x7528;<code>@SharedPreferences</code>&#x6CE8;&#x89E3;&#xFF0C;&#x901A;&#x8FC7;name&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;mode&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x6A21;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;name&#x5C5E;&#x6027;&#x548C;mode&#x5C5E;&#x6027;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;<code>SharedPreference</code>&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span></span>
+</code></pre>
+<p>&#x7B49;&#x4EF7;&#x4E8E;</p>
+<pre><code class="lang-java">PreferenceManager.getDefaultSharedPreferences(context)
+</code></pre>
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>(name = <span class="hljs-string">&quot;eventPrefs&quot;</span>, mode = SharedPreferenceMode.PRIVATE)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EventPreferences</span></span>
+</code></pre>
+<p>&#x7B49;&#x4EF7;&#x4E8E;</p>
+<pre><code class="lang-java">
+context.getSharedPreferences(<span class="hljs-string">&quot;eventPrefs&quot;</span>, Context.MODE_PRIVATE).
+</code></pre>
+<h3 id="22-preference"><a name="22-preference" class="plugin-anchor" href="#22-preference"><span class="fa fa-link"></span></a>2.2 &#x8BBE;&#x7F6E;&#x548C;&#x83B7;&#x53D6;Preference</h3>
+<p>&#x5728;&#x63A5;&#x53E3;&#x4E2D;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;<code>set</code>&#x548C;<code>get</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x548C;&#x83B7;&#x53D6;Preference&#x3002;<code>esperandro</code>&#x652F;&#x6301;&#x5B58;&#x50A8;&#x7684;&#x7C7B;&#x578B;&#x5305;&#x62EC;<code>int</code>&#xFF0C;<code>long</code>&#xFF0C;<code>float</code>&#xFF0C;<code>boolean</code>&#xFF0C;<code>String</code>&#x548C;<code>Set&lt;String&gt;</code>.</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
+
+    <span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">(String name)</span></span>;
+
+}
+</code></pre>
+<p>&#x901A;&#x8FC7;<code>@Default</code>&#x6CE8;&#x89E3;&#x548C;&#x5404;&#x81EA;&#x7684;<code>of*</code>&#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x4E3A;&#x9664;&#x4E86;<code>Set&lt;String&gt;</code>&#x4EE5;&#x5916;&#x7684;&#x7C7B;&#x578B;&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">age</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-annotation">@Default</span>(ofInt = <span class="hljs-number">1</span>)
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">age</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>;
+}
+</code></pre>
+<p>&#x9664;&#x4E86;&#x53EF;&#x4EE5;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x4F7F;&#x7528;<code>$Default</code>&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
+
+    <span class="hljs-keyword">int</span> age$Default(<span class="hljs-keyword">int</span> age);<span class="hljs-comment">//getter</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">age</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>;
+}
+</code></pre>
+<h3 id="23"><a name="23" class="plugin-anchor" href="#23"><span class="fa fa-link"></span></a>2.3&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;</h3>
+<p>&#x8C03;&#x7528;</p>
+<pre><code class="lang-java">Esperandro.getPreferences(Class&lt;T&gt; preferenceClass, Context context)
+</code></pre>
+<p>&#x5C31;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-java"> DefaultPreferences mDefaultPreferences=Esperandro.getPreferences(DefaultPreferences.class,<span class="hljs-keyword">this</span>);
+Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPreferences.age$Default(<span class="hljs-number">10</span>));
+</code></pre>
+<h3 id="24"><a name="24" class="plugin-anchor" href="#24"><span class="fa fa-link"></span></a>2.4&#x5B58;&#x50A8;&#x5BF9;&#x8C61;</h3>
+<p><code>esperandro</code>&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;<code>String</code>&#x7C7B;&#x578B;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x3002;&#x5B9E;&#x73B0;<code>Serializer</code>&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x8C03;&#x7528;<code>Esperandro.setSerializer(Serializer serializer)</code>&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;<code>Serializer</code>&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#xFF0C;&#x5E76;&#x5728;&#x83B7;&#x53D6;&#x7684;&#x65F6;&#x5019;&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#x6211;&#x4EEC;&#x901A;&#x8FC7;<code>Gson</code>&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;<code>json</code>&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#x3002;</p>
+<p>&#x5B9E;&#x73B0;<code>Seralizer</code></p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GsonSerializer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializer</span> </span>{
+
+    <span class="hljs-keyword">private</span> Gson gson;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GsonSerializer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>.gson = <span class="hljs-keyword">new</span> GsonBuilder().create();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GsonSerializer</span><span class="hljs-params">(Gson gson)</span> </span>{
+        <span class="hljs-keyword">this</span>.gson = gson;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">serialize</span><span class="hljs-params">(Object object)</span> </span>{
+        <span class="hljs-keyword">return</span> gson.toJson(object);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">deserialize</span><span class="hljs-params">(String serializedObject, Class&lt;T&gt; clazz)</span> </span>{
+        T deserialized = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span> (serializedObject != <span class="hljs-keyword">null</span>) {
+            deserialized = gson.fromJson(serializedObject, clazz);
+        }
+        <span class="hljs-keyword">return</span> deserialized;
+    }
+}
+</code></pre>
+<p>Model</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>{
+    <span class="hljs-keyword">public</span> String name;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> age;
+
+}
+</code></pre>
+<p>&#x8BBE;&#x7F6E;<code>Serializer</code>&#x5E76;&#x5B58;&#x50A8;&#x548C;&#x83B7;&#x53D6;&#x6570;&#x636E;</p>
+<pre><code class="lang-java">  DefaultPreferences mDefaultPreferences=Esperandro.getPreferences(DefaultPreferences.class,<span class="hljs-keyword">this</span>);
+        Esperandro.setSerializer(<span class="hljs-keyword">new</span> GsonSerializer());<span class="hljs-comment">//&#x8BBE;&#x7F6E;Serializer</span>
+        User user=<span class="hljs-keyword">new</span> User();
+        user.name=<span class="hljs-string">&quot;milk&quot;</span>;
+        user.age=<span class="hljs-number">10</span>;
+        mDefaultPreferences.user(user);
+        Log.e(TAG,mDefaultPreferences.user().name);
+</code></pre>
+<h3 id="25sharedpreferenceactions"><a name="25sharedpreferenceactions" class="plugin-anchor" href="#25sharedpreferenceactions"><span class="fa fa-link"></span></a>2.5SharedPreferenceActions&#x63A5;&#x53E3;</h3>
+<p>&#x5728;&#x521B;&#x5EFA;SharedPreference&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x76F4;&#x63A5;&#x5B9A;&#x4E49;&#x63A5;&#x53E3;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;<code>SharedPreferenceActions</code>&#x63A5;&#x53E3;&#x6765;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#x3002;<code>SharedPreferenceActions</code>&#x63D0;&#x4F9B;&#x4E86;&#x8BB8;&#x591A;&#x6709;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java">
+    <span class="hljs-javadoc">/**
+     *<span class="hljs-javadoctag"> @return</span> the underlying SharedPreference instance.
+     */</span>
+    <span class="hljs-function">SharedPreferences <span class="hljs-title">get</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Checks if a value for the given key exists.
+     *<span class="hljs-javadoctag"> @param</span> key
+     *<span class="hljs-javadoctag"> @return</span> true if the given key exists, false otherwise
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">contains</span><span class="hljs-params">(String key)</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Removes the value for the given key.
+     *<span class="hljs-javadoctag"> @param</span> key
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(String key)</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Registers a callback to be invoked when a change happens to a preference.
+     *<span class="hljs-javadoctag"> @param</span> listener The callback that will run.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">registerOnChangeListener</span><span class="hljs-params">(
+            SharedPreferences.OnSharedPreferenceChangeListener listener)</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Unregisters a previous callback.
+     *<span class="hljs-javadoctag"> @param</span> listener The callback that should be unregistered.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">unregisterOnChangeListener</span><span class="hljs-params">(
+            SharedPreferences.OnSharedPreferenceChangeListener listener)</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Clears the complete sharedPreferences of the previously given name. (Be aware that ALL preferences under this
+     * name are cleared not only the ones defined in your interface)
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-javadoc">/**
+     * Initializes the underlying SharedPreference object with the respective explicit or implicit default values. This
+     * can be useful when the defaults should be shown in the summary in a PreferenceActivity.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initDefaults</span><span class="hljs-params">()</span></span>;
+</code></pre>
+<h3 id="26-proguard"><a name="26-proguard" class="plugin-anchor" href="#26-proguard"><span class="fa fa-link"></span></a>2.6 Proguard</h3>
+<pre><code># esperandro
+-keepnames class de.devland.** { *; }
+-keep class **$$Impl { public *;}
+
+# keep the annotated things annotated
+-keepattributes *Annotation*, EnclosingMethod, Signature, InnerClasses
+
+# for dagger also preserve the interfaces
+# assuming they reside in the sub-package &apos;preferences&apos; and all end with &apos;Prefs&apos;
+#-keep class preferences.**Prefs { public *;}
+
+# jackson
+#-dontwarn com.fasterxml.jackson.databind.**
+#-keepnames class com.fasterxml.jackson.** { *; }
+
+# for gson see their documentation at
+# https://code.google.com/p/google-gson/source/browse/trunk/examples/android-proguard-example/proguard.cfg
+</code></pre><h2 id="27gradle-build"><a name="27gradle-build" class="plugin-anchor" href="#27gradle-build"><span class="fa fa-link"></span></a>2.7Gradle Build</h2>
+<pre><code>buildscript {
+    repositories {
+      mavenCentral()
+    }
+    dependencies {
+        // Android plugin
+        classpath &apos;com.android.tools.build:gradle:0.10.+&apos;
+        // the latest version of the android-apt plugin from https://bitbucket.org/hvisser/android-apt
+        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.2&apos;
+    }
+}
+
+apply plugin: &apos;android&apos;
+apply plugin: &apos;android-apt&apos;
+
+
+repositories {
+     mavenCentral();
+}
+
+dependencies {
+    compile &apos;de.devland.esperandro:esperandro-api:2.1.0&apos;
+    apt &apos;de.devland.esperandro:esperandro:2.1.0&apos;
+
+    // optional, if we want to use object serialization but don&apos;t provide our own Serializer
+    // compile &apos;de.devland.esperandro:esperandro-gson-addon:2.1.0&apos;
+    // or
+    // compile &apos;de.devland.esperandro:esperandro-jackson-addon:2.1.0&apos;
+}
+</code></pre><h1 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6269;&#x5C55;&#x9605;&#x8BFB;</h1>
+<ul>
+<li><p><a href="http://developer.android.com/training/basics/data-storage/shared-preferences.html" target="_blank">Saving Key-Value Sets</a></p>
+</li>
+<li><p><a href="http://dkunzler.github.io/esperandro/" target="_blank">esperandro&#x5B98;&#x65B9;&#x4F7F;&#x7528;&#x6587;&#x6863;</a></p>
+</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"malinkang"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
