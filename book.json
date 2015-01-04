@@ -1,8 +1,0 @@
-{
-    "plugins": ["disqus","toc","anchors"],
-    "pluginsConfig": {
-        "disqus": {
-            "shortName": "malinkang"
-        }
-    }  
-}
