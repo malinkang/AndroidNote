@@ -816,7 +816,29 @@ require(["gitbook"], function(gitbook) {
     </body>
     
 </html>
-ss="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
+ity</span> </span>{
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>&#x5B50;&#x7C7B;&#x590D;&#x5199;&#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x771F;&#x6B63;&#x5DE5;&#x4F5C;&#x7684;activity&#x5176;&#x5B9E;&#x662F;MyActivity<em>&#xFF0C;&#x6240;&#x4EE5;&#x5728;<code>AndroidManifest.xml</code>&#x4E2D;&#x914D;&#x7F6E;MyActivity</em>&#x800C;&#x4E0D;&#x662F;MyActivity&#x3002;</p>
+<pre><code>&lt;activity android:name=&quot;.MyListActivity_&quot; /&gt;
+</code></pre><h2 id="2-"><a name="2-" class="plugin-anchor" href="#2-"><span class="fa fa-link"></span></a>2. &#x6CE8;&#x5165;</h2>
+<h3 id="21-view-"><a name="21-view-" class="plugin-anchor" href="#21-view-"><span class="fa fa-link"></span></a>2.1 View &#x6CE8;&#x89E3;</h3>
+<p><code>@ViewById</code>&#x6CE8;&#x89E3;&#x529F;&#x80FD;&#x7B49;&#x4EF7;&#x4E8E;<code>findViewById()</code>&#x65B9;&#x6CD5;&#x3002;&#x4F7F;&#x7528;&#x65F6;&#x6CE8;&#x610F;&#x5B57;&#x6BB5;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;<code>private</code>&#x4FEE;&#x9970;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@EActivity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
+
+  <span class="hljs-comment">// Injects R.id.myEditText</span>
+  <span class="hljs-annotation">@ViewById</span>
+  EditText myEditText;
+
+  <span class="hljs-annotation">@ViewById</span>(R.id.myTextView)
+  TextView textView;
+}
+</code></pre>
+<p><code>@ViewsById</code>&#x6CE8;&#x89E3;&#x53EF;&#x4EE5;&#x4E00;&#x6B21;&#x83B7;&#x53D6;&#x591A;&#x4E2A;View&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@EActivity</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 
   <span class="hljs-annotation">@ViewsById</span>({R.id.myTextView1, R.id.myOtherTextView})
   List&lt;TextView&gt; textViews;
@@ -871,6 +893,10 @@ ss="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title"
 
     
     <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>

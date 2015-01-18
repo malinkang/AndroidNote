@@ -907,13 +907,19 @@ require(["gitbook"], function(gitbook) {
     </body>
     
 </html>
-8;&#x4F1A;&#x964D;&#x4F4E;Parcelable&#x7684;&#x6027;&#x80FD;&#x3002;<a href="https://github.com/johncarl81/parceler" target="_blank">Parceler</a>&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5E93;&#x3002;</p>
+30;&#x4E0B;&#x56FE;&#x7684;&#x6548;&#x679C;</p>
+<p><img src="images/parcelable-vs-seralizable.png" alt=""></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x901A;&#x8FC7;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x901F;&#x5EA6;&#x662F;&#x6700;&#x6162;&#x7684;&#x3002;Seralizable&#x6B21;&#x4E4B;&#xFF0C;Parcelable&#x6BD4;Seralizable&#x5FEB;10&#x500D;&#x3002;&#x6240;&#x4EE5;&#x4ECE;&#x6027;&#x80FD;&#x4E0A;&#x8003;&#x8651;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x5B9A;&#x4F18;&#x5148;&#x9009;&#x62E9;Parcelable&#x3002;&#x4F46;&#x662F;Parcelable&#x6709;&#x5927;&#x91CF;&#x91CD;&#x590D;&#x7684;&#x6A21;&#x677F;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x4F55;&#x7B80;&#x5316;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x662F;&#x4E0B;&#x9762;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h2 id="5parcel"><a name="5parcel" class="plugin-anchor" href="#5parcel"><span class="fa fa-link"></span></a>5.&#x7B80;&#x5316;Parcel&#x64CD;&#x4F5C;</h2>
+<p>&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528;android Studio &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B89;&#x88C5;<a href="https://github.com/mcharmas/android-parcelable-intellij-plugin" target="_blank">android-parcelable-intellij-plugin</a>&#x63D2;&#x4EF6;&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;<a href="http://dmytrodanylyk.com/pages/blog/templates.html" target="_blank">&#x914D;&#x7F6E;&#x6A21;&#x677F;</a>&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="51-parceler"><a name="51-parceler" class="plugin-anchor" href="#51-parceler"><span class="fa fa-link"></span></a>5.1 parceler</h3>
+<p>&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD8;&#x6709;&#x5927;&#x91CF;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x6765;&#x7B80;&#x5316;Parcelable&#x64CD;&#x4F5C;&#x3002;&#x5F53;&#x7136;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x5E93;&#x4E5F;&#x8BB8;&#x4F1A;&#x964D;&#x4F4E;Parcelable&#x7684;&#x6027;&#x80FD;&#x3002;<a href="https://github.com/johncarl81/parceler" target="_blank">Parceler</a>&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5E93;&#x3002;</p>
 <p>Parceler&#x4F7F;&#x7528;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x5728;&#x5B9A;&#x4E49;Model&#x65F6;&#x7528;<code>@Parcel</code>&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#xFF0C;&#x5728;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;<code>Parcels</code>&#x7684;<code>wrap</code>&#x65B9;&#x6CD5;&#x6765;&#x5305;&#x88C5;&#x6210;&#x4E00;&#x4E2A;<code>Parcelable</code>&#x5BF9;&#x8C61;&#x3002;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x65F6;&#x7528;<code>Parcels</code>&#x7684;<code>unwrap</code>&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x3002;</p>
 <p>Model</p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@Parcel</span> 
+<span class="hljs-annotation">@Parcel</span>
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> </span>{ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> </span>{
 
    <span class="hljs-keyword">int</span> id;
 
@@ -976,6 +982,10 @@ book.setAuthor(author);
 
     
     <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
