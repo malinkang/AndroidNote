@@ -32,12 +32,12 @@
 <link rel="stylesheet" href="../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
     
 
 
         
-    <div class="book" data-level="1.7" data-basepath=".." data-revision="1421509324305">
+    <div class="book" data-level="1.7" data-basepath=".." data-revision="1422846108795">
     
 
 <div class="book-summary">
@@ -136,6 +136,38 @@
                             <b>1.2.3.</b>
                         
                          RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
                     </a>
                 
             
@@ -299,6 +331,28 @@
             
             <span><b>4.</b> [Fragment]</span>
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -630,6 +684,22 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -731,69 +801,69 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_18">
                     
-                        <h1 id="notification"><a name="notification" class="plugin-anchor" href="#notification"><span class="fa fa-link"></span></a>Notification</h1>
-<p>Notification&#x662F;&#x4E00;&#x4E2A;&#x80FD;&#x591F;&#x663E;&#x793A;&#x5728;&#x5728;&#x5E94;&#x7528;UI&#x754C;&#x9762;&#x4E4B;&#x5916;&#x7684;&#x6D88;&#x606F;&#x3002;&#x5F53;&#x7CFB;&#x7EDF;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x901A;&#x77E5;&#xFF0C;&#x5B83;&#x4F1A;&#x9996;&#x5148;&#x4EE5;&#x56FE;&#x6807;&#x7684;&#x5F62;&#x5F0F;&#x663E;&#x793A;&#x5728;&#x901A;&#x77E5;&#x533A;&#x57DF;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6253;&#x5F00;&#x901A;&#x77E5;&#x62BD;&#x5C49;&#x53BB;&#x67E5;&#x770B;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x901A;&#x77E5;&#x533A;&#x57DF;&#x548C;&#x901A;&#x77E5;&#x62BD;&#x5C49;&#x662F;&#x7CFB;&#x7EDF;&#x63A7;&#x5236;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x968F;&#x65F6;&#x67E5;&#x770B;&#x3002;</p>
+                        <h1 id="notification">Notification</h1>
+<p>Notification是一个能够显示在在应用UI界面之外的消息。当系统发送一个通知，它会首先以图标的形式显示在通知区域，用户可以打开通知抽屉去查看详细信息。通知区域和通知抽屉是系统控制的区域，用户可以随时查看。</p>
 <p><img src="http://developer.android.com/images/ui/notifications/iconic_notification.png" alt=""></p>
 <p><img src="http://developer.android.com/images/ui/notifications/normal_notification.png" alt=""></p>
-<h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x663E;&#x793A;&#x5143;&#x7D20;</h2>
-<p>Notification&#x6839;&#x636E;&#x7248;&#x672C;&#x548C;&#x901A;&#x77E5;&#x62BD;&#x5C49;&#x7684;&#x72B6;&#x6001;&#x663E;&#x793A;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x89C6;&#x89C9;&#x98CE;&#x683C;&#xFF1A;&#x6807;&#x51C6;&#x89C6;&#x56FE;&#xFF0C;&#x5927;&#x89C6;&#x56FE;&#x3002;</p>
+<h2 id="">显示元素</h2>
+<p>Notification根据版本和通知抽屉的状态显示两种不同的视觉风格：标准视图，大视图。</p>
 <ul>
-<li>&#x6807;&#x51C6;&#x89C6;&#x56FE;</li>
+<li>标准视图</li>
 </ul>
-<p>&#x6807;&#x51C6;&#x7684;&#x89C6;&#x56FE;&#x9AD8;&#x5EA6;&#x4E3A;64dp&#x3002;&#x5373;&#x4F7F;&#x4F60;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5927;&#x89C6;&#x56FE;&#xFF0C;&#x5B83;&#x4E5F;&#x4EE5;&#x6807;&#x51C6;&#x89C6;&#x56FE;&#x663E;&#x793A;&#xFF0C;&#x76F4;&#x5230;&#x5B83;&#x88AB;&#x5C55;&#x5F00;&#x3002;</p>
+<p>标准的视图高度为64dp。即使你创建一个大视图，它也以标准视图显示，直到它被展开。</p>
 <p><img src="http://developer.android.com/images/ui/notifications/normal_notification_callouts.png" alt=""></p>
-<p>&#x5404;&#x4E2A;&#x90E8;&#x5206;&#x7684;&#x8BF4;&#x660E;</p>
+<p>各个部分的说明</p>
 <ol>
-<li>&#x5185;&#x5BB9;&#x6807;&#x9898;</li>
-<li>&#x5927;&#x56FE;&#x6807;</li>
-<li>&#x5185;&#x5BB9;&#x6587;&#x672C;</li>
-<li>&#x5185;&#x5BB9;&#x4FE1;&#x606F;</li>
-<li>&#x5C0F;&#x56FE;&#x6807;</li>
-<li>&#x53D1;&#x9001;&#x901A;&#x77E5;&#x7684;&#x65F6;&#x95F4;&#x3002;&#x53EF;&#x4EE5;&#x8C03;&#x7528;<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setWhen(long" target="_blank">setWhen()</a>)&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x7CFB;&#x7EDF;&#x63A5;&#x6536;&#x5230;&#x901A;&#x77E5;&#x7684;&#x65F6;&#x95F4;&#x3002;</li>
+<li>内容标题</li>
+<li>大图标</li>
+<li>内容文本</li>
+<li>内容信息</li>
+<li>小图标</li>
+<li>发送通知的时间。可以调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setWhen(long" target="_blank">setWhen()</a>)方法设置时间，如果不指定，默认是系统接收到通知的时间。</li>
 </ol>
 <ul>
-<li>&#x5927;&#x89C6;&#x56FE;</li>
+<li>大视图</li>
 </ul>
-<p>&#x5F53;&#x901A;&#x77E5;&#x5728;&#x901A;&#x77E5;&#x62BD;&#x5C49;&#x9876;&#x90E8;&#x88AB;&#x5C55;&#x5F00;&#x6216;&#x8005;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x624B;&#x52BF;&#x5C55;&#x5F00;&#x901A;&#x77E5;&#x5C06;&#x663E;&#x793A;&#x5927;&#x89C6;&#x56FE;&#x3002;&#x5C55;&#x5F00;&#x901A;&#x77E5;&#x5728;4.1&#x4EE5;&#x4E0A;&#x7CFB;&#x7EDF;&#x624D;&#x53EF;&#x7528;&#x3002;</p>
+<p>当通知在通知抽屉顶部被展开或者用户使用一个手势展开通知将显示大视图。展开通知在4.1以上系统才可用。</p>
 <p><img src="http://developer.android.com/images/ui/notifications/bigpicture_notification_callouts.png" alt=""></p>
-<p>&#x5927;&#x89C6;&#x56FE;&#x80FD;&#x591F;&#x663E;&#x793A;&#x66F4;&#x591A;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x552F;&#x4E00;&#x7684;&#x4E0D;&#x540C;&#x7684;&#x662F;7&#x6240;&#x6307;&#x7684;&#x533A;&#x57DF;&#x3002;&#x6BCF;&#x4E00;&#x79CD;&#x5927;&#x89C6;&#x56FE;&#x6837;&#x5F0F;&#x4EE5;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;&#x8FD9;&#x5757;&#x533A;&#x57DF;&#x3002;&#x53EF;&#x7528;&#x7684;&#x6837;&#x5F0F;&#x5305;&#x62EC;&#xFF1A;</p>
+<p>大视图能够显示更多的元素，唯一的不同的是7所指的区域。每一种大视图样式以不同的方式设置这块区域。可用的样式包括：</p>
 <ul>
-<li><p>&#x5927;&#x56FE;&#x6837;&#x5F0F;&#xFF1A;&#x8BE6;&#x60C5;&#x533A;&#x57DF;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5C0F;&#x4E8E;256dp&#x9AD8;&#x7684;&#x56FE;&#x7247;&#x3002;</p>
+<li><p>大图样式：详情区域显示一个小于256dp高的图片。</p>
 </li>
-<li><p>&#x591A;&#x6587;&#x672C;&#x6837;&#x5F0F;&#xFF1A;&#x8BE6;&#x60C5;&#x533A;&#x57DF;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5927;&#x7684;&#x6587;&#x672C;&#x5757;&#x3002;</p>
+<li><p>多文本样式：详情区域显示一个大的文本块。</p>
 </li>
-<li><p>&#x6536;&#x4EF6;&#x7BB1;&#x6837;&#x5F0F;&#xFF1A;&#x8BE6;&#x60C5;&#x533A;&#x57DF;&#x663E;&#x793A;&#x591A;&#x884C;&#x6587;&#x672C;&#x3002;</p>
+<li><p>收件箱样式：详情区域显示多行文本。</p>
 </li>
 </ul>
-<p>&#x6240;&#x6709;&#x7684;&#x5927;&#x89C6;&#x56FE;&#x6837;&#x5F0F;&#x6709;&#x5982;&#x4E0B;&#x53EF;&#x9009;&#x5185;&#x5BB9;&#xFF0C;&#x8FD9;&#x4E9B;&#x5185;&#x5BB9;&#x5728;&#x6807;&#x51C6;&#x89C6;&#x56FE;&#x4E0A;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>
-<p>&#x5927;&#x5185;&#x5BB9;&#x6807;&#x9898;&#xFF1A;&#x5F53;&#x5C55;&#x5F00;&#x901A;&#x77E5;&#xFF0C;&#x8FD9;&#x4E2A;&#x5185;&#x5BB9;&#x6807;&#x9898;&#x5C06;&#x8986;&#x76D6;&#x6B63;&#x5E38;&#x89C6;&#x56FE;&#x7684;&#x5185;&#x5BB9;&#x6807;&#x9898;&#x3002;</p>
-<p>&#x6458;&#x8981;&#x6587;&#x672C;&#xFF1A;&#x5141;&#x8BB8;&#x5728;&#x8BE6;&#x60C5;&#x533A;&#x57DF;&#x6DFB;&#x52A0;&#x4E00;&#x884C;&#x6587;&#x672C;&#x3002;</p>
-<h2 id="notification"><a name="notification" class="plugin-anchor" href="#notification"><span class="fa fa-link"></span></a>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Notification</h2>
-<p>&#x4F7F;&#x7528;NotificationCompat.Builder&#x5BF9;&#x8C61;&#x6307;&#x5B9A;Notification&#x7684;&#x4FE1;&#x606F;&#x548C;&#x52A8;&#x4F5C;&#xFF0C;NotificationCompat.Builder.build()&#x80FD;&#x591F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;Notification&#x5BF9;&#x8C61;&#x3002;&#x8C03;&#x7528;NotificationManager.notify()&#x5C06;Notification&#x5BF9;&#x8C61;&#x4F20;&#x9012;&#x7ED9;&#x7CFB;&#x7EDF;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x53D1;&#x9001;Notification&#x3002;</p>
-<h3 id="notification"><a name="notification" class="plugin-anchor" href="#notification"><span class="fa fa-link"></span></a>Notification&#x5FC5;&#x9009;&#x5185;&#x5BB9;</h3>
-<p>&#x4E00;&#x4E2A;Notification&#x5BF9;&#x8C61;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<p>所有的大视图样式有如下可选内容，这些内容在标准视图上不可用。</p>
+<p>大内容标题：当展开通知，这个内容标题将覆盖正常视图的内容标题。</p>
+<p>摘要文本：允许在详情区域添加一行文本。</p>
+<h2 id="notification">创建一个Notification</h2>
+<p>使用NotificationCompat.Builder对象指定Notification的信息和动作，NotificationCompat.Builder.build()能够返回一个Notification对象。调用NotificationManager.notify()将Notification对象传递给系统，即可以发送Notification。</p>
+<h3 id="notification">Notification必选内容</h3>
+<p>一个Notification对象必须包含如下内容：</p>
 <ul>
-<li><p>&#x4E00;&#x4E2A;&#x5C0F;&#x7684;&#x56FE;&#x6807;:&#x901A;&#x8FC7;setSmallIcon()&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x3002;</p>
+<li><p>一个小的图标:通过setSmallIcon()方法设置。</p>
 </li>
-<li><p>&#x4E00;&#x4E2A;&#x6807;&#x9898;:&#x901A;&#x8FC7;setContentTitle()&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x3002;</p>
+<li><p>一个标题:通过setContentTitle()方法设置。</p>
 </li>
-<li><p>&#x8BE6;&#x7EC6;&#x6587;&#x672C;&#xFF1A;&#x901A;&#x8FC7;setContentText()&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x3002;</p>
+<li><p>详细文本：通过setContentText()方法设置。</p>
 </li>
 </ul>
-<h3 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x53EF;&#x9009;&#x5185;&#x5BB9;&#x548C;&#x8BBE;&#x7F6E;</h3>
-<p>&#x6240;&#x6709;&#x5176;&#x4ED6;&#x7684;Notification&#x8BBE;&#x7F6E;&#x548C;&#x5185;&#x5BB9;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x60F3;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;NotificationCompat.Builder&#x7684;&#x53C2;&#x8003;&#x6587;&#x6863;&#x3002;</p>
-<h3 id="notification"><a name="notification" class="plugin-anchor" href="#notification"><span class="fa fa-link"></span></a>&#x8BBE;&#x7F6E;Notification&#x54CD;&#x5E94;&#x4E8B;&#x4EF6;</h3>
-<p>&#x5C3D;&#x7BA1;&#x52A8;&#x4F5C;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x5E94;&#x5F53;&#x81F3;&#x5C11;&#x4E3A;Notification&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x52A8;&#x4F5C;&#x3002;&#x4E00;&#x4E2A;&#x52A8;&#x4F5C;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x76F4;&#x63A5;&#x4ECE;Notification&#x5230;&#x8FBE;&#x5E94;&#x7528;&#x7684;&#x4E00;&#x4E2A;Activity&#x3002;&#x4E00;&#x4E2A;Notification&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;&#x52A8;&#x4F5C;&#x3002;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x52A8;&#x4F5C;&#x662F;&#x6253;&#x5F00;&#x5E94;&#x7528;&#x7684;&#x4E00;&#x4E2A;Activity&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4E3A;Notification&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x6309;&#x94AE;
-&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x4E00;&#x4E9B;&#x9644;&#x52A0;&#x7684;&#x52A8;&#x4F5C;&#x5982;&#x5173;&#x95ED;&#x4E00;&#x4E2A;&#x95F9;&#x949F;&#x6216;&#x8005;&#x5FEB;&#x901F;&#x56DE;&#x590D;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x6D88;&#x606F;&#x3002;</p>
-<p>Notification&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;PendingIntent&#x5B9A;&#x4E49;&#x52A8;&#x4F5C;&#x3002;PenddingIntent&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5F00;&#x542F;Activity&#x7684;Intent&#x3002;</p>
-<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<h3 id="">可选内容和设置</h3>
+<p>所有其他的Notification设置和内容是可选的，想了解更多，请查看NotificationCompat.Builder的参考文档。</p>
+<h3 id="notification">设置Notification响应事件</h3>
+<p>尽管动作是可选的，但是我们应当至少为Notification添加一个动作。一个动作允许用户直接从Notification到达应用的一个Activity。一个Notification可以设置多个动作。多数情况下，这个动作是打开应用的一个Activity，你也可以为Notification添加一些按钮
+，从而实现一些附加的动作如关闭一个闹钟或者快速回复一个文本消息。</p>
+<p>Notification中，通过PendingIntent定义动作。PenddingIntent包含一个开启Activity的Intent。</p>
+<p>示例：</p>
 <pre><code class="lang-java">NotificationCompat.Builder mBuilder =
         <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>)
         .setSmallIcon(R.drawable.notification_icon)
-        .setContentTitle(<span class="hljs-string">&quot;My notification&quot;</span>)
-        .setContentText(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+        .setContentTitle(<span class="hljs-string">"My notification"</span>)
+        .setContentText(<span class="hljs-string">"Hello World!"</span>);
 <span class="hljs-comment">// Creates an explicit intent for an Activity in your app</span>
 Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
 
@@ -817,7 +887,7 @@ NotificationManager mNotificationManager =
 <span class="hljs-comment">// mId allows you to update the notification later on.</span>
 mNotificationManager.notify(mId, mBuilder.build());
 </code></pre>
-<h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x9605;&#x8BFB;&#x66F4;&#x591A;</h2>
+<h2 id="">阅读更多</h2>
 <p><a href="http://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank">http://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
 
                     
@@ -842,6 +912,10 @@ mNotificationManager.notify(mId, mBuilder.build());
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     

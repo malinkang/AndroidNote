@@ -30,12 +30,12 @@
 <link rel="stylesheet" href="../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
     
 
 
         
-    <div class="book" data-level="1.8" data-basepath=".." data-revision="1421509324305">
+    <div class="book" data-level="1.8" data-basepath=".." data-revision="1422846108795">
     
 
 <div class="book-summary">
@@ -134,6 +134,38 @@
                             <b>1.2.3.</b>
                         
                          RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
                     </a>
                 
             
@@ -297,6 +329,28 @@
             
             <span><b>4.</b> [Fragment]</span>
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -628,6 +682,22 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -729,17 +799,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_18">
+                    <section class="normal" id="section-gitbook_21">
                     
-                        <h1 id="layoutinfalter"><a name="layoutinfalter" class="plugin-anchor" href="#layoutinfalter"><span class="fa fa-link"></span></a>LayoutInfalter&#x4F7F;&#x7528;</h1>
-<p>LayoutInfalter&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x5C06;XML&#x8F6C;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;View&#x5BF9;&#x8C61;&#x3002;</p>
-<h2 id="layoutinfalter"><a name="layoutinfalter" class="plugin-anchor" href="#layoutinfalter"><span class="fa fa-link"></span></a>&#x521B;&#x5EFA;LayoutInfalter&#x5BF9;&#x8C61;</h2>
-<p>1.&#x901A;&#x8FC7;<code>Context</code>&#x7684;<code>getSystemService</code>&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;</p>
+                        <h1 id="layoutinfalter">LayoutInfalter使用</h1>
+<p>LayoutInfalter对象可以将XML转化为一个View对象。</p>
+<h2 id="layoutinfalter">创建LayoutInfalter对象</h2>
+<p>1.通过<code>Context</code>的<code>getSystemService</code>方法来获取</p>
 <pre><code class="lang-java">
 LayoutInflater LayoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 </code></pre>
-<p>2.&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>LayoutInflater</code>&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;<code>from</code>&#x6765;&#x83B7;&#x53D6;&#xFF0C;&#x67E5;&#x770B;from&#x7684;&#x6E90;&#x7801;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x672C;&#x8D28;&#x8C03;&#x7528;&#x7684;&#x8FD8;&#x662F;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>2.也可以通过<code>LayoutInflater</code>的静态方法<code>from</code>来获取，查看from的源码可以看到，本质调用的还是上面的方法。</p>
 <pre><code class="lang-java">    <span class="hljs-javadoc">/**
      * Obtains the LayoutInflater from the given context.
      */</span>
@@ -747,13 +817,13 @@ LayoutInflater LayoutInflater =
         LayoutInflater LayoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         <span class="hljs-keyword">if</span> (LayoutInflater == <span class="hljs-keyword">null</span>) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AssertionError(<span class="hljs-string">&quot;LayoutInflater not found.&quot;</span>);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AssertionError(<span class="hljs-string">"LayoutInflater not found."</span>);
         }
         <span class="hljs-keyword">return</span> LayoutInflater;
     }
 </code></pre>
-<h2 id="layoutinfalter"><a name="layoutinfalter" class="plugin-anchor" href="#layoutinfalter"><span class="fa fa-link"></span></a>&#x4F7F;&#x7528;LayoutInfalter</h2>
-<p>LayoutInfalter&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x4E2A;&#x91CD;&#x8F7D;&#x65B9;&#x6CD5;&#x6765;&#x5C06;XML&#x8F6C;&#x6362;&#x4E3A;View&#x5BF9;&#x8C61;</p>
+<h2 id="layoutinfalter">使用LayoutInfalter</h2>
+<p>LayoutInfalter提供了两个重载方法来将XML转换为View对象</p>
 <pre><code class="lang-java">    <span class="hljs-javadoc">/**
      * Inflate a new view hierarchy from the specified xml resource. Throws
      * {@link InflateException} if there is an error.
@@ -789,8 +859,8 @@ LayoutInflater LayoutInflater =
     <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">inflate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> resource, ViewGroup root, <span class="hljs-keyword">boolean</span> attachToRoot)</span> </span>{
         <span class="hljs-keyword">final</span> Resources res = getContext().getResources();
         <span class="hljs-keyword">if</span> (DEBUG) {
-            Log.d(TAG, <span class="hljs-string">&quot;INFLATING from resource: \&quot;&quot;</span> + res.getResourceName(resource) + <span class="hljs-string">&quot;\&quot; (&quot;</span>
-                    + Integer.toHexString(resource) + <span class="hljs-string">&quot;)&quot;</span>);
+            Log.d(TAG, <span class="hljs-string">"INFLATING from resource: \""</span> + res.getResourceName(resource) + <span class="hljs-string">"\" ("</span>
+                    + Integer.toHexString(resource) + <span class="hljs-string">")"</span>);
         }
 
         <span class="hljs-keyword">final</span> XmlResourceParser parser = res.getLayout(resource);
@@ -801,7 +871,7 @@ LayoutInflater LayoutInflater =
         }
     }
 </code></pre>
-<p>&#x6B64;&#x5916;&#x9664;&#x4E86;&#x4F7F;&#x7528;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;View&#x7684;<code>inflate</code>&#x65B9;&#x6CD5;&#x6765;&#x5C06;XML&#x8F6C;&#x6362;&#x4E3A;View</p>
+<p>此外除了使用这两种方法以外，还可以通过View的<code>inflate</code>方法来将XML转换为View</p>
 <pre><code class="lang-java">
     <span class="hljs-javadoc">/**
      * Inflate a view from an XML resource.  This convenience method wraps the {@link
@@ -818,26 +888,26 @@ LayoutInflater LayoutInflater =
         <span class="hljs-keyword">return</span> factory.inflate(resource, root);
     }
 </code></pre>
-<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4F8B;&#x5B50;&#x6765;&#x8BB2;&#x89E3;inflate&#x65B9;&#x6CD5;&#x7684;&#x4F7F;&#x7528;</p>
-<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5E03;&#x5C40;red.xml</p>
-<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<p>下面我们通过例子来讲解inflate方法的使用</p>
+<p>创建一个布局red.xml</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-title">TextView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">&quot;100dp&quot;</span>
-    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">&quot;100dp&quot;</span>
-    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">&quot;A&quot;</span>
-    <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">&quot;32dp&quot;</span>
-    <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">&quot;center&quot;</span>
-    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">&quot;#ff0000&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">TextView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"100dp"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"100dp"</span>
+    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"A"</span>
+    <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"32dp"</span>
+    <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#ff0000"</span> /&gt;</span>
 </code></pre>
 <p>activity_main.xml</p>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">&quot;http://schemas.android.com/tools&quot;</span>
-    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">&quot;match_parent&quot;</span>
-    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">&quot;match_parent&quot;</span>
-    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">&quot;@+id/container&quot;</span>
-    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">&quot;vertical&quot;</span>
-    <span class="hljs-attribute">tools:context</span>=<span class="hljs-value">&quot;.MainActivity&quot;</span>&gt;</span>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
+    <span class="hljs-attribute">tools:context</span>=<span class="hljs-value">".MainActivity"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
 <p>MainActivity</p>
@@ -858,16 +928,16 @@ LayoutInflater LayoutInflater =
 
     }
 </code></pre>
-<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<p>运行结果</p>
 <p><img src="images/layoutinflatersample.png" alt=""></p>
 <p>Log</p>
 <blockquote>
-<p>-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity&#xFE55; android.widget.TextView{41b6f0a8 V.ED.... ......ID 0,0-0,0}
-12-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity&#xFE55; android.widget.TextView{41b6f870 V.ED.... ......ID 0,0-0,0}
-12-22 13:52:48.931  16250-16250/com.malinkang.layoutinflater D/MainActivity&#xFE55; android.widget.LinearLayout{41b6ea50 V.E..... ......I. 0,0-0,0 #7f080000 app:id/container}</p>
+<p>-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.TextView{41b6f0a8 V.ED.... ......ID 0,0-0,0}
+12-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.TextView{41b6f870 V.ED.... ......ID 0,0-0,0}
+12-22 13:52:48.931  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.LinearLayout{41b6ea50 V.E..... ......I. 0,0-0,0 #7f080000 app:id/container}</p>
 </blockquote>
-<p>&#x6240;&#x4EE5;&#x5F53;&#x4E0D;&#x8BBE;&#x7F6E;Root&#x7684;&#x65F6;&#x5019;&#xFF0C;XML&#x8BBE;&#x7F6E;&#x7684;&#x53C2;&#x6570;&#x5C06;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x5F53;attachToRoot&#x8BBE;&#x7F6E;&#x4E3A;True&#x65F6;&#xFF0C;&#x5E03;&#x5C40;&#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x5230;Root&#xFF0C;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;Root View&#x3002;</p>
-<h2 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x9605;&#x8BFB;&#x66F4;&#x591A;</h2>
+<p>所以当不设置Root的时候，XML设置的参数将不起作用，当attachToRoot设置为True时，布局会自动添加到Root，并且返回Root View。</p>
+<h2 id="">阅读更多</h2>
 <ul>
 <li><a href="http://stackoverflow.com/questions/5026926/making-sense-of-layoutinflater" target="_blank">Making sense of LayoutInflater</a></li>
 <li><a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/" target="_blank">Layout Inflation as Intended</a></li>
@@ -894,6 +964,10 @@ LayoutInflater LayoutInflater =
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     

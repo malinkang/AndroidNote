@@ -30,12 +30,12 @@
 <link rel="stylesheet" href="../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
     
 
 
         
-    <div class="book" data-level="9.1.1" data-basepath=".." data-revision="1421509324305">
+    <div class="book" data-level="9.1.1" data-basepath=".." data-revision="1422846108795">
     
 
 <div class="book-summary">
@@ -134,6 +134,38 @@
                             <b>1.2.3.</b>
                         
                          RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
                     </a>
                 
             
@@ -297,6 +329,28 @@
             
             <span><b>4.</b> [Fragment]</span>
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -628,6 +682,22 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -729,56 +799,56 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_11">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="retrofit"><a name="retrofit" class="plugin-anchor" href="#retrofit"><span class="fa fa-link"></span></a>Retrofit&#x4F7F;&#x7528;</h1>
-<h2 id="1-"><a name="1-" class="plugin-anchor" href="#1-"><span class="fa fa-link"></span></a>1. &#x4ECB;&#x7ECD;</h2>
-<p><a href="http://square.github.io/retrofit/" target="_blank">Retrofit</a> &#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x5B89;&#x5168;&#x7684;Java <a href="http://zh.wikipedia.org/wiki/REST" target="_blank">Rest</a> &#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x800C;&#x4E14;&#x4E5F;&#x9002;&#x7528;&#x4E8E;Android&#x3002;</p>
-<p><a href="http://square.github.io/retrofit/" target="_blank">Retrofit</a>&#x53EF;&#x4EE5;&#x5C06;Rest Api&#x8F6C;&#x6362;&#x4E3A;Java&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+                        <h1 id="retrofit">Retrofit使用</h1>
+<h2 id="1-">1. 介绍</h2>
+<p><a href="http://square.github.io/retrofit/" target="_blank">Retrofit</a> 是一个类型安全的Java <a href="http://zh.wikipedia.org/wiki/REST" target="_blank">Rest</a> 客户端，而且也适用于Android。</p>
+<p><a href="http://square.github.io/retrofit/" target="_blank">Retrofit</a>可以将Rest Api转换为Java的接口。</p>
 <pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GitHubService</span> </span>{
-  <span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/{user}/repos&quot;</span>)
-  <span class="hljs-function">List&lt;Repo&gt; <span class="hljs-title">listRepos</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;user&quot;</span>)</span> String user)</span>;
+  <span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/{user}/repos"</span>)
+  <span class="hljs-function">List&lt;Repo&gt; <span class="hljs-title">listRepos</span><span class="hljs-params">(@Path(<span class="hljs-string">"user"</span>)</span> String user)</span>;
 }
 </code></pre>
-<p>&#x901A;&#x8FC7;RestAdapter&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;GithubService&#x7684;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>通过RestAdapter类，可以创建GithubService的实例。</p>
 <pre><code class="lang-java">RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-    .setEndpoint(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.github.com"</span>)
     .build();
 
 GitHubService service = restAdapter.create(GitHubService.class);
 </code></pre>
-<p>&#x63A5;&#x7740;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x521B;&#x5EFA;&#x7684;GithubService&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</p>
-<pre><code class="lang-java">List&lt;Repo&gt; repos = service.listRepos(<span class="hljs-string">&quot;octocat&quot;</span>);
+<p>接着就可以调用创建的GithubService的方法进行网络请求。</p>
+<pre><code class="lang-java">List&lt;Repo&gt; repos = service.listRepos(<span class="hljs-string">"octocat"</span>);
 </code></pre>
-<h2 id="2-"><a name="2-" class="plugin-anchor" href="#2-"><span class="fa fa-link"></span></a>2. &#x4F7F;&#x7528;</h2>
-<h3 id="21-"><a name="21-" class="plugin-anchor" href="#21-"><span class="fa fa-link"></span></a>2.1 &#x8BF7;&#x6C42;&#x65B9;&#x6CD5;</h3>
-<p>&#x6BCF;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x6709;HTTP&#x6CE8;&#x89E3;&#x548C;&#x5173;&#x8054;&#x7684;URL&#x3002;Retrofit&#x63D0;&#x4F9B;&#x4E86;&#x4E94;&#x79CD;&#x5185;&#x7F6E;&#x7684;&#x6CE8;&#x89E3;&#xFF1A;<code>GET</code>,<code>POST</code>,<code>PUT</code>,<code>DELETE</code>,<code>HEAD</code>&#x3002;&#x5728;&#x6CE8;&#x89E3;&#x5185;&#x6307;&#x5B9A;&#x76F8;&#x5173;&#x7684;URL&#x548C;&#x8D44;&#x6E90;&#x3002;</p>
+<h2 id="2-">2. 使用</h2>
+<h3 id="21-">2.1 请求方法</h3>
+<p>每一个方法必须有HTTP注解和关联的URL。Retrofit提供了五种内置的注解：<code>GET</code>,<code>POST</code>,<code>PUT</code>,<code>DELETE</code>,<code>HEAD</code>。在注解内指定相关的URL和资源。</p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 </code></pre>
-<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;URL&#x4E2D;&#x6307;&#x5B9A;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#x3002;</p>
+<p>也可以在URL中指定查询参数。</p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list?sort=desc&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list?sort=desc"</span>)
 </code></pre>
-<h3 id="22-url"><a name="22-url" class="plugin-anchor" href="#22-url"><span class="fa fa-link"></span></a>2.2 URL&#x64CD;&#x4F5C;</h3>
-<p>&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x7684;&#x4F7F;&#x7528;&#x66FF;&#x6362;&#x5757;&#x548C;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x66F4;&#x65B0;&#x8BF7;&#x6C42;&#x7684;URL&#x3002;&#x66FF;&#x6362;&#x5757;&#x662F;&#x4E00;&#x4E2A;&#x88AB;<code>{</code>&#x548C;<code>}</code>&#x5305;&#x88F9;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x76F8;&#x5E94;&#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5FC5;&#x987B;&#x88AB;<code>@Path</code>&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#x3002;</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/group/{id}/users&quot;</span>)
-<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> groupId)</span>;
+<h3 id="22-url">2.2 URL操作</h3>
+<p>通过动态的使用替换块和参数可以更新请求的URL。替换块是一个被<code>{</code>和<code>}</code>包裹的字符串。相应的请求参数必须被<code>@Path</code>使用相同的字符串进行注解。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/group/{id}/users"</span>)
+<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> groupId)</span>;
 </code></pre>
-<p>&#x4E5F;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#x3002;</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/group/{id}/users&quot;</span>)
-<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> groupId, @<span class="hljs-title">Query</span><span class="hljs-params">(<span class="hljs-string">&quot;sort&quot;</span>)</span> String sort)</span>;
+<p>也可以添加查询参数。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/group/{id}/users"</span>)
+<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> groupId, @<span class="hljs-title">Query</span><span class="hljs-params">(<span class="hljs-string">"sort"</span>)</span> String sort)</span>;
 </code></pre>
-<p>&#x590D;&#x6742;&#x7684;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#x7EC4;&#x5408;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;<code>map</code></p>
+<p>复杂的查询参数组合可以使用一个<code>map</code></p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/group/{id}/users&quot;</span>)
-<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> groupId, @QueryMap Map&lt;String, String&gt; options)</span>;
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/group/{id}/users"</span>)
+<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">groupList</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> groupId, @QueryMap Map&lt;String, String&gt; options)</span>;
 </code></pre>
-<h3 id="23-"><a name="23-" class="plugin-anchor" href="#23-"><span class="fa fa-link"></span></a>2.3 &#x53D1;&#x9001;&#x539F;&#x751F;&#x6570;&#x636E;</h3>
-<p>&#x5F53;&#x4F60;&#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x662F;&#x5982;&#x4E0B;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@Body</code>&#x6CE8;&#x89E3;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;<code>Retrofit</code>&#x53EF;&#x4EE5;&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;</p>
+<h3 id="23-">2.3 发送原生数据</h3>
+<p>当你的请求参数是如下JSON字符串，可以使用<code>@Body</code>注解一个对象，<code>Retrofit</code>可以将对象转换为字符串</p>
 <pre><code>{&quot;foo&quot;:&quot;kit&quot;,&quot;bar&quot;:&quot;kat&quot;}
-</code></pre><p>&#x5B9A;&#x4E49;&#x5BF9;&#x8C61;</p>
+</code></pre><p>定义对象</p>
 <pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FooRequest</span> </span>{
   <span class="hljs-keyword">final</span> String foo;
@@ -790,107 +860,107 @@ GitHubService service = restAdapter.create(GitHubService.class);
   }
 }
 </code></pre>
-<p>&#x4F7F;&#x7528;<code>@Body</code></p>
+<p>使用<code>@Body</code></p>
 <pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Foo</span> </span>{
-  <span class="hljs-annotation">@POST</span>(<span class="hljs-string">&quot;/jayson&quot;</span>)
+  <span class="hljs-annotation">@POST</span>(<span class="hljs-string">"/jayson"</span>)
   <span class="hljs-function">FooResponse <span class="hljs-title">postJson</span><span class="hljs-params">(@Body FooRequest body)</span></span>;
 }
 </code></pre>
-<p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x76F4;&#x63A5;&#x53D1;&#x9001;&#x4E00;&#x4E2A;JSON&#x4E32;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>TypedByteArray</code>&#x3002;</p>
+<p>如果你想直接发送一个JSON串，可以使用 <code>TypedByteArray</code>。</p>
 <pre><code class="lang-java">
-String json = <span class="hljs-string">&quot;{\&quot;foo\&quot;:\&quot;kit\&quot;,\&quot;bar\&quot;:\&quot;kat\&quot;}&quot;</span>;
-TypedInput in = <span class="hljs-keyword">new</span> TypedByteArray(<span class="hljs-string">&quot;application/json&quot;</span>, json.getBytes(<span class="hljs-string">&quot;UTF-8&quot;</span>));
+String json = <span class="hljs-string">"{\"foo\":\"kit\",\"bar\":\"kat\"}"</span>;
+TypedInput in = <span class="hljs-keyword">new</span> TypedByteArray(<span class="hljs-string">"application/json"</span>, json.getBytes(<span class="hljs-string">"UTF-8"</span>));
 FooResponse response = foo.postRawJson(in);
 </code></pre>
-<h3 id="24-"><a name="24-" class="plugin-anchor" href="#24-"><span class="fa fa-link"></span></a>2.4 &#x8868;&#x5355;&#x63D0;&#x4EA4;&#x548C;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;</h3>
-<p>&#x4F7F;&#x7528;<code>@FormUrlEncoded</code>&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8868;&#x5355;&#x63D0;&#x4EA4;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x540D;&#x5B57;&#x548C;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>@Field</code>&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#x3002;</p>
+<h3 id="24-">2.4 表单提交和文件上传</h3>
+<p>使用<code>@FormUrlEncoded</code>可以进行表单提交。每一个包含名字和提供数据对象的键值对需要使用<code>@Field</code>进行注解。</p>
 <pre><code class="lang-java">
 <span class="hljs-annotation">@FormUrlEncoded</span>
-<span class="hljs-annotation">@POST</span>(<span class="hljs-string">&quot;/user/edit&quot;</span>)
-<span class="hljs-function">User <span class="hljs-title">updateUser</span><span class="hljs-params">(@Field(<span class="hljs-string">&quot;first_name&quot;</span>)</span> String first, @<span class="hljs-title">Field</span><span class="hljs-params">(<span class="hljs-string">&quot;last_name&quot;</span>)</span> String last)</span>;
+<span class="hljs-annotation">@POST</span>(<span class="hljs-string">"/user/edit"</span>)
+<span class="hljs-function">User <span class="hljs-title">updateUser</span><span class="hljs-params">(@Field(<span class="hljs-string">"first_name"</span>)</span> String first, @<span class="hljs-title">Field</span><span class="hljs-params">(<span class="hljs-string">"last_name"</span>)</span> String last)</span>;
 </code></pre>
-<p>&#x4F7F;&#x7528;<code>@Multipart</code>&#x6CE8;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x3002;<code>Parts</code>&#x4F7F;&#x7528;<code>@Part</code>&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#x3002;</p>
+<p>使用<code>@Multipart</code>注解，可以进行文件上传。<code>Parts</code>使用<code>@Part</code>进行注解。</p>
 <pre><code class="lang-java">
 <span class="hljs-annotation">@Multipart</span>
-<span class="hljs-annotation">@PUT</span>(<span class="hljs-string">&quot;/user/photo&quot;</span>)
-<span class="hljs-function">User <span class="hljs-title">updateUser</span><span class="hljs-params">(@Part(<span class="hljs-string">&quot;photo&quot;</span>)</span> TypedFile photo, @<span class="hljs-title">Part</span><span class="hljs-params">(<span class="hljs-string">&quot;description&quot;</span>)</span> TypedString description)</span>;
+<span class="hljs-annotation">@PUT</span>(<span class="hljs-string">"/user/photo"</span>)
+<span class="hljs-function">User <span class="hljs-title">updateUser</span><span class="hljs-params">(@Part(<span class="hljs-string">"photo"</span>)</span> TypedFile photo, @<span class="hljs-title">Part</span><span class="hljs-params">(<span class="hljs-string">"description"</span>)</span> TypedString description)</span>;
 </code></pre>
-<h3 id="25-"><a name="25-" class="plugin-anchor" href="#25-"><span class="fa fa-link"></span></a>2.5 &#x8BF7;&#x6C42;&#x5934;</h3>
-<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@Headers</code>&#x6CE8;&#x89E3;&#x4E3A;&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5934;&#x3002;</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@Headers</span>(<span class="hljs-string">&quot;Cache-Control: max-age=640000&quot;</span>)
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/widget/list&quot;</span>)
+<h3 id="25-">2.5 请求头</h3>
+<p>可以使用<code>@Headers</code>注解为方法设置一个请求头。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Headers</span>(<span class="hljs-string">"Cache-Control: max-age=640000"</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/widget/list"</span>)
 <span class="hljs-function">List&lt;Widget&gt; <span class="hljs-title">widgetList</span><span class="hljs-params">()</span></span>;
 </code></pre>
-<p>&#x6DFB;&#x52A0;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#x5934;</p>
+<p>添加多个请求头</p>
 <pre><code class="lang-java">
 <span class="hljs-annotation">@Headers</span>({
-    <span class="hljs-string">&quot;Accept: application/vnd.github.v3.full+json&quot;</span>,
-    <span class="hljs-string">&quot;User-Agent: Retrofit-Sample-App&quot;</span>
+    <span class="hljs-string">"Accept: application/vnd.github.v3.full+json"</span>,
+    <span class="hljs-string">"User-Agent: Retrofit-Sample-App"</span>
 })
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/{username}&quot;</span>)
-<span class="hljs-function">User <span class="hljs-title">getUser</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;username&quot;</span>)</span> String username)</span>;
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/{username}"</span>)
+<span class="hljs-function">User <span class="hljs-title">getUser</span><span class="hljs-params">(@Path(<span class="hljs-string">"username"</span>)</span> String username)</span>;
 </code></pre>
-<p>&#x8BF7;&#x6C42;&#x5934;&#x4E0D;&#x4F1A;&#x88AB;&#x4E92;&#x76F8;&#x8986;&#x76D6;&#xFF0C;&#x6240;&#x6709;&#x62E5;&#x6709;&#x76F8;&#x540C;&#x540D;&#x5B57;&#x7684;&#x8BF7;&#x6C42;&#x5934;&#x90FD;&#x4F1A;&#x88AB;&#x5305;&#x542B;&#x5728;&#x8BF7;&#x6C42;&#x91CC;&#x3002;</p>
-<p>&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5934;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@Header</code>&#x6CE8;&#x89E3;&#x52A8;&#x6001;&#x7684;&#x66F4;&#x65B0;&#xFF0C;&#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x4E3A;<code>@Header</code>&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x76F8;&#x5E94;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;&#x3002;&#x5982;&#x679C;&#x503C;&#x4E3A;&#x7A7A;&#xFF0C;&#x8BF7;&#x6C42;&#x5934;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x3002;</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/user&quot;</span>)
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUser</span><span class="hljs-params">(@Header(<span class="hljs-string">&quot;Authorization&quot;</span>)</span> String authorization, Callback&lt;User&gt; callback)</span>
+<p>请求头不会被互相覆盖，所有拥有相同名字的请求头都会被包含在请求里。</p>
+<p>一个请求头可以使用<code>@Header</code>注解动态的更新，并且必须为<code>@Header</code>提供一个相应的字符串参数。如果值为空，请求头将被忽略。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/user"</span>)
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUser</span><span class="hljs-params">(@Header(<span class="hljs-string">"Authorization"</span>)</span> String authorization, Callback&lt;User&gt; callback)</span>
 </code></pre>
-<p>&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x5934;&#x9700;&#x8981;&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;RequestInterceptor&#x8FDB;&#x884C;&#x6307;&#x5B9A;&#x3002;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;<code>RequestInterceptor</code>&#xFF0C;&#x5B83;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x90FD;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;<code>User-Agent</code>&#x8BF7;&#x6C42;&#x5934;&#x3002;</p>
+<p>如果请求头需要被添加到所有的请求中，可以使用一个RequestInterceptor进行指定。在下面的代码中创建了一个<code>RequestInterceptor</code>，它为每一个请求都添加了一个<code>User-Agent</code>请求头。</p>
 <pre><code class="lang-java">RequestInterceptor requestInterceptor = <span class="hljs-keyword">new</span> RequestInterceptor() {
   <span class="hljs-annotation">@Override</span>
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">intercept</span><span class="hljs-params">(RequestFacade request)</span> </span>{
-    request.addHeader(<span class="hljs-string">&quot;User-Agent&quot;</span>, <span class="hljs-string">&quot;Retrofit-Sample-App&quot;</span>);
+    request.addHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"Retrofit-Sample-App"</span>);
   }
 };
 
 RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-  .setEndpoint(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)
+  .setEndpoint(<span class="hljs-string">"https://api.github.com"</span>)
   .setRequestInterceptor(requestInterceptor)
   .build();
 </code></pre>
-<h3 id="26-"><a name="26-" class="plugin-anchor" href="#26-"><span class="fa fa-link"></span></a>2.6 &#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;</h3>
-<p>&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x65B9;&#x6CD5;&#x662F;&#x540C;&#x6B65;&#x6267;&#x884C;&#x8FD8;&#x662F;&#x5F02;&#x6B65;&#x6267;&#x884C;&#x3002;</p>
-<p>&#x5E26;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x7684;&#x65B9;&#x6CD5;&#x5C06;&#x88AB;&#x540C;&#x6B65;&#x6267;&#x884C;&#x3002;</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/user/{id}/photo&quot;</span>)
-<span class="hljs-function">Photo <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> id)</span>;
+<h3 id="26-">2.6 同步和异步加载</h3>
+<p>可以声明方法是同步执行还是异步执行。</p>
+<p>带有返回值类型的方法将被同步执行。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/user/{id}/photo"</span>)
+<span class="hljs-function">Photo <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> id)</span>;
 </code></pre>
-<p>&#x5F02;&#x6B65;&#x6267;&#x884C;&#x8981;&#x6C42;&#x65B9;&#x6CD5;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;<code>Callback</code>&#xFF0C;&#x53CD;&#x7701;&#x7C7B;&#x578B;&#x4E3A;&#x8BF7;&#x6C42;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x6216;&#x8005;&#x4E0D;&#x9700;&#x8981;&#x5BF9;&#x8FD4;&#x56DE;&#x503C;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6210;<code>Callback&lt;Void&gt;</code></p>
-<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/user/{id}/photo&quot;</span>)
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> id, Callback&lt;Photo&gt; cb)</span>;
+<p>异步执行要求方法的最后一个参数是<code>Callback</code>，反省类型为请求的返回值，如果没有返回值或者不需要对返回值进行处理可以设置成<code>Callback&lt;Void&gt;</code></p>
+<pre><code class="lang-java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/user/{id}/photo"</span>)
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> id, Callback&lt;Photo&gt; cb)</span>;
 </code></pre>
-<p>&#x5728;android&#x4E2D;&#xFF0C;<code>callbacks</code>&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#x88AB;&#x6267;&#x884C;&#x3002;&#x5BF9;&#x4E8E;&#x684C;&#x9762;&#x5E94;&#x7528;&#xFF0C;&#x56DE;&#x8C03;&#x548C;&#x6267;&#x884C;HTTP&#x8BF7;&#x6C42;&#x5728;&#x540C;&#x4E00;&#x7EBF;&#x7A0B;&#x4E2D;&#x3002;</p>
-<p>Retrofit&#x96C6;&#x6210;&#x4E86;RxJava&#xFF0C;&#x5141;&#x8BB8;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;<code>rx.Observable</code>&#x7C7B;&#x578B;&#x3002;</p>
-<pre><code class="lang-Java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/user/{id}/photo&quot;</span>)
-<span class="hljs-function">Observable&lt;Photo&gt; <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-keyword">int</span> id)</span>;
+<p>在android中，<code>callbacks</code>在主线程中被执行。对于桌面应用，回调和执行HTTP请求在同一线程中。</p>
+<p>Retrofit集成了RxJava，允许方法返回一个<code>rx.Observable</code>类型。</p>
+<pre><code class="lang-Java"><span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/user/{id}/photo"</span>)
+<span class="hljs-function">Observable&lt;Photo&gt; <span class="hljs-title">getUserPhoto</span><span class="hljs-params">(@Path(<span class="hljs-string">"id"</span>)</span> <span class="hljs-keyword">int</span> id)</span>;
 </code></pre>
-<p>Observable&#x8BF7;&#x6C42;&#x88AB;&#x5F02;&#x6B65;&#x7684;&#x8BA2;&#x9605;&#x5E76;&#x4E14;&#x5728;&#x6267;&#x884C;HTTP&#x8BF7;&#x6C42;&#x7684;&#x7EBF;&#x7A0B;&#x4E2D;&#x88AB;&#x89C2;&#x5BDF;&#x3002;&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x7EBF;&#x7A0B;&#x4E2D;&#x89C2;&#x5BDF;&#xFF0C;&#x8C03;&#x7528;<code>observeOn(Scheduler)</code>&#x8FD4;&#x56DE;<code>Observable</code>&#x3002;</p>
-<h3 id="27-"><a name="27-" class="plugin-anchor" href="#27-"><span class="fa fa-link"></span></a>2.7 &#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7C7B;&#x578B;</h3>
-<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x63A5;&#x53E3;&#x8FD4;&#x56DE;&#x7684;&#x662F;JSON&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;<code>RestAdapter</code>&#x4F1A;&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x4E3A;&#x65B9;&#x6CD5;&#x58F0;&#x660E;&#x7684;&#x6216;&#x8005;CallBack&#x548C;Observable&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5982;&#x679C;&#x662F;XML&#x6216;&#x5176;&#x5B83;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;<code>RestAdapter</code>&#x8F6C;&#x6362;&#x5668;&#x3002;&#x5173;&#x4E8E;&#x5982;&#x4F55;&#x81EA;&#x5B9A;&#x4E49;<code>RestAdapter</code>&#x8F6C;&#x6362;&#x5668;&#xFF0C;&#x5C06;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x6587;&#x7AE0;&#x4E2D;&#x8BB2;&#x5230;&#x3002;</p>
+<p>Observable请求被异步的订阅并且在执行HTTP请求的线程中被观察。如果希望在不同的线程中观察，调用<code>observeOn(Scheduler)</code>返回<code>Observable</code>。</p>
+<h3 id="27-">2.7 返回数据类型</h3>
+<p>如果你的接口返回的是JSON数据类型，<code>RestAdapter</code>会自动转换为方法声明的或者CallBack和Observable中指定的对象。如果是XML或其它数据类型，则需要自定义<code>RestAdapter</code>转换器。关于如何自定义<code>RestAdapter</code>转换器，将在下面的文章中讲到。</p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 <span class="hljs-function">List&lt;User&gt; <span class="hljs-title">userList</span><span class="hljs-params">()</span></span>;
 
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">userList</span><span class="hljs-params">(Callback&lt;List&lt;User&gt;&gt; cb)</span></span>;
 
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 Observable&lt;List&lt;User&gt;&gt; userList();
 </code></pre>
-<p>&#x5982;&#x679C;&#x4E0D;&#x5E0C;&#x671B;&#x8FD4;&#x56DE;&#x503C;&#x88AB;&#x5904;&#x7406;&#x6210;&#x6307;&#x5B9A;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x58F0;&#x660E;&#x3001;CallBack&#x4EE5;&#x53CA;Observable&#x4E2D;&#x4F7F;&#x7528;<code>Response</code>&#x5BF9;&#x8C61;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>如果不希望返回值被处理成指定的类型，则可以通过在方法返回值声明、CallBack以及Observable中使用<code>Response</code>对象来实现。</p>
 <pre><code class="lang-java">
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 <span class="hljs-function">Response <span class="hljs-title">userList</span><span class="hljs-params">()</span></span>;
 
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">userList</span><span class="hljs-params">(Callback&lt;Response&gt; cb)</span></span>;
 
-<span class="hljs-annotation">@GET</span>(<span class="hljs-string">&quot;/users/list&quot;</span>)
+<span class="hljs-annotation">@GET</span>(<span class="hljs-string">"/users/list"</span>)
 <span class="hljs-function">Observable&lt;Response&gt; <span class="hljs-title">userList</span><span class="hljs-params">()</span></span>;
 </code></pre>
-<h2 id="3-restadapter-"><a name="3-restadapter-" class="plugin-anchor" href="#3-restadapter-"><span class="fa fa-link"></span></a>3. RestAdapter &#x914D;&#x7F6E;</h2>
-<p>&#x9664;&#x4E86;&#x4F7F;&#x7528;Retrofit&#x63D0;&#x4F9B;&#x7684;&#x9ED8;&#x8BA4;RestAdapter&#x4EE5;&#x5916;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x8F6C;&#x6362;&#x5668;&#x548C;&#x8BBE;&#x7F6E;&#x5BA2;&#x6237;&#x7AEF;&#x7B49;&#x81EA;&#x5B9A;&#x4E49;&#x64CD;&#x4F5C;</p>
-<h3 id="31-"><a name="31-" class="plugin-anchor" href="#31-"><span class="fa fa-link"></span></a>3.1 &#x8BBE;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;&#x8F6C;&#x6362;&#x5668;</h3>
-<p>Retrofit&#x4F7F;&#x7528;&#x672A;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x914D;&#x7F6E;&#x7684;GSON&#x6765;&#x8F6C;&#x6362;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x5E0C;&#x671B;&#x4F7F;&#x7528;&#x7ECF;&#x8FC7;GsonBuilder&#x914D;&#x7F6E;&#x8FC7;&#x7684;Gson&#xFF0C;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;GsonConvert&#x3002;</p>
+<h2 id="3-restadapter-">3. RestAdapter 配置</h2>
+<p>除了使用Retrofit提供的默认RestAdapter以外，我们还可以进行设置转换器和设置客户端等自定义操作</p>
+<h3 id="31-">3.1 设置自定义转换器</h3>
+<p>Retrofit使用未进行任何配置的GSON来转换数据，如果希望使用经过GsonBuilder配置过的Gson，需要创建一个新的GsonConvert。</p>
 <pre><code class="lang-java">
 Gson gson = <span class="hljs-keyword">new</span> GsonBuilder()
     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -898,31 +968,31 @@ Gson gson = <span class="hljs-keyword">new</span> GsonBuilder()
     .create();
 
 RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-    .setEndpoint(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.github.com"</span>)
     .setConverter(<span class="hljs-keyword">new</span> GsonConverter(gson))
     .build();
 
 GitHubService service = restAdapter.create(GitHubService.class);
 </code></pre>
-<p>&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x8FD4;&#x56DE;&#x503C;&#x662F;XML&#x6216;&#x8005;<code>Protocol Buffers</code>&#x683C;&#x5F0F;&#xFF0C;Retrofit&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;XML&#x548C;<code>Protocol Buffers</code>&#x683C;&#x5F0F;&#x7684;&#x8F6C;&#x6362;&#x5668;&#x3002;</p>
-<p>&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528;<code>SimpleXMLConvert</code>&#x3002;</p>
+<p>如果请求返回值是XML或者<code>Protocol Buffers</code>格式，Retrofit也提供了XML和<code>Protocol Buffers</code>格式的转换器。</p>
+<p>下面的代码演示了如何使用<code>SimpleXMLConvert</code>。</p>
 <pre><code class="lang-java">RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-    .setEndpoint(<span class="hljs-string">&quot;https://api.soundcloud.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.soundcloud.com"</span>)
     .setConverter(<span class="hljs-keyword">new</span> SimpleXMLConverter())
     .build();
 
 SoundCloudService service = restAdapter.create(SoundCloudService.class);
 </code></pre>
-<p><code>ProtoConverter</code>&#x4F7F;&#x7528;</p>
+<p><code>ProtoConverter</code>使用</p>
 <pre><code class="lang-java">
 RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-    .setEndpoint(<span class="hljs-string">&quot;https://api.example.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.example.com"</span>)
     .setConverter(<span class="hljs-keyword">new</span> ProtoConverter())
     .build();
 </code></pre>
-<p>&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;Retrofit&#x4E0D;&#x63D0;&#x4F9B;&#x7684;&#x5185;&#x5BB9;&#x683C;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x4EA4;&#x6362;&#x6216;&#x8005;&#x4F60;&#x60F3;&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x7684;&#x5E93;&#x6765;&#x8F6C;&#x6362;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;Convert&#x63A5;&#x53E3;&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x8F6C;&#x6362;&#x5668;&#x3002;</p>
-<h3 id="32-"><a name="32-" class="plugin-anchor" href="#32-"><span class="fa fa-link"></span></a>3.2 &#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x5904;&#x7406;</h3>
-<p>&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x7684;<code>ErrorHandler</code>&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x5904;&#x7406;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x6F14;&#x793A;&#x4E86;&#x5F53;&#x8FD4;&#x56DE;401&#x5982;&#x4F55;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;&#x3002;</p>
+<p>如果你需要使用Retrofit不提供的内容格式来进行数据交换或者你想使用其他的库来转换已经存在的格式，可以通过实现Convert接口创建自己的转换器。</p>
+<h3 id="32-">3.2 自定义错误处理</h3>
+<p>提供自定义的<code>ErrorHandler</code>可以自定义错误处理，下面的代码中演示了当返回401如何抛出一个自定义异常。</p>
 <pre><code class="lang-java">
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyErrorHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ErrorHandler</span> </span>{
   <span class="hljs-annotation">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> Throwable <span class="hljs-title">handleError</span><span class="hljs-params">(RetrofitError cause)</span> </span>{
@@ -935,23 +1005,23 @@ RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Buil
 }
 
 RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
-    .setEndpoint(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.github.com"</span>)
     .setErrorHandler(<span class="hljs-keyword">new</span> MyErrorHandler())
     .build();
 </code></pre>
-<h3 id="33log"><a name="33log" class="plugin-anchor" href="#33log"><span class="fa fa-link"></span></a>3.3&#x8BBE;&#x7F6E;Log</h3>
-<p><code>RestAdapter</code>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;setLogLevel&#x65B9;&#x6CD5;&#x914D;&#x7F6E;Log&#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x6253;&#x5370;&#x4E0D;&#x540C;&#x7684;Log&#x4FE1;&#x606F;&#x3002;Retrofit&#x63D0;&#x4F9B;&#x4E86;<code>BASIC</code>,<code>FULL</code>,<code>HEADERS</code>&#x548C;<code>NONE</code>&#x7B49;&#x56DB;&#x79CD;Log&#x8FC7;&#x6EE4;&#x6761;&#x4EF6;&#x3002;</p>
+<h3 id="33log">3.3设置Log</h3>
+<p><code>RestAdapter</code>可以通过setLogLevel方法配置Log的级别，打印不同的Log信息。Retrofit提供了<code>BASIC</code>,<code>FULL</code>,<code>HEADERS</code>和<code>NONE</code>等四种Log过滤条件。</p>
 <pre><code class="lang-java">
 RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Builder()
     .setLogLevel(RestAdapter.LogLevel.FULL)
-    .setEndpoint(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)
+    .setEndpoint(<span class="hljs-string">"https://api.github.com"</span>)
     .build();
 </code></pre>
-<h1 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6269;&#x5C55;&#x9605;&#x8BFB;</h1>
+<h1 id="">扩展阅读</h1>
 <ul>
-<li><p><a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank">&#x7406;&#x89E3;RESTful&#x67B6;&#x6784;</a></p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank">理解RESTful架构</a></p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank">RESTful API &#x8BBE;&#x8BA1;&#x6307;&#x5357;</a></p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank">RESTful API 设计指南</a></p>
 </li>
 <li><p><a href="http://blog.robinchutaux.com/blog/a-smart-way-to-use-retrofit/" target="_blank">A smart way to use Retrofit</a></p>
 </li>
@@ -979,6 +1049,10 @@ RestAdapter restAdapter = <span class="hljs-keyword">new</span> RestAdapter.Buil
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     

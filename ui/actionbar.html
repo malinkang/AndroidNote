@@ -30,12 +30,12 @@
 <link rel="stylesheet" href="../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
     
 
 
         
-    <div class="book" data-level="1.5" data-basepath=".." data-revision="1421509324305">
+    <div class="book" data-level="1.5" data-basepath=".." data-revision="1422846108795">
     
 
 <div class="book-summary">
@@ -134,6 +134,38 @@
                             <b>1.2.3.</b>
                         
                          RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
                     </a>
                 
             
@@ -297,6 +329,28 @@
             
             <span><b>4.</b> [Fragment]</span>
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -628,6 +682,22 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -729,89 +799,65 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_17">
+                    <section class="normal" id="section-gitbook_19">
                     
-                        <h1 id="actionbar"><a name="actionbar" class="plugin-anchor" href="#actionbar"><span class="fa fa-link"></span></a>ActionBar&#x4F7F;&#x7528;</h1>
+                        <h1 id="actionbar">ActionBar使用</h1>
 <p><img src="https://github.com/ITBox/ITBox.github.io/blob/master/images/D06A00CC-E866-4B48-B09A-41609D28B275.png?raw=true" alt=""></p>
-<!-- toc -->
-<ul>
-<li><a href="#actionbar&#x7684;&#x663E;&#x793A;&#x4E0E;&#x9690;&#x85CF;">ActionBar&#x7684;&#x663E;&#x793A;&#x4E0E;&#x9690;&#x85CF;</a><ul>
-<li><a href="#&#x4F7F;&#x7528;logo&#x66FF;&#x6362;icon">&#x4F7F;&#x7528;Logo&#x66FF;&#x6362;icon</a></li>
-</ul>
-</li>
-<li><a href="#&#x6DFB;&#x52A0;action-item">&#x6DFB;&#x52A0;Action Item</a><ul>
-<li><a href="#&#x5904;&#x7406;&#x53EF;&#x6298;&#x53E0;&#x7684;-action-view">&#x5904;&#x7406;&#x53EF;&#x6298;&#x53E0;&#x7684; action view</a></li>
-</ul>
-</li>
-<li><a href="#&#x6DFB;&#x52A0;-action-provider">&#x6DFB;&#x52A0; Action Provider</a><ul>
-<li><a href="#&#x4F7F;&#x7528;shareactionprovider">&#x4F7F;&#x7528;ShareActionProvider</a></li>
-<li><a href="#&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x7684;actionprovider">&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ActionProvider</a></li>
-</ul>
-</li>
-<li><a href="#&#x6DFB;&#x52A0;&#x5BFC;&#x822A;&#x9009;&#x9879;&#x6807;&#x7B7E;">&#x6DFB;&#x52A0;&#x5BFC;&#x822A;&#x9009;&#x9879;&#x6807;&#x7B7E;</a></li>
-<li><a href="#&#x6DFB;&#x52A0;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x5BFC;&#x822A;">&#x6DFB;&#x52A0;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x5BFC;&#x822A;</a></li>
-<li><a href="#actionbar&#x6837;&#x5F0F;">ActionBar&#x6837;&#x5F0F;</a><ul>
-<li><a href="#&#x901A;&#x7528;&#x6837;&#x5F0F;">&#x901A;&#x7528;&#x6837;&#x5F0F;</a></li>
-</ul>
-</li>
-<li><a href="#actionitem&#x6837;&#x5F0F;">ActionItem&#x6837;&#x5F0F;</a></li>
-<li><a href="#tab&#x5BFC;&#x822A;&#x6837;&#x5F0F;">Tab&#x5BFC;&#x822A;&#x6837;&#x5F0F;</a><ul>
-<li><a href="#&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x6837;&#x5F0F;">&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x6837;&#x5F0F;</a></li>
-</ul>
-</li>
-<li><a href="#&#x6269;&#x5C55;&#x9605;&#x8BFB;">&#x6269;&#x5C55;&#x9605;&#x8BFB;&#xFF1A;</a></li>
-</ul>
-<!-- toc stop -->
-<p>&#x968F;&#x7740;AndroidDesign&#x7684;Holo&#x98CE;&#x683C;&#x8D8A;&#x6765;&#x8D8A;&#x666E;&#x53CA;&#xFF0C;Android&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E5F;&#x6709;&#x4E86;&#x81EA;&#x5DF1;&#x7684;&#x8BBE;&#x8BA1;&#x98CE;&#x683C;&#xFF0C;&#x5FAE;&#x4FE1;5.2&#x4E5F;&#x8F6C;&#x5411;&#x7684;Holo&#x98CE;&#x683C;&#xFF0C;ActionBar&#x662F;Holo&#x98CE;&#x683C;&#x4E2D;&#x91CD;&#x8981;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x5C06;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;ActionBar&#x5982;&#x4F55;&#x5E94;&#x7528;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#x3002;</p>
-<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">ActionBar</a>&#x662F;android3.0&#x4E4B;&#x540E;&#xFF08;API Level 11&#xFF09;&#x624D;&#x52A0;&#x5165;&#x7684;&#x3002;&#x5728;&#x6B64;&#x4E4B;&#x524D;&#x4E00;&#x822C;&#x662F;&#x4F7F;&#x7528;Github&#x4E0A;&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;<a href="https://github.com/JakeWharton/ActionBarSherlock" target="_blank">ActionBarSherlock</a>&#x6765;&#x517C;&#x5BB9;&#x4F4E;&#x7248;&#x672C;&#x3002;2013&#x5E74;google&#x53D1;&#x5E03;&#x4E86;v7 appcompact library,&#x53EF;&#x4EE5;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x5728;android 2.1(API level 7)&#x4EE5;&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x4E0A;&#x4F7F;&#x7528;ActionBar&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#x4E00;&#x4E0B;&#x4F7F;&#x7528;v7 appcompact library&#x6765;&#x5B9E;&#x73B0;ActionBar&#x3002;</p>
-<h3 id="actionbar"><a name="actionbar" class="plugin-anchor" href="#actionbar"><span class="fa fa-link"></span></a>ActionBar&#x7684;&#x663E;&#x793A;&#x4E0E;&#x9690;&#x85CF;</h3>
-<p> &#x5982;&#x679C;&#x8FD8;&#x6CA1;&#x6709;v7&#x652F;&#x6301;&#x5E93;&#xFF0C;&#x6253;&#x5F00;SDK Manager&#x5B89;&#x88C5;&#x5373;&#x53EF;</p>
+ <!-- toc -->
+<p>随着AndroidDesign的Holo风格越来越普及，Android应用程序也有了自己的设计风格，微信5.2也转向的Holo风格，ActionBar是Holo风格中重要的元素，接下来我将简单介绍ActionBar如何应用到项目中。</p>
+<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">ActionBar</a>是android3.0之后（API Level 11）才加入的。在此之前一般是使用Github上的开源项目<a href="https://github.com/JakeWharton/ActionBarSherlock" target="_blank">ActionBarSherlock</a>来兼容低版本。2013年google发布了v7 appcompact library,可以让开发者在android 2.1(API level 7)以及以上版本上使用ActionBar。我们这里主要讲解一下使用v7 appcompact library来实现ActionBar。</p>
+<h3 id="actionbar">ActionBar的显示与隐藏</h3>
+<p> 如果还没有v7支持库，打开SDK Manager安装即可</p>
 <p><img src="https://github.com/baoyongzhang/test_pages/blob/gh-pages/image-1.png?raw=true" alt="SDK Manager"></p>
-<p>&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;&#x5728;sdk&#x76EE;&#x5F55;&#x4E0B;&#x7684;extras&#x76EE;&#x5F55;&#x4E2D;&#x53EF;&#x5E94;&#x8BE5;&#x53EF;&#x4EE5;&#x627E;&#x5230;v4,v7,v13&#x652F;&#x6301;&#x5E93;&#xFF0C;v7&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4E09;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;ActionBar&#x53EA;&#x9700;&#x8981;&#x4F7F;&#x7528;v7&#x4E2D;&#x7684;appcompat&#x9879;&#x76EE;&#x3002;</p>
+<p>安装之后，在sdk目录下的extras目录中可应该可以找到v4,v7,v13支持库，v7中包含了三个项目，ActionBar只需要使用v7中的appcompat项目。</p>
 <p><img src="https://github.com/baoyongzhang/test_pages/blob/gh-pages/image-2.png?raw=true" alt="v7 appcompat"></p>
-<p>&#x63A5;&#x4E0B;&#x6765;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Android Project&#xFF0C;&#x6211;&#x4F7F;&#x7528;&#x7684;&#x662F;eclipse&#xFF0C;&#x7136;&#x540E;&#x5BFC;&#x5165;v7&#x4E2D;&#x5F97;appcompat&#x9879;&#x76EE;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x4E0B;&#xFF0C;appcompat&#x9879;&#x76EE;&#x662F;&#x5305;&#x542B;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x7684;&#xFF08;&#x6BD4;&#x5982;ActionBar&#x7684;&#x80CC;&#x666F;&#x56FE;&#x7247;&#xFF09;&#xFF0C;&#x53EA;&#x5BFC;&#x5165;jar&#x5305;&#x662F;&#x4E0D;&#x884C;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x5DE5;&#x7A0B;&#x9700;&#x8981;&#x5173;&#x8054;appcompat&#x9879;&#x76EE;&#xFF0C;&#x5982;&#x4F55;&#x5173;&#x8054;&#x8BF7;&#x53C2;&#x8003;Android Library&#x9879;&#x76EE;&#x7684;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x5728;&#x6E05;&#x5355;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;activity&#x7684;Theme&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;application&#x4E2D;&#x914D;&#x7F6E;&#x5168;&#x5C40;Theme&#xFF0C;appcompat&#x63D0;&#x4F9B;&#x4E86;&#x4E09;&#x79CD;Theme&#xFF1A;</p>
+<p>接下来新建一个Android Project，我使用的是eclipse，然后导入v7中得appcompat项目，这里要注意一下，appcompat项目是包含资源文件的（比如ActionBar的背景图片），只导入jar包是不行的，我们的工程需要关联appcompat项目，如何关联请参考Android Library项目的使用。</p>
+<p>在清单文件中配置activity的Theme，也可以在application中配置全局Theme，appcompat提供了三种Theme：</p>
 <pre>
- &#x9ED1;&#x8272;&#x4E3B;&#x9898;&#xFF1A;@Style/Theme.AppCompat
- &#x767D;&#x8272;&#x4E3B;&#x9898;&#xFF1A;@Style/Theme.AppCompat.Light
- &#x767D;&#x8272;&#x4E3B;&#x9898;&#xFF0C;&#x9ED1;&#x8272;ActionBar&#xFF1A;@Style/Theme.AppCompat.Light.DarkActionBar
+ 黑色主题：@Style/Theme.AppCompat
+ 白色主题：@Style/Theme.AppCompat.Light
+ 白色主题，黑色ActionBar：@Style/Theme.AppCompat.Light.DarkActionBar
 </pre>
 
 
-<p>&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;Style&#x7EE7;&#x627F;&#x4E0A;&#x9762;&#x51E0;&#x79CD;Theme&#x3002;</p>
-<p>&#x914D;&#x7F6E;&#x5B8C;&#x4E3B;&#x9898;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5C06;Activity&#x7EE7;&#x627F;ActionBarActivity&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;v4&#x5305;&#x4E2D;&#x7684;FragmentActivity&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x62C5;&#x5FC3;&#xFF0C;&#x56E0;&#x4E3A;ActionBarActivity&#x7EE7;&#x627F;&#x4E86;FragmentActivity&#x3002;</p>
-<p>&#x5728;Activity&#x4E2D;&#x8C03;&#x7528;getSupportActionBar()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;ActionBar&#x5BF9;&#x8C61;&#xFF0C;ActionBar&#x9ED8;&#x8BA4;&#x662F;&#x663E;&#x793A;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x9690;&#x85CF;&#x53EF;&#x4EE5;&#x8C03;&#x7528;ActionBar.hide()&#x65B9;&#x6CD5;&#xFF0C;&#x663E;&#x793A;&#x5219;&#x8C03;&#x7528;ActionBar.show(); </p>
+<p>也可以自定义Style继承上面几种Theme。</p>
+<p>配置完主题之后，我们需要将Activity继承ActionBarActivity，如果需要使用v4包中的FragmentActivity也不需要担心，因为ActionBarActivity继承了FragmentActivity。</p>
+<p>在Activity中调用getSupportActionBar()方法可以获取ActionBar对象，ActionBar默认是显示的，如果想隐藏可以调用ActionBar.hide()方法，显示则调用ActionBar.show(); </p>
 <p>{% highlight java %}</p>
 <pre><code>    ActionBar actionBar = getSupportActionBar();
-    if (actionBar.isShowing()) {// &#x5224;&#x65AD;ActionBar&#x662F;&#x5426;&#x663E;&#x793A;
-        actionBar.hide();// &#x9690;&#x85CF;ActionBar
+    if (actionBar.isShowing()) {// 判断ActionBar是否显示
+        actionBar.hide();// 隐藏ActionBar
     } else {
-        actionBar.show();// &#x663E;&#x793A;ActionBar
+        actionBar.show();// 显示ActionBar
     }
 </code></pre><p>{% endhighlight %}</p>
-<h4 id="logoicon"><a name="logoicon" class="plugin-anchor" href="#logoicon"><span class="fa fa-link"></span></a>&#x4F7F;&#x7528;Logo&#x66FF;&#x6362;icon</h4>
-<p>&#x9ED8;&#x8BA4;&#x7684;,ActionBar&#x8C03;&#x7528;&#x5E94;&#x7528;&#x56FE;&#x6807;&#x3002;&#x5982;&#x679C;&#x5728;<code>&lt;application&gt;</code>&#x6216;&#x8005;<code>&lt;activity&gt;</code>&#x5143;&#x7D20;&#x4E2D;&#xFF0C;&#x6307;&#x5B9A;logo&#x5C5E;&#x6027;&#xFF0C;ActionBar&#x5C06;&#x4F7F;&#x7528;logo&#x66FF;&#x4EE3;icon</p>
-<p><strong>ActionBar&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x7684;&#x65B9;&#x6CD5;</strong></p>
+<h4 id="logoicon">使用Logo替换icon</h4>
+<p>默认的,ActionBar调用应用图标。如果在<code>&lt;application&gt;</code>或者<code>&lt;activity&gt;</code>元素中，指定logo属性，ActionBar将使用logo替代icon</p>
+<p><strong>ActionBar一些常用的方法</strong></p>
 <ul>
-<li>setBackgroundDrawable(Drawable drawable):&#x4E3A;ActionBar&#x8BBE;&#x7F6E;&#x80CC;&#x666F;&#x3002;</li>
-<li>setDisplayHomeAsUpEnabled(boolean b)&#xFF1A;&#x662F;&#x5426;&#x663E;&#x793A;&#x8FD4;&#x56DE;&#x7684;&#x6309;&#x94AE;&#x3002;</li>
-<li>setDisplayShowHomeEnabled(boolean b);&#x662F;&#x5426;&#x663E;&#x793A;icon</li>
-<li>setDisplayShowTitleEnabled(boolean b);&#x662F;&#x5426;&#x663E;&#x793A;&#x6807;&#x9898;</li>
-<li>setDisplayShowCustomEnabled(boolean b);&#x662F;&#x5426;&#x663E;&#x793A;&#x81EA;&#x5B9A;&#x4E49;view</li>
-<li>setIcon();&#x8BBE;&#x7F6E;Icon</li>
-<li>setTitle();&#x8BBE;&#x7F6E;&#x6807;&#x9898;</li>
-<li>getSelectedNavigationIndex()&#x83B7;&#x53D6;&#x9009;&#x62E9;&#x6761;&#x76EE;&#x7684;&#x7D22;&#x5F15;&#x3002;</li>
+<li>setBackgroundDrawable(Drawable drawable):为ActionBar设置背景。</li>
+<li>setDisplayHomeAsUpEnabled(boolean b)：是否显示返回的按钮。</li>
+<li>setDisplayShowHomeEnabled(boolean b);是否显示icon</li>
+<li>setDisplayShowTitleEnabled(boolean b);是否显示标题</li>
+<li>setDisplayShowCustomEnabled(boolean b);是否显示自定义view</li>
+<li>setIcon();设置Icon</li>
+<li>setTitle();设置标题</li>
+<li>getSelectedNavigationIndex()获取选择条目的索引。</li>
 </ul>
-<h3 id="action-item"><a name="action-item" class="plugin-anchor" href="#action-item"><span class="fa fa-link"></span></a>&#x6DFB;&#x52A0;Action Item</h3>
-<p>&#x5F53;&#x4F60;&#x5F00;&#x542F;Activity&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x901A;&#x8FC7;&#x8C03;&#x7528;Activity&#x7684;onCreateOptionsMenu()&#x65B9;&#x6CD5;&#x6765;&#x653E;&#x7F6E;action items&#x3002;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;inflate&#x4E00;&#x4E2A;&#x5B9A;&#x4E49;&#x6240;&#x6709;action items&#x7684;&#x83DC;&#x5355;&#x8D44;&#x6E90;&#x3002;</p>
+<h3 id="action-item">添加Action Item</h3>
+<p>当你开启Activity时，系统通过调用Activity的onCreateOptionsMenu()方法来放置action items。使用这个方法inflate一个定义所有action items的菜单资源。</p>
 <p>{% highlight xml%}</p>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_search" android:icon="@drawable/ic_action_search" android:title="@string/action_search">
-    <item android:id="@+id/action_compose" android:icon="@drawable/ic_action_compose" android:title="@string/action_compose">
-</item></item></menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_action_search"
+          android:title="@string/action_search"/>
+    <item android:id="@+id/action_compose"
+          android:icon="@drawable/ic_action_compose"
+          android:title="@string/action_compose" />
+</menu>
 
 <p>{% endhighlight %}</p>
-<p>&#x7136;&#x540E;&#x8C03;&#x7528;Activity&#x7684;onCreateOptionsMenu()&#x65B9;&#x6CD5;&#x4E2D;&#x6DFB;&#x52A0;&#x5C06;&#x6240;&#x6709;&#x7684;action item&#x6DFB;&#x52A0;&#x5230;ActionBar&#x4E0A;&#x3002;</p>
+<p>然后调用Activity的onCreateOptionsMenu()方法中添加将所有的action item添加到ActionBar上。</p>
 <p>{% highlight java%}</p>
 <p>@Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -821,36 +867,40 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return super.onCreateOptionsMenu(menu);
 }</p>
 <p>{% endhighlight %}</p>
-<p>&#x60F3;&#x8981;item&#x76F4;&#x63A5;&#x663E;&#x793A;&#x5728;actionbar&#x4E0A;&#xFF0C;&#x9700;&#x8981;&#x5728;<item>&#x6807;&#x7B7E;&#x4E2D;&#xFF0C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;showAsAction=&quot;ifRoom&quot;&#x5C5E;&#x6027;&#x3002;</item></p>
+<p>想要item直接显示在actionbar上，需要在<item>标签中，添加一个showAsAction=&quot;ifRoom&quot;属性。</p>
 <p>{% highlight xml%}</p>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yourapp="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_search" android:icon="@drawable/ic_action_search" android:title="@string/action_search" yourapp:showasaction="ifRoom">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_action_search"
+          android:title="@string/action_search"
+          yourapp:showAsAction="ifRoom"  />
     ...
-</item></menu>
+</menu>
 {% endhighlight %}
 
-&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x5B83;&#x5C06;&#x4EE5;&#x60AC;&#x6D6E;&#x83DC;&#x5355;&#x7684;&#x6837;&#x5F0F;&#x663E;&#x793A;&#x3002;
+如果没有足够的空间，它将以悬浮菜单的样式显示。
 
-####&#x4F7F;&#x7528;support library&#x7684;&#x5C5E;&#x6027;####
-&#x6CE8;&#x610F;&#x4E0A;&#x9762;&#x7684;showAsAction &#x5C5E;&#x6027;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;&#x5728;&#x4F7F;&#x7528;support library&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#x5FC5;&#x987B;&#x81EA;&#x5B9A;&#x4E49;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x5C5E;&#x6027;&#x5728;&#x4E00;&#x4E9B;&#x8001;&#x7684;Android&#x8BBE;&#x5907;&#x4E0A;&#x4E0D;&#x5B58;&#x5728;&#x3002;
+####使用support library的属性####
+注意上面的showAsAction 属性使用了一个自定义命名空间。在使用support library定义的属性必须自定义命名空间。因为这些属性在一些老的Android设备上不存在。
 
-&#x5982;&#x679C;&#x540C;&#x65F6;&#x6307;&#x5B9A;&#x4E86;title&#x548C;icon&#x5C5E;&#x6027;&#xFF0C;action item&#x9ED8;&#x8BA4;&#x53EA;&#x663E;&#x793A;icon.&#x5982;&#x679C;&#x9700;&#x8981;&#x663E;&#x793A;&#x6807;&#x9898;&#xFF0C;&#x9700;&#x8981;&#x4E3A;showAsAction&#x5C5E;&#x6027;&#x6DFB;&#x52A0;withText&#x503C;,&#x5982;&#x679C;icon&#x53EF;&#x7528;&#x5E76;&#x4E14;actionbar&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#x65F6;&#xFF0C;title&#x5C06;&#x4E0D;&#x663E;&#x793A;&#x3002;
+如果同时指定了title和icon属性，action item默认只显示icon.如果需要显示标题，需要为showAsAction属性添加withText值,如果icon可用并且actionbar空间不足时，title将不显示。
 
 {% highlight xml%}
-<item yourapp:showasaction="ifRoom|withText" ...="">
+<item yourapp:showAsAction="ifRoom|withText" ... />
 {% endhighlight %}
 
 
 
-&#x5C3D;&#x7BA1;&#x53EF;&#x80FD;&#x4F60;&#x4E0D;&#x9700;&#x8981;&#x663E;&#x793A;title&#xFF0C;&#x4F46;&#x662F;&#x4ECD;&#x7136;&#x8981;&#x6307;&#x5B9A;title&#x5C5E;&#x6027;&#x7684;&#x503C;&#x3002;
+尽管可能你不需要显示title，但是仍然要指定title属性的值。
 
-<em> &#x5982;&#x679C;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#xFF0C;&#x83DC;&#x5355;&#x5C06;&#x4EE5;&#x60AC;&#x6D6E;&#x72B6;&#x6001;&#x663E;&#x793A;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x663E;&#x793A;title&#x3002;
-</em> &#x5982;&#x679C;action item&#x53EA;&#x663E;&#x793A;icon,&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x957F;&#x6309;&#x6761;&#x76EE;&#x663E;&#x793A;title&#x3002;
+<em> 如果空间不足，菜单将以悬浮状态显示，并且只显示title。
+</em> 如果action item只显示icon,用户可以通过长按条目显示title。
 
-&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;showAsAction&#x5C5E;&#x6027;&#x7684;&#x503C;&#x4E3A;always&#xFF0C;&#x8BA9;&#x4E00;&#x4E2A;action item&#x4E00;&#x76F4;&#x663E;&#x793A;&#xFF0C;&#x4F46;&#x662F;&#x4F60;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x8BA9;&#x4E00;&#x4E2A;action item&#x4E00;&#x76F4;&#x663E;&#x793A;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x5728;&#x7A84;&#x5C4F;&#x4E0A;&#x51FA;&#x73B0;&#x4E00;&#x4E9B;&#x5E03;&#x5C40;&#x9002;&#x914D;&#x7684;&#x95EE;&#x9898;&#x3002;
+你也可以设置showAsAction属性的值为always，让一个action item一直显示，但是你最好不要让一个action item一直显示。这样做在窄屏上出现一些布局适配的问题。
 
-####&#x5904;&#x7406;&#x6761;&#x76EE;&#x70B9;&#x51FB;#### 
-&#x5F53;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x4E00;&#x4E2A;&#x6761;&#x76EE;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x70B9;&#x51FB;&#x7684;MenuItem&#x4F20;&#x9012;&#x7ED9;Activity&#x7684;onOptionsItemSelected() &#x65B9;&#x6CD5;&#x3002;
+####处理条目点击#### 
+当用户点击一个条目时，系统将点击的MenuItem传递给Activity的onOptionsItemSelected() 方法。
 
 {% highlight java%}
 @Override
@@ -869,10 +919,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
 }
 {% endhighlight %}
 
-&#x5411;&#x4E0A;&#x8FD4;&#x56DE;&#x7684;&#x6309;&#x94AE;&#x7684;id&#x662F;android.R.id.home &#x6240;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x5C31;&#x80FD;&#x5B9E;&#x73B0;&#x70B9;&#x51FB;&#x8FD4;&#x56DE;&#x6309;&#x94AE;&#x8FD4;&#x56DE;&#x7684;&#x529F;&#x80FD;&#x3002;
+向上返回的按钮的id是android.R.id.home 所以通过下面代码就能实现点击返回按钮返回的功能。
 {% highlight java%}
 
- setDisplayHomeAsUpEnabled(true);//&#x663E;&#x793A;&#x8FD4;&#x56DE;&#x7BAD;&#x5934;
+ setDisplayHomeAsUpEnabled(true);//显示返回箭头
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
     // Handle presses on the action bar items
@@ -886,42 +936,48 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 {% endhighlight %}
 
-####&#x4F7F;&#x7528;&#x5206;&#x79BB;&#x7684;ActionBar####
+####使用分离的ActionBar####
 
 <img src="http://developer.android.com/images/ui/actionbar-splitaction@2x.png" alt="">
-ActionBar&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x5C4F;&#x5E55;&#x4E0A;&#x65B9;&#x548C;&#x5C4F;&#x5E55;&#x4E0B;&#x65B9;&#x4E24;&#x90E8;&#x5206;&#x6765;&#x663E;&#x793A;&#xFF08;&#x5982;&#x4E0A;&#x56FE;&#x6240;&#x793A;&#xFF09;&#x3002;&#x5206;&#x5272;&#x7684;ActionBar&#x53EF;&#x4EE5;&#x8BA9;&#x7A7A;&#x95F4;&#x80FD;&#x591F;&#x66F4;&#x5408;&#x7406;&#x7684;&#x5229;&#x7528;&#x3002;
+ActionBar可以分割成屏幕上方和屏幕下方两部分来显示（如上图所示）。分割的ActionBar可以让空间能够更合理的利用。
 
-&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x5206;&#x79BB;&#x7684;ActionBar&#xFF0C;&#x5FC5;&#x987B;&#x505A;&#x4EE5;&#x4E0B;&#x4E24;&#x4EF6;&#x4E8B;&#x60C5;&#xFF1A;
+为了实现分离的ActionBar，必须做以下两件事情：
 
-1.  &#x6DFB;&#x52A0;uiOptions=&quot;splitActionBarWhenNarrow&quot;&#x5230;<activity>&#x5143;&#x7D20;&#x6216; <application> &#x5143;&#x7D20;&#x4E2D;&#x3002;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x53EA;&#x80FD;&#x5728;API 14+&#x4E0A;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x4F4E;&#x7248;&#x672C;&#x5C06;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x3002;
+1.  添加uiOptions=&quot;splitActionBarWhenNarrow&quot;到<activity>元素或 <application> 元素中。这个属性只能在API 14+上起作用，低版本将忽略这个属性。
 
-2. &#x4E3A;&#x4E86;&#x652F;&#x6301;&#x4F4E;&#x7248;&#x672C;&#xFF0C;&#x5728;<code>&lt;activity&gt;</code>&#x5143;&#x7D20;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;<code>&lt;mata-data&gt;</code>&#x5143;&#x7D20;&#xFF0C;
+2. 为了支持低版本，在<code>&lt;activity&gt;</code>元素中添加一个<code>&lt;mata-data&gt;</code>元素，
 
 {% highlight xml %}
 
-<manifest ...="">
-    <activity uioptions="splitActionBarWhenNarrow" ...="">
-        <meta-data android:name="android.support.UI_OPTIONS" android:value="splitActionBarWhenNarrow">
-    </meta-data></activity>
+<manifest ...>
+    <activity uiOptions="splitActionBarWhenNarrow" ... >
+        <meta-data android:name="android.support.UI_OPTIONS"
+                   android:value="splitActionBarWhenNarrow" />
+    </activity>
 </manifest>
 {% endhighlight %}
 
-###&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;Action View###
+###添加一个Action View###
 
-Action View &#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x590D;&#x6742;&#x64CD;&#x4F5C;&#x7684;&#x5FEB;&#x901F;&#x5165;&#x53E3;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6539;&#x53D8;Acitivity&#x6216;&#x8005;Fragment&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x7528;&#x66FF;&#x6362;ActionBar.&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8FDB;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7ED9;actionbar&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;SearchView&#x7EC4;&#x4EF6;&#x6765;&#x5B9E;&#x73B0;&#xFF08;&#x5982;&#x56FE;&#x6240;&#x793A;&#xFF09;&#x3002;
+Action View 提供了一些复杂操作的快速入口，不需要改变Acitivity或者Fragment，并且不用替换ActionBar.例如，如果你想进行搜索，你可以通过给actionbar添加一个SearchView组件来实现（如图所示）。
 <img src="http://developer.android.com/images/ui/actionbar-searchview@2x.png" alt="">
-&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7ED9;acionlayout&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5E03;&#x5C40;&#x8D44;&#x6E90;&#x6216;&#x8005;&#x7ED9;actionViewClass&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7C7B;&#x6765;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;Action View.
+我们可以通过给acionlayout属性指定一个布局资源或者给actionViewClass属性指定一个组件类来添加一个Action View.
 
 {% highlight xml %}
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yourapp="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_search" android:title="@string/action_search" android:icon="@drawable/ic_action_search" yourapp:showasaction="ifRoom|collapseActionView" yourapp:actionviewclass="android.support.v7.widget.SearchView">
-</item></menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/action_search"
+          android:title="@string/action_search"
+          android:icon="@drawable/ic_action_search"
+          yourapp:showAsAction="ifRoom|collapseActionView"
+          yourapp:actionViewClass="android.support.v7.widget.SearchView" />
+</menu>
 
 <p>{% endhighlight %}</p>
-<p>&#x6CE8;&#x610F;showAsAction&#x5C5E;&#x6027;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;collapseActionView&#x503C;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;onCreateOptionsMenu()&#x65B9;&#x6CD5;&#x4E2D;&#x914D;&#x7F6E;action view&#x3002;&#x901A;&#x8FC7;&#x9759;&#x6001;&#x65B9;&#x6CD5;MenuItemCompat.getActionView()&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x5230;action view&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x4F20;&#x9012;&#x4E00;&#x4E2A;MenuItem&#x5BF9;&#x8C61;&#x3002;</p>
+<p>注意showAsAction属性包含了一个collapseActionView值。</p>
+<p>我们可以在onCreateOptionsMenu()方法中配置action view。通过静态方法MenuItemCompat.getActionView()可以获取一个到action view对象。这个方法需要传递一个MenuItem对象。</p>
 <p>{% highlight java %}</p>
 <p>@Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -933,11 +989,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return super.onCreateOptionsMenu(menu);
 }</p>
 <p>{% endhighlight %}</p>
-<h4 id="-action-view"><a name="-action-view" class="plugin-anchor" href="#-action-view"><span class="fa fa-link"></span></a>&#x5904;&#x7406;&#x53EF;&#x6298;&#x53E0;&#x7684; action view</h4>
-<p>&#x4E3A;&#x4E86;&#x8282;&#x7701;action bar&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;action view&#x6298;&#x53E0;&#x6210;&#x4E00;&#x4E2A;action button&#x3002;&#x5F53;&#x8FD9;&#x4E2A;action button&#x88AB;&#x9009;&#x4E2D;&#x65F6;&#xFF0C;action view&#x5C06;&#x4F1A;&#x88AB;&#x5C55;&#x5F00;&#x3002;&#x53EA;&#x8981;&#x4E3A;showAsAction&#x5C5E;&#x6027;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;collapseActionView&#x503C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA9;action view&#x53D8;&#x7684;&#x53EF;&#x6298;&#x53E0;&#x3002;</p>
-<p>&#x5F53;&#x7528;&#x6237;&#x70B9;&#x51FB;action button&#xFF0C;action view&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x7684;&#x5C55;&#x5F00;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5728;onOptionsItemSelected()&#x65B9;&#x6CD5;&#x4E2D;&#x8FDB;&#x884C;&#x70B9;&#x51FB;&#x5904;&#x7406;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x5C06;&#x5176;&#x8FD4;&#x56DE;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;true,action view&#x5C06;&#x4E0D;&#x4F1A;&#x88AB;&#x5C55;&#x5F00;&#x3002;</p>
-<p>&#x5F53;&#x70B9;&#x4E0B;&#x624B;&#x673A;&#x7684;&#x8FD4;&#x56DE;&#x6309;&#x94AE;&#x6216;&#x8005;action bar&#x7684;&#x8FD4;&#x56DE;&#x6309;&#x94AE;&#xFF0C;action view&#x5C06;&#x4F1A;&#x88AB;&#x6298;&#x53E0;&#x3002;</p>
-<p>&#x901A;&#x8FC7;OnActionExpandListener&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x5230;action view&#x6298;&#x53E0;&#x548C;&#x5C55;&#x5F00;&#x3002;</p>
+<h4 id="-action-view">处理可折叠的 action view</h4>
+<p>为了节省action bar的空间，可以将action view折叠成一个action button。当这个action button被选中时，action view将会被展开。只要为showAsAction属性添加一个collapseActionView值就可以让action view变的可折叠。</p>
+<p>当用户点击action button，action view能够自动的展开，不需要在onOptionsItemSelected()方法中进行点击处理。但是如果将其返回值设置为true,action view将不会被展开。</p>
+<p>当点下手机的返回按钮或者action bar的返回按钮，action view将会被折叠。</p>
+<p>通过OnActionExpandListener监听器，可以监听到action view折叠和展开。</p>
 <p>{% highlight java %}</p>
 <p>@Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -961,33 +1017,38 @@ MenuItemCompat.setOnActionExpandListener(menuItem, new OnActionExpandListener() 
 });
 </code></pre><p>}
 {% endhighlight %}</p>
-<h3 id="-action-provider"><a name="-action-provider" class="plugin-anchor" href="#-action-provider"><span class="fa fa-link"></span></a>&#x6DFB;&#x52A0; Action Provider</h3>
+<h3 id="-action-provider">添加 Action Provider</h3>
 <p><img src="http://developer.android.com/images/ui/actionbar-shareaction@2x.png" alt=""></p>
-<p>&#x7C7B;&#x4F3C;action view&#xFF0C;action provider&#x901A;&#x8FC7;&#x81EA;&#x5B9A;&#x4E49;&#x5E03;&#x5C40;&#x6765;&#x66FF;&#x6362;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x6309;&#x94AE;.&#x4F46;&#x662F;action provider&#x63A7;&#x5236;&#x6240;&#x6709;&#x7684;&#x52A8;&#x4F5C;&#x884C;&#x4E3A;&#x5E76;&#x4E14;&#x5728;&#x88AB;&#x70B9;&#x51FB;&#x65F6;&#x80FD;&#x591F;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5B50;&#x83DC;&#x5355;&#x3002;</p>
-<p>&#x901A;&#x8FC7;&#x4E3A;actionViewClass&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;ActionProvider&#x7C7B;&#xFF0C;&#x6765;&#x6DFB;&#x52A0;action provider.&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;ActionProvider&#x6765;&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x7684;action provider.Android&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;action provider,&#x4F8B;&#x5982;ShareActionProvider&#x3002;</p>
-<p>&#x7531;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;ActionProvider&#x7C7B;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;&#x52A8;&#x4F5C;&#x884C;&#x4E3A;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x8FC7;onOptionsItemSelected()&#x65B9;&#x6CD5;&#x6765;&#x8BBE;&#x7F6E;&#x5176;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x4F60;&#x4ECD;&#x7136;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6B64;&#x65B9;&#x6CD5;&#x6765;&#x8BBE;&#x7F6E;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;onPerformDefaultAction()&#x6765;&#x8BBE;&#x7F6E;&#x522B;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
-<p>&#x5982;&#x679C;action Provider&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5B50;&#x83DC;&#x5355;&#xFF0C;&#x7528;&#x6237;&#x6253;&#x5F00;&#x5217;&#x8868;&#x6216;&#x8005;&#x9009;&#x4E2D;&#x4E00;&#x4E2A;&#x5B50;&#x83DC;&#x5355;&#xFF0C;activity&#x5C06;&#x4E0D;&#x8C03;&#x7528;onOptionsItemSelected()&#x3002;</p>
-<h4 id="shareactionprovider"><a name="shareactionprovider" class="plugin-anchor" href="#shareactionprovider"><span class="fa fa-link"></span></a>&#x4F7F;&#x7528;ShareActionProvider</h4>
-<p>&#x4F7F;&#x7528;ShareActionProvider&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5206;&#x4EAB;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x4E00;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p>类似action view，action provider通过自定义布局来替换一个操作按钮.但是action provider控制所有的动作行为并且在被点击时能够显示一个子菜单。</p>
+<p>通过为actionViewClass属性设置一个ActionProvider类，来添加action provider.也可以通过继承ActionProvider来创建自定义的action provider.Android提供了一些action provider,例如ShareActionProvider。</p>
+<p>由于每一个ActionProvider类定义自己的动作行为，所以不需要通过onOptionsItemSelected()方法来设置其点击事件，但是你仍然可以通过此方法来设置其他操作，也可以通过onPerformDefaultAction()来设置别的操作。</p>
+<p>如果action Provider提供一个子菜单，用户打开列表或者选中一个子菜单，activity将不调用onOptionsItemSelected()。</p>
+<h4 id="shareactionprovider">使用ShareActionProvider</h4>
+<p>使用ShareActionProvider添加一个分享操作需要一下步骤：</p>
 <ul>
-<li>&#x8BBE;&#x7F6E;actionProviderClass&#x5C5E;&#x6027;&#x503C;&#x4E3A;ShareActionProvider&#x7C7B;.</li>
+<li>设置actionProviderClass属性值为ShareActionProvider类.</li>
 </ul>
 <p>{% highlight xml %}</p>
 <p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</p>
-<p><menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yourapp="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_share" android:title="@string/share" yourapp:showasaction="ifRoom" yourapp:actionproviderclass="android.support.v7.widget.ShareActionProvider">
+<p><menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/action_share"
+          android:title="@string/share"
+          yourapp:showAsAction="ifRoom"
+          yourapp:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+          />
     ...
-</item></menu>
+</menu>
 {% endhighlight %}</p>
 <ul>
-<li>&#x5B9A;&#x4E49;&#x4F60;&#x60F3;&#x8981;&#x5206;&#x4EAB;&#x7684;Intent&#x3002;&#x5728;onCreateOptionsMenu()&#x65B9;&#x6CD5;&#x4E2D;&#x8C03;&#x7528; MenuItemCompat.getActionProvider() &#x83B7;&#x53D6;ShareActionProvider&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;ShareActionProvider&#x7684;setShareIntent()&#x8BBE;&#x7F6E;&#x5206;&#x4EAB;&#x610F;&#x56FE;&#x3002; </li>
+<li>定义你想要分享的Intent。在onCreateOptionsMenu()方法中调用 MenuItemCompat.getActionProvider() 获取ShareActionProvider对象，然后调用ShareActionProvider的setShareIntent()设置分享意图。 </li>
 </ul>
 <p>{% highlight java %}
 private ShareActionProvider mShareActionProvider;</p>
 <p>@Override
 public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main_activity_actions, menu);</p>
-<pre><code>// Set up ShareActionProvider&apos;s default share intent
+<pre><code>// Set up ShareActionProvider&#39;s default share intent
 MenuItem shareItem = menu.findItem(R.id.action_share);
 mShareActionProvider = (ShareActionProvider)
         MenuItemCompat.getActionProvider(shareItem);
@@ -1008,11 +1069,11 @@ return intent;
 }</li>
 </ul>
 <p>{% endhighlight %}</p>
-<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ShareActionProvider&#x6839;&#x636E;&#x7528;&#x6237;&#x9009;&#x62E9;&#x7684;&#x9891;&#x7E41;&#x5EA6;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x8D8A;&#x9891;&#x7E41;&#x7684;&#x8D8A;&#x9760;&#x4E0A;&#xFF0C;&#x6700;&#x9891;&#x7E41;&#x7684;&#x76F4;&#x63A5;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;action bar&#x7684;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x5206;&#x4EAB;&#x6309;&#x94AE;&#x5B58;&#x5728;&#x3002;&#x5E76;&#x4E14;&#x6392;&#x5E8F;&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;DEFAULT_SHARE_HISTORY_FILE_NAME&#x7684;&#x79C1;&#x6709;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;ShareActionProvider&#x6216;&#x5176;&#x5B50;&#x7C7B;&#x53EA;&#x8FDB;&#x884C;&#x4E00;&#x79CD;&#x64CD;&#x4F5C;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5386;&#x53F2;&#x6587;&#x4EF6;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x5176;&#x5B83;&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7528;SharedActionProvider&#x6216;&#x5B50;&#x7C7B;&#x540C;&#x65F6;&#x8FDB;&#x884C;&#x591A;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x6BCF;&#x4E00;&#x4E2A;ShareActionProvider&#x5E94;&#x5F53;&#x5206;&#x522B;&#x6307;&#x5B9A;&#x81EA;&#x5DF1;&#x7684;&#x5386;&#x53F2;&#x6587;&#x4EF6;&#x53BB;&#x7EF4;&#x62A4;&#x81EA;&#x5DF1;&#x7684;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x3002;&#x901A;&#x8FC7;&#x8C03;&#x7528;setShareHistoryFileName()&#x5E76;&#x4E14;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;xml&#x7684;&#x6587;&#x4EF6;&#x6765;&#x521B;&#x5EFA;&#x4E0D;&#x540C;&#x7684;&#x5386;&#x53F2;&#x6587;&#x4EF6;&#x3002;</p>
-<h4 id="actionprovider"><a name="actionprovider" class="plugin-anchor" href="#actionprovider"><span class="fa fa-link"></span></a>&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ActionProvider</h4>
-<p>&#x8981;&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ActionProvider&#x53EA;&#x9700;&#x8981;&#x7B80;&#x5355;&#x7684;&#x7EE7;&#x627F;ActionProvider&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;&#x5B9E;&#x73B0;&#x4E0B;&#x5217;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>默认情况下，ShareActionProvider根据用户选择的频繁度进行排序，越频繁的越靠上，最频繁的直接作为一个action bar的一个默认分享按钮存在。并且排序信息保存在一个名为DEFAULT_SHARE_HISTORY_FILE_NAME的私有文件中。如果使用ShareActionProvider或其子类只进行一种操作的话，可以继续使用这个历史文件而不需要其它操作。如果你用SharedActionProvider或子类同时进行多种不同的操作，那么每一个ShareActionProvider应当分别指定自己的历史文件去维护自己的历史记录。通过调用setShareHistoryFileName()并且创建一个xml的文件来创建不同的历史文件。</p>
+<h4 id="actionprovider">创建自定义的ActionProvider</h4>
+<p>要创建自定义的ActionProvider只需要简单的继承ActionProvider类，并且实现下列方法。</p>
 <ul>
-<li>OnCreateActionView()&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x83B7;&#x53D6;action view&#x3002;&#x4F7F;&#x7528;&#x4ECE;&#x6784;&#x9020;&#x5668;&#x4E2D;&#x63A5;&#x6536;&#x7684;Context&#x5BF9;&#x8C61;&#xFF0C;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;LayoutInflater&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x4E14;&#x7528;XML&#x8D44;&#x6E90;&#x6765;&#x586B;&#x5145;&#x64CD;&#x4F5C;&#x89C6;&#x7A97;&#xFF0C;&#x7136;&#x540E;&#x6CE8;&#x518C;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x5668;&#x3002;
+<li>OnCreateActionView()这个方法用来获取action view。使用从构造器中接收的Context对象，获取一个LayoutInflater对象的实例，并且用XML资源来填充操作视窗，然后注册事件监听器。
 {% highlight java %}</li>
 </ul>
 <p>public View onCreateActionView(MenuItem forItem) {
@@ -1030,33 +1091,33 @@ return intent;
 }</p>
 <p>{% endhighlight %}</p>
 <ul>
-<li>onPerformDefaultAction()&#x5728;&#x9009;&#x4E2D;&#x60AC;&#x6D6E;&#x83DC;&#x5355;&#x4E2D;&#x7684;&#x83DC;&#x5355;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4E14;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x5668;&#x5E94;&#x8BE5;&#x8FD9;&#x5BF9;&#x8FD9;&#x4E2A;&#x9009;&#x4E2D;&#x7684;&#x83DC;&#x5355;&#x9879;&#x6267;&#x884C;&#x9ED8;&#x8BA4;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x5668;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x5B50;&#x83DC;&#x5355;&#xFF0C;&#x5373;&#x4F7F;&#x662F;&#x60AC;&#x6D6E;&#x83DC;&#x5355;&#x4E2D;&#x4E00;&#x4E2A;&#x83DC;&#x5355;&#x9879;&#x7684;&#x5B50;&#x83DC;&#x5355;&#xFF0C;&#x90A3;&#x4E48;&#x4E5F;&#x8981;&#x901A;&#x8FC7;onPrepareSubMenu()&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x6765;&#x663E;&#x793A;&#x5B50;&#x83DC;&#x5355;&#x3002;&#x8FD9;&#x6837;onPerformDefaultAction()&#x5728;&#x5B50;&#x83DC;&#x5355;&#x663E;&#x793A;&#x65F6;&#x5C31;&#x4E0D;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x5B9E;&#x73B0;&#x4E86;onOptionsItemSelected()&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x7684;Activity&#x6216;Frament&#x5BF9;&#x8C61;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x5904;&#x7406;item-selected&#x4E8B;&#x4EF6;&#xFF08;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;true&#xFF09;&#x6765;&#x8986;&#x76D6;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x5668;&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7CFB;&#x7EDF;&#x4E0D;&#x4F1A;&#x8C03;&#x7528;onPerformDefaultAction()&#x65B9;&#x6CD5;&#x3002;</li>
+<li>onPerformDefaultAction()在选中悬浮菜单中的菜单时，系统会调用这个方法，并且操作提供器应该这对这个选中的菜单项执行默认的操作。但是，如果你的操作提供器提供了一个子菜单，即使是悬浮菜单中一个菜单项的子菜单，那么也要通过onPrepareSubMenu()回调方法来显示子菜单。这样onPerformDefaultAction()在子菜单显示时就不会被调用。注意：实现了onOptionsItemSelected()回调方法的Activity或Frament对象能够通过处理item-selected事件（并且返回true）来覆盖操作提供器的默认行为，这种情况下，系统不会调用onPerformDefaultAction()方法。</li>
 </ul>
-<h3 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6DFB;&#x52A0;&#x5BFC;&#x822A;&#x9009;&#x9879;&#x6807;&#x7B7E;</h3>
-<p>action bar &#x9009;&#x9879;&#x5361;&#x53EF;&#x4EE5;&#x8BA9;&#x7528;&#x6237;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x7684;&#x6D4F;&#x89C8;&#x548C;&#x5207;&#x6362;&#x4E0D;&#x540C;&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x5E76;&#x4E14;&#x80FD;&#x591F;&#x9002;&#x914D;&#x4E0D;&#x540C;&#x7684;&#x5C4F;&#x5E55;&#x3002;&#x4F8B;&#x5982;&#xFF1A;&#x5F53;&#x5C4F;&#x5E55;&#x8DB3;&#x591F;&#x5BBD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9009;&#x9879;&#x5361;&#x53EF;&#x4EE5;&#x548C;action button&#x5E76;&#x80A9;&#x663E;&#x793A;&#xFF08;&#x5982;&#x4E0B;&#x56FE;1&#xFF09;&#xFF0C;&#x5F53;&#x5728;&#x7A84;&#x5C4F;&#x4E0A;&#xFF0C;&#x5B83;&#x5C06;&#x4E0E;action bar&#x5206;&#x79BB;&#x663E;&#x793A;(&#x5982;&#x4E0B;&#x56FE;2)&#x3002;&#x5728;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Android&#x7CFB;&#x7EDF;&#x5C06;&#x4F1A;&#x5728;action bar&#x4E2D;&#x4EE5;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x7684;&#x5F62;&#x5F0F;&#x663E;&#x793A;&#x9009;&#x9879;&#x5361;&#x6761;&#x76EE;&#x7528;&#x6765;&#x786E;&#x4FDD;&#x6700;&#x5408;&#x9002;&#x7684;&#x9002;&#x914D;&#x3002;</p>
+<h3 id="">添加导航选项标签</h3>
+<p>action bar 选项卡可以让用户非常方便的浏览和切换不同的视图，并且能够适配不同的屏幕。例如：当屏幕足够宽的时候，选项卡可以和action button并肩显示（如下图1），当在窄屏上，它将与action bar分离显示(如下图2)。在一些情况下，Android系统将会在action bar中以下拉列表的形式显示选项卡条目用来确保最合适的适配。</p>
 <p><img src="http://developer.android.com/images/ui/actionbar-tabs@2x.png" alt=""></p>
 <p><img src="http://developer.android.com/images/ui/actionbar-tabs-stacked@2x.png" alt=""></p>
-<p>&#x4E3A;action bar&#x6DFB;&#x52A0;&#x9009;&#x9879;&#x5361;&#xFF0C;&#x4E00;&#x822C;&#x9700;&#x8981;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p>为action bar添加选项卡，一般需要以下步骤：</p>
 <ol>
-<li><p>&#x5B9E;&#x73B0;ActionBar.TabListener&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x9009;&#x9879;&#x5361;&#x4E8B;&#x4EF6;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<li><p>实现ActionBar.TabListener接口，这个接口提供了一些选项卡事件的回调函数。</p>
 </li>
-<li><p>&#x521B;&#x5EFA;ActionBar.Tab&#xFF0C;&#x901A;&#x8FC7;&#x8C03;&#x7528;setTabListener()&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E; ActionBar.TabListener&#x3002;setText()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x9009;&#x9879;&#x5361;&#x7684;&#x6807;&#x9898;&#x3002;</p>
+<li><p>创建ActionBar.Tab，通过调用setTabListener()方法设置 ActionBar.TabListener。setText()方法可以用来设置选项卡的标题。</p>
 </li>
-<li><p>&#x8C03;&#x7528;addTab()&#x65B9;&#x6CD5;&#x6765;&#x5C06;&#x6240;&#x6709;&#x7684;&#x9009;&#x9879;&#x5361;&#x6DFB;&#x52A0;&#x5230;action bar&#x4E0A;&#x3002;</p>
+<li><p>调用addTab()方法来将所有的选项卡添加到action bar上。</p>
 </li>
 </ol>
-<p>&#x793A;&#x4F8B;&#xFF1A;</p>
-<p>&#x5B9E;&#x73B0;ActionBar.TabListener</p>
+<p>示例：</p>
+<p>实现ActionBar.TabListener</p>
 <p>{% highlight java %}</p>
-<p>public static class TabListener<t extends="" fragment=""> implements ActionBar.TabListener {
+<p>public static class TabListener<T extends Fragment> implements ActionBar.TabListener {
     private Fragment mFragment;
     private final Activity mActivity;
     private final String mTag;
-    private final Class<t> mClass;</t></t></p>
+    private final Class<T> mClass;</p>
 <pre><code>/** Constructor used each time a new tab is created.
   * @param activity  The host Activity, used to instantiate the fragment
   * @param tag  The identifier tag for the fragment
-  * @param clz  The fragment&apos;s Class, used to instantiate the fragment
+  * @param clz  The fragment&#39;s Class, used to instantiate the fragment
   */
 public TabListener(Activity activity, String tag, Class&lt;T&gt; clz) {
     mActivity = activity;
@@ -1090,8 +1151,8 @@ public void onTabReselected(Tab tab, FragmentTransaction ft) {
 }
 </code></pre><p>} </p>
 <p>{% endhighlight %}</p>
-<p>&#x6CE8;&#x610F;&#xFF1A;&#x5728;&#x8FD9;&#x91CC;&#x4E0D;&#x80FD;&#x8C03;&#x7528;fragment transaction&#x7684;commit()&#x65B9;&#x6CD5;&#xFF0C;&#x5426;&#x5219;&#x7CFB;&#x7EDF;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x8FD9;&#x4E9B;fragment&#x5230;&#x8FD4;&#x56DE;&#x6808;&#x3002;</p>
-<p>&#x63A5;&#x4E0B;&#x6765;&#x521B;&#x5EFA;&#x6BCF;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5230;ActionBar&#x4E0A;&#x7684;ActionBar.Tab&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x5FC5;&#x987B;&#x8C03;&#x7528;ActionBar&#x7684;setNavigationMode(NAVIGATION_MODE_TABS)&#x4F7F;&#x9009;&#x9879;&#x5361;&#x53EF;&#x7528;&#x3002;</p>
+<p>注意：在这里不能调用fragment transaction的commit()方法，否则系统可能会出现异常，也不能添加这些fragment到返回栈。</p>
+<p>接下来创建每一个需要添加到ActionBar上的ActionBar.Tab。注意，必须调用ActionBar的setNavigationMode(NAVIGATION_MODE_TABS)使选项卡可用。</p>
 <p>{% highlight java %}</p>
 <p>@Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -1116,22 +1177,22 @@ tab = actionBar.newTab()
 actionBar.addTab(tab);
 </code></pre><p>}</p>
 <p>{% endhighlight %}</p>
-<p>&#x6B64;&#x5916;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7ED3;&#x5408;ViewPager&#x6765;&#x5B9E;&#x73B0;&#x6ED1;&#x52A8;&#x5207;&#x6362;&#x89C6;&#x56FE;&#x3002;</p>
-<h3 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6DFB;&#x52A0;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x5BFC;&#x822A;</h3>
+<p>此外，我们还可以通过结合ViewPager来实现滑动切换视图。</p>
+<h3 id="">添加下拉列表导航</h3>
 <p><img src="http://developer.android.com/images/ui/actionbar-dropdown@2x.png" alt=""></p>
-<p>Activity&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x7684;&#x5BFC;&#x822A;&#xFF0C;&#x5982;&#x4E0A;&#x56FE;&#x6240;&#x793A;&#x3002;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x9002;&#x7528;&#x4E8E;&#x4E0D;&#x9891;&#x7E41;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x64CD;&#x4F5C;&#x9891;&#x7E41;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x9009;&#x9879;&#x5361;&#x5BFC;&#x822A;&#x3002;</p>
-<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x5BFC;&#x822A;&#x9700;&#x8981;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p>Activity还提供了一个下拉列表的导航，如上图所示。下拉列表适用于不频繁的操作，如果操作频繁，请使用选项卡导航。</p>
+<p>创建一个下拉列表导航需要以下步骤：</p>
 <ol>
-<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;SpinnerAdapter&#xFF0C;&#x8FD9;&#x4E2A;&#x9002;&#x914D;&#x5668;&#x7528;&#x4E8E;&#x586B;&#x5145;&#x5217;&#x8868;&#x3002;</li>
-<li>&#x5B9E;&#x73B0;ActionBar.OnNavigationListener&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x5217;&#x8868;&#x9009;&#x4E2D;&#x64CD;&#x4F5C;&#x3002;</li>
-<li>&#x8C03;&#x7528;setNavigationMode(NAVIGATION_MODE_LIST).&#x8BBE;&#x7F6E;&#x5BFC;&#x822A;&#x6A21;&#x5F0F;&#x4E3A;&#x5217;&#x8868;&#x6A21;&#x5F0F;&#x3002;</li>
-<li>&#x8C03;&#x7528;setListNavigationCallbacks()&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x76D1;&#x542C;&#x5668;&#x3002;</li>
+<li>创建一个SpinnerAdapter，这个适配器用于填充列表。</li>
+<li>实现ActionBar.OnNavigationListener用于监听列表选中操作。</li>
+<li>调用setNavigationMode(NAVIGATION_MODE_LIST).设置导航模式为列表模式。</li>
+<li>调用setListNavigationCallbacks()方法设置监听器。</li>
 </ol>
-<h3 id="actionbar"><a name="actionbar" class="plugin-anchor" href="#actionbar"><span class="fa fa-link"></span></a>ActionBar&#x6837;&#x5F0F;</h3>
-<p>ActionBar&#x5141;&#x8BB8;&#x81EA;&#x5B9A;&#x4E49;ActionBar&#x7684;&#x989C;&#x8272;&#xFF0C;&#x5B57;&#x4F53;&#x989C;&#x8272;&#xFF0C;&#x6309;&#x94AE;&#x6837;&#x5F0F;&#x7B49;&#x7B49;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Android&#x7684;&#x6837;&#x5F0F;&#x548C;&#x4E3B;&#x9898;&#x6846;&#x67B6;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x7684;&#x6837;&#x5F0F;&#x5C5E;&#x6027;&#x6765;&#x81EA;&#x5B9A;&#x4E49;ActionBar&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#xFF1A;&#x4F7F;&#x7528;&#x7684;&#x6240;&#x6709;&#x80CC;&#x666F;&#x56FE;&#x7247;&#x5FC5;&#x987B;&#x4E3A;9patch&#x56FE;&#x7247;&#xFF0C;&#x5E76;&#x4E14;&#x56FE;&#x7247;&#x8981;&#x5C0F;&#x4E8E;40dp&#x9AD8;&#x548C;30dp&#x5BBD;&#x3002;</p>
-<h4 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x901A;&#x7528;&#x6837;&#x5F0F;</h4>
-<p>&#x81EA;&#x5B9A;&#x4E49;ActionBar&#x6837;&#x5F0F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;Widget.AppCompat.ActionBar&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x67E5;&#x770B;Widget.AppCompat.ActionBar&#x6E90;&#x7801;</p>
+<h3 id="actionbar">ActionBar样式</h3>
+<p>ActionBar允许自定义ActionBar的颜色，字体颜色，按钮样式等等。你可以使用Android的样式和主题框架通过指定的样式属性来自定义ActionBar。</p>
+<p>注意：使用的所有背景图片必须为9patch图片，并且图片要小于40dp高和30dp宽。</p>
+<h4 id="">通用样式</h4>
+<p>自定义ActionBar样式可以通过继承Widget.AppCompat.ActionBar来实现。查看Widget.AppCompat.ActionBar源码</p>
 <p>{% highlight xml %}</p>
 <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar">
 </style>
@@ -1158,14 +1219,14 @@ actionBar.addTab(tab);
 </style>
 
 <p>{% endhighlight %}</p>
-<p>background:&#x8BBE;&#x7F6E;actionbar&#x7684;&#x80CC;&#x666F;&#x3002;</p>
-<p>backgroundstacked&#xFF1A;&#x8BBE;&#x7F6E;tab&#x7684;&#x80CC;&#x666F;</p>
-<p>backButtonStyle&#xFF1A;&#x8BBE;&#x7F6E;&#x6309;&#x94AE;&#x7684;&#x6837;&#x5F0F;</p>
-<p>displayOptions&#xFF1A;&#x663E;&#x793A;&#x9009;&#x9879;</p>
-<p>divider&#xFF1A;&#x4E24;&#x4E2A;action&#x6309;&#x94AE;&#x4E4B;&#x95F4;&#x7684;&#x5206;&#x5272;&#x7EBF;&#x3002;</p>
-<p>titleTextStyle:&#x6807;&#x9898;&#x6837;&#x5F0F;</p>
-<h3 id="actionitem"><a name="actionitem" class="plugin-anchor" href="#actionitem"><span class="fa fa-link"></span></a>ActionItem&#x6837;&#x5F0F;</h3>
-<p>&#x81EA;&#x5B9A;&#x4E49;ActionItem&#x6837;&#x5F0F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;Widget.AppCompat.ActionButton&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x67E5;&#x770B;Widget.AppCompat.ActionButton&#x6E90;&#x7801;</p>
+<p>background:设置actionbar的背景。</p>
+<p>backgroundstacked：设置tab的背景</p>
+<p>backButtonStyle：设置按钮的样式</p>
+<p>displayOptions：显示选项</p>
+<p>divider：两个action按钮之间的分割线。</p>
+<p>titleTextStyle:标题样式</p>
+<h3 id="actionitem">ActionItem样式</h3>
+<p>自定义ActionItem样式可以通过继承Widget.AppCompat.ActionButton来实现。查看Widget.AppCompat.ActionButton源码</p>
 <p>{% highlight xml %}</p>
    <style name="Widget.AppCompat.ActionButton" parent="Widget.AppCompat.Base.ActionButton">
     </style>
@@ -1181,8 +1242,8 @@ actionBar.addTab(tab);
     &lt;item name=&quot;textAllCaps&quot;&gt;@bool/abc_config_actionMenuItemAllCaps&lt;/item&gt;
 &lt;/style&gt;
 </code></pre><p>{% endhighlight %}</p>
-<h3 id="tab"><a name="tab" class="plugin-anchor" href="#tab"><span class="fa fa-link"></span></a>Tab&#x5BFC;&#x822A;&#x6837;&#x5F0F;</h3>
-<p>&#x81EA;&#x5B9A;&#x4E49;Tab&#x5BFC;&#x822A;&#x6837;&#x5F0F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;Widget.AppCompat.ActionBar.TabView&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x67E5;&#x770B;Widget.AppCompat.ActionBar.TabView&#x6E90;&#x7801;</p>
+<h3 id="tab">Tab导航样式</h3>
+<p>自定义Tab导航样式可以通过继承Widget.AppCompat.ActionBar.TabView来实现。查看Widget.AppCompat.ActionBar.TabView源码</p>
 <p>{% highlight xml %}</p>
 <pre><code>&lt;style name=&quot;Widget.AppCompat.ActionBar.TabView&quot;
        parent=&quot;Widget.AppCompat.Base.ActionBar.TabView&quot;&gt;
@@ -1196,10 +1257,11 @@ actionBar.addTab(tab);
     &lt;item name=&quot;android:minWidth&quot;&gt;80dip&lt;/item&gt;
 &lt;/style&gt;
 </code></pre><p>{% endhighlight %}</p>
-<h4 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x6837;&#x5F0F;</h4>
-<p>&#x81EA;&#x5B9A;&#x4E49;&#x4E0B;&#x62C9;&#x5217;&#x8868;&#x6837;&#x5F0F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;Widget.AppCompat.Spinner.DropDown.ActionBar&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x67E5;&#x770B;Widget.AppCompat.ActionBar.TabView&#x6E90;&#x7801;</p>
+<h4 id="">下拉列表样式</h4>
+<p>自定义下拉列表样式可以通过继承Widget.AppCompat.Spinner.DropDown.ActionBar来实现。查看Widget.AppCompat.ActionBar.TabView源码</p>
 <p>{% highlight xml %}</p>
-   <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner">
+   <style name="Widget.AppCompat.Spinner.DropDown.ActionBar"
+           parent="Widget.AppCompat.Base.Spinner">
     </style>
 
   <style name="Widget.AppCompat.Base.Spinner" parent="">
@@ -1215,14 +1277,14 @@ actionBar.addTab(tab);
     </style>
 
 <p>{% endhighlight %}</p>
-<h3 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6269;&#x5C55;&#x9605;&#x8BFB;&#xFF1A;</h3>
-<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">&#x5B98;&#x65B9;ActionBar&#x5F00;&#x53D1;&#x6307;&#x5357;</a></p>
-<p><a href="http://developer.android.com/training/implementing-navigation/lateral.html" target="_blank">&#x521B;&#x5EFA;&#x5E26;&#x6709;&#x9009;&#x9879;&#x5361;&#x7684;&#x6ED1;&#x52A8;&#x89C6;&#x56FE;</a></p>
+<h3 id="">扩展阅读：</h3>
+<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">官方ActionBar开发指南</a></p>
+<p><a href="http://developer.android.com/training/implementing-navigation/lateral.html" target="_blank">创建带有选项卡的滑动视图</a></p>
 <p><a href="">ActionBarCompat and I/O 2013 App Source</a></p>
-<p><a href="http://stackoverflow.com/questions/7844517/difference-between-actionbarsherlock-and-actionbar-compatibility" target="_blank">ActionBarSherlock&#x548C;ActionBar Compatibility&#x533A;&#x522B;</a></p>
+<p><a href="http://stackoverflow.com/questions/7844517/difference-between-actionbarsherlock-and-actionbar-compatibility" target="_blank">ActionBarSherlock和ActionBar Compatibility区别</a></p>
 <p><a href="https://developer.android.com/training/basics/actionbar/index.html" target="_blank">ActionBar Training</a></p>
 <p><a href="https://developer.android.com/design/patterns/actionbar.html" target="_blank">ActionBar Design Pattern</a></p>
-</application></activity></item>
+
                     
                     </section>
                 
@@ -1243,6 +1305,10 @@ actionBar.addTab(tab);
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     

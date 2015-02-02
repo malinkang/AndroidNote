@@ -28,12 +28,12 @@
 <link rel="stylesheet" href="../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
     
 
 
         
-    <div class="book" data-level="7.1" data-basepath=".." data-revision="1421509324305">
+    <div class="book" data-level="7.1" data-basepath=".." data-revision="1422846108795">
     
 
 <div class="book-summary">
@@ -132,6 +132,38 @@
                             <b>1.2.3.</b>
                         
                          RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
                     </a>
                 
             
@@ -295,6 +327,28 @@
             
             <span><b>4.</b> [Fragment]</span>
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -626,6 +680,22 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -727,58 +797,58 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_2">
+                    <section class="normal" id="section-gitbook_6">
                     
-                        <h2 id="1sharedpreferenceseditor"><a name="1sharedpreferenceseditor" class="plugin-anchor" href="#1sharedpreferenceseditor"><span class="fa fa-link"></span></a>1.SharedPreferences&#x548C;Editor&#x4F7F;&#x7528;</h2>
-<p><a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a>&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x7684;&#x4E00;&#x4E9B;&#x504F;&#x597D;&#x8BBE;&#x7F6E;&#x3002;SharedPreferences&#x6570;&#x636E;&#x4EE5;xml&#x683C;&#x5F0F;&#x5B58;&#x50A8;&#x5728;<code>/data/data/&lt;package name&gt;/shared_prefs</code>&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p>
-<h3 id="11-sharedpreference"><a name="11-sharedpreference" class="plugin-anchor" href="#11-sharedpreference"><span class="fa fa-link"></span></a>1.1 &#x521B;&#x5EFA;SharedPreference</h3>
-<p>SharedPreferences&#x63A5;&#x53E3;&#x7528;&#x4E8E;&#x8BFB;&#x53D6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;Preferences&#x6570;&#x636E;&#x3002;</p>
-<p>&#x521B;&#x5EFA;SharedPreference&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;<code>Context</code>&#x7684;<code>getSharedPreferences(String name,int mode)</code>&#x65B9;&#x6CD5;&#x6765;&#x521B;&#x5EFA;&#xFF0C;&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;<a href="https://developer.android.com/reference/android/preference/PreferenceManager.html" target="_blank">PreferenceManager</a>&#x6765;&#x521B;&#x5EFA;&#x3002;</p>
-<h4 id="111-getsharedpreferences"><a name="111-getsharedpreferences" class="plugin-anchor" href="#111-getsharedpreferences"><span class="fa fa-link"></span></a>1.1.1 &#x4F7F;&#x7528;getSharedPreferences&#x65B9;&#x6CD5;</h4>
-<p>getSharedPreferences(String name,int mode)&#x65B9;&#x6CD5;&#x7684;&#x4E24;&#x4E2A;&#x53C2;&#x6570;name&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;mode&#x652F;&#x6301;&#x5982;&#x4E0B;&#x51E0;&#x4E2A;&#x503C;&#x3002;</p>
+                        <h2 id="1sharedpreferenceseditor">1.SharedPreferences和Editor使用</h2>
+<p><a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a>主要用于存储用户的一些偏好设置。SharedPreferences数据以xml格式存储在<code>/data/data/&lt;package name&gt;/shared_prefs</code>目录下。</p>
+<h3 id="11-sharedpreference">1.1 创建SharedPreference</h3>
+<p>SharedPreferences接口用于读取应用程序的Preferences数据。</p>
+<p>创建SharedPreference有两种方法，一种是通过<code>Context</code>的<code>getSharedPreferences(String name,int mode)</code>方法来创建，另一种是通过<a href="https://developer.android.com/reference/android/preference/PreferenceManager.html" target="_blank">PreferenceManager</a>来创建。</p>
+<h4 id="111-getsharedpreferences">1.1.1 使用getSharedPreferences方法</h4>
+<p>getSharedPreferences(String name,int mode)方法的两个参数name用于指定文件名称，mode支持如下几个值。</p>
 <ul>
-<li>Context.MODE_PRIVATE:&#x53EA;&#x80FD;&#x88AB;&#x672C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#x53D6;&#x3002;</li>
-<li>Context.MODE_WORLD_READABLE:&#x80FD;&#x88AB;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x5199;&#x3002;</li>
-<li>Context.MODE_WORLD_WRITEABLE:&#x80FD;&#x88AB;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#x5199;&#x3002;</li>
+<li>Context.MODE_PRIVATE:只能被本应用程序读取。</li>
+<li>Context.MODE_WORLD_READABLE:能被其他应用程序读，但不能写。</li>
+<li>Context.MODE_WORLD_WRITEABLE:能被其他应用程序读写。</li>
 </ul>
-<h4 id="112-preferencemanager"><a name="112-preferencemanager" class="plugin-anchor" href="#112-preferencemanager"><span class="fa fa-link"></span></a>1.1.2 &#x4F7F;&#x7528;PreferenceManager&#x6765;&#x521B;&#x5EFA;</h4>
-<p>PrefernceManager&#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;</p>
+<h4 id="112-preferencemanager">1.1.2 使用PreferenceManager来创建</h4>
+<p>PrefernceManager提供了如下方法</p>
 <ul>
-<li>getDefaultSharedPreferences(Context context):&#x83B7;&#x53D6;&#x9ED8;&#x8BA4;&#x7684;Preference</li>
+<li>getDefaultSharedPreferences(Context context):获取默认的Preference</li>
 <li>getSharedPreferences()</li>
 </ul>
-<h4 id="113-sharedpreference"><a name="113-sharedpreference" class="plugin-anchor" href="#113-sharedpreference"><span class="fa fa-link"></span></a>1.1.3 SharedPreference&#x5E38;&#x7528;&#x65B9;&#x6CD5;</h4>
+<h4 id="113-sharedpreference">1.1.3 SharedPreference常用方法</h4>
 <ul>
-<li>public abstract boolean contains (String key)&#xFF1A;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5305;&#x542B;&#x7279;&#x5B9A;key&#x7684;&#x6570;&#x636E;&#x3002;</li>
-<li>public abstract Map<string, ?=""> getAll ()&#xFF1A;&#x83B7;&#x53D6;&#x5168;&#x90E8;&#x7684;key-value&#x5BF9;&#x3002;</string,></li>
-<li>public abstract void registerOnSharedPreferenceChangeListener (SharedPreferences.OnSharedPreferenceChangeListener listener)&#xFF1A;&#x6CE8;&#x518C;<code>OnSharedPreferenceChangeListener</code>&#x76D1;&#x542C;&#x5668;&#x3002;</li>
+<li>public abstract boolean contains (String key)：判断是否包含特定key的数据。</li>
+<li>public abstract Map<String, ?> getAll ()：获取全部的key-value对。</li>
+<li>public abstract void registerOnSharedPreferenceChangeListener (SharedPreferences.OnSharedPreferenceChangeListener listener)：注册<code>OnSharedPreferenceChangeListener</code>监听器。</li>
 </ul>
-<h3 id="12-editor"><a name="12-editor" class="plugin-anchor" href="#12-editor"><span class="fa fa-link"></span></a>1.2 &#x4F7F;&#x7528;Editor&#x4FDD;&#x5B58;&#x6570;&#x636E;</h3>
-<p>SharedPreference &#x63A5;&#x53E3;&#x4E0D;&#x63D0;&#x4F9B;&#x5199;&#x5165;&#x6570;&#x636E;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;SharedPreference&#x7684;&#x5185;&#x90E8;&#x63A5;&#x53E3;Editor&#x6765;&#x4FDD;&#x5B58;&#x6570;&#x636E;&#x3002;&#x8C03;&#x7528;SharedPreference&#x7684;<code>edit()</code>&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x83B7;&#x53D6;&#x5B83;&#x6240;&#x5BF9;&#x5E94;&#x7684;Editor&#x5BF9;&#x8C61;&#x3002;Editor&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="12-editor">1.2 使用Editor保存数据</h3>
+<p>SharedPreference 接口不提供写入数据的能力，而是通过SharedPreference的内部接口Editor来保存数据。调用SharedPreference的<code>edit()</code>方法即可获取它所对应的Editor对象。Editor对象提供了如下方法。</p>
 <ul>
-<li>clear()&#xFF1A;&#x6E05;&#x7A7A;&#x6240;&#x6709;&#x6570;&#x636E;&#x3002;</li>
-<li>putXxx():&#x5B58;&#x50A8;&#x6570;&#x636E;&#xFF0C;SharedPreference&#x652F;&#x6301;&#x5B58;&#x50A8;<code>boolean</code>&#xFF0C;<code>float</code>&#xFF0C;<code>int</code>,<code>long</code>,<code>string</code>,<code>Set&lt;string&gt;(Api 11&#x65B0;&#x589E;)</code>&#x3002;</li>
-<li>apply()&#x548C;commit()&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x7F16;&#x8F91;&#x5B8C;&#x6210;&#x63D0;&#x4EA4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x63D0;&#x4EA4;&#x5219;&#x5B58;&#x50A8;&#x4E0D;&#x751F;&#x6548;&#x3002;</li>
+<li>clear()：清空所有数据。</li>
+<li>putXxx():存储数据，SharedPreference支持存储<code>boolean</code>，<code>float</code>，<code>int</code>,<code>long</code>,<code>string</code>,<code>Set&lt;string&gt;(Api 11新增)</code>。</li>
+<li>apply()和commit()方法都是编辑完成提交，如果不提交则存储不生效。</li>
 </ul>
-<h2 id="2esperandro"><a name="2esperandro" class="plugin-anchor" href="#2esperandro"><span class="fa fa-link"></span></a>2.&#x5F00;&#x6E90;&#x9879;&#x76EE;esperandro</h2>
-<p>&#x5728;Android&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;SharedPreferences&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x6BCF;&#x6B21;&#x8BB0;&#x4F4F;&#x8BBE;&#x7F6E;&#x7684;preference&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x4E14;&#x5982;&#x679C;&#x4E24;&#x6B21;&#x4F7F;&#x7528;&#x4E86;&#x76F8;&#x540C;&#x7684;key&#x5C31;&#x4F1A;&#x8986;&#x76D6;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;preference&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;<code>esperandro</code>&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x4E14;&#x5927;&#x5927;&#x7B80;&#x5316;&#x4E86;<code>SharedPreferences</code>&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
-<h3 id="21sharedpreference"><a name="21sharedpreference" class="plugin-anchor" href="#21sharedpreference"><span class="fa fa-link"></span></a>2.1&#x5B9A;&#x4E49;SharedPreference</h3>
-<p><code>esperandro</code>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;preference&#x901A;&#x8FC7;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x7528;<code>@SharedPreferences</code>&#x6CE8;&#x89E3;&#xFF0C;&#x901A;&#x8FC7;name&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;mode&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x6A21;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;name&#x5C5E;&#x6027;&#x548C;mode&#x5C5E;&#x6027;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;<code>SharedPreference</code>&#x3002;</p>
+<h2 id="2esperandro">2.开源项目esperandro</h2>
+<p>在Android中，使用SharedPreferences时，我们必须每次记住设置的preference的数据类型，并且如果两次使用了相同的key就会覆盖已经存在的preference。如果使用<code>esperandro</code>就可以避免这些问题，并且大大简化了<code>SharedPreferences</code>的操作。</p>
+<h3 id="21sharedpreference">2.1定义SharedPreference</h3>
+<p><code>esperandro</code>创建一个preference通过定义一个空的接口，并且使用<code>@SharedPreferences</code>注解，通过name属性指定文件名称，mode属性指定模式，如果不指定name属性和mode属性，则使用默认的<code>SharedPreference</code>。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span></span>
 </code></pre>
-<p>&#x7B49;&#x4EF7;&#x4E8E;</p>
+<p>等价于</p>
 <pre><code class="lang-java">PreferenceManager.getDefaultSharedPreferences(context)
 </code></pre>
-<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>(name = <span class="hljs-string">&quot;eventPrefs&quot;</span>, mode = SharedPreferenceMode.PRIVATE)
+<pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>(name = <span class="hljs-string">"eventPrefs"</span>, mode = SharedPreferenceMode.PRIVATE)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EventPreferences</span></span>
 </code></pre>
-<p>&#x7B49;&#x4EF7;&#x4E8E;</p>
+<p>等价于</p>
 <pre><code class="lang-java">
-context.getSharedPreferences(<span class="hljs-string">&quot;eventPrefs&quot;</span>, Context.MODE_PRIVATE).
+context.getSharedPreferences(<span class="hljs-string">"eventPrefs"</span>, Context.MODE_PRIVATE).
 </code></pre>
-<h3 id="22-preference"><a name="22-preference" class="plugin-anchor" href="#22-preference"><span class="fa fa-link"></span></a>2.2 &#x8BBE;&#x7F6E;&#x548C;&#x83B7;&#x53D6;Preference</h3>
-<p>&#x5728;&#x63A5;&#x53E3;&#x4E2D;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;<code>set</code>&#x548C;<code>get</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x548C;&#x83B7;&#x53D6;Preference&#x3002;<code>esperandro</code>&#x652F;&#x6301;&#x5B58;&#x50A8;&#x7684;&#x7C7B;&#x578B;&#x5305;&#x62EC;<code>int</code>&#xFF0C;<code>long</code>&#xFF0C;<code>float</code>&#xFF0C;<code>boolean</code>&#xFF0C;<code>String</code>&#x548C;<code>Set&lt;String&gt;</code>.</p>
+<h3 id="22-preference">2.2 设置和获取Preference</h3>
+<p>在接口中定义一个<code>set</code>和<code>get</code>方法，用来设置和获取Preference。<code>esperandro</code>支持存储的类型包括<code>int</code>，<code>long</code>，<code>float</code>，<code>boolean</code>，<code>String</code>和<code>Set&lt;String&gt;</code>.</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
 
@@ -788,7 +858,7 @@ context.getSharedPreferences(<span class="hljs-string">&quot;eventPrefs&quot;</s
 
 }
 </code></pre>
-<p>&#x901A;&#x8FC7;<code>@Default</code>&#x6CE8;&#x89E3;&#x548C;&#x5404;&#x81EA;&#x7684;<code>of*</code>&#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x4E3A;&#x9664;&#x4E86;<code>Set&lt;String&gt;</code>&#x4EE5;&#x5916;&#x7684;&#x7C7B;&#x578B;&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<p>通过<code>@Default</code>注解和各自的<code>of*</code>属性可以为除了<code>Set&lt;String&gt;</code>以外的类型指定默认值。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
 
@@ -798,7 +868,7 @@ context.getSharedPreferences(<span class="hljs-string">&quot;eventPrefs&quot;</s
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">age</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>;
 }
 </code></pre>
-<p>&#x9664;&#x4E86;&#x53EF;&#x4EE5;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x4F7F;&#x7528;<code>$Default</code>&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<p>除了可以在编译时设置默认值以外，还可以在运行时使用<code>$Default</code>设置默认值。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@SharedPreferences</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DefaultPreferences</span> </span>{
 
@@ -807,18 +877,18 @@ context.getSharedPreferences(<span class="hljs-string">&quot;eventPrefs&quot;</s
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">age</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>;
 }
 </code></pre>
-<h3 id="23"><a name="23" class="plugin-anchor" href="#23"><span class="fa fa-link"></span></a>2.3&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;</h3>
-<p>&#x8C03;&#x7528;</p>
+<h3 id="23">2.3创建实例</h3>
+<p>调用</p>
 <pre><code class="lang-java">Esperandro.getPreferences(Class&lt;T&gt; preferenceClass, Context context)
 </code></pre>
-<p>&#x5C31;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>就可以创建实例。</p>
 <pre><code class="lang-java"> DefaultPreferences mDefaultPreferences=Esperandro.getPreferences(DefaultPreferences.class,<span class="hljs-keyword">this</span>);
-Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPreferences.age$Default(<span class="hljs-number">10</span>));
+Log.e(TAG,<span class="hljs-string">"age--&gt;"</span>+mDefaultPreferences.age$Default(<span class="hljs-number">10</span>));
 </code></pre>
-<h3 id="24"><a name="24" class="plugin-anchor" href="#24"><span class="fa fa-link"></span></a>2.4&#x5B58;&#x50A8;&#x5BF9;&#x8C61;</h3>
-<p><code>esperandro</code>&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;<code>String</code>&#x7C7B;&#x578B;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x3002;&#x5B9E;&#x73B0;<code>Serializer</code>&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x8C03;&#x7528;<code>Esperandro.setSerializer(Serializer serializer)</code>&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;<code>Serializer</code>&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#xFF0C;&#x5E76;&#x5728;&#x83B7;&#x53D6;&#x7684;&#x65F6;&#x5019;&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x8C61;&#x3002;</p>
-<p>&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#x6211;&#x4EEC;&#x901A;&#x8FC7;<code>Gson</code>&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;<code>json</code>&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#x3002;</p>
-<p>&#x5B9E;&#x73B0;<code>Seralizer</code></p>
+<h3 id="24">2.4存储对象</h3>
+<p><code>esperandro</code>不仅可以存储基本数据类型和<code>String</code>类型，还可以存储对象。实现<code>Serializer</code>接口，并调用<code>Esperandro.setSerializer(Serializer serializer)</code>方法设置<code>Serializer</code>，可以将对象转换为字符串进行存储，并在获取的时候转换为对象。</p>
+<p>下面的例子中我们通过<code>Gson</code>将对象转换为<code>json</code>格式进行存储。</p>
+<p>实现<code>Seralizer</code></p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GsonSerializer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializer</span> </span>{
 
     <span class="hljs-keyword">private</span> Gson gson;
@@ -853,17 +923,17 @@ Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPrefere
 
 }
 </code></pre>
-<p>&#x8BBE;&#x7F6E;<code>Serializer</code>&#x5E76;&#x5B58;&#x50A8;&#x548C;&#x83B7;&#x53D6;&#x6570;&#x636E;</p>
+<p>设置<code>Serializer</code>并存储和获取数据</p>
 <pre><code class="lang-java">  DefaultPreferences mDefaultPreferences=Esperandro.getPreferences(DefaultPreferences.class,<span class="hljs-keyword">this</span>);
-        Esperandro.setSerializer(<span class="hljs-keyword">new</span> GsonSerializer());<span class="hljs-comment">//&#x8BBE;&#x7F6E;Serializer</span>
+        Esperandro.setSerializer(<span class="hljs-keyword">new</span> GsonSerializer());<span class="hljs-comment">//设置Serializer</span>
         User user=<span class="hljs-keyword">new</span> User();
-        user.name=<span class="hljs-string">&quot;milk&quot;</span>;
+        user.name=<span class="hljs-string">"milk"</span>;
         user.age=<span class="hljs-number">10</span>;
         mDefaultPreferences.user(user);
         Log.e(TAG,mDefaultPreferences.user().name);
 </code></pre>
-<h3 id="25sharedpreferenceactions"><a name="25sharedpreferenceactions" class="plugin-anchor" href="#25sharedpreferenceactions"><span class="fa fa-link"></span></a>2.5SharedPreferenceActions&#x63A5;&#x53E3;</h3>
-<p>&#x5728;&#x521B;&#x5EFA;SharedPreference&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x76F4;&#x63A5;&#x5B9A;&#x4E49;&#x63A5;&#x53E3;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;<code>SharedPreferenceActions</code>&#x63A5;&#x53E3;&#x6765;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#x3002;<code>SharedPreferenceActions</code>&#x63D0;&#x4F9B;&#x4E86;&#x8BB8;&#x591A;&#x6709;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="25sharedpreferenceactions">2.5SharedPreferenceActions接口</h3>
+<p>在创建SharedPreference时，除了直接定义接口外，还可以通过实现<code>SharedPreferenceActions</code>接口来进行定义。<code>SharedPreferenceActions</code>提供了许多有用的方法。</p>
 <pre><code class="lang-java">
     <span class="hljs-javadoc">/**
      *<span class="hljs-javadoctag"> @return</span> the underlying SharedPreference instance.
@@ -909,7 +979,7 @@ Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPrefere
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initDefaults</span><span class="hljs-params">()</span></span>;
 </code></pre>
-<h3 id="26-proguard"><a name="26-proguard" class="plugin-anchor" href="#26-proguard"><span class="fa fa-link"></span></a>2.6 Proguard</h3>
+<h3 id="26-proguard">2.6 Proguard</h3>
 <pre><code># esperandro
 -keepnames class de.devland.** { *; }
 -keep class **$$Impl { public *;}
@@ -918,7 +988,7 @@ Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPrefere
 -keepattributes *Annotation*, EnclosingMethod, Signature, InnerClasses
 
 # for dagger also preserve the interfaces
-# assuming they reside in the sub-package &apos;preferences&apos; and all end with &apos;Prefs&apos;
+# assuming they reside in the sub-package &#39;preferences&#39; and all end with &#39;Prefs&#39;
 #-keep class preferences.**Prefs { public *;}
 
 # jackson
@@ -927,21 +997,21 @@ Log.e(TAG,<span class="hljs-string">&quot;age--&gt;&quot;</span>+mDefaultPrefere
 
 # for gson see their documentation at
 # https://code.google.com/p/google-gson/source/browse/trunk/examples/android-proguard-example/proguard.cfg
-</code></pre><h2 id="27gradle-build"><a name="27gradle-build" class="plugin-anchor" href="#27gradle-build"><span class="fa fa-link"></span></a>2.7Gradle Build</h2>
+</code></pre><h2 id="27gradle-build">2.7Gradle Build</h2>
 <pre><code>buildscript {
     repositories {
       mavenCentral()
     }
     dependencies {
         // Android plugin
-        classpath &apos;com.android.tools.build:gradle:0.10.+&apos;
+        classpath &#39;com.android.tools.build:gradle:0.10.+&#39;
         // the latest version of the android-apt plugin from https://bitbucket.org/hvisser/android-apt
-        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.2&apos;
+        classpath &#39;com.neenbedankt.gradle.plugins:android-apt:1.2&#39;
     }
 }
 
-apply plugin: &apos;android&apos;
-apply plugin: &apos;android-apt&apos;
+apply plugin: &#39;android&#39;
+apply plugin: &#39;android-apt&#39;
 
 
 repositories {
@@ -949,19 +1019,19 @@ repositories {
 }
 
 dependencies {
-    compile &apos;de.devland.esperandro:esperandro-api:2.1.0&apos;
-    apt &apos;de.devland.esperandro:esperandro:2.1.0&apos;
+    compile &#39;de.devland.esperandro:esperandro-api:2.1.0&#39;
+    apt &#39;de.devland.esperandro:esperandro:2.1.0&#39;
 
-    // optional, if we want to use object serialization but don&apos;t provide our own Serializer
-    // compile &apos;de.devland.esperandro:esperandro-gson-addon:2.1.0&apos;
+    // optional, if we want to use object serialization but don&#39;t provide our own Serializer
+    // compile &#39;de.devland.esperandro:esperandro-gson-addon:2.1.0&#39;
     // or
-    // compile &apos;de.devland.esperandro:esperandro-jackson-addon:2.1.0&apos;
+    // compile &#39;de.devland.esperandro:esperandro-jackson-addon:2.1.0&#39;
 }
-</code></pre><h1 id=""><a name="" class="plugin-anchor" href="#"><span class="fa fa-link"></span></a>&#x6269;&#x5C55;&#x9605;&#x8BFB;</h1>
+</code></pre><h1 id="">扩展阅读</h1>
 <ul>
 <li><p><a href="http://developer.android.com/training/basics/data-storage/shared-preferences.html" target="_blank">Saving Key-Value Sets</a></p>
 </li>
-<li><p><a href="http://dkunzler.github.io/esperandro/" target="_blank">esperandro&#x5B98;&#x65B9;&#x4F7F;&#x7528;&#x6587;&#x6863;</a></p>
+<li><p><a href="http://dkunzler.github.io/esperandro/" target="_blank">esperandro官方使用文档</a></p>
 </li>
 </ul>
 
@@ -983,6 +1053,10 @@ dependencies {
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     
