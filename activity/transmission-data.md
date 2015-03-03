@@ -246,9 +246,12 @@ Model
 
 ```java
 
-@Parcel
+<<<<<<< HEAD
 
-public class Author {
+@Parcel 
+
+public class Author { 
+
 
    int id;
 

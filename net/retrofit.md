@@ -266,7 +266,11 @@ Observable<Response> userList();
 ##  3. RestAdapter 配置
 
 除了使用Retrofit提供的默认RestAdapter以外，我们还可以进行设置转换器和设置客户端等自定义操作
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 
 ### 3.1 设置自定义转换器
 
@@ -302,7 +306,11 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 SoundCloudService service = restAdapter.create(SoundCloudService.class);
 
 ```
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 `ProtoConverter`使用
 
 ```java
@@ -368,4 +376,8 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 * [A smart way to use Retrofit](http://blog.robinchutaux.com/blog/a-smart-way-to-use-retrofit/)
 
+<<<<<<< HEAD
 * [How Can I POST Raw Whole Json in the body of a Retrofit request?](http://stackoverflow.com/questions/21398598/how-can-i-post-raw-whole-json-in-the-body-of-a-retrofit-request)
+=======
+* [How Can I POST Raw Whole Json in the body of a Retrofit request?](http://stackoverflow.com/questions/21398598/how-can-i-post-raw-whole-json-in-the-body-of-a-retrofit-request)
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c

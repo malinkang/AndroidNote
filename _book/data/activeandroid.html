@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>ActiveAndroid | Android学习笔记</title>
+        <title>ActiveAndroid | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.4.1">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book" data-level="7.2.1" data-basepath=".." data-revision="1422846108795">
+    <div class="book" data-level="7.2.1" data-basepath=".." data-revision="1425398533852">
     
 
 <div class="book-summary">
@@ -724,8 +724,6 @@
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
     
-    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Open Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
-    
     <div id="font-settings-wrapper" class="dropdown pull-left">
         <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
         </a>
@@ -789,7 +787,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android学习笔记</a>
+        <a href="../" ></a>
     </h1>
 </div>
 
@@ -797,7 +795,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_681">
                     
                         <p>ActiveAndroid是采用活动记录(<a href="http://zh.wikipedia.org/wiki/Active_Record" target="_blank">Active Record</a>)架构模式设计的适用于Android平台的轻量级ORM架构。</p>
 <p>项目主页：<a href="https://github.com/pardom/ActiveAndroid" target="_blank">https://github.com/pardom/ActiveAndroid</a></p>
@@ -838,6 +836,177 @@
 <pre><code class="lang-java">
 <span class="hljs-annotation">@Table</span>(name = <span class="hljs-string">"Categories"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Category</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> </span>{
+    <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"Name"</span>)
+    <span class="hljs-keyword">public</span> String name;
+}
+
+<span class="hljs-annotation">@Table</span>(name = <span class="hljs-string">"Items"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Item</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> </span>{
+    <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"remote_id"</span>, unique = <span class="hljs-keyword">true</span>, onUniqueConflict = Column.ConflictAction.REPLACE)
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> remoteId;
+    <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"Name"</span>)
+    <span class="hljs-keyword">public</span> String name;
+
+    <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"Category"</span>)
+    <span class="hljs-keyword">public</span> Category category;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Item</span><span class="hljs-params">()</span></span>{
+                <span class="hljs-keyword">super</span>();
+        }
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Item</span><span class="hljs-params">(String name, Category category)</span></span>{
+                <span class="hljs-keyword">super</span>();
+                <span class="hljs-keyword">this</span>.name = name;
+                <span class="hljs-keyword">this</span>.category = category;
+        }
+}
+</code></pre>
+<h2 id="3">3.增删改查</h2>
+<h3 id="31-">3.1 插入</h3>
+<h4 id="311-">3.1.1 单条插入</h4>
+<p> 保存一条记录，只需要创建一个模型的实例，并为每个字段指定值，然后调用save()方法。</p>
+<pre><code class="lang-java">
+Category restaurants = <span class="hljs-keyword">new</span> Category();
+restaurants.name = <span class="hljs-string">"Restaurants"</span>;
+restaurants.save();
+</code></pre>
+<h4 id="312">3.1.2批量插入</h4>
+<pre><code class="lang-java">
+ActiveAndroid.beginTransaction();
+<span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+            Item item = <span class="hljs-keyword">new</span> Item();
+            item.name = <span class="hljs-string">"Example "</span> + i;
+            item.save();
+        }
+        ActiveAndroid.setTransactionSuccessful();
+}
+<span class="hljs-keyword">finally</span> {
+        ActiveAndroid.endTransaction();
+}
+</code></pre>
+<h3 id="32-">3.2 更新</h3>
+<pre><code class="lang-java">
+<span class="hljs-keyword">new</span> Update(Person.class).set(<span class="hljs-string">"age=?,"</span> + <span class="hljs-string">"name=?"</span>, age, name).execute();
+</code></pre>
+<h3 id="33-">3.3 删除</h3>
+<p>调用delete()方法就可以删除一条记录，下面的例子中，通过id加载一个Item对象，并且删除他。</p>
+<pre><code class="lang-java">
+Item item = Item.load(Item.class, <span class="hljs-number">1</span>);
+item.delete();
+</code></pre>
+<p>也可以通过静态方法删除</p>
+<pre><code class="lang-java">
+Item.delete(Item.class, <span class="hljs-number">1</span>);
+</code></pre>
+<p>也可以创建调用Delete对象删除</p>
+<pre><code class="lang-java">
+<span class="hljs-keyword">new</span> Delete().from(Item.class).where(<span class="hljs-string">"Id = ?"</span>, <span class="hljs-number">1</span>).execute();
+</code></pre>
+<h3 id="34-">3.4 查询</h3>
+<p>查询一条</p>
+<pre><code class="lang-java">
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Item <span class="hljs-title">getRandom</span><span class="hljs-params">(Category category)</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">Select</span><span class="hljs-params">()</span>
+        .<span class="hljs-title">from</span><span class="hljs-params">(Item.class)</span>
+        .<span class="hljs-title">where</span><span class="hljs-params">(<span class="hljs-string">"Category = ?"</span>, category.getId()</span>)
+        .<span class="hljs-title">orderBy</span><span class="hljs-params">(<span class="hljs-string">"RANDOM()"</span>)</span>
+        .<span class="hljs-title">executeSingle</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>查询所有</p>
+<pre><code class="lang-java">
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Item&gt; <span class="hljs-title">getAll</span><span class="hljs-params">(Category category)</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">Select</span><span class="hljs-params">()</span>
+        .<span class="hljs-title">from</span><span class="hljs-params">(Item.class)</span>
+        .<span class="hljs-title">where</span><span class="hljs-params">(<span class="hljs-string">"Category = ?"</span>, category.getId()</span>)
+        .<span class="hljs-title">orderBy</span><span class="hljs-params">(<span class="hljs-string">"Name ASC"</span>)</span>
+        .<span class="hljs-title">execute</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<h2 id="4-">4. 使用内容提供者</h2>
+<p>使用ActiveAndroid的ContentProvider，必须复写默认的标识列如下所示(默认标识列是ID)。</p>
+<pre><code class="lang-java">
+<span class="hljs-annotation">@Table</span>(name = <span class="hljs-string">"Items"</span>, id = BaseColumns._ID)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Item</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> </span>{...}
+</code></pre>
+<p>接着就可以使用<code>ContentProvider</code></p>
+<pre><code class="lang-java">
+   mySpinner.setAdapter(<span class="hljs-keyword">new</span> SimpleCursorAdapter(getActivity(),
+        android.R.layout.simple_expandable_list_item_1,
+        <span class="hljs-keyword">null</span>,
+        <span class="hljs-keyword">new</span> String[] { <span class="hljs-string">"MyProperty"</span> },
+        <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { android.R.id.text1 },
+        <span class="hljs-number">0</span>));
+
+    getActivity().getSupportLoaderManager().initLoader(<span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> LoaderCallbacks&lt;Cursor&gt;() {
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Loader&lt;Cursor&gt; <span class="hljs-title">onCreateLoader</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg0, Bundle cursor)</span> </span>{
+            <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">CursorLoader</span><span class="hljs-params">(getActivity()</span>,
+                ContentProvider.<span class="hljs-title">createUri</span><span class="hljs-params">(MyEntityClass.class, <span class="hljs-keyword">null</span>)</span>,
+                <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>
+            )</span>;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoadFinished</span><span class="hljs-params">(Loader&lt;Cursor&gt; arg0, Cursor cursor)</span> </span>{
+            ((SimpleCursorAdapter)mySpinner.getAdapter()).swapCursor(cursor);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoaderReset</span><span class="hljs-params">(Loader&lt;Cursor&gt; arg0)</span> </span>{
+            ((SimpleCursorAdapter)mySpinner.getAdapter()).swapCursor(<span class="hljs-keyword">null</span>);
+        }
+    });
+</code></pre>
+<p>最后别忘了在<code>AndroidManifest.xml</code>中注册<code>provider</code></p>
+<pre><code class="lang-xml">
+<span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">provider</span> <span class="hljs-attribute">android:authorities</span>=<span class="hljs-value">"com.example"</span> <span class="hljs-attribute">android:exported</span>=<span class="hljs-value">"false"</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.activeandroid.content.ContentProvider"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+</code></pre>
+<h2 id="">更多阅读</h2>
+<p><a href="https://github.com/thecodepath/android_guides/wiki/ActiveAndroid-Guide" target="_blank">https://github.com/thecodepath/android_guides/wiki/ActiveAndroid-Guide</a></p>
+<h1 id="httpsgithubcompardomactiveandroid"><a href="https://github.com/pardom/ActiveAndroid" target="_blank">https://github.com/pardom/ActiveAndroid</a></h1>
+<p>ActiveAndroid是采用活动记录(<a href="http://zh.wikipedia.org/wiki/Active_Record" target="_blank">Active Record</a>)架构模式设计的适用于Android平台的轻量级ORM架构。</p>
+<p>项目主页：<a href="https://github.com/pardom/ActiveAndroid" target="_blank">https://github.com/pardom/ActiveAndroid</a></p>
+<h2 id="1">1.配置与初始化</h2>
+<p>首先在<code>AndroidManifest.xml</code>文件中配置数据库名称和数据库版本号。</p>
+<pre><code class="lang-xml">
+<span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.activeandroid.app.Application"</span> <span class="hljs-attribute">...</span>&gt;</span>
+
+        ...
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta-data</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"AA_DB_NAME"</span> <span class="hljs-attribute">android:value</span>=<span class="hljs-value">"Pickrand.db"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta-data</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"AA_DB_VERSION"</span> <span class="hljs-attribute">android:value</span>=<span class="hljs-value">"5"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<ul>
+<li>AA_DB_NAME：数据库名</li>
+<li>AA_DB_VERSION：数据库版本号，默认是1。</li>
+</ul>
+<p>接着，在<code>AndroidManifest.xml</code>文件中指定application元素的name为com.activeandroid.app.Application，如果需要自定义Application，需要让你的Application对象继承自com.activeandroid.app.Application而不是android.app.Application。如果你需要继承其他库的Application，则需要在Application中初始化和处理ActiveAndroid。</p>
+<pre><code class="lang-java">
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SomeLibraryApplication</span> </span>{
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate();
+        ActiveAndroid.initialize(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTerminate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">super</span>.onTerminate();
+        ActiveAndroid.dispose();
+    }
+}
+</code></pre>
+<h2 id="2model">2.创建Model</h2>
+<p>创建数据库模型非常简单，创建的模型必须继承Model类，这样你的类名就是你的表名。如果不想使用类名做表名，则可以使用@Table定义表名。@Column用于定义列名。Model类使用无参的构造函数，如果定义自己的构造函数必须定义一个无参的构造函数。</p>
+<pre><code class="lang-java">
+<span class="hljs-annotation">@Table</span>(name = <span class="hljs-string">"Categories"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Category</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> </span>{ 
     <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"Name"</span>)
     <span class="hljs-keyword">public</span> String name;
 }

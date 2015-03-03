@@ -1,6 +1,6 @@
 # TextView
 
-<!-- toc -->
+
 
 
 ## 1. TextView常用属性
@@ -23,6 +23,7 @@ italic：斜体，bold：粗体，normal：正常
 		Typeface typeFace = Typeface.createFromAsset(getAssets(),
 				"fonts/Roboto-Thin.ttf");
 		text.setTypeface(typeFace);
+
 
 ```
 
@@ -47,6 +48,7 @@ mTextView.setText("<font color='red'>红色</font>");
 
 ```java
 mTextView.setText(Html.from("<font color='red'>红色</font>"));
+
 
 ```
 

@@ -64,7 +64,11 @@ Picasso.with(context)
   .resize(50, 50)
   .centerCrop()
   .into(imageView)
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 ```
 
 用户也可以自己指定转换器，如下例子将图片转换为方形
@@ -95,28 +99,45 @@ public class CropSquareTransformation implements Transformation {
 
 import android.graphics.*;
 import com.squareup.picasso.Transformation;
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 /**
  * Transforms an image into a circle representation. Such as a avatar.
  */
 public class CircularTransformation implements Transformation
 {
     int radius = 10;
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     public CircularTransformation(final int radius)
     {
         this.radius = radius;
     }
+<<<<<<< HEAD
 
     public CircularTransformation()
     {
     }
 
+=======
+ 
+    public CircularTransformation()
+    {
+    }
+ 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     @Override
     public Bitmap transform(final Bitmap source)
     {
         Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
+<<<<<<< HEAD
 
         final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, source.getWidth(), source.getHeight());
@@ -135,12 +156,36 @@ public class CircularTransformation implements Transformation
 
         canvas.drawBitmap(source, rect, rect, paint);
 
+=======
+ 
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, source.getWidth(), source.getHeight());
+ 
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        paint.setDither(true);
+ 
+        canvas.drawARGB(0, 0, 0, 0);
+ 
+        paint.setColor(Color.parseColor("#BAB399"));
+ 
+        canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f, source.getWidth() / 2 - 1.1f, paint);
+ 
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+ 
+        canvas.drawBitmap(source, rect, rect, paint);
+ 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
         if(source != output) {
             source.recycle();
         }
         return output;
     }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     @Override
     public String key()
     {

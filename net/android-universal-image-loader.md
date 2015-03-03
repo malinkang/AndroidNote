@@ -167,7 +167,11 @@ imageLoader.displayImage(imageUri, imageView);
 使用displayImage方法可以设置加载监听器和加载进度监听器
 
 ```java
+<<<<<<< HEAD
 // Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view
+=======
+// Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view 
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 //  which implements ImageAware interface)
 imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener() {
     @Override

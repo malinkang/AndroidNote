@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>DrawableResource | Android学习笔记</title>
+        <title>DrawableResource | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.4.1">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book" data-level="1.10" data-basepath=".." data-revision="1422846108795">
+    <div class="book" data-level="1.10" data-basepath=".." data-revision="1425398533852">
     
 
 <div class="book-summary">
@@ -724,8 +724,6 @@
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
     
-    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Open Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
-    
     <div id="font-settings-wrapper" class="dropdown pull-left">
         <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
         </a>
@@ -789,7 +787,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android学习笔记</a>
+        <a href="../" ></a>
     </h1>
 </div>
 
@@ -797,9 +795,10 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_15">
+                    <section class="normal" id="section-gitbook_691">
                     
                         <h1 id="drawable-resource">Drawable Resource</h1>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h2 id="layer-list">Layer List</h2>
 <p><a href="http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html" target="_blank">LayerDrawable</a>是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。</p>
 <p>语法</p>
@@ -816,7 +815,39 @@
         <span class="hljs-attribute">android:left</span>=<span class="hljs-value">"dimension"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">layer-list</span>&gt;</span>
 </code></pre>
+<p>=======</p>
+<h2 id="layer-list">Layer List</h2>
+<p><a href="http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html" target="_blank">LayerDrawable</a>是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。</p>
+<p>语法</p>
+<pre><code class="lang-xml">
+<span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">layer-list</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">item</span>
+        <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@[package:]drawable/drawable_resource"</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@[+][package:]id/resource_name"</span>
+        <span class="hljs-attribute">android:top</span>=<span class="hljs-value">"dimension"</span>
+        <span class="hljs-attribute">android:right</span>=<span class="hljs-value">"dimension"</span>
+        <span class="hljs-attribute">android:bottom</span>=<span class="hljs-value">"dimension"</span>
+        <span class="hljs-attribute">android:left</span>=<span class="hljs-value">"dimension"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">layer-list</span>&gt;</span>
+</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
 <h2 id="shape-drawable">Shape Drawable</h2>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <p>语法</p>
 <pre><code class="lang-xml">
 <span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
@@ -880,8 +911,26 @@
 <li><code>android:angle</code>Integer值。渐变的角度。0是从左到右，90是从底部到顶部。值必须是<code>45</code>的倍数。默认是<code>0</code>。</li>
 <li><code>android:centerX</code></li>
 <li><code>android:centerY</code></li>
-<li><code>android:centerColor</code></li>
-<li><code>android:endColor</code></li>
+<li><code>android:centerColor</code>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li><h1 id="androidendcolor"><code>android:endColor</code></h1>
+</li>
+<li><code>android:endColor</code><blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
 <li><code>android:gradientRadius</code></li>
 <li><code>android:startColor</code></li>
 <li><code>android:type</code></li>
@@ -914,7 +963,24 @@
     <span class="hljs-tag">&lt;<span class="hljs-title">corners</span> <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">"8dp"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">shape</span>&gt;</span>
 </code></pre>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
 <h2 id="">阅读更多</h2>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
                     
                     </section>

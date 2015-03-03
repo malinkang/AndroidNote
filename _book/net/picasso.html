@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Picasso | Android学习笔记</title>
+        <title>Picasso | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.4.1">
@@ -35,7 +35,7 @@
 
 
         
-    <div class="book" data-level="9.2.2" data-basepath=".." data-revision="1422846108795">
+    <div class="book" data-level="9.2.2" data-basepath=".." data-revision="1425398533852">
     
 
 <div class="book-summary">
@@ -726,8 +726,6 @@
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
     
-    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Open Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
-    
     <div id="font-settings-wrapper" class="dropdown pull-left">
         <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
         </a>
@@ -791,7 +789,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android学习笔记</a>
+        <a href="../" ></a>
     </h1>
 </div>
 
@@ -799,7 +797,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_11">
+                    <section class="normal" id="section-gitbook_687">
                     
                         <h1 id="picasso">Picasso使用</h1>
 <h2 id="1-">1. 介绍</h2>
@@ -837,6 +835,11 @@ Picasso.with(context)
   .resize(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>)
   .centerCrop()
   .into(imageView)
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <p>用户也可以自己指定转换器，如下例子将图片转换为方形</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CropSquareTransformation</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Transformation</span> </span>{
@@ -859,28 +862,45 @@ Picasso.with(context)
 <pre><code class="lang-java">
 <span class="hljs-keyword">import</span> android.graphics.*;
 <span class="hljs-keyword">import</span> com.squareup.picasso.Transformation;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 <span class="hljs-javadoc">/**
  * Transforms an image into a circle representation. Such as a avatar.
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CircularTransformation</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Transformation</span>
 </span>{
     <span class="hljs-keyword">int</span> radius = <span class="hljs-number">10</span>;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CircularTransformation</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> radius)</span>
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span><span class="hljs-function">eb28dc379e3887bf933756ee10845587398c6c
+    <span class="hljs-keyword">public</span> <span class="hljs-title">CircularTransformation</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> radius)</span>
     </span>{
         <span class="hljs-keyword">this</span>.radius = radius;
     }
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; <span class="hljs-function">HEAD
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">CircularTransformation</span><span class="hljs-params">()</span>
+    </span>{
+    }
+
+=======
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CircularTransformation</span><span class="hljs-params">()</span>
     </span>{
     }
 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">transform</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Bitmap source)</span>
     </span>{
         Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = <span class="hljs-keyword">new</span> Canvas(output);
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
         <span class="hljs-keyword">final</span> Paint paint = <span class="hljs-keyword">new</span> Paint();
         <span class="hljs-keyword">final</span> Rect rect = <span class="hljs-keyword">new</span> Rect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, source.getWidth(), source.getHeight());
@@ -899,12 +919,36 @@ Picasso.with(context)
 
         canvas.drawBitmap(source, rect, rect, paint);
 
-        <span class="hljs-keyword">if</span>(source != output) {
+=======
+
+        <span class="hljs-keyword">final</span> Paint paint = <span class="hljs-keyword">new</span> Paint();
+        <span class="hljs-keyword">final</span> Rect rect = <span class="hljs-keyword">new</span> Rect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, source.getWidth(), source.getHeight());
+
+        paint.setAntiAlias(<span class="hljs-keyword">true</span>);
+        paint.setFilterBitmap(<span class="hljs-keyword">true</span>);
+        paint.setDither(<span class="hljs-keyword">true</span>);
+
+        canvas.drawARGB(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+        paint.setColor(Color.parseColor(<span class="hljs-string">"#BAB399"</span>));
+
+        canvas.drawCircle(source.getWidth() / <span class="hljs-number">2</span> + <span class="hljs-number">0.7</span>f, source.getHeight() / <span class="hljs-number">2</span> + <span class="hljs-number">0.7</span>f, source.getWidth() / <span class="hljs-number">2</span> - <span class="hljs-number">1.1</span>f, paint);
+
+        paint.setXfermode(<span class="hljs-keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+
+        canvas.drawBitmap(source, rect, rect, paint);
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span><span class="hljs-function">eb28dc379e3887bf933756ee10845587398c6c
+        <span class="hljs-title">if</span><span class="hljs-params">(source != output)</span> </span>{
             source.recycle();
         }
         <span class="hljs-keyword">return</span> output;
     }
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">key</span><span class="hljs-params">()</span>
     </span>{

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Volley | Android学习笔记</title>
+        <title>Volley | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.4.1">
@@ -35,7 +35,7 @@
 
 
         
-    <div class="book" data-level="9.1.2" data-basepath=".." data-revision="1422846108795">
+    <div class="book" data-level="9.1.2" data-basepath=".." data-revision="1425398533852">
     
 
 <div class="book-summary">
@@ -726,8 +726,6 @@
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
     
-    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Open Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
-    
     <div id="font-settings-wrapper" class="dropdown pull-left">
         <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
         </a>
@@ -791,7 +789,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android学习笔记</a>
+        <a href="../" ></a>
     </h1>
 </div>
 
@@ -799,20 +797,28 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_13">
+                    <section class="normal" id="section-gitbook_689">
                     
                         <h1 id="volley">Volley使用</h1>
 <p><a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">Volley</a>是Google在2013年推出的新的网络通信框架。Volley可是说是把<a href="https://github.com/AsyncHttpClient/async-http-client" target="_blank">async-http-client</a>和<a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank">Android-Universal-Image-Loader</a>的优点集于了一身，既可以async-http-client像一样非常简单地进行HTTP通信，也可以像ndroid-Universal-Image-Loader一样轻松加载网络上的图片。除了简单易用之外，Volley在性能方面也进行了大幅度的调整，它的设计目标就是非常适合去进行数据量不大，但通信频繁的网络操作，而对于大数据量的网络操作，比如说下载文件等，Volley的表现就会非常糟糕。</p>
 <h2 id="1">1.开始使用</h2>
 <p>使用Git克隆Volley源码</p>
-<pre><code>git clone https://android.googlesource.com/platform/frameworks/volley
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+git clone https://android.googlesource.com/platform/frameworks/volley
+=======
+git clone https://android.googlesource.com/platform/frameworks/volley 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 43eb28dc379e3887bf933756ee10845587398c6c
 </code></pre><p>除了使用官方的Volley 项目，也可以使用托管在Github上的<a href="https://github.com/mcxiaoke/android-volley" target="_blank">Android Volley</a>项目。</p>
 <h2 id="2volley">2.使用Volley进行网络请求</h2>
 <h3 id="21-">2.1 基本用法</h3>
 <p>使用Volley进行网络请求只需要简单的三步。</p>
 <p>1.创建<code>RequestQueue</code>对象</p>
 <pre><code class="lang-java">
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 RequestQueue mQueue = Volley.newRequestQueue(context);
+=======
+RequestQueue mQueue = Volley.newRequestQueue(context);  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <p>RequestQueue是一个请求队列对象，它可以缓存所有的HTTP请求，然后按照一定的算法并发地发出这些请求。RequestQueue内部的设计就是非常合适高并发的，因此我们不必为每一次HTTP请求都创建一个RequestQueue对象，这是非常浪费资源的，基本上在每一个需要和网络交互的Activity中创建一个RequestQueue对象就足够了。</p>
 <p>2.创建Request对象，</p>
@@ -834,7 +840,11 @@ RequestQueue mQueue = Volley.newRequestQueue(context);
 <p>这里<code>StringRequest</code>的构造函数需要传入3个参数：第一个参数就是目标服务器的URL地址，第二个参数是服务器响应成功的回调，第三个参数是服务器响应失败的回调。</p>
 <p>3.将Request对象添加到RequestQueue。</p>
 <pre><code class="lang-java">
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 mQueue.add(stringRequest);
+=======
+mQueue.add(stringRequest);  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <h3 id="22-">2.2 设置请求参数和请求体</h3>
 <p>StringRequest的父类Request提供了两个方法<code>getParams()</code>方法用于获取请求参数和<code>getBody()</code>方法获取请求体</p>
@@ -903,7 +913,11 @@ mQueue.add(stringRequest);
 <pre><code class="lang-java">
 <span class="hljs-keyword">import</span> com.google.gson.Gson;
 <span class="hljs-keyword">import</span> com.google.gson.JsonSyntaxException;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 <span class="hljs-keyword">import</span> com.android.volley.AuthFailureError;
 <span class="hljs-keyword">import</span> com.android.volley.NetworkResponse;
 <span class="hljs-keyword">import</span> com.android.volley.ParseError;
@@ -912,10 +926,17 @@ mQueue.add(stringRequest);
 <span class="hljs-keyword">import</span> com.android.volley.Response.ErrorListener;
 <span class="hljs-keyword">import</span> com.android.volley.Response.Listener;
 <span class="hljs-keyword">import</span> com.android.volley.toolbox.HttpHeaderParser;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
 <span class="hljs-keyword">import</span> java.io.UnsupportedEncodingException;
 <span class="hljs-keyword">import</span> java.util.Map;
 
+=======
+
+<span class="hljs-keyword">import</span> java.io.UnsupportedEncodingException;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 <span class="hljs-javadoc">/**
  * Volley adapter for JSON requests that will be parsed into Java objects by Gson.
  */</span>
@@ -924,7 +945,11 @@ mQueue.add(stringRequest);
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Class&lt;T&gt; clazz;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, String&gt; headers;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Listener&lt;T&gt; listener;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-javadoc">/**
      * Make a GET request and return a parsed object from JSON.
      *
@@ -939,17 +964,29 @@ mQueue.add(stringRequest);
         <span class="hljs-keyword">this</span>.headers = headers;
         <span class="hljs-keyword">this</span>.listener = listener;
     }
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-keyword">public</span> Map&lt;String, String&gt; getHeaders() <span class="hljs-keyword">throws</span> AuthFailureError {
         <span class="hljs-keyword">return</span> headers != <span class="hljs-keyword">null</span> ? headers : <span class="hljs-keyword">super</span>.getHeaders();
     }
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliverResponse</span><span class="hljs-params">(T response)</span> </span>{
         listener.onResponse(response);
     }
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
+=======
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">protected</span> Response&lt;T&gt; <span class="hljs-title">parseNetworkResponse</span><span class="hljs-params">(NetworkResponse response)</span> </span>{
         <span class="hljs-keyword">try</span> {
@@ -1019,22 +1056,40 @@ mQueue.add(stringRequest);
 ImageLoader imageLoader = <span class="hljs-keyword">new</span> ImageLoader(mQueue, <span class="hljs-keyword">new</span> BitmapCache());
 </code></pre>
 <p>3.创建一个ImageListener对象。</p>
-<pre><code class="lang-java">ImageListener listener = ImageLoader.getImageListener(imageView,
+<pre><code class="lang-java">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ImageListener listener = ImageLoader.getImageListener(imageView,
         R.drawable.default_image, R.drawable.failed_image);
+=======
+ImageListener listener = ImageLoader.getImageListener(imageView,  
+        R.drawable.default_image, R.drawable.failed_image); 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <p>4.调用ImageLoader的get()方法来加载图片。</p>
-<pre><code class="lang-java">imageLoader.get(<span class="hljs-string">"http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg"</span>, listener);
+<pre><code class="lang-java">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+imageLoader.get(<span class="hljs-string">"http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg"</span>, listener);
+=======
+imageLoader.get(<span class="hljs-string">"http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg"</span>, listener);  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; <span class="hljs-number">43</span>eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <h3 id="33-networkimageview">3.3 NetWorkImageView</h3>
 <p><code>NetWorkImageView</code>是一个自定义控件，继承自<code>ImageView</code>。NetWorkImageView可以直接加载网络图片。</p>
 <p>在布局中使用NetWorkImageView</p>
 <pre><code class="lang-xml">
-<span class="hljs-tag">&lt;<span class="hljs-title">com.android.volley.toolbox.NetworkImageView</span>
-        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/network_image_view"</span>
-        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"200dp"</span>
-        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"200dp"</span>
-        <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"center_horizontal"</span>
-        /&gt;</span>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/network_image_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        /&gt;
+=======
+&lt;com.android.volley.toolbox.NetworkImageView   
+        android:id="@+id/network_image_view"  
+        android:layout_width="200dp"  
+        android:layout_height="200dp"  
+        android:layout_gravity="center_horizontal"  
+        /&gt;  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 43eb28dc379e3887bf933756ee10845587398c6c
 </code></pre>
 <p>NetWorkImageView方法</p>
 <ul>
@@ -1043,13 +1098,64 @@ ImageLoader imageLoader = <span class="hljs-keyword">new</span> ImageLoader(mQue
 <li>setImageUrl():加载网络图片。</li>
 </ul>
 <h1 id="">扩展阅读</h1>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="--android-volleyvolleyhttpblogcsdnnetguolin_blogarticledetails17482095">* <a href="http://blog.csdn.net/guolin_blog/article/details/17482095" target="_blank"> Android Volley完全解析(一)，初识Volley的基本用法</a></h1>
 <ul>
-<li><a href="http://blog.csdn.net/guolin_blog/article/details/17482095" target="_blank"> Android Volley完全解析(一)，初识Volley的基本用法</a></li>
+<li><a href="http://blog.csdn.net/guolin_blog/article/details/17482095" target="_blank"> Android Volley完全解析(一)，初识Volley的基本用法</a> <blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
 <li><a href="http://blog.csdn.net/guolin_blog/article/details/17482165" target="_blank">Android Volley完全解析(二)，使用Volley加载网络图片</a></li>
 <li><a href="http://blog.csdn.net/guolin_blog/article/details/17612763" target="_blank">Android Volley完全解析(三)，定制自己的Request</a></li>
 <li><a href="http://blog.csdn.net/guolin_blog/article/details/17656437" target="_blank">Android Volley完全解析(四)，带你从源码的角度理解Volley</a></li>
 <li><a href="http://arnab.ch/blog/2013/08/asynchronous-http-requests-in-android-using-volley/" target="_blank">Asynchronous HTTP Requests in Android Using Volley</a></li>
 </ul>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="async-http-client-httpsgithubcomasynchttpclientasync-http-client"><a href="https://github.com/AsyncHttpClient/async-http-client" target="_blank">async-http-client</a>: <a href="https://github.com/AsyncHttpClient/async-http-client" target="_blank">https://github.com/AsyncHttpClient/async-http-client</a></h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
                     
                     </section>

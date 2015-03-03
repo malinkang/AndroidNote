@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 # Shape Drawable
 
 语法
@@ -73,7 +77,11 @@
 * `android:centerX`
 * `android:centerY`
 * `android:centerColor`
+<<<<<<< HEAD
 * `android:endColor`
+=======
+* `android:endColor`
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 * `android:gradientRadius`
 * `android:startColor`
 * `android:type`
@@ -115,9 +123,17 @@ Shape的边线。
 ```
 
 
+<<<<<<< HEAD
 
 #扩展阅读：
 
 
 * [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)
+=======
+
+#扩展阅读：
+
+
+* [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)
+>>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 * [TextView英文文档](http://developer.android.com/reference/android/widget/TextView.html)
