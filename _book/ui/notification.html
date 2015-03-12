@@ -8,13 +8,14 @@
         <title>Notification | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.4.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -37,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.7" data-basepath=".." data-revision="1425398533852">
+    <div class="book" data-level="1.7" data-basepath=".." data-revision="1426138611086">
     
 
 <div class="book-summary">
@@ -799,10 +800,9 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_694">
+                    <section class="normal" id="section-gitbook_3372">
                     
                         <h1 id="notification">Notification</h1>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <p>Notification是一个能够显示在在应用UI界面之外的消息。当系统发送一个通知，它会首先以图标的形式显示在通知区域，用户可以打开通知抽屉去查看详细信息。通知区域和通知抽屉是系统控制的区域，用户可以随时查看。</p>
 <p><img src="http://developer.android.com/images/ui/notifications/iconic_notification.png" alt=""></p>
 <p><img src="http://developer.android.com/images/ui/notifications/normal_notification.png" alt=""></p>
@@ -886,109 +886,8 @@ NotificationManager mNotificationManager =
 <span class="hljs-comment">// mId allows you to update the notification later on.</span>
 mNotificationManager.notify(mId, mBuilder.build());
 </code></pre>
-<h2 id="">阅读更多</h2>
+<h2 id="">扩展阅读</h2>
 <p><a href="http://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank">http://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
-<p>=======</p>
-<p>Notification是一个能够显示在在应用UI界面之外的消息。当系统发送一个通知，它会首先以图标的形式显示在通知区域，用户可以打开通知抽屉去查看详细信息。通知区域和通知抽屉是系统控制的区域，用户可以随时查看。</p>
-<p><img src="http://developer.android.com/images/ui/notifications/iconic_notification.png" alt=""></p>
-<p><img src="http://developer.android.com/images/ui/notifications/normal_notification.png" alt=""></p>
-<h2 id="">显示元素</h2>
-<p>Notification根据版本和通知抽屉的状态显示两种不同的视觉风格：标准视图，大视图。</p>
-<ul>
-<li>标准视图</li>
-</ul>
-<p>标准的视图高度为64dp。即使你创建一个大视图，它也以标准视图显示，直到它被展开。</p>
-<p><img src="http://developer.android.com/images/ui/notifications/normal_notification_callouts.png" alt=""></p>
-<p>各个部分的说明</p>
-<ol>
-<li>内容标题</li>
-<li>大图标</li>
-<li>内容文本</li>
-<li>内容信息</li>
-<li>小图标</li>
-<li>发送通知的时间。可以调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setWhen(long" target="_blank">setWhen()</a>)方法设置时间，如果不指定，默认是系统接收到通知的时间。</li>
-</ol>
-<ul>
-<li>大视图</li>
-</ul>
-<p>当通知在通知抽屉顶部被展开或者用户使用一个手势展开通知将显示大视图。展开通知在4.1以上系统才可用。</p>
-<p><img src="http://developer.android.com/images/ui/notifications/bigpicture_notification_callouts.png" alt=""></p>
-<p>大视图能够显示更多的元素，唯一的不同的是7所指的区域。每一种大视图样式以不同的方式设置这块区域。可用的样式包括：</p>
-<ul>
-<li><p>大图样式：详情区域显示一个小于256dp高的图片。</p>
-</li>
-<li><p>多文本样式：详情区域显示一个大的文本块。</p>
-</li>
-<li><p>收件箱样式：详情区域显示多行文本。</p>
-</li>
-</ul>
-<p>所有的大视图样式有如下可选内容，这些内容在标准视图上不可用。</p>
-<p>大内容标题：当展开通知，这个内容标题将覆盖正常视图的内容标题。</p>
-<p>摘要文本：允许在详情区域添加一行文本。</p>
-<h2 id="notification">创建一个Notification</h2>
-<p>使用NotificationCompat.Builder对象指定Notification的信息和动作，NotificationCompat.Builder.build()能够返回一个Notification对象。调用NotificationManager.notify()将Notification对象传递给系统，即可以发送Notification。</p>
-<h3 id="notification">Notification必选内容</h3>
-<p>一个Notification对象必须包含如下内容：</p>
-<ul>
-<li><p>一个小的图标:通过setSmallIcon()方法设置。</p>
-</li>
-<li><p>一个标题:通过setContentTitle()方法设置。</p>
-</li>
-<li><p>详细文本：通过setContentText()方法设置。</p>
-</li>
-</ul>
-<h3 id="">可选内容和设置</h3>
-<p>所有其他的Notification设置和内容是可选的，想了解更多，请查看NotificationCompat.Builder的参考文档。</p>
-<h3 id="notification">设置Notification响应事件</h3>
-<p>尽管动作是可选的，但是我们应当至少为Notification添加一个动作。一个动作允许用户直接从Notification到达应用的一个Activity。一个Notification可以设置多个动作。多数情况下，这个动作是打开应用的一个Activity，你也可以为Notification添加一些按钮
-，从而实现一些附加的动作如关闭一个闹钟或者快速回复一个文本消息。</p>
-<p>Notification中，通过PendingIntent定义动作。PenddingIntent包含一个开启Activity的Intent。</p>
-<p>示例：</p>
-<pre><code class="lang-java">NotificationCompat.Builder mBuilder =
-        <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>)
-        .setSmallIcon(R.drawable.notification_icon)
-        .setContentTitle(<span class="hljs-string">"My notification"</span>)
-        .setContentText(<span class="hljs-string">"Hello World!"</span>);
-<span class="hljs-comment">// Creates an explicit intent for an Activity in your app</span>
-Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
-
-<span class="hljs-comment">// The stack builder object will contain an artificial back stack for the</span>
-<span class="hljs-comment">// started Activity.</span>
-<span class="hljs-comment">// This ensures that navigating backward from the Activity leads out of</span>
-<span class="hljs-comment">// your application to the Home screen.</span>
-TaskStackBuilder stackBuilder = TaskStackBuilder.create(<span class="hljs-keyword">this</span>);
-<span class="hljs-comment">// Adds the back stack for the Intent (but not the Intent itself)</span>
-stackBuilder.addParentStack(ResultActivity.class);
-<span class="hljs-comment">// Adds the Intent that starts the Activity to the top of the stack</span>
-stackBuilder.addNextIntent(resultIntent);
-PendingIntent resultPendingIntent =
-        stackBuilder.getPendingIntent(
-            <span class="hljs-number">0</span>,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        );
-mBuilder.setContentIntent(resultPendingIntent);
-NotificationManager mNotificationManager =
-    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-<span class="hljs-comment">// mId allows you to update the notification later on.</span>
-mNotificationManager.notify(mId, mBuilder.build());
-</code></pre>
-<h2 id="">阅读更多</h2>
-<p><a href="http://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank">http://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 
                     
                     </section>

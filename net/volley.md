@@ -7,11 +7,9 @@
 使用Git克隆Volley源码
 
 ```
-<<<<<<< HEAD
+
 git clone https://android.googlesource.com/platform/frameworks/volley
-=======
-git clone https://android.googlesource.com/platform/frameworks/volley 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
+
 
 ```
 
@@ -27,11 +25,8 @@ git clone https://android.googlesource.com/platform/frameworks/volley
 
 ```java
 
-<<<<<<< HEAD
+
 RequestQueue mQueue = Volley.newRequestQueue(context);
-=======
-RequestQueue mQueue = Volley.newRequestQueue(context);  
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 
 ```
 
@@ -65,11 +60,8 @@ RequestQueue是一个请求队列对象，它可以缓存所有的HTTP请求，�
 
 ```java
 
-<<<<<<< HEAD
+
 mQueue.add(stringRequest);
-=======
-mQueue.add(stringRequest);  
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 
 ```
 
@@ -154,11 +146,7 @@ JsonRequest继承Request，JsonRequest是一个抽象类，有两个子类：
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -167,17 +155,11 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
-<<<<<<< HEAD
+
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-=======
- 
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 /**
  * Volley adapter for JSON requests that will be parsed into Java objects by Gson.
  */
@@ -186,11 +168,7 @@ public class GsonRequest<T> extends Request<T> {
     private final Class<T> clazz;
     private final Map<String, String> headers;
     private final Listener<T> listener;
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     /**
      * Make a GET request and return a parsed object from JSON.
      *
@@ -205,29 +183,17 @@ public class GsonRequest<T> extends Request<T> {
         this.headers = headers;
         this.listener = listener;
     }
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         return headers != null ? headers : super.getHeaders();
     }
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     @Override
     protected void deliverResponse(T response) {
         listener.onResponse(response);
     }
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
@@ -321,24 +287,19 @@ ImageLoader imageLoader = new ImageLoader(mQueue, new BitmapCache());
 3.创建一个ImageListener对象。
 
 ```java
-<<<<<<< HEAD
+
 ImageListener listener = ImageLoader.getImageListener(imageView,
         R.drawable.default_image, R.drawable.failed_image);
-=======
-ImageListener listener = ImageLoader.getImageListener(imageView,  
-        R.drawable.default_image, R.drawable.failed_image); 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
+
 
 ```
 
 4.调用ImageLoader的get()方法来加载图片。
 
 ```java
-<<<<<<< HEAD
+
 imageLoader.get("http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg", listener);
-=======
-imageLoader.get("http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg", listener);  
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
+
 
 ```
 ### 3.3 NetWorkImageView
@@ -349,21 +310,12 @@ imageLoader.get("http://img.my.csdn.net/uploads/201404/13/1397393290_5765.jpeg",
 
 ```xml
 
-<<<<<<< HEAD
 <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/network_image_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         />
-=======
-<com.android.volley.toolbox.NetworkImageView   
-        android:id="@+id/network_image_view"  
-        android:layout_width="200dp"  
-        android:layout_height="200dp"  
-        android:layout_gravity="center_horizontal"  
-        />  
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 
 ```
 NetWorkImageView方法
@@ -375,31 +327,20 @@ NetWorkImageView方法
 # 扩展阅读
 
 
-<<<<<<< HEAD
 * [ Android Volley完全解析(一)，初识Volley的基本用法](http://blog.csdn.net/guolin_blog/article/details/17482095)
-=======
-* [ Android Volley完全解析(一)，初识Volley的基本用法](http://blog.csdn.net/guolin_blog/article/details/17482095) 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
+
 * [Android Volley完全解析(二)，使用Volley加载网络图片](http://blog.csdn.net/guolin_blog/article/details/17482165)
 * [Android Volley完全解析(三)，定制自己的Request](http://blog.csdn.net/guolin_blog/article/details/17612763)
 * [Android Volley完全解析(四)，带你从源码的角度理解Volley](http://blog.csdn.net/guolin_blog/article/details/17656437)
 * [Asynchronous HTTP Requests in Android Using Volley](http://arnab.ch/blog/2013/08/asynchronous-http-requests-in-android-using-volley/)
 
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 
 
 
 
 [Volley]: https://android.googlesource.com/platform/frameworks/volley
-<<<<<<< HEAD
+
 [async-http-client]: https://github.com/AsyncHttpClient/async-http-client
-=======
-[async-http-client]: https://github.com/AsyncHttpClient/async-http-client 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 [Android-Universal-Image-Loader]: https://github.com/nostra13/Android-Universal-Image-Loader
 [Android Volley]: https://github.com/mcxiaoke/android-volley
 

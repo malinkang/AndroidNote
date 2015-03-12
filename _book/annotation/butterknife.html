@@ -8,13 +8,14 @@
         <title>ButterKnife | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.4.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -35,7 +36,7 @@
 
 
         
-    <div class="book" data-level="10.1" data-basepath=".." data-revision="1425398533852">
+    <div class="book" data-level="10.1" data-basepath=".." data-revision="1426138611086">
     
 
 <div class="book-summary">
@@ -797,10 +798,9 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_680">
+                    <section class="normal" id="section-gitbook_3359">
                     
                         <h1 id="butterknife">ButterKnife</h1>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <p>ButterKnife是一个Android View注入的库。</p>
 <h2 id="1-eclipse">1 配置Eclipse</h2>
 <p>在使用ButterKnife需要先配置一下Eclipse。</p>
@@ -916,141 +916,8 @@ ImageView photo = ButterKnife.findById(view, R.id.photo);
 <pre><code>-dontwarn butterknife.internal.**
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}
-</code></pre><h2 id="">阅读更多</h2>
+</code></pre><h2 id="">扩展阅读</h2>
 <p><a href="http://jakewharton.github.io/butterknife/" target="_blank">Butterknife</a></p>
-<p>=======</p>
-<p>ButterKnife是一个Android View注入的库。</p>
-<h2 id="1-eclipse">1 配置Eclipse</h2>
-<p>在使用ButterKnife需要先配置一下Eclipse。</p>
-<p>项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致</p>
-<p><img src="http://jakewharton.github.io/butterknife/static/ide-eclipse1.png" alt=""></p>
-<p>接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs...,选中ButterKnife的jar包</p>
-<p><img src="http://jakewharton.github.io/butterknife/static/ide-eclipse2.png" alt=""></p>
-<p>然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。</p>
-<p>确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。</p>
-<h2 id="2-">2 使用注解</h2>
-<p>在Activity中使用注解</p>
-<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
-  <span class="hljs-annotation">@InjectView</span>(R.id.title) TextView title;
-  <span class="hljs-annotation">@InjectView</span>(R.id.subtitle) TextView subtitle;
-  <span class="hljs-annotation">@InjectView</span>(R.id.footer) TextView footer;
-
-  <span class="hljs-annotation">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
-    setContentView(R.layout.simple_activity);
-    ButterKnife.inject(<span class="hljs-keyword">this</span>);
-    <span class="hljs-comment">// TODO Use "injected" views...</span>
-  }
-}
-</code></pre>
-<p>Fragment中使用注解</p>
-<pre><code class="lang-java">
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FancyFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
-  <span class="hljs-annotation">@InjectView</span>(R.id.button1) Button button1;
-  <span class="hljs-annotation">@InjectView</span>(R.id.button2) Button button2;
-
-  <span class="hljs-annotation">@Override</span> <span class="hljs-function">View <span class="hljs-title">onCreateView</span><span class="hljs-params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>{
-    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="hljs-keyword">false</span>);
-    ButterKnife.inject(<span class="hljs-keyword">this</span>, view);
-    <span class="hljs-comment">// TODO Use "injected" views...</span>
-    <span class="hljs-keyword">return</span> view;
-  }
-}
-</code></pre>
-<p>Adapter中使用注解</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseAdapter</span> </span>{
-  <span class="hljs-annotation">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">getView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, View view, ViewGroup parent)</span> </span>{
-    ViewHolder holder;
-    <span class="hljs-keyword">if</span> (view != <span class="hljs-keyword">null</span>) {
-      holder = (ViewHolder) view.getTag();
-    } <span class="hljs-keyword">else</span> {
-      view = inflater.inflate(R.layout.whatever, parent, <span class="hljs-keyword">false</span>);
-      holder = <span class="hljs-keyword">new</span> ViewHolder(view);
-      view.setTag(holder);
-    }
-
-    holder.name.setText(<span class="hljs-string">"John Doe"</span>);
-    <span class="hljs-comment">// etc...</span>
-
-    <span class="hljs-keyword">return</span> convertView;
-  }
-
-  <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewHolder</span> </span>{
-    <span class="hljs-annotation">@InjectView</span>(R.id.title) TextView name;
-    <span class="hljs-annotation">@InjectView</span>(R.id.job_title) TextView jobTitle;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ViewHolder</span><span class="hljs-params">(View view)</span> </span>{
-      ButterKnife.inject(<span class="hljs-keyword">this</span>, view);
-    }
-  }
-}
-</code></pre>
-<h2 id="3">3.事件注入</h2>
-<p>点击事件注入</p>
-<pre><code class="lang-java">
-<span class="hljs-annotation">@OnClick</span>(R.id.submit)
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHi</span><span class="hljs-params">(Button button)</span> </span>{
-  button.setText(<span class="hljs-string">"Hello!"</span>);
-}
-</code></pre>
-<p>多个控件具有相同的事件</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@OnClick</span>({ R.id.door1, R.id.door2, R.id.door3 })
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pickDoor</span><span class="hljs-params">(DoorView door)</span> </span>{
-  <span class="hljs-keyword">if</span> (door.hasPrizeBehind()) {
-    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"You win!"</span>, LENGTH_SHORT).show();
-  } <span class="hljs-keyword">else</span> {
-    Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Try again"</span>, LENGTH_SHORT).show();
-  }
-}
-</code></pre>
-<h2 id="4">4.重置注入</h2>
-<pre><code>public class FancyFragment extends Fragment {
-  @InjectView(R.id.button1) Button button1;
-  @InjectView(R.id.button2) Button button2;
-
-  @Override View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fancy_fragment, container, false);
-    ButterKnife.inject(this, view);
-    // TODO Use &quot;injected&quot; views...
-    return view;
-  }
-
-  @Override void onDestroyView() {
-    super.onDestroyView();
-    ButterKnife.reset(this);
-  }
-}
-</code></pre><h2 id="">可选注入</h2>
-<p>默认情况下@InjectView和@OnClick注入是必选的，如果view未找到将出现异常。为了避免出现异常，添加一个@Optional注解。</p>
-<h2 id="">其它</h2>
-<p>ButterKnife还包含了两个findById方法。</p>
-<pre><code>
-View view = LayoutInflater.from(context).inflate(R.layout.thing, null);
-TextView firstName = ButterKnife.findById(view, R.id.first_name);
-TextView lastName = ButterKnife.findById(view, R.id.last_name);
-ImageView photo = ButterKnife.findById(view, R.id.photo);
-</code></pre><h2 id="">混淆</h2>
-<p>为避免混淆的时代码被移除，所以要在proguard-project.txt中添加如下代码避免混淆</p>
-<pre><code>-dontwarn butterknife.internal.**
--keep class **$$ViewInjector { *; }
--keepnames class * { @butterknife.InjectView *;}
-</code></pre><h2 id="">阅读更多</h2>
-<p><a href="http://jakewharton.github.io/butterknife/" target="_blank">Butterknife</a></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>43eb28dc379e3887bf933756ee10845587398c6c</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 
                     
                     </section>

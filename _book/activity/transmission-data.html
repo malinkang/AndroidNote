@@ -8,13 +8,14 @@
         <title>数据传递 | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.4.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -33,7 +34,7 @@
 
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="1425398533852">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="1426138611086">
     
 
 <div class="book-summary">
@@ -795,7 +796,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_678">
+                    <section class="normal" id="section-gitbook_3357">
                     
                         <p>Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。</p>
 <p>序列化对象可以使用Java的<code>Serializable</code>的接口<code>Parcelable</code>接口。转化成JSON字符串，可以使用<code>Gson</code>等库。</p>
@@ -981,9 +982,9 @@
 <pre><code class="lang-java">
 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
-<span class="hljs-annotation">@Parcel</span> 
+<span class="hljs-annotation">@Parcel</span>
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> </span>{ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> </span>{
 
 
    <span class="hljs-keyword">int</span> id;

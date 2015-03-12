@@ -4,7 +4,6 @@
 
 ![](https://github.com/ITBox/ITBox.github.io/blob/master/images/D06A00CC-E866-4B48-B09A-41609D28B275.png?raw=true)
 
- <!-- toc -->
 
 随着AndroidDesign的Holo风格越来越普及，Android应用程序也有了自己的设计风格，微信5.2也转向的Holo风格，ActionBar是Holo风格中重要的元素，接下来我将简单介绍ActionBar如何应用到项目中。
 
@@ -26,11 +25,12 @@
 
 在清单文件中配置activity的Theme，也可以在application中配置全局Theme，appcompat提供了三种Theme：
 
-<pre>
- 黑色主题：@Style/Theme.AppCompat
- 白色主题：@Style/Theme.AppCompat.Light
- 白色主题，黑色ActionBar：@Style/Theme.AppCompat.Light.DarkActionBar
-</pre>
+>黑色主题：@Style/Theme.AppCompat
+
+>白色主题：@Style/Theme.AppCompat.Light
+
+
+>白色主题，黑色ActionBar：@Style/Theme.AppCompat.Light.DarkActionBar
 
 
 也可以自定义Style继承上面几种Theme。
@@ -41,8 +41,7 @@
 在Activity中调用getSupportActionBar()方法可以获取ActionBar对象，ActionBar默认是显示的，如果想隐藏可以调用ActionBar.hide()方法，显示则调用ActionBar.show();
 
 
-{% highlight java %}
-
+```java
         ActionBar actionBar = getSupportActionBar();
 	    if (actionBar.isShowing()) {// 判断ActionBar是否显示
 			actionBar.hide();// 隐藏ActionBar
@@ -50,7 +49,7 @@
 			actionBar.show();// 显示ActionBar
 	    }
 
-{% endhighlight %}
+```
 
 ####使用Logo替换icon####
 
@@ -71,7 +70,7 @@
 ###添加Action Item###
 当你开启Activity时，系统通过调用Activity的onCreateOptionsMenu()方法来放置action items。使用这个方法inflate一个定义所有action items的菜单资源。
 
-{% highlight xml%}
+```xml
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/action_search"
@@ -82,11 +81,11 @@
           android:title="@string/action_compose" />
 </menu>
 
-{% endhighlight %}
+```
 
 然后调用Activity的onCreateOptionsMenu()方法中添加将所有的action item添加到ActionBar上。
 
-{% highlight java%}
+```java
 
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,11 +95,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return super.onCreateOptionsMenu(menu);
 }
 
-{% endhighlight %}
+```
 
 想要item直接显示在actionbar上，需要在<item>标签中，添加一个showAsAction="ifRoom"属性。
 
-{% highlight xml%}
+```xml
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
@@ -110,7 +109,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
           yourapp:showAsAction="ifRoom"  />
     ...
 </menu>
-{% endhighlight %}
+```
 
 如果没有足够的空间，它将以悬浮菜单的样式显示。
 
@@ -119,9 +118,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 如果同时指定了title和icon属性，action item默认只显示icon.如果需要显示标题，需要为showAsAction属性添加withText值,如果icon可用并且actionbar空间不足时，title将不显示。
 
-{% highlight xml%}
+```xml
 <item yourapp:showAsAction="ifRoom|withText" ... />
-{% endhighlight %}
+```
 
 
 
@@ -135,7 +134,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 ####处理条目点击####
 当用户点击一个条目时，系统将点击的MenuItem传递给Activity的onOptionsItemSelected() 方法。
 
-{% highlight java%}
+```java
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
     // Handle presses on the action bar items
@@ -150,10 +149,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
             return super.onOptionsItemSelected(item);
     }
 }
-{% endhighlight %}
+```
 
 向上返回的按钮的id是android.R.id.home 所以通过下面代码就能实现点击返回按钮返回的功能。
-{% highlight java%}
+``` java
 
  setDisplayHomeAsUpEnabled(true);//显示返回箭头
 @Override
@@ -167,7 +166,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
     }
 }
 
-{% endhighlight %}
+```
 
 ####使用分离的ActionBar####
 
@@ -180,7 +179,7 @@ ActionBar可以分割成屏幕上方和屏幕下方两部分来显示（如上�
 
 2. 为了支持低版本，在```<activity>```元素中添加一个```<mata-data>```元素，
 
-{% highlight xml %}
+```xml
 
 <manifest ...>
     <activity uiOptions="splitActionBarWhenNarrow" ... >
@@ -188,7 +187,7 @@ ActionBar可以分割成屏幕上方和屏幕下方两部分来显示（如上�
                    android:value="splitActionBarWhenNarrow" />
     </activity>
 </manifest>
-{% endhighlight %}
+```
 
 ###添加一个Action View###
 
@@ -196,7 +195,7 @@ Action View 提供了一些复杂操作的快速入口，不需要改变Acitivit
 ![](http://developer.android.com/images/ui/actionbar-searchview@2x.png)
 我们可以通过给acionlayout属性指定一个布局资源或者给actionViewClass属性指定一个组件类来添加一个Action View.
 
-{% highlight xml %}
+```xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -208,13 +207,13 @@ Action View 提供了一些复杂操作的快速入口，不需要改变Acitivit
           yourapp:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>
 
-{% endhighlight %}
+```
 
 注意showAsAction属性包含了一个collapseActionView值。
 
 我们可以在onCreateOptionsMenu()方法中配置action view。通过静态方法MenuItemCompat.getActionView()可以获取一个到action view对象。这个方法需要传递一个MenuItem对象。
 
-{% highlight java %}
+```java
 
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -226,7 +225,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     return super.onCreateOptionsMenu(menu);
 }
 
-{% endhighlight %}
+```
 
 ####处理可折叠的 action view####
 
@@ -238,7 +237,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 通过OnActionExpandListener监听器，可以监听到action view折叠和展开。
 
-{% highlight java %}
+```java
 
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -262,7 +261,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         }
     });
 }
-{% endhighlight %}
+```
 
 ###添加 Action Provider###
 
@@ -282,7 +281,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 * 设置actionProviderClass属性值为ShareActionProvider类.
 
-{% highlight xml %}
+```xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -294,11 +293,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
           />
     ...
 </menu>
-{% endhighlight %}
+```
 
 * 定义你想要分享的Intent。在onCreateOptionsMenu()方法中调用 MenuItemCompat.getActionProvider() 获取ShareActionProvider对象，然后调用ShareActionProvider的setShareIntent()设置分享意图。
 
-{% highlight java %}
+```java
 private ShareActionProvider mShareActionProvider;
 
 @Override
@@ -324,8 +323,7 @@ private Intent getDefaultIntent() {
     intent.setType("image/*");
     return intent;
 }
-
-{% endhighlight %}
+```
 
 默认情况下，ShareActionProvider根据用户选择的频繁度进行排序，越频繁的越靠上，最频繁的直接作为一个action bar的一个默认分享按钮存在。并且排序信息保存在一个名为DEFAULT_SHARE_HISTORY_FILE_NAME的私有文件中。如果使用ShareActionProvider或其子类只进行一种操作的话，可以继续使用这个历史文件而不需要其它操作。如果你用SharedActionProvider或子类同时进行多种不同的操作，那么每一个ShareActionProvider应当分别指定自己的历史文件去维护自己的历史记录。通过调用setShareHistoryFileName()并且创建一个xml的文件来创建不同的历史文件。
 
@@ -334,7 +332,9 @@ private Intent getDefaultIntent() {
 要创建自定义的ActionProvider只需要简单的继承ActionProvider类，并且实现下列方法。
 
 * OnCreateActionView()这个方法用来获取action view。使用从构造器中接收的Context对象，获取一个LayoutInflater对象的实例，并且用XML资源来填充操作视窗，然后注册事件监听器。
-{% highlight java %}
+
+
+```java
 
 public View onCreateActionView(MenuItem forItem) {
     // Inflate the action view to be shown on the action bar.
@@ -351,7 +351,7 @@ public View onCreateActionView(MenuItem forItem) {
 }
 
 
-{% endhighlight %}
+```
 
 * onPerformDefaultAction()在选中悬浮菜单中的菜单时，系统会调用这个方法，并且操作提供器应该这对这个选中的菜单项执行默认的操作。但是，如果你的操作提供器提供了一个子菜单，即使是悬浮菜单中一个菜单项的子菜单，那么也要通过onPrepareSubMenu()回调方法来显示子菜单。这样onPerformDefaultAction()在子菜单显示时就不会被调用。注意：实现了onOptionsItemSelected()回调方法的Activity或Frament对象能够通过处理item-selected事件（并且返回true）来覆盖操作提供器的默认行为，这种情况下，系统不会调用onPerformDefaultAction()方法。
 
@@ -376,7 +376,7 @@ action bar 选项卡可以让用户非常方便的浏览和切换不同的视图
 
 实现ActionBar.TabListener
 
-{% highlight java %}
+```java
 
 public static class TabListener<T extends Fragment> implements ActionBar.TabListener {
     private Fragment mFragment;
@@ -421,13 +421,13 @@ public static class TabListener<T extends Fragment> implements ActionBar.TabList
     }
 }
 
-{% endhighlight %}
+```
 
 注意：在这里不能调用fragment transaction的commit()方法，否则系统可能会出现异常，也不能添加这些fragment到返回栈。
 
 接下来创建每一个需要添加到ActionBar上的ActionBar.Tab。注意，必须调用ActionBar的setNavigationMode(NAVIGATION_MODE_TABS)使选项卡可用。
 
-{% highlight java %}
+```java
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -453,7 +453,7 @@ protected void onCreate(Bundle savedInstanceState) {
     actionBar.addTab(tab);
 }
 
-{% endhighlight %}
+```
 
 此外，我们还可以通过结合ViewPager来实现滑动切换视图。
 
@@ -480,7 +480,7 @@ ActionBar允许自定义ActionBar的颜色，字体颜色，按钮样式等等�
 
 自定义ActionBar样式可以通过继承Widget.AppCompat.ActionBar来实现。查看Widget.AppCompat.ActionBar源码
 
-{% highlight xml %}
+```xml
 
 <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar">
 </style>
@@ -506,8 +506,7 @@ ActionBar允许自定义ActionBar的颜色，字体颜色，按钮样式等等�
         <item name="indeterminateProgressStyle">@style/Widget.AppCompat.ProgressBar</item>
 </style>
 
-{% endhighlight %}
-
+```
 background:设置actionbar的背景。
 
 backgroundstacked：设置tab的背景
@@ -524,8 +523,7 @@ titleTextStyle:标题样式
 
 自定义ActionItem样式可以通过继承Widget.AppCompat.ActionButton来实现。查看Widget.AppCompat.ActionButton源码
 
-
-{% highlight xml %}
+```xml
 
    <style name="Widget.AppCompat.ActionButton" parent="Widget.AppCompat.Base.ActionButton">
     </style>
@@ -541,14 +539,14 @@ titleTextStyle:标题样式
         <item name="textAllCaps">@bool/abc_config_actionMenuItemAllCaps</item>
     </style>
 
-{% endhighlight %}
+```
 
 ###Tab导航样式###
 
 自定义Tab导航样式可以通过继承Widget.AppCompat.ActionBar.TabView来实现。查看Widget.AppCompat.ActionBar.TabView源码
 
 
-{% highlight xml %}
+```xml
 
     <style name="Widget.AppCompat.ActionBar.TabView"
            parent="Widget.AppCompat.Base.ActionBar.TabView">
@@ -562,13 +560,13 @@ titleTextStyle:标题样式
         <item name="android:minWidth">80dip</item>
     </style>
 
-{% endhighlight %}
+```
 
 ####下拉列表样式####
 
 自定义下拉列表样式可以通过继承Widget.AppCompat.Spinner.DropDown.ActionBar来实现。查看Widget.AppCompat.ActionBar.TabView源码
 
-{% highlight xml %}
+```xml
 
    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar"
            parent="Widget.AppCompat.Base.Spinner">
@@ -586,7 +584,7 @@ titleTextStyle:标题样式
         <item name="android:background">@drawable/abc_spinner_ab_holo_dark</item>
     </style>
 
-{% endhighlight %}
+```
 
 
 ###扩展阅读：
@@ -645,7 +643,7 @@ titleTextStyle:标题样式
 在Activity中调用getSupportActionBar()方法可以获取ActionBar对象，ActionBar默认是显示的，如果想隐藏可以调用ActionBar.hide()方法，显示则调用ActionBar.show();
 
 
-{% highlight java %}
+```java
 
         ActionBar actionBar = getSupportActionBar();
 	    if (actionBar.isShowing()) {// 判断ActionBar是否显示
@@ -654,8 +652,7 @@ titleTextStyle:标题样式
 			actionBar.show();// 显示ActionBar
 	    }
 
-{% endhighlight %}
-
+```
 ####使用Logo替换icon####
 
 默认的,ActionBar调用应用图标。如果在```<application>```或者```<activity>```元素中，指定logo属性，ActionBar将使用logo替代icon
@@ -938,6 +935,8 @@ private Intent getDefaultIntent() {
 要创建自定义的ActionProvider只需要简单的继承ActionProvider类，并且实现下列方法。
 
 * OnCreateActionView()这个方法用来获取action view。使用从构造器中接收的Context对象，获取一个LayoutInflater对象的实例，并且用XML资源来填充操作视窗，然后注册事件监听器。
+*
+
 {% highlight java %}
 
 public View onCreateActionView(MenuItem forItem) {

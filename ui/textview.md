@@ -149,7 +149,7 @@ protected void attachBaseContext(Context newBase) {
 ```
 
 
-## 阅读更多
+## 扩展阅读
 
 
 * [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)

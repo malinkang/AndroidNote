@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 
@@ -46,7 +46,7 @@ loadDataWithBaseURL(null, htmlStr,"text/html", "utf-8", null);
 
 ```java
 //打开本包内asset目录下的test.html文件
-loadUrl(" file:///android_asset/test.html ");  
+loadUrl(" file:///android_asset/test.html ");
 //打开本地sd卡内的kris.html文件
 loadUrl("content://com.android.htmlfileprovider/sdcard/malinkang.html");
 //打开指定URL的html文件
@@ -67,11 +67,8 @@ loadDataWithBaseURL(null, htmlStr,"text/html", "utf-8", null);
 
 ```
 
-###更多阅读
+###扩展阅读
 
 [WebView乱码解决](http://stackoverflow.com/questions/3961589/android-webview-and-loaddata)
 
 
-
-
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c

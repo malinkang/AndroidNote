@@ -248,9 +248,9 @@ Model
 
 <<<<<<< HEAD
 
-@Parcel 
+@Parcel
 
-public class Author { 
+public class Author {
 
 
    int id;
