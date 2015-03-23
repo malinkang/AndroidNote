@@ -1,0 +1,1023 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>LayoutInflater | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="prev" href="../ui/notification.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+    
+    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
+    
+
+
+        
+    <div class="book" data-level="1.8" data-basepath=".." data-revision="1427039726093">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> [UI]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" >
+            
+            <span><b>1.1.</b> [Layouts]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" >
+            
+            <span><b>1.2.</b> [Components]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.2.1" data-path="ui/textview.html">
+            
+                
+                    <a href="../ui/textview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                         TextView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.2" data-path="ui/webview.html">
+            
+                
+                    <a href="../ui/webview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.2.</b>
+                        
+                         WebView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.3" data-path="ui/recyclerview.html">
+            
+                
+                    <a href="../ui/recyclerview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.3.</b>
+                        
+                         RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" >
+            
+            <span><b>1.3.</b> [AdapterView]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" >
+            
+            <span><b>1.4.</b> [Adapter]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+            
+                
+                    <a href="../ui/actionbar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         ActionBar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+            
+                
+                    <a href="../ui/toast.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Toast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+            
+                
+                    <a href="../ui/notification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         Notification
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="1.8" data-path="ui/layoutinflater.html">
+            
+                
+                    <a href="../ui/layoutinflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.9" >
+            
+            <span><b>1.9.</b> [Resource]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.10" data-path="resource/drawable-resource.html">
+            
+                
+                    <a href="../resource/drawable-resource.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                         DrawableResource
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> [Intent]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> [Activity] </span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="activity/transmission-data.html">
+            
+                
+                    <a href="../activity/transmission-data.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         数据传递
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> [Fragment]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> [Service]</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> [多线程]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="multithread/handler.html">
+            
+                
+                    <a href="../multithread/handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Handler
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> [存储]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="data/sharedpreferences.html">
+            
+                
+                    <a href="../data/sharedpreferences.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         SharedPreferences
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" >
+            
+            <span><b>7.2.</b> [数据库]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.2.1" data-path="data/activeandroid.html">
+            
+                
+                    <a href="../data/activeandroid.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.1.</b>
+                        
+                         ActiveAndroid
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> [数据交换]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" >
+            
+            <span><b>8.1.</b> [JSON]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1.1" data-path="parse/gson.html">
+            
+                
+                    <a href="../parse/gson.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.1.</b>
+                        
+                         Gson
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" >
+            
+            <span><b>9.</b> [网络编程]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" >
+            
+            <span><b>9.1.</b> [网络请求]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1.1" data-path="net/retrofit.html">
+            
+                
+                    <a href="../net/retrofit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.1.</b>
+                        
+                         Retrofit
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.1.2" data-path="net/volley.html">
+            
+                
+                    <a href="../net/volley.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.2.</b>
+                        
+                         Volley
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" >
+            
+            <span><b>9.2.</b> [网络图片加载]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.2.1" data-path="net/android-universal-image-loader.html">
+            
+                
+                    <a href="../net/android-universal-image-loader.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.1.</b>
+                        
+                         Android-Universal-Image-Loader
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2.2" data-path="net/picasso.html">
+            
+                
+                    <a href="../net/picasso.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.2.</b>
+                        
+                         Picasso
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" >
+            
+            <span><b>10.</b> [注解]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="10.1" data-path="annotation/butterknife.html">
+            
+                
+                    <a href="../annotation/butterknife.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                         ButterKnife
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.2" data-path="annotation/androidannotations.html">
+            
+                
+                    <a href="../annotation/androidannotations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                         AndroidAnnotations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" >
+            
+            <span><b>11.</b> [工具]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="11.1" >
+            
+            <span><b>11.1.</b> [AndroidStudio]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="11.1.1" data-path="tools/android-studio/tips_and_tricks.html">
+            
+                
+                    <a href="../tools/android-studio/tips_and_tricks.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.1.</b>
+                        
+                         提示和技巧
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" >
+            
+            <span><b>12.</b> [源码分析]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="source-analysis/activeandroid.html">
+            
+                
+                    <a href="../source-analysis/activeandroid.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         ActiveAndroid源码分析
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_21">
+                    
+                        <h1 id="layoutinfalter">LayoutInfalter使用</h1>
+<p>LayoutInfalter对象可以将XML转化为一个View对象。</p>
+<h2 id="layoutinfalter">创建LayoutInfalter对象</h2>
+<p>1.通过<code>Context</code>的<code>getSystemService</code>方法来获取</p>
+<pre><code class="lang-java">
+LayoutInflater LayoutInflater =
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+</code></pre>
+<p>2.也可以通过<code>LayoutInflater</code>的静态方法<code>from</code>来获取，查看from的源码可以看到，本质调用的还是上面的方法。</p>
+<pre><code class="lang-java">    <span class="hljs-javadoc">/**
+     * Obtains the LayoutInflater from the given context.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> LayoutInflater <span class="hljs-title">from</span><span class="hljs-params">(Context context)</span> </span>{
+        LayoutInflater LayoutInflater =
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        <span class="hljs-keyword">if</span> (LayoutInflater == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AssertionError(<span class="hljs-string">"LayoutInflater not found."</span>);
+        }
+        <span class="hljs-keyword">return</span> LayoutInflater;
+    }
+</code></pre>
+<h2 id="layoutinfalter">使用LayoutInfalter</h2>
+<p>LayoutInfalter提供了两个重载方法来将XML转换为View对象</p>
+<pre><code class="lang-java">    <span class="hljs-javadoc">/**
+     * Inflate a new view hierarchy from the specified xml resource. Throws
+     * {@link InflateException} if there is an error.
+     *
+     *<span class="hljs-javadoctag"> @param</span> resource ID for an XML layout resource to load (e.g.,
+     *        &lt;code&gt;R.layout.main_page&lt;/code&gt;)
+     *<span class="hljs-javadoctag"> @param</span> root Optional view to be the parent of the generated hierarchy.
+     *<span class="hljs-javadoctag"> @return</span> The root View of the inflated hierarchy. If root was supplied,
+     *         this is the root View; otherwise it is the root of the inflated
+     *         XML file.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">inflate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> resource, ViewGroup root)</span> </span>{
+        <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-title">inflate</span><span class="hljs-params">(resource, root, root != <span class="hljs-keyword">null</span>)</span></span>;
+    }
+</code></pre>
+<pre><code class="lang-java"> <span class="hljs-javadoc">/**
+     * Inflate a new view hierarchy from the specified xml resource. Throws
+     * {@link InflateException} if there is an error.
+     *
+     *<span class="hljs-javadoctag"> @param</span> resource ID for an XML layout resource to load (e.g.,
+     *        &lt;code&gt;R.layout.main_page&lt;/code&gt;)
+     *<span class="hljs-javadoctag"> @param</span> root Optional view to be the parent of the generated hierarchy (if
+     *        &lt;em&gt;attachToRoot&lt;/em&gt; is true), or else simply an object that
+     *        provides a set of LayoutParams values for root of the returned
+     *        hierarchy (if &lt;em&gt;attachToRoot&lt;/em&gt; is false.)
+     *<span class="hljs-javadoctag"> @param</span> attachToRoot Whether the inflated hierarchy should be attached to
+     *        the root parameter? If false, root is only used to create the
+     *        correct subclass of LayoutParams for the root view in the XML.
+     *<span class="hljs-javadoctag"> @return</span> The root View of the inflated hierarchy. If root was supplied and
+     *         attachToRoot is true, this is root; otherwise it is the root of
+     *         the inflated XML file.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">inflate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> resource, ViewGroup root, <span class="hljs-keyword">boolean</span> attachToRoot)</span> </span>{
+        <span class="hljs-keyword">final</span> Resources res = getContext().getResources();
+        <span class="hljs-keyword">if</span> (DEBUG) {
+            Log.d(TAG, <span class="hljs-string">"INFLATING from resource: \""</span> + res.getResourceName(resource) + <span class="hljs-string">"\" ("</span>
+                    + Integer.toHexString(resource) + <span class="hljs-string">")"</span>);
+        }
+
+        <span class="hljs-keyword">final</span> XmlResourceParser parser = res.getLayout(resource);
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-title">inflate</span><span class="hljs-params">(parser, root, attachToRoot)</span></span>;
+        } <span class="hljs-keyword">finally</span> {
+            parser.close();
+        }
+    }
+</code></pre>
+<p>此外除了使用这两种方法以外，还可以通过View的<code>inflate</code>方法来将XML转换为View</p>
+<pre><code class="lang-java">
+    <span class="hljs-javadoc">/**
+     * Inflate a view from an XML resource.  This convenience method wraps the {@link
+     * LayoutInflater} class, which provides a full range of options for view inflation.
+     *
+     *<span class="hljs-javadoctag"> @param</span> context The Context object for your activity or application.
+     *<span class="hljs-javadoctag"> @param</span> resource The resource ID to inflate
+     *<span class="hljs-javadoctag"> @param</span> root A view group that will be the parent.  Used to properly inflate the
+     * layout_* parameters.
+     *<span class="hljs-javadoctag"> @see</span> LayoutInflater
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> View <span class="hljs-title">inflate</span><span class="hljs-params">(Context context, <span class="hljs-keyword">int</span> resource, ViewGroup root)</span> </span>{
+        LayoutInflater factory = LayoutInflater.from(context);
+        <span class="hljs-keyword">return</span> factory.inflate(resource, root);
+    }
+</code></pre>
+<p>下面我们通过例子来讲解inflate方法的使用</p>
+<p>创建一个布局red.xml</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">TextView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"100dp"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"100dp"</span>
+    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"A"</span>
+    <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"32dp"</span>
+    <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#ff0000"</span> /&gt;</span>
+</code></pre>
+<p>activity_main.xml</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
+    <span class="hljs-attribute">tools:context</span>=<span class="hljs-value">".MainActivity"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>MainActivity</p>
+<pre><code class="lang-java">  <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ViewGroup parent = (ViewGroup) findViewById(R.id.container);
+        view = LayoutInflater.from(<span class="hljs-keyword">this</span>).inflate(R.layout.red, <span class="hljs-keyword">null</span>);
+        parent.addView(view);
+        Log.d(TAG, view.toString());
+
+        view = LayoutInflater.from(<span class="hljs-keyword">this</span>).inflate(R.layout.red, parent, <span class="hljs-keyword">false</span>);
+        parent.addView(view);
+        Log.d(TAG, view.toString());
+        view = LayoutInflater.from(<span class="hljs-keyword">this</span>).inflate(R.layout.red, parent, <span class="hljs-keyword">true</span>);
+        Log.d(TAG, view.toString());
+
+    }
+</code></pre>
+<p>运行结果</p>
+<p><img src="images/layoutinflatersample.png" alt=""></p>
+<p>Log</p>
+<blockquote>
+<p>-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.TextView{41b6f0a8 V.ED.... ......ID 0,0-0,0}
+12-22 13:52:48.926  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.TextView{41b6f870 V.ED.... ......ID 0,0-0,0}
+12-22 13:52:48.931  16250-16250/com.malinkang.layoutinflater D/MainActivity﹕ android.widget.LinearLayout{41b6ea50 V.E..... ......I. 0,0-0,0 #7f080000 app:id/container}</p>
+</blockquote>
+<p>所以当不设置Root的时候，XML设置的参数将不起作用，当attachToRoot设置为True时，布局会自动添加到Root，并且返回Root View。</p>
+<h2 id="">阅读更多</h2>
+<ul>
+<li><a href="http://stackoverflow.com/questions/5026926/making-sense-of-layoutinflater" target="_blank">Making sense of LayoutInflater</a></li>
+<li><a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/" target="_blank">Layout Inflation as Intended</a></li>
+<li><a href="https://plus.google.com/+SimonVigTherkildsen/posts/Vbtj9fn33Ph" target="_blank">https://plus.google.com/+SimonVigTherkildsen/posts/Vbtj9fn33Ph</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../ui/notification.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Notification"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"malinkang"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
