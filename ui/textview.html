@@ -29,13 +29,9 @@
         
 <link rel="stylesheet" href="../gitbook/style.css">
 
-    
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.css">
-    
-
 
         
-    <div class="book" data-level="1.2.1" data-basepath=".." data-revision="1427017288339">
+    <div class="book" data-level="1.2.1" data-basepath=".." data-revision="1427612226540">
     
 
 <div class="book-summary">
@@ -708,6 +704,36 @@
             
         </li>
     
+        
+        <li class="chapter " data-level="12" >
+            
+            <span><b>12.</b> [源码分析]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="source-analysis/activeandroid.html">
+            
+                
+                    <a href="../source-analysis/activeandroid.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         ActiveAndroid源码分析
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
 
         
@@ -797,10 +823,18 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_105">
                     
-                        <h1 id="textview">TextView</h1>
-<h2 id="1-textview">1. TextView常用属性</h2>
+                        <h1 id="textview">TextView使用</h1>
+<h3 id="">目录</h3>
+<ul>
+<li><a href="#1.TextView常用属性">1.TextView常用属性</a></li>
+<li><a href="#2.在TextView中展示Html">2.在TextView中展示Html</a></li>
+<li><a href="#3.在TextView中设置字体">3.在TextView中设置字体</a></li>
+<li><a href="#扩展阅读">扩展阅读</a></li>
+</ul>
+<h3 id="1.TextView常用属性">1.TextView常用属性</h3>
+
 <ul>
 <li><p><a href="http://developer.android.com/reference/android/widget/TextView.html#attr_android:textStyle" target="_blank">android:textStyle</a></p>
 <blockquote>
@@ -834,7 +868,9 @@ italic：斜体，bold：粗体，normal：正常</p>
 </blockquote>
 </li>
 </ul>
-<h2 id="2-textviewhtml">2. 在TextView中展示Html</h2>
+<h3 id="2.在TextView中展示Html">2.在TextView中展示Html</h3>
+
+
 <p>TextView直接设置Html字符串，Html标签将不起作用。比如</p>
 <pre><code class="lang-java">mTextView.setText(<span class="hljs-string">"&lt;font color='red'&gt;红色&lt;/font&gt;"</span>);
 </code></pre>
@@ -843,7 +879,10 @@ italic：斜体，bold：粗体，normal：正常</p>
 </code></pre><p>在Android里，提供了一个<a href="http://developer.android.com/reference/android/text/Html.html" target="_blank">Html</a>对象，通过相关方法可以将Html字符串解析为一个Spanned对象。</p>
 <pre><code class="lang-java">mTextView.setText(Html.from(<span class="hljs-string">"&lt;font color='red'&gt;红色&lt;/font&gt;"</span>));
 </code></pre>
-<h2 id="3-textveiew">3. 在TextVeiew中设置字体</h2>
+<h3 id="3.在TextView中设置字体">3.在TextView中设置字体</h3>
+
+
+
 <p>在前面我们提到通过<code>typeface</code>属性可以设置字体，但该属性只支持<code>sans</code>, <code>serif</code>, <code>monospace</code>三种字体。如果想设置更多的字体只能通过代码来实现，但这样不太方便。开源库<a href="https://github.com/chrisjenx/Calligraphy" target="_blank">Calligraphy</a>让自定义字体更加的方便。</p>
 <p>Calligraphy使用非常简单，到Github项目主页下载最新的Jar，或者使用Gradle构建</p>
 <pre><code>dependencies {
@@ -907,7 +946,9 @@ italic：斜体，bold：粗体，normal：正常</p>
     &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">fontPath</span>"&gt;<span class="hljs-tag">fonts</span>/<span class="hljs-tag">Roboto-ThinItalic</span><span class="hljs-class">.ttf</span>&lt;/<span class="hljs-tag">item</span>&gt;
 </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 </code></pre>
-<h2 id="">扩展阅读</h2>
+<h3 id="扩展阅读">扩展阅读</h3>
+
+
 <ul>
 <li><a href="http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html" target="_blank">TextView中文API</a></li>
 <li><a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView英文文档</a></li>
@@ -933,10 +974,6 @@ italic：斜体，bold：粗体，normal：正常</p>
 
     
     <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-gtoc/gtoc.js"></script>
     
 
     
