@@ -46,5 +46,7 @@
 * [工具]
    * [AndroidStudio]
        * [提示和技巧](tools/android-studio/tips_and_tricks.md)
-       * [常见问题](tools/android-studio/question.md)
+       * [常见问题](tools/android-studio/question.md)      
+* [源码分析]
+   * [ActiveAndroid源码分析](source-analysis/activeandroid.md)
 

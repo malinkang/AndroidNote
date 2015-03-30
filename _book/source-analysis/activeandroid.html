@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>FragmentTabHost | </title>
+        <title>ActiveAndroid源码分析 | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,6 @@
         
     
     
-    <link rel="next" href="../ui/viewpager.html" />
-    
-    
-    <link rel="prev" href="../ui/recyclerview.html" />
     
 
         
@@ -38,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.2.4" data-basepath=".." data-revision="1427695967614">
+    <div class="book" data-level="12.1" data-basepath=".." data-revision="1427695967614">
     
 
 <div class="book-summary">
@@ -144,7 +140,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
             
                 
                     <a href="../ui/fragmenttabhost.html">
@@ -721,7 +717,7 @@
                 
     
         
-        <li class="chapter " data-level="12.1" data-path="source-analysis/activeandroid.html">
+        <li class="chapter active" data-level="12.1" data-path="source-analysis/activeandroid.html">
             
                 
                     <a href="../source-analysis/activeandroid.html">
@@ -830,83 +826,29 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_16">
                     
-                        <h2 id="fragmenttabhost">FragmentTabHost</h2>
-<h3 id="">禁止页面切换时，页面重绘</h3>
-<p>通过查看<code>FragmentTabHost</code>源码，可以看到当页面来回切换时，调用了<code>detach</code>和<code>attach</code>方法，会导致每次Fragment都会调用<code>onCreateView</code>方法。</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> FragmentTransaction <span class="hljs-title">doTabChanged</span><span class="hljs-params">(String tabId, FragmentTransaction ft)</span> </span>{
-        TabInfo newTab = <span class="hljs-keyword">null</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;mTabs.size(); i++) {
-            TabInfo tab = mTabs.get(i);
-            <span class="hljs-keyword">if</span> (tab.tag.equals(tabId)) {
-                newTab = tab;
-            }
-        }
-        <span class="hljs-keyword">if</span> (newTab == <span class="hljs-keyword">null</span>) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"No tab known for tag "</span> + tabId);
-        }
-        <span class="hljs-keyword">if</span> (mLastTab != newTab) {
-            <span class="hljs-keyword">if</span> (ft == <span class="hljs-keyword">null</span>) {
-                ft = mFragmentManager.beginTransaction();
-            }
-            <span class="hljs-keyword">if</span> (mLastTab != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-keyword">if</span> (mLastTab.fragment != <span class="hljs-keyword">null</span>) {
-                    ft.detach(mLastTab.fragment);
-                }
-            }
-            <span class="hljs-keyword">if</span> (newTab != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-keyword">if</span> (newTab.fragment == <span class="hljs-keyword">null</span>) {
-                    newTab.fragment = Fragment.instantiate(mContext,
-                            newTab.clss.getName(), newTab.args);
-                    ft.add(mContainerId, newTab.fragment, newTab.tag);
-                } <span class="hljs-keyword">else</span> {
-                    ft.attach(newTab.fragment);
-                }
-            }
-
-            mLastTab = newTab;
-        }
-        <span class="hljs-keyword">return</span> ft;
-    }
-</code></pre>
-<p>为了避免重绘，我们可以将<code>detach</code>方法和<code>attach</code>方法分别替换为<code>hide</code>方法和<code>show</code>方法</p>
+                        <h3 id="1">1.程序入口</h3>
+<p>程序入口是ActiveAndroid类的initialze方法</p>
 <pre><code class="lang-java">
-<span class="hljs-function"><span class="hljs-keyword">private</span> FragmentTransaction <span class="hljs-title">doTabChanged</span><span class="hljs-params">(String tabId, FragmentTransaction ft)</span> </span>{
-        TabInfo newTab = <span class="hljs-keyword">null</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;mTabs.size(); i++) {
-            TabInfo tab = mTabs.get(i);
-            <span class="hljs-keyword">if</span> (tab.tag.equals(tabId)) {
-                newTab = tab;
-            }
-        }
-        <span class="hljs-keyword">if</span> (newTab == <span class="hljs-keyword">null</span>) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"No tab known for tag "</span> + tabId);
-        }
-        <span class="hljs-keyword">if</span> (mLastTab != newTab) {
-            <span class="hljs-keyword">if</span> (ft == <span class="hljs-keyword">null</span>) {
-                ft = mFragmentManager.beginTransaction();
-            }
-            <span class="hljs-keyword">if</span> (mLastTab != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-keyword">if</span> (mLastTab.fragment != <span class="hljs-keyword">null</span>) {
-                    ft.hide(mLastTab.fragment);
-                }
-            }
-            <span class="hljs-keyword">if</span> (newTab != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-keyword">if</span> (newTab.fragment == <span class="hljs-keyword">null</span>) {
-                    newTab.fragment = Fragment.instantiate(mContext,
-                            newTab.clss.getName(), newTab.args);
-                    ft.add(mContainerId, newTab.fragment, newTab.tag);
-                } <span class="hljs-keyword">else</span> {
-                    ft.show(newTab.fragment);
-                }
-            }
-
-            mLastTab = newTab;
-        }
-        <span class="hljs-keyword">return</span> ft;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">(Configuration configuration, <span class="hljs-keyword">boolean</span> loggingEnabled)</span> </span>{
+        <span class="hljs-comment">// Set logging enabled first</span>
+        setLoggingEnabled(loggingEnabled);
+        Cache.initialize(configuration);
     }
 </code></pre>
+<p>初始化过程创建了一个 <code>Configuration</code>，并将<code>Configuration</code>传递给Cache进行初始化。</p>
+<p>Configuration类主要从项目的清单文件中获取数据库名字和版本等相关信息。</p>
+<p>在Cache的<code>initialize</code>方法中创建了一个<code>ModelInfo</code>对象和一个<code>DatabaseHelper</code>对象。</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">(Configuration configuration)</span> </span>{
+...
+        sContext = configuration.getContext();
+        sModelInfo = <span class="hljs-keyword">new</span> ModelInfo(configuration);
+        sDatabaseHelper = <span class="hljs-keyword">new</span> DatabaseHelper(configuration);
+ ...
+    }
+</code></pre>
+<p><code>ModelInfo</code> 类通过<code>scanForModel</code>扫描应用程序的源码，获得所有Model的子类，并且获取这些Model的TableInfo，存储在map集合mTableInfos中。</p>
 
                     
                     </section>
@@ -917,10 +859,6 @@
         </div>
 
         
-        <a href="../ui/recyclerview.html" class="navigation navigation-prev " aria-label="Previous page: RecyclerView"><i class="fa fa-angle-left"></i></a>
-        
-        
-        <a href="../ui/viewpager.html" class="navigation navigation-next " aria-label="Next page: ViewPager"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
