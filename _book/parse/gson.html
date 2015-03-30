@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="8.1.1" data-basepath=".." data-revision="1426138866738">
+    <div class="book" data-level="8.1.1" data-basepath=".." data-revision="1427695715577">
     
 
 <div class="book-summary">
@@ -819,9 +819,71 @@
 <li><a href="http://blog.csdn.net/lk_blog/article/details/7685224" target="_blank">Json转换利器Gson之实例四-Map处理(下)</a></li>
 <li><a href="http://blog.csdn.net/lk_blog/article/details/7685237" target="_blank">Json转换利器Gson之实例五-实际开发中的特殊需求处理</a></li>
 <li><a href="http://blog.csdn.net/lk_blog/article/details/7685347" target="_blank">Json转换利器Gson之实例六-注册TypeAdapter及处理Enum类型</a></li>
-<li><a href="https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9" target="_blank">A Gson TypeAdapterFactory</a></li>
+<li><p><a href="https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9" target="_blank">A Gson TypeAdapterFactory</a></p>
+<p>@Override</p>
+<pre><code>      public void success(CourseListInfo courseListInfo, Response response) {
+</code></pre></li>
 </ul>
+<pre><code>            if (courseListInfo != null
+                    &amp;&amp; courseListInfo.getResultCode() == 0
+                    ) {
+                if (courseListInfo.getData() != null &amp;&amp; courseListInfo.getData().size() != 0) {
+                    ArrayList&lt;CourseList&gt; roomList = courseListInfo
+                            .getData();
 
+                    }
+                    state = LoadDataEvent.State.SUCCESS;
+                    event.state = state;
+                    event.id = request.getPartType();
+                    mBus.post(event);
+
+                } else {
+                    if (&quot;0&quot;.equals(request.getPageNo())) {
+                        state = LoadDataEvent.State.NODATA;
+                        event.state = state;
+                        event.id = request.getPartType();
+                        mBus.post(event);
+                    } else {
+                        Timber.e(&quot;发送没有更多数据的通知&quot;);
+                        postNoMoreData();
+                    }
+                }
+
+            } else {
+                state = LoadDataEvent.State.FAILURE;
+                event.state = state;
+                event.id = request.getPartType();
+                mBus.post(event);
+
+                // 失败
+                try {
+                    throw new ApiException(courseListInfo);
+                } catch (ApiException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            switch (error.getKind()) {
+                case NETWORK:
+                    state = LoadDataEvent.State.NETWORKERROR;
+                    event.state = state;
+                    event.id = request.getPartType();
+                    mBus.post(event);
+                    break;
+                default:
+                    state = LoadDataEvent.State.FAILURE;
+                    event.state = state;
+                    event.id = request.getPartType();
+                    mBus.post(event);
+                    break;
+            }
+
+        }
+</code></pre>
                     
                     </section>
                 
