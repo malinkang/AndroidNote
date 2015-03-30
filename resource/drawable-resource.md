@@ -1,9 +1,6 @@
 Drawable Resource
-==============
 
 
-
-<<<<<<< HEAD
 ##Layer List
 
 [LayerDrawable](http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html)是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。
@@ -26,32 +23,6 @@ Drawable Resource
 
 ```
 
-
-=======
-##Layer List
-
-[LayerDrawable](http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html)是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。
-
-语法
-
-```xml
-
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
-        android:drawable="@[package:]drawable/drawable_resource"
-        android:id="@[+][package:]id/resource_name"
-        android:top="dimension"
-        android:right="dimension"
-        android:bottom="dimension"
-        android:left="dimension" />
-</layer-list>
-
-```
-
-
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 ## Shape Drawable
 
 语法
@@ -126,11 +97,7 @@ Drawable Resource
 * `android:centerX`
 * `android:centerY`
 * `android:centerColor`
-<<<<<<< HEAD
 * `android:endColor`
-=======
-* `android:endColor`
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 * `android:gradientRadius`
 * `android:startColor`
 * `android:type`
@@ -171,10 +138,4 @@ Shape的边线。
 
 ```
 
-
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 ## 阅读更多

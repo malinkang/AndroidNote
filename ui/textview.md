@@ -1,9 +1,16 @@
-# TextView
+# TextView使用
 
 
 
+### 目录
+  * [1.TextView常用属性](#1.TextView常用属性)
+  * [2.在TextView中展示Html](#2.在TextView中展示Html)
+  * [3.在TextView中设置字体](#3.在TextView中设置字体)
+  * [扩展阅读](#扩展阅读)
 
-## 1. TextView常用属性
+
+
+<h3 id="1.TextView常用属性">1.TextView常用属性</h3>
 
 * [android:textStyle](http://developer.android.com/reference/android/widget/TextView.html#attr_android:textStyle)
 >设置文本样式
@@ -33,7 +40,8 @@ italic：斜体，bold：粗体，normal：正常
 >设置行间距的倍数，例如"1.2"
 
 
-## 2. 在TextView中展示Html
+<h3 id="2.在TextView中展示Html">2.在TextView中展示Html</h3>
+
 
 TextView直接设置Html字符串，Html标签将不起作用。比如
 
@@ -52,7 +60,9 @@ mTextView.setText(Html.from("<font color='red'>红色</font>"));
 
 ```
 
-## 3. 在TextVeiew中设置字体
+<h3 id="3.在TextView中设置字体">3.在TextView中设置字体</h3>
+
+
 
 在前面我们提到通过`typeface`属性可以设置字体，但该属性只支持`sans`, `serif`, `monospace`三种字体。如果想设置更多的字体只能通过代码来实现，但这样不太方便。开源库[Calligraphy](https://github.com/chrisjenx/Calligraphy)让自定义字体更加的方便。
 
@@ -149,7 +159,7 @@ protected void attachBaseContext(Context newBase) {
 ```
 
 
-## 扩展阅读
+<h3 id="扩展阅读">扩展阅读</h3>
 
 
 * [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)

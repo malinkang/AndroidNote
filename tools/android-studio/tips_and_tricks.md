@@ -32,4 +32,3 @@
 |[查找和替换](https://www.jetbrains.com/idea/help/find-and-replace-in-path.html)|查找cmd+shift+F 替换cmd+shift+R||  |
 |Surround with| cmd+alt+T|ctrl+alt+T|  |
 
-

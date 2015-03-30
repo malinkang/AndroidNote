@@ -1,5 +1,5 @@
 {
-    "plugins": ["disqus","gtoc"],
+    "plugins": ["disqus"],
     "pluginsConfig": {
         "disqus": {
             "shortName": "malinkang"
