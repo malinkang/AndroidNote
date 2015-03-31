@@ -24,6 +24,7 @@
 * [Fragment]
    * [Fragment管理](fragment/manager.md)
 * [Service]
+* [获取AndroidManifest.xml信息](get_androidmanifest_info.md)
 * [多线程]
    * [Handler](multithread/handler.md)
 * [存储]
@@ -46,7 +47,9 @@
 * [工具]
    * [AndroidStudio]
        * [提示和技巧](tools/android-studio/tips_and_tricks.md)
-       * [常见问题](tools/android-studio/question.md)      
+       * [常见问题](tools/android-studio/question.md)
+   * [android-resource-remover](tools/android-resource-remover.md)     
 * [源码分析]
    * [ActiveAndroid源码分析](source-analysis/activeandroid.md)
+   
 
