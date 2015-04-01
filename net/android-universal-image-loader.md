@@ -1,14 +1,3 @@
----
-layout: post
-title: "网络图片加载框架之Universal Image Loader"
-date: 2014-09-08 10:32:33 +0800
-comments: true
-categories: program
----
-* Will be replaced with the ToC, excluding the "Contents" header
-{:toc}
-
-
 # 1. 介绍
 
 [Universal Image Loader](https://github.com/nostra13/Android-Universal-Image-Loader) 具有以下特性：
@@ -167,11 +156,8 @@ imageLoader.displayImage(imageUri, imageView);
 使用displayImage方法可以设置加载监听器和加载进度监听器
 
 ```java
-<<<<<<< HEAD
+
 // Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view
-=======
-// Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
 //  which implements ImageAware interface)
 imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener() {
     @Override

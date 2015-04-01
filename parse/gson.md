@@ -24,3 +24,69 @@
 * [Json转换利器Gson之实例六-注册TypeAdapter及处理Enum类型](http://blog.csdn.net/lk_blog/article/details/7685347)
 * [A Gson TypeAdapterFactory](https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9)
 
+  @Override
+            public void success(CourseListInfo courseListInfo, Response response) {
+            
+   
+            
+                if (courseListInfo != null
+                        && courseListInfo.getResultCode() == 0
+                        ) {
+                    if (courseListInfo.getData() != null && courseListInfo.getData().size() != 0) {
+                        ArrayList<CourseList> roomList = courseListInfo
+                                .getData();
+                        
+                        }
+                        state = LoadDataEvent.State.SUCCESS;
+                        event.state = state;
+                        event.id = request.getPartType();
+                        mBus.post(event);
+
+                    } else {
+                        if ("0".equals(request.getPageNo())) {
+                            state = LoadDataEvent.State.NODATA;
+                            event.state = state;
+                            event.id = request.getPartType();
+                            mBus.post(event);
+                        } else {
+                            Timber.e("发送没有更多数据的通知");
+                            postNoMoreData();
+                        }
+                    }
+
+                } else {
+                    state = LoadDataEvent.State.FAILURE;
+                    event.state = state;
+                    event.id = request.getPartType();
+                    mBus.post(event);
+
+                    // 失败
+                    try {
+                        throw new ApiException(courseListInfo);
+                    } catch (ApiException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                switch (error.getKind()) {
+                    case NETWORK:
+                        state = LoadDataEvent.State.NETWORKERROR;
+                        event.state = state;
+                        event.id = request.getPartType();
+                        mBus.post(event);
+                        break;
+                    default:
+                        state = LoadDataEvent.State.FAILURE;
+                        event.state = state;
+                        event.id = request.getPartType();
+                        mBus.post(event);
+                        break;
+                }
+
+            }
+
+

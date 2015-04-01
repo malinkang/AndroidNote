@@ -11,7 +11,7 @@
 ### detach方法和attach方法
 
 当调用detach(),fragment将依次执行
->onPause->onStop->onDestoryView 
+>onPause->onStop->onDestoryView
 
 detach会将view从viewtree中删除，此时fragment的状态依旧保持着，
 
