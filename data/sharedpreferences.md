@@ -215,7 +215,7 @@ public class User implements Serializable{
      * @return true if the given key exists, false otherwise
      */
     boolean contains(String key);
-	
+
     /**
      * Removes the value for the given key.
      * @param key
@@ -292,8 +292,8 @@ buildscript {
 
 apply plugin: 'android'
 apply plugin: 'android-apt'
-		 
-		 
+
+
 repositories {
      mavenCentral();
 }
@@ -301,7 +301,7 @@ repositories {
 dependencies {
     compile 'de.devland.esperandro:esperandro-api:2.1.0'
     apt 'de.devland.esperandro:esperandro:2.1.0'
-	
+
     // optional, if we want to use object serialization but don't provide our own Serializer
     // compile 'de.devland.esperandro:esperandro-gson-addon:2.1.0'
 	// or

@@ -30,6 +30,7 @@
 * [存储]
    * [SharedPreferences](data/sharedpreferences.md)
    * [数据库]
+       * [SQLite使用](data/sqlite.md)
        * [ActiveAndroid](data/activeandroid.md)
 * [数据交换]
    * [JSON]
