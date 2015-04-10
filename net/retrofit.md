@@ -1,7 +1,27 @@
-# Retrofit使用
+## Retrofit使用
+
+### 目录
+
+* [1.介绍](#1.介绍)
+* [2.使用](#2.使用)
+   + [2.1.请求方法](#2.1.请求方法)
+   + [2.2.URL操作](#2.2.URL操作)
+   + [2.3.发送原生数据](#2.3.发送原生数据)
+   + [2.4.表单提交和文件上传](#2.4.表单提交和文件上传)
+   + [2.5.请求头](#2.5.请求头)
+   + [2.6.同步和异步加载](#2.6.同步和异步加载)
+   + [2.7.返回数据类型](#2.7.返回数据类型)
+* [3.RestAdapter配置](#3.RestAdapter配置)
+   + [3.1.设置自定义转换器](#3.1.设置自定义转换器)
+   + [3.2.自定义错误处理](#3.2.自定义错误处理)
+   + [3.3.设置Log](#3.3.设置Log)
 
 
-## 1. 介绍
+
+---------------------------------------------------------
+
+
+<h3 id="1.介绍">1.介绍</h3>
 
 [Retrofit][Retrofit] 是一个类型安全的Java [Rest][Rest] 客户端，而且也适用于Android。
 
@@ -31,10 +51,10 @@ List<Repo> repos = service.listRepos("octocat");
 
 ```
 
-##  2. 使用
+<h3 id="2.使用">2.使用</h3>
 
 
-### 2.1 请求方法
+<h4 id="2.1.请求方法">2.1.请求方法</h4>
 
 每一个方法必须有HTTP注解和关联的URL。Retrofit提供了五种内置的注解：`GET`,`POST`,`PUT`,`DELETE`,`HEAD`。在注解内指定相关的URL和资源。
 
@@ -52,7 +72,7 @@ List<Repo> repos = service.listRepos("octocat");
 
 ```
 
-###  2.2 URL操作
+<h4 id="2.2.URL操作">2.2.URL操作</h4>
 
 
 通过动态的使用替换块和参数可以更新请求的URL。替换块是一个被`{`和`}`包裹的字符串。相应的请求参数必须被`@Path`使用相同的字符串进行注解。
@@ -79,7 +99,7 @@ List<User> groupList(@Path("id") int groupId, @QueryMap Map<String, String> opti
 
 ```
 
-### 2.3 发送原生数据
+<h4 id="2.3.发送原生数据">2.3.发送原生数据</h4>
 
 当你的请求参数是如下JSON字符串，可以使用`@Body`注解一个对象，`Retrofit`可以将对象转换为字符串
 
@@ -123,8 +143,8 @@ FooResponse response = foo.postRawJson(in);
 
 ```
 
+<h4 id="2.4.表单提交和文件上传">2.4.表单提交和文件上传</h4>
 
-### 2.4 表单提交和文件上传
 
 
 使用`@FormUrlEncoded`可以进行表单提交。每一个包含名字和提供数据对象的键值对需要使用`@Field`进行注解。
@@ -148,7 +168,7 @@ User updateUser(@Part("photo") TypedFile photo, @Part("description") TypedString
 
 ```
 
-### 2.5 请求头
+<h4 id="2.5.请求头">2.5.请求头</h4>
 
 可以使用`@Headers`注解为方法设置一个请求头。
 
@@ -198,7 +218,8 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 ```
 
-###  2.6 同步和异步加载
+<h4 id="2.6.同步和异步加载">2.6.同步和异步加载</h4>
+
 
 可以声明方法是同步执行还是异步执行。
 
@@ -231,7 +252,7 @@ Observable<Photo> getUserPhoto(@Path("id") int id);
 
 Observable请求被异步的订阅并且在执行HTTP请求的线程中被观察。如果希望在不同的线程中观察，调用`observeOn(Scheduler)`返回`Observable`。
 
-###  2.7 返回数据类型
+<h4 id="2.7.返回数据类型">2.7.返回数据类型</h4>
 
 如果你的接口返回的是JSON数据类型，`RestAdapter`会自动转换为方法声明的或者CallBack和Observable中指定的对象。如果是XML或其它数据类型，则需要自定义`RestAdapter`转换器。关于如何自定义`RestAdapter`转换器，将在下面的文章中讲到。
 
@@ -263,12 +284,14 @@ Observable<Response> userList();
 
 ```
 
-##  3. RestAdapter 配置
+
+<h3 id="3.RestAdapter配置">3.RestAdapter配置</h3>
 
 除了使用Retrofit提供的默认RestAdapter以外，我们还可以进行设置转换器和设置客户端等自定义操作
 
 
-### 3.1 设置自定义转换器
+<h4 id="3.1.设置自定义转换器">3.1.设置自定义转换器</h4>
+
 
 Retrofit使用未进行任何配置的GSON来转换数据，如果希望使用经过GsonBuilder配置过的Gson，需要创建一个新的GsonConvert。
 
@@ -317,7 +340,9 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 如果你需要使用Retrofit不提供的内容格式来进行数据交换或者你想使用其他的库来转换已经存在的格式，可以通过实现Convert接口创建自己的转换器。
 
-### 3.2 自定义错误处理
+<h4 id="3.2.自定义错误处理">3.2.自定义错误处理</h4>
+
+
 
 提供自定义的`ErrorHandler`可以自定义错误处理，下面的代码中演示了当返回401如何抛出一个自定义异常。
 
@@ -341,8 +366,7 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 ```
 
-### 3.3设置Log
-
+<h4 id="3.3.设置Log">3.3.设置Log</h4>
 
 `RestAdapter`可以通过setLogLevel方法配置Log的级别，打印不同的Log信息。Retrofit提供了`BASIC`,`FULL`,`HEADERS`和`NONE`等四种Log过滤条件。
 
@@ -356,6 +380,240 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 ```
 
+<h3 id="4.Retrofit源码分析">4.Retrofit源码分析</h3>
+
+我们先从`RestAdapter`的`build()`方法入手，当不设置某些配置时，就会获取默认的配置。
+
+```java
+
+   /** Create the {@link RestAdapter} instances. */
+    public RestAdapter build() {
+      if (endpoint == null) {
+        throw new IllegalArgumentException("Endpoint may not be null.");
+      }
+      ensureSaneDefaults();
+      return new RestAdapter(endpoint, clientProvider, httpExecutor, callbackExecutor,
+          requestInterceptor, converter, profiler, errorHandler, log, logLevel);
+    }
+
+  private void ensureSaneDefaults() {
+      if (converter == null) {
+        converter = Platform.get().defaultConverter();
+      }
+      if (clientProvider == null) {
+        clientProvider = Platform.get().defaultClient();
+      }
+      if (httpExecutor == null) {
+        httpExecutor = Platform.get().defaultHttpExecutor();
+      }
+      if (callbackExecutor == null) {
+        callbackExecutor = Platform.get().defaultCallbackExecutor();
+      }
+      if (errorHandler == null) {
+        errorHandler = ErrorHandler.DEFAULT;
+      }
+      if (log == null) {
+        log = Platform.get().defaultLog();
+      }
+      if (requestInterceptor == null) {
+        requestInterceptor = RequestInterceptor.NONE;
+      }
+    }
+    
+```
+
+```java
+ /** Provides sane defaults for operation on Android. */
+  private static class Android extends Platform {
+    @Override Converter defaultConverter() {
+      return new GsonConverter(new Gson());
+    }
+
+    @Override Client.Provider defaultClient() {
+      final Client client;
+      if (hasOkHttpOnClasspath()) {
+        client = OkClientInstantiator.instantiate();
+      } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
+        client = new AndroidApacheClient();
+      } else {
+        client = new UrlConnectionClient();
+      }
+      return new Client.Provider() {
+        @Override public Client get() {
+          return client;
+        }
+      };
+    }
+
+    @Override Executor defaultHttpExecutor() {
+      return Executors.newCachedThreadPool(new ThreadFactory() {
+        @Override public Thread newThread(final Runnable r) {
+          return new Thread(new Runnable() {
+            @Override public void run() {
+              Process.setThreadPriority(THREAD_PRIORITY_BACKGROUND);
+              r.run();
+            }
+          }, RestAdapter.IDLE_THREAD_NAME);
+        }
+      });
+    }
+
+    @Override Executor defaultCallbackExecutor() {
+      return new MainThreadExecutor();
+    }
+
+    @Override RestAdapter.Log defaultLog() {
+      return new AndroidLog("Retrofit");
+    }
+  }
+```
+
+接下来看`RestAdapter`的`create`方法。
+
+```java
+  /** Create an implementation of the API defined by the specified {@code service} interface. */
+  @SuppressWarnings("unchecked")
+  public <T> T create(Class<T> service) {
+    Utils.validateServiceClass(service);
+    return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
+        new RestHandler(getMethodInfoCache(service)));
+  }
+
+```
+`create`方法创建了一个代理
+
+```java
+ private class RestHandler implements InvocationHandler {
+
+...
+    @Override public Object invoke(Object proxy, Method method, final Object[] args)
+        throws Throwable {
+
+      // Load or create the details cache for the current method.
+      final RestMethodInfo methodInfo = getMethodInfo(methodDetailsCache, method);        
+
+      if (methodInfo.isSynchronous) {
+        try {
+         //调用请求
+          return invokeRequest(requestInterceptor, methodInfo, args);
+        } catch (RetrofitError error) {
+          Throwable newError = errorHandler.handleError(error);
+          if (newError == null) {
+            throw new IllegalStateException("Error handler returned null for wrapped exception.",
+                error);
+          }
+          throw newError;
+        }
+      }
+      ...
+
+ }
+```
+`RestMethodInfo`用来封装网络请求方法的信息。
+
+```java
+
+ private Object invokeRequest(RequestInterceptor requestInterceptor, RestMethodInfo methodInfo,
+        Object[] args) {
+      String url = null;
+      try {
+       ...
+       //构建请求
+        RequestBuilder requestBuilder = new RequestBuilder(serverUrl, methodInfo, converter);
+        requestBuilder.setArguments(args);
+        requestInterceptor.intercept(requestBuilder);
+        Request request = requestBuilder.build();
+       ...
+       //请求网络
+        Response response = clientProvider.get().execute(request);
+       
+
+        int statusCode = response.getStatus();
+        if (profiler != null) {
+          RequestInformation requestInfo = getRequestInfo(serverUrl, methodInfo, request);
+          //noinspection unchecked
+          profiler.afterCall(requestInfo, elapsedTime, statusCode, profilerObject);
+        }
+
+        if (logLevel.log()) {
+          // Log the response data.
+          response = logAndReplaceResponse(url, response, elapsedTime);
+        }
+
+        Type type = methodInfo.responseObjectType;
+
+        if (statusCode >= 200 && statusCode < 300) { // 2XX == successful request
+          // Caller requested the raw Response object directly.
+          if (type.equals(Response.class)) {
+            if (!methodInfo.isStreaming) {
+              // Read the entire stream and replace with one backed by a byte[].
+              response = Utils.readBodyToBytesIfNecessary(response);
+            }
+
+            if (methodInfo.isSynchronous) {
+              return response;
+            }
+            return new ResponseWrapper(response, response);
+          }
+
+          TypedInput body = response.getBody();
+          if (body == null) {
+            if (methodInfo.isSynchronous) {
+              return null;
+            }
+            return new ResponseWrapper(response, null);
+          }
+
+          ExceptionCatchingTypedInput wrapped = new ExceptionCatchingTypedInput(body);
+          try {
+            Object convert = converter.fromBody(wrapped, type);
+            logResponseBody(body, convert);
+            if (methodInfo.isSynchronous) {
+              return convert;
+            }
+            return new ResponseWrapper(response, convert);
+          } catch (ConversionException e) {
+            // If the underlying input stream threw an exception, propagate that rather than
+            // indicating that it was a conversion exception.
+            if (wrapped.threwException()) {
+              throw wrapped.getThrownException();
+            }
+
+            // The response body was partially read by the converter. Replace it with null.
+            response = Utils.replaceResponseBody(response, null);
+
+            throw RetrofitError.conversionError(url, response, converter, type, e);
+          }
+        }
+
+        response = Utils.readBodyToBytesIfNecessary(response);
+        throw RetrofitError.httpError(url, response, converter, type);
+      } catch (RetrofitError e) {
+        throw e; // Pass through our own errors.
+      } catch (IOException e) {
+        if (logLevel.log()) {
+          logException(e, url);
+        }
+        throw RetrofitError.networkError(url, e);
+      } catch (Throwable t) {
+        if (logLevel.log()) {
+          logException(t, url);
+        }
+        throw RetrofitError.unexpectedError(url, t);
+      } finally {
+        if (!methodInfo.isSynchronous) {
+          Thread.currentThread().setName(IDLE_THREAD_NAME);
+        }
+      }
+    }
+  }
+
+
+
+```
+
+
+
 [Retrofit]: http://square.github.io/retrofit/
 [Rest]: http://zh.wikipedia.org/wiki/REST
 [retrofit-converters]: https://github.com/square/retrofit/tree/master/retrofit-converters
@@ -368,6 +626,4 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 * [A smart way to use Retrofit](http://blog.robinchutaux.com/blog/a-smart-way-to-use-retrofit/)
 
-
-* [How Can I POST Raw Whole Json in the body of a Retrofit request?](http://stackoverflow.com/questions/21398598/how-can-i-post-raw-whole-json-in-the-body-of-a-retrofit-request)
 
