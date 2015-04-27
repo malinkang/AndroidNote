@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>JSON解析 | Android常用学习资源</title>
+        <title>android-resource-remover | Android常用学习资源</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -20,6 +20,8 @@
     
     
     
+    <link rel="prev" href="../tools/android-studio/question.html" />
+    
 
         
     </head>
@@ -30,7 +32,7 @@
 
 
         
-    <div class="book" data-level="9.1" data-basepath=".." data-revision="1430117266952">
+    <div class="book" data-level="11.2" data-basepath=".." data-revision="1430117266952">
     
 
 <div class="book-summary">
@@ -495,7 +497,7 @@
                 
     
         
-        <li class="chapter active" data-level="9.1" data-path="parse/gson.html">
+        <li class="chapter " data-level="9.1" data-path="parse/gson.html">
             
                 
                     <a href="../parse/gson.html">
@@ -709,7 +711,7 @@
         </li>
     
         
-        <li class="chapter " data-level="11.2" data-path="tools/android-resource-remover.html">
+        <li class="chapter active" data-level="11.2" data-path="tools/android-resource-remover.html">
             
                 
                     <a href="../tools/android-resource-remover.html">
@@ -818,94 +820,24 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_161">
+                    <section class="normal" id="section-gitbook_163">
                     
-                        <h1 id="gson">GSON</h1>
-<h2 id="">扩展阅读</h2>
+                        <h2 id="android-resource-remover">android-resource-remover使用</h2>
+<p> android-resource-remover 用于删除项目中的无用资源。</p>
+<h3 id="">安装</h3>
+<p>1.安装Python</p>
+<p>2.pip</p>
+<p>参考:<a href="https://pip.pypa.io/en/latest/installing.html" target="_blank">https://pip.pypa.io/en/latest/installing.html</a></p>
+<p>3.安装 android-resource-remover</p>
+<pre><code>pip install android-resource-remover
+</code></pre><h3 id="">使用</h3>
+<p>执行<code>android-resource-remover</code>命令</p>
+<h3 id="">参考</h3>
 <ul>
-<li><a href="https://sites.google.com/site/gson/gson-user-guide" target="_blank">Gson User Guide</a></li>
-<li><a href="http://www.javacreed.com/gson-serialiser-example/" target="_blank">GSON SERIALISER EXAMPLE</a></li>
-<li><a href="http://www.javacreed.com/gson-deserialiser-example/" target="_blank">GSON DESERIALISER EXAMPLE</a></li>
-<li><a href="http://www.javacreed.com/gson-typeadapter-example/" target="_blank">GSON TYPEADAPTER EXAMPLE</a></li>
-<li><a href="http://www.javacreed.com/simple-gson-example/" target="_blank">SIMPLE GSON EXAMPLE</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/06/gson-v-jackson.html" target="_blank">Gson v Jackson - Part 1</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/06/gson-v-jackson-part-2.html" target="_blank">Gson v Jackson - Part 2</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/07/gson-v-jackson-part-3.html" target="_blank">Gson v Jackson - Part 3</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/07/gson-v-jackson-part-4.html" target="_blank">Gson v Jackson - Part 4</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/07/gson-v-jackson-part-5.html" target="_blank">Gson v Jackson - Part 5</a></li>
-<li><a href="http://programmerbruce.blogspot.com/2011/07/gson-v-jackson-part-6.html" target="_blank">Gson v Jackson - Part 6</a></li>
-<li><a href="http://blaazinsoftwaretech.blogspot.com/2013/08/jackson-2-vs-gson-performance-comparison.html" target="_blank">Jackson 2 VS GSON Performance Comparison</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685169" target="_blank">Json转换利器Gson之实例一-简单对象转化和带泛型的List转化</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685190" target="_blank">Json转换利器Gson之实例二-Gson注解和GsonBuilder</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685210" target="_blank">Json转换利器Gson之实例三-Map处理(上)</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685224" target="_blank">Json转换利器Gson之实例四-Map处理(下)</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685237" target="_blank">Json转换利器Gson之实例五-实际开发中的特殊需求处理</a></li>
-<li><a href="http://blog.csdn.net/lk_blog/article/details/7685347" target="_blank">Json转换利器Gson之实例六-注册TypeAdapter及处理Enum类型</a></li>
-<li><p><a href="https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9" target="_blank">A Gson TypeAdapterFactory</a></p>
-<p>@Override</p>
-<pre><code>      public void success(CourseListInfo courseListInfo, Response response) {
-</code></pre></li>
+<li><a href="https://github.com/KeepSafe/android-resource-remover" target="_blank">android-resource-remover</a></li>
+<li><a href="http://blog.csdn.net/mlj1668956679/article/details/38643145" target="_blank">android-resource-remover的研究和实验</a></li>
 </ul>
-<pre><code>            if (courseListInfo != null
-                    &amp;&amp; courseListInfo.getResultCode() == 0
-                    ) {
-                if (courseListInfo.getData() != null &amp;&amp; courseListInfo.getData().size() != 0) {
-                    ArrayList&lt;CourseList&gt; roomList = courseListInfo
-                            .getData();
 
-                    }
-                    state = LoadDataEvent.State.SUCCESS;
-                    event.state = state;
-                    event.id = request.getPartType();
-                    mBus.post(event);
-
-                } else {
-                    if (&quot;0&quot;.equals(request.getPageNo())) {
-                        state = LoadDataEvent.State.NODATA;
-                        event.state = state;
-                        event.id = request.getPartType();
-                        mBus.post(event);
-                    } else {
-                        Timber.e(&quot;发送没有更多数据的通知&quot;);
-                        postNoMoreData();
-                    }
-                }
-
-            } else {
-                state = LoadDataEvent.State.FAILURE;
-                event.state = state;
-                event.id = request.getPartType();
-                mBus.post(event);
-
-                // 失败
-                try {
-                    throw new ApiException(courseListInfo);
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            switch (error.getKind()) {
-                case NETWORK:
-                    state = LoadDataEvent.State.NETWORKERROR;
-                    event.state = state;
-                    event.id = request.getPartType();
-                    mBus.post(event);
-                    break;
-                default:
-                    state = LoadDataEvent.State.FAILURE;
-                    event.state = state;
-                    event.id = request.getPartType();
-                    mBus.post(event);
-                    break;
-            }
-
-        }
-</code></pre>
                     
                     </section>
                 
@@ -914,6 +846,8 @@
             </div>
         </div>
 
+        
+        <a href="../tools/android-studio/question.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 常见问题"><i class="fa fa-angle-left"></i></a>
         
         
     </div>
