@@ -47,6 +47,10 @@
 * [Triumph! Android Studio 1.2 Sneaks In Full Testing Support](https://www.bignerdranch.com/blog/triumph-android-studio-1-2-sneaks-in-full-testing-support/)
 
 
+<h4 id="">工具</h4>
+* [androidtool-mac](https://github.com/mortenjust/androidtool-mac)
+
+
 
 <h4 id=''>未分类</h4>
 * [Android官方培训课程中文版](http://hukai.me/android-training-course-in-chinese/)
