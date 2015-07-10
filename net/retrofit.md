@@ -4,17 +4,23 @@
 
 * [1.介绍](#1.介绍)
 * [2.使用](#2.使用)
-   + [2.1.请求方法](#2.1.请求方法)
-   + [2.2.URL操作](#2.2.URL操作)
-   + [2.3.发送原生数据](#2.3.发送原生数据)
-   + [2.4.表单提交和文件上传](#2.4.表单提交和文件上传)
-   + [2.5.请求头](#2.5.请求头)
-   + [2.6.同步和异步加载](#2.6.同步和异步加载)
-   + [2.7.返回数据类型](#2.7.返回数据类型)
+    + [2.1.请求方法](#2.1.请求方法)
+    + [2.2.URL操作](#2.2.URL操作)
+    + [2.3.发送原生数据](#2.3.发送原生数据)
+    + [2.4.表单提交和文件上传](#2.4.表单提交和文件上传)
+    + [2.5.请求头](#2.5.请求头)
+    + [2.6.同步和异步加载](#2.6.同步和异步加载)
+    + [2.7.返回数据类型](#2.7.返回数据类型)
 * [3.RestAdapter配置](#3.RestAdapter配置)
-   + [3.1.设置自定义转换器](#3.1.设置自定义转换器)
-   + [3.2.自定义错误处理](#3.2.自定义错误处理)
-   + [3.3.设置Log](#3.3.设置Log)
+    + [3.1.设置自定义转换器](#3.1.设置自定义转换器)
+    + [3.2.自定义错误处理](#3.2.自定义错误处理)
+    + [3.3.设置Log](#3.3.设置Log)
+* [4.Retrofit源码分析](#4.Retrofit源码分析)
+    + [4.1RestAdapter配置分析](#4.1RestAdapter配置分析)
+    + [4.2解析请求方法](#4.2解析请求方法)
+    + [4.3构建请求](#4.3构建请求)
+    + [4.4发送请求](#4.4发送请求)
+* [参考](#参考)
 
 
 
@@ -382,6 +388,8 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 <h3 id="4.Retrofit源码分析">4.Retrofit源码分析</h3>
 
+<h4 id="4.1RestAdapter配置分析">4.1RestAdapter配置分析</h4>
+
 我们先从`RestAdapter`的`build()`方法入手，当不设置某些配置时，就会获取默认的配置。
 
 ```java
@@ -419,7 +427,7 @@ RestAdapter restAdapter = new RestAdapter.Builder()
         requestInterceptor = RequestInterceptor.NONE;
       }
     }
-    
+
 ```
 
 ```java
@@ -490,7 +498,7 @@ RestAdapter restAdapter = new RestAdapter.Builder()
         throws Throwable {
 
       // Load or create the details cache for the current method.
-      final RestMethodInfo methodInfo = getMethodInfo(methodDetailsCache, method);        
+      final RestMethodInfo methodInfo = getMethodInfo(methodDetailsCache, method);
 
       if (methodInfo.isSynchronous) {
         try {
@@ -509,7 +517,150 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
  }
 ```
+
+<h4 id="4.2解析请求方法">4.2解析请求方法</h4>
+
 `RestMethodInfo`用来封装网络请求方法的信息。
+
+`parseResponseType`方法获取返回值类型。
+
+```java
+ /** Loads {@link #responseObjectType}. Returns {@code true} if method is synchronous. */
+  private ResponseType parseResponseType() {
+    // Synchronous methods have a non-void return type.
+    // Observable methods have a return type of Observable.
+    Type returnType = method.getGenericReturnType();
+
+    // Asynchronous methods should have a Callback type as the last argument.
+    Type lastArgType = null;
+    // 最后一个参数
+    Class<?> lastArgClass = null;
+    Type[] parameterTypes = method.getGenericParameterTypes();
+    if (parameterTypes.length > 0) {
+    // 获取最后一个参数
+      Type typeToCheck = parameterTypes[parameterTypes.length - 1];
+      lastArgType = typeToCheck;
+      if (typeToCheck instanceof ParameterizedType) {
+        typeToCheck = ((ParameterizedType) typeToCheck).getRawType();
+      }
+      if (typeToCheck instanceof Class) {
+        lastArgClass = (Class<?>) typeToCheck;
+      }
+    }
+
+    boolean hasReturnType = returnType != void.class;
+    boolean hasCallback = lastArgClass != null && Callback.class.isAssignableFrom(lastArgClass);
+
+    // Check for invalid configurations.
+    if (hasReturnType && hasCallback) {
+      throw methodError("Must have return type or Callback as last argument, not both.");
+    }
+    if (!hasReturnType && !hasCallback) {
+      throw methodError("Must have either a return type or Callback as last argument.");
+    }
+    // 如果有返回值类型
+    if (hasReturnType) {
+      if (Platform.HAS_RX_JAVA) {
+        Class rawReturnType = Types.getRawType(returnType);
+        if (RxSupport.isObservable(rawReturnType)) {
+          returnType = RxSupport.getObservableType(returnType, rawReturnType);
+          responseObjectType = getParameterUpperBound((ParameterizedType) returnType);
+          return ResponseType.OBSERVABLE;
+        }
+      }
+      responseObjectType = returnType;
+      return ResponseType.OBJECT;
+    }
+
+    lastArgType = Types.getSupertype(lastArgType, Types.getRawType(lastArgType), Callback.class);
+    if (lastArgType instanceof ParameterizedType) {
+      responseObjectType = getParameterUpperBound((ParameterizedType) lastArgType);
+      return ResponseType.VOID;
+    }
+
+    throw methodError("Last parameter must be of type Callback<X> or Callback<? super X>.");
+  }
+```
+
+
+```java
+/** Loads {@link #requestMethod} and {@link #requestType}. */
+  private void parseMethodAnnotations() {
+    for (Annotation methodAnnotation : method.getAnnotations()) {
+      Class<? extends Annotation> annotationType = methodAnnotation.annotationType();
+      RestMethod methodInfo = null;
+
+      // Look for a @RestMethod annotation on the parameter annotation indicating request method.
+      // 获取RestMethod注解
+      for (Annotation innerAnnotation : annotationType.getAnnotations()) {
+        if (RestMethod.class == innerAnnotation.annotationType()) {
+          methodInfo = (RestMethod) innerAnnotation;
+          break;
+        }
+      }
+
+      if (methodInfo != null) {
+        if (requestMethod != null) {
+          throw methodError("Only one HTTP method is allowed. Found: %s and %s.", requestMethod,
+              methodInfo.value());
+        }
+        String path;
+        try {
+        // 获取路径
+          path = (String) annotationType.getMethod("value").invoke(methodAnnotation);
+        } catch (Exception e) {
+          throw methodError("Failed to extract String 'value' from @%s annotation.",
+              annotationType.getSimpleName());
+        }
+        parsePath(path);
+        requestMethod = methodInfo.value();
+        requestHasBody = methodInfo.hasBody();
+      } else if (annotationType == Headers.class) {
+        String[] headersToParse = ((Headers) methodAnnotation).value();
+        if (headersToParse.length == 0) {
+          throw methodError("@Headers annotation is empty.");
+        }
+        headers = parseHeaders(headersToParse);
+      } else if (annotationType == Multipart.class) {
+        if (requestType != RequestType.SIMPLE) {
+          throw methodError("Only one encoding annotation is allowed.");
+        }
+        requestType = RequestType.MULTIPART;
+      } else if (annotationType == FormUrlEncoded.class) {
+        if (requestType != RequestType.SIMPLE) {
+          throw methodError("Only one encoding annotation is allowed.");
+        }
+        requestType = RequestType.FORM_URL_ENCODED;
+      } else if (annotationType == Streaming.class) {
+        if (responseObjectType != Response.class) {
+          throw methodError(
+              "Only methods having %s as data type are allowed to have @%s annotation.",
+              Response.class.getSimpleName(), Streaming.class.getSimpleName());
+        }
+        isStreaming = true;
+      }
+    }
+
+    if (requestMethod == null) {
+      throw methodError("HTTP method annotation is required (e.g., @GET, @POST, etc.).");
+    }
+    if (!requestHasBody) {
+      if (requestType == RequestType.MULTIPART) {
+        throw methodError(
+            "Multipart can only be specified on HTTP methods with request body (e.g., @POST).");
+      }
+      if (requestType == RequestType.FORM_URL_ENCODED) {
+        throw methodError("FormUrlEncoded can only be specified on HTTP methods with request body "
+                + "(e.g., @POST).");
+      }
+    }
+  }
+
+```
+
+<h4 id="4.3构建请求">4.3构建请求</h4>
+
+<h4 id="4.4发送请求">4.4发送请求</h4>
 
 ```java
 
@@ -526,7 +677,7 @@ RestAdapter restAdapter = new RestAdapter.Builder()
        ...
        //请求网络
         Response response = clientProvider.get().execute(request);
-       
+
 
         int statusCode = response.getStatus();
         if (profiler != null) {
@@ -612,18 +763,113 @@ RestAdapter restAdapter = new RestAdapter.Builder()
 
 ```
 
+```java
+/** Retrofit client that uses {@link HttpURLConnection} for communication. */
+public class UrlConnectionClient implements Client {
+  private static final int CHUNK_SIZE = 4096;
+
+  public UrlConnectionClient() {
+  }
+
+  @Override public Response execute(Request request) throws IOException {
+    HttpURLConnection connection = openConnection(request);
+    prepareRequest(connection, request);
+    return readResponse(connection);
+  }
+
+  protected HttpURLConnection openConnection(Request request) throws IOException {
+    HttpURLConnection connection =
+        (HttpURLConnection) new URL(request.getUrl()).openConnection();
+    connection.setConnectTimeout(Defaults.CONNECT_TIMEOUT_MILLIS);
+    connection.setReadTimeout(Defaults.READ_TIMEOUT_MILLIS);
+    return connection;
+  }
+
+  void prepareRequest(HttpURLConnection connection, Request request) throws IOException {
+    connection.setRequestMethod(request.getMethod());
+    connection.setDoInput(true);
+
+    for (Header header : request.getHeaders()) {
+      connection.addRequestProperty(header.getName(), header.getValue());
+    }
+
+    TypedOutput body = request.getBody();
+    if (body != null) {
+      connection.setDoOutput(true);
+      connection.addRequestProperty("Content-Type", body.mimeType());
+      long length = body.length();
+      if (length != -1) {
+        connection.setFixedLengthStreamingMode((int) length);
+        connection.addRequestProperty("Content-Length", String.valueOf(length));
+      } else {
+        connection.setChunkedStreamingMode(CHUNK_SIZE);
+      }
+      body.writeTo(connection.getOutputStream());
+    }
+  }
+
+  Response readResponse(HttpURLConnection connection) throws IOException {
+    int status = connection.getResponseCode();
+    String reason = connection.getResponseMessage();
+    if (reason == null) reason = ""; // HttpURLConnection treats empty reason as null.
+
+    List<Header> headers = new ArrayList<Header>();
+    for (Map.Entry<String, List<String>> field : connection.getHeaderFields().entrySet()) {
+      String name = field.getKey();
+      for (String value : field.getValue()) {
+        headers.add(new Header(name, value));
+      }
+    }
+
+    String mimeType = connection.getContentType();
+    int length = connection.getContentLength();
+    InputStream stream;
+    if (status >= 400) {
+      stream = connection.getErrorStream();
+    } else {
+      stream = connection.getInputStream();
+    }
+    TypedInput responseBody = new TypedInputStream(mimeType, length, stream);
+    return new Response(connection.getURL().toString(), status, reason, headers, responseBody);
+  }
+
+  private static class TypedInputStream implements TypedInput {
+    private final String mimeType;
+    private final long length;
+    private final InputStream stream;
+
+    private TypedInputStream(String mimeType, long length, InputStream stream) {
+      this.mimeType = mimeType;
+      this.length = length;
+      this.stream = stream;
+    }
+
+    @Override public String mimeType() {
+      return mimeType;
+    }
+
+    @Override public long length() {
+      return length;
+    }
+
+    @Override public InputStream in() throws IOException {
+      return stream;
+    }
+  }
+}
+```
+
+
 
 
 [Retrofit]: http://square.github.io/retrofit/
 [Rest]: http://zh.wikipedia.org/wiki/REST
 [retrofit-converters]: https://github.com/square/retrofit/tree/master/retrofit-converters
 
-# 扩展阅读
+<h3 id="参考">参考</h3>
 
 * [理解RESTful架构](http://www.ruanyifeng.com/blog/2011/09/restful.html)
 
 * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
-
-* [A smart way to use Retrofit](http://blog.robinchutaux.com/blog/a-smart-way-to-use-retrofit/)
 
 

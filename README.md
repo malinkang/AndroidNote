@@ -13,6 +13,8 @@
 * [android-material-design-icon-generator-plugin](https://github.com/konifar/android-material-design-icon-generator-plugin)
 * [Android RecyclerView vs ListView | Comparison](http://www.truiton.com/2015/03/android-recyclerview-vs-listview-comparison/)
 * [Android Material Design With Backward Compatibility](http://www.truiton.com/2015/02/android-material-design-backward-compatibility/)
+* [Missing Android Material Components](http://www.dmytrodanylyk.com/pages/blog/missing-material-components.html)
+
 
 <h4 id='RecyclerView'>RecyclerView</h4>
 
@@ -22,6 +24,8 @@
 <h4 id='ListView'>ListView</h4>
 * [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders)
 
+<h4 id='ViewPager'>ViewPager</h4>
+* [MaterialViewPager](https://github.com/florent37/MaterialViewPager)
 
 <h4 id='kotlin'>kotlin</h4>
 
@@ -40,12 +44,17 @@
 <h4 id=''>Dagger</h4>
 * [Dagger 2 + Espresso 2 + Mockito ](http://blog.sqisland.com/2015/04/dagger-2-espresso-2-mockito.html)
 * [Tasting Dagger 2 on Android](http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/)
+* [MVP + Dagger2 + Retrofit (and Swagger)](https://medium.com/@franpulido/retrofit-dagger-mvp-305ac2cf646c)
 
+<h4 id=''>RxJava</h4>
+* [NotRxJava guide for lazy folks](http://yarikx.github.io/NotRxJava/)
 
 <h4 id='Test'>Test</h4>
 * [AGAINST ANDROID UNIT TESTS](http://philosophicalhacker.com/2015/04/10/against-android-unit-tests/)
 * [Triumph! Android Studio 1.2 Sneaks In Full Testing Support](https://www.bignerdranch.com/blog/triumph-android-studio-1-2-sneaks-in-full-testing-support/)
-
+* [WHY ANDROID UNIT TESTING IS SO HARD (PT 1)](http://philosophicalhacker.com/2015/04/17/why-android-unit-testing-is-so-hard-pt-1/)
+* [Elegant Unit Testing - Droidcon Spain 2015 ](https://speakerdeck.com/guardiola31337/elegant-unit-testing-droidcon-spain-2015)
+* [HOW TO MAKE OUR ANDROID APPS UNIT TESTABLE (PT. 1)](http://philosophicalhacker.com/2015/05/01/how-to-make-our-android-apps-unit-testable-pt-1/)
 
 
 <h4 id=''>未分类</h4>

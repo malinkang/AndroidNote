@@ -1,0 +1,1272 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>HttpURLConnection使用 | Android常用学习资源</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../net/okhttp.html" />
+    
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="12.1" data-basepath=".." data-revision="1436495550272">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> UI</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" >
+            
+            <span><b>1.1.</b> Layouts</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" >
+            
+            <span><b>1.2.</b> Components</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.2.1" data-path="ui/textview.html">
+            
+                
+                    <a href="../ui/textview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                         TextView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.2" data-path="ui/webview.html">
+            
+                
+                    <a href="../ui/webview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.2.</b>
+                        
+                         WebView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.3" data-path="ui/recyclerview.html">
+            
+                
+                    <a href="../ui/recyclerview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.3.</b>
+                        
+                         RecyclerView
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.4" data-path="ui/fragmenttabhost.html">
+            
+                
+                    <a href="../ui/fragmenttabhost.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.4.</b>
+                        
+                         FragmentTabHost
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.5" data-path="ui/viewpager.html">
+            
+                
+                    <a href="../ui/viewpager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.5.</b>
+                        
+                         ViewPager
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" >
+            
+            <span><b>1.3.</b> AdapterView</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.3.1" data-path="ui/listview.html">
+            
+                
+                    <a href="../ui/listview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                         ListView
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" >
+            
+            <span><b>1.4.</b> Adapter</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="ui/actionbar.html">
+            
+                
+                    <a href="../ui/actionbar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         ActionBar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="ui/toast.html">
+            
+                
+                    <a href="../ui/toast.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Toast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="ui/notification.html">
+            
+                
+                    <a href="../ui/notification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         Notification
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.8" data-path="ui/layoutinflater.html">
+            
+                
+                    <a href="../ui/layoutinflater.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                         LayoutInflater
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.9" data-path="ui/customview.html">
+            
+                
+                    <a href="../ui/customview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                         自定义View
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.10" >
+            
+            <span><b>1.10.</b> Resource</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.10.1" data-path="ui/drawable-resource.html">
+            
+                
+                    <a href="../ui/drawable-resource.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.1.</b>
+                        
+                         DrawableResource
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Intent</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> Activity</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="activity/Activity启动模式.html">
+            
+                
+                    <a href="../activity/Activity启动模式.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Activity启动模式
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="activity/页面切换之间的数据传递.html">
+            
+                
+                    <a href="../activity/页面切换之间的数据传递.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         数据传递
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> Fragment</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="fragment/manager.html">
+            
+                
+                    <a href="../fragment/manager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Fragment管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> Service</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="get_androidmanifest_info.html">
+            
+                
+                    <a href="../get_androidmanifest_info.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         获取AndroidManifest.xml信息
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> [多线程]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="multithread/handler.html">
+            
+                
+                    <a href="../multithread/handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         Handler
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> [存储]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" data-path="data/sharedpreferences.html">
+            
+                
+                    <a href="../data/sharedpreferences.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                         SharedPreferences
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2" >
+            
+            <span><b>8.2.</b> [数据库]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.2.1" data-path="data/sqlite.html">
+            
+                
+                    <a href="../data/sqlite.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.1.</b>
+                        
+                         SQLite使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2.2" data-path="data/activeandroid.html">
+            
+                
+                    <a href="../data/activeandroid.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.2.</b>
+                        
+                         ActiveAndroid
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="RxJava.html">
+            
+                
+                    <a href="../RxJava.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         RxJava
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" data-path="MVVM.html">
+            
+                
+                    <a href="../MVVM.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         MVVM
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" data-path="parse/gson.html">
+            
+                
+                    <a href="../parse/gson.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         JSON解析
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" >
+            
+            <span><b>12.</b> 网络请求</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="12.1" data-path="net/httpurlconnection.html">
+            
+                
+                    <a href="../net/httpurlconnection.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         HttpURLConnection使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.2" data-path="net/okhttp.html">
+            
+                
+                    <a href="../net/okhttp.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         OkHttp
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.3" data-path="net/retrofit.html">
+            
+                
+                    <a href="../net/retrofit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         Retrofit
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.4" data-path="net/volley.html">
+            
+                
+                    <a href="../net/volley.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                         Volley
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13" >
+            
+            <span><b>13.</b> 网络图片加载</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="13.1" data-path="net/android-universal-image-loader.html">
+            
+                
+                    <a href="../net/android-universal-image-loader.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         Android-Universal-Image-Loader
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.2" data-path="net/picasso.html">
+            
+                
+                    <a href="../net/picasso.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         Picasso
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14" data-path="net/downloadprovider.html">
+            
+                
+                    <a href="../net/downloadprovider.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         DownloadProvider
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15" >
+            
+            <span><b>15.</b> 注解</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="15.1" data-path="annotation/butterknife.html">
+            
+                
+                    <a href="../annotation/butterknife.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         ButterKnife
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15.2" data-path="annotation/androidannotations.html">
+            
+                
+                    <a href="../annotation/androidannotations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         AndroidAnnotations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16" >
+            
+            <span><b>16.</b> 工具</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.1" >
+            
+            <span><b>16.1.</b> AndroidStudio</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.1.1" data-path="tools/android-studio/tips_and_tricks.html">
+            
+                
+                    <a href="../tools/android-studio/tips_and_tricks.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.1.</b>
+                        
+                         提示和技巧
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.1.2" data-path="tools/android-studio/question.html">
+            
+                
+                    <a href="../tools/android-studio/question.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.2.</b>
+                        
+                         常见问题
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.2" data-path="tools/android-resource-remover.html">
+            
+                
+                    <a href="../tools/android-resource-remover.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                         android-resource-remover
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Android常用学习资源</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_1139">
+                    
+                        <h2 id="httpurlconnection">HttpURLConnection使用</h2>
+<p>URLConnection是JDK提供的网络请求的APi。URLConnection是一个抽象类，在实际使用中，我们创建它的子类HttpURLConnection的实例来进行网络请求。</p>
+<h3 >1.HttpUrlConnection基本使用</h3>
+
+<p>调用URL的<code>openConnection</code>方法来创建实例。</p>
+<pre><code class="lang-java"> HttpURLConnection connection = (HttpURLConnection) <span class="hljs-keyword">new</span> URL(url).openConnection();
+</code></pre>
+<p>常用方法</p>
+<pre><code class="lang-java"><span class="hljs-comment">// 设置连接超时时间</span>
+  connection.setConnectTimeout(CONNECT_TIMEOUT);
+<span class="hljs-comment">// 设置读取超时时间</span>
+  connection.setReadTimeout(READ_TIMEOUT);
+<span class="hljs-comment">//设置是否向HttpURLConnection输出，Post请求参数要放在正文中，因此需要设为true，默认情况为false。</span>
+  connection.setDoOutput(<span class="hljs-keyword">true</span>);
+<span class="hljs-comment">//设置是否从HttpURLConnection输入，默认情况下true</span>
+  connection.setDoInput(<span class="hljs-keyword">true</span>);
+  <span class="hljs-comment">// 设置请求方法</span>
+  connection.setRequestMethod(<span class="hljs-string">"POST"</span>);
+  <span class="hljs-comment">//添加请求头</span>
+  connection.addRequestProperty(<span class="hljs-string">"Content-Length"</span>, <span class="hljs-string">"106512"</span>);
+</code></pre>
+<h3 >2.示例</h3>
+
+<p>接下来我们将用实例来演示HttpUrlConnection的用法</p>
+<h4>2.1Get请求</h4>
+
+<p>略</p>
+<h4>2.2Post请求</h4>
+
+<pre><code class="lang-java">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">postRequest</span><span class="hljs-params">(String url, Map&lt;String, String&gt; headers, Map&lt;String, String&gt; params)</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            HttpURLConnection connection = (HttpURLConnection) <span class="hljs-keyword">new</span> URL(url).openConnection();
+            connection.setConnectTimeout(CONNECT_TIMEOUT);
+            connection.setReadTimeout(READ_TIMEOUT);
+            connection.setDoOutput(<span class="hljs-keyword">true</span>);
+            connection.setDoInput(<span class="hljs-keyword">true</span>);
+            connection.setRequestMethod(<span class="hljs-string">"POST"</span>);
+            connection.connect();
+            ByteArrayOutputStream baos = <span class="hljs-keyword">new</span> ByteArrayOutputStream();
+
+            <span class="hljs-keyword">if</span> (headers != <span class="hljs-keyword">null</span>) {
+                Set&lt;String&gt; keys = headers.keySet();
+                Iterator&lt;String&gt; iterator = keys.iterator();
+                <span class="hljs-keyword">while</span> (iterator.hasNext()) {
+                    String key = iterator.next();
+                    String value = params.get(key);
+                    <span class="hljs-comment">// 添加请求头</span>
+                    connection.addRequestProperty(key, value);
+                }
+            }
+
+            <span class="hljs-keyword">if</span> (params != <span class="hljs-keyword">null</span>) {
+                Set&lt;String&gt; keys = params.keySet();
+                Iterator&lt;String&gt; iterator = keys.iterator();
+                <span class="hljs-keyword">while</span> (iterator.hasNext()) {
+                    String key = iterator.next();
+                    String value = params.get(key);
+                    <span class="hljs-keyword">if</span> (baos.size() &gt; <span class="hljs-number">0</span>) {
+                        baos.write(<span class="hljs-string">'&amp;'</span>);
+                    }
+                    baos.write(URLEncoder.encode(key, <span class="hljs-string">"UTF-8"</span>).getBytes(<span class="hljs-string">"UTF-8"</span>));
+                    baos.write(<span class="hljs-string">'='</span>);
+                    baos.write(URLEncoder.encode(value, <span class="hljs-string">"UTF-8"</span>).getBytes(<span class="hljs-string">"UTF-8"</span>));
+                }
+            }
+            System.out.println(<span class="hljs-keyword">new</span> String(baos.toByteArray()));
+            OutputStream os = connection.getOutputStream();
+            os.write(baos.toByteArray());
+            <span class="hljs-keyword">int</span> status = connection.getResponseCode();
+            InputStream is;
+            <span class="hljs-keyword">if</span> (status &gt;= <span class="hljs-number">400</span>) {
+                is = connection.getErrorStream();
+            } <span class="hljs-keyword">else</span> {
+                is = connection.getInputStream();
+            }
+
+            InputStreamReader isr = <span class="hljs-keyword">new</span> InputStreamReader(is);
+            BufferedReader bufr = <span class="hljs-keyword">new</span> BufferedReader(isr);
+            String line;
+            StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();
+            <span class="hljs-keyword">while</span> ((line = bufr.readLine()) != <span class="hljs-keyword">null</span>) {
+                sb.append(line);
+            }
+            <span class="hljs-keyword">return</span> sb.toString();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+</code></pre>
+<p>下面我们使用新浪微博提供的Api进行网络请求，相关的请求URL和请求参数可以点击<a href="http://open.weibo.com/wiki/Oauth2/authorize" target="_blank">这里</a>进行查看。</p>
+<pre><code class="lang-java">   <span class="hljs-javadoc">/**
+     * http://open.weibo.com/wiki/Oauth2/authorize
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">post</span><span class="hljs-params">()</span> </span>{
+        Map&lt;String, String&gt; p = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        p.put(<span class="hljs-string">"client_id"</span>, Constants.APP_KEY);
+        p.put(<span class="hljs-string">"client_secret"</span>, Constants.APP_SECRET);
+        p.put(<span class="hljs-string">"code"</span>, <span class="hljs-string">"7a77090e366ceb92977f846e7fd564d0"</span>);
+        p.put(<span class="hljs-string">"redirect_uri"</span>, Constants.REDIRECT_URI);
+        String result = HttpUrlConnectionUtils.postRequest(Constants.ACCESS_TOKEN_URL, <span class="hljs-keyword">null</span>, p);
+        System.out.println(<span class="hljs-string">"result="</span> + result);
+        <span class="hljs-comment">// 输出 {"access_token":"2.00l35WyB02VWykbbf1c46abc05qOF5","remind_in":"157679999","expires_in":157679999,"uid":"1810433155","scope":"follow_app_official_microblog"}</span>
+    }
+</code></pre>
+<h4>2.3文件上传</h4>
+
+<p>从普通的web页面上传文件很简单，只需要在form标签标上<code>enctype=&quot;multipart/form-data&quot;</code>即可，浏览器将自动完成数据收集并发送Http请求。由于脱离了浏览器的环境，我们就要自己去完成数据的收集并发送请求。首先我们写一个JSP页面来看看浏览器是如何发送Http请求的。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>TestSubmit<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"upform"</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">"upload.do"</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"POST"</span> <span class="hljs-attribute">enctype</span>=<span class="hljs-value">"multipart/form-data"</span>&gt;</span>
+　　参数<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"username"</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
+　　文件1<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"file"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"file1"</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
+　　文件2<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"file"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"file2"</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
+　　<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Submit"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>form提交的信息如下。</p>
+<pre><code class="lang-java">-----------------------------<span class="hljs-number">7</span>da2e536604c8
+Content-Disposition: form-data; name=<span class="hljs-string">"username"</span>
+
+hello word
+-----------------------------<span class="hljs-number">7</span>da2e536604c8
+Content-Disposition: form-data; name=<span class="hljs-string">"file1"</span>; filename=<span class="hljs-string">"D:/haha.txt"</span>
+Content-Type: text/plain
+
+haha
+hahaha
+-----------------------------<span class="hljs-number">7</span>da2e536604c8
+Content-Disposition: form-data; name=<span class="hljs-string">"file2"</span>; filename=<span class="hljs-string">"D:/huhu.txt"</span>
+Content-Type: text/plain
+
+messi
+huhu
+-----------------------------<span class="hljs-number">7</span>da2e536604c8--
+</code></pre>
+<p>我们只要模拟这个数据，并写入Http请求中就能实现文件的上传。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// 构建分割线</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span>[] buildBoundary(String boundary, <span class="hljs-keyword">boolean</span> last) {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Pre-size for the last boundary, the worst case scenario.</span>
+            StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder(boundary.length() + <span class="hljs-number">8</span>);
+            sb.append(<span class="hljs-string">"\r\n"</span>);
+            sb.append(<span class="hljs-string">"--"</span>);
+            sb.append(boundary);
+            <span class="hljs-keyword">if</span> (last) {
+                sb.append(<span class="hljs-string">"--"</span>);
+            }
+            sb.append(<span class="hljs-string">"\r\n\r\n"</span>);
+            <span class="hljs-keyword">return</span> sb.toString().getBytes(<span class="hljs-string">"UTF-8"</span>);
+        } <span class="hljs-keyword">catch</span> (IOException ex) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Unable to write multipart boundary"</span>, ex);
+        }
+    }
+<span class="hljs-comment">//构建请求头</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span>[] buildHeader(String name, Object value) {
+        <span class="hljs-keyword">try</span> {
+            String transferEncoding = <span class="hljs-string">"binary"</span>;
+            <span class="hljs-comment">// Initial size estimate based on always-present strings and conservative value lengths.</span>
+            StringBuilder headers = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-number">128</span>);
+
+            headers.append(<span class="hljs-string">"Content-Disposition: form-data; name=\""</span>);
+            headers.append(name);
+            <span class="hljs-keyword">long</span> length = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> File) {
+                String fileName = ((File) value).getName();
+                <span class="hljs-keyword">if</span> (fileName != <span class="hljs-keyword">null</span>) {
+                    headers.append(<span class="hljs-string">"\"; filename=\""</span>);
+                    headers.append(fileName);
+                }
+                headers.append(<span class="hljs-string">"\"\r\nContent-Type: "</span>);
+                headers.append(URLConnection.guessContentTypeFromName(((File) value).getPath()));
+                length = ((File) value).length();
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(value <span class="hljs-keyword">instanceof</span> String)</span> </span>{
+                headers.append(<span class="hljs-string">"\"\r\nContent-Type: "</span>);
+                headers.append(<span class="hljs-string">"text/plain;charset=UTF-8"</span>);
+                length = ((String) value).getBytes().length;
+            }
+            <span class="hljs-keyword">if</span> (length != -<span class="hljs-number">1</span>) {
+                headers.append(<span class="hljs-string">"\r\nContent-Length: "</span>).append(length);
+            }
+
+            headers.append(<span class="hljs-string">"\r\nContent-Transfer-Encoding: "</span>);
+            headers.append(transferEncoding);
+            headers.append(<span class="hljs-string">"\r\n\r\n"</span>);
+
+            <span class="hljs-keyword">return</span> headers.toString().getBytes(<span class="hljs-string">"UTF-8"</span>);
+        } <span class="hljs-keyword">catch</span> (IOException ex) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Unable to write multipart header"</span>, ex);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">upload</span><span class="hljs-params">(String url, Map&lt;String, String&gt; headers, Map&lt;String, Object&gt; params)</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            String BOUNDARY = UUID.randomUUID().toString();
+            HttpURLConnection connection = (HttpURLConnection) <span class="hljs-keyword">new</span> URL(url).openConnection();
+            connection.setConnectTimeout(CONNECT_TIMEOUT);
+            connection.setReadTimeout(READ_TIMEOUT);
+            connection.setDoOutput(<span class="hljs-keyword">true</span>);
+            connection.setDoInput(<span class="hljs-keyword">true</span>);
+            connection.setRequestMethod(<span class="hljs-string">"POST"</span>);
+            ByteArrayOutputStream baos = <span class="hljs-keyword">new</span> ByteArrayOutputStream();
+            <span class="hljs-keyword">if</span> (headers != <span class="hljs-keyword">null</span>) {
+                Set&lt;String&gt; keys = headers.keySet();
+                Iterator&lt;String&gt; iterator = keys.iterator();
+                <span class="hljs-keyword">while</span> (iterator.hasNext()) {
+                    String key = iterator.next();
+                    String value = headers.get(key);
+                    <span class="hljs-comment">// 添加请求头</span>
+                    connection.addRequestProperty(key, value);
+                }
+            }
+            connection.addRequestProperty(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"multipart/form-data; boundary="</span>+BOUNDARY);
+
+
+            <span class="hljs-keyword">if</span> (params != <span class="hljs-keyword">null</span>) {
+                Set&lt;String&gt; keys = params.keySet();
+                Iterator&lt;String&gt; iterator = keys.iterator();
+                <span class="hljs-keyword">while</span> (iterator.hasNext()) {
+                    String key = iterator.next();
+                    Object value = params.get(key);
+                    baos.write(buildBoundary(BOUNDARY, <span class="hljs-keyword">false</span>));
+                    baos.write(buildHeader(key, value));
+                    <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> String) {
+                        baos.write(((String) value+<span class="hljs-string">"\r\n"</span>).getBytes(<span class="hljs-string">"UTF-8"</span>));
+                    } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(value <span class="hljs-keyword">instanceof</span> File)</span> </span>{
+                        FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream((File) value);
+                        <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">4096</span>];
+                        <span class="hljs-keyword">int</span> hasRead = <span class="hljs-number">0</span>;
+                        <span class="hljs-keyword">while</span> ((hasRead = fis.read(bytes)) != -<span class="hljs-number">1</span>) {
+                            baos.write(bytes, <span class="hljs-number">0</span>, hasRead);
+                        }
+                    }
+                }
+            }
+
+            baos.write(buildBoundary(BOUNDARY, <span class="hljs-keyword">true</span>));
+            System.out.println(<span class="hljs-keyword">new</span> String(baos.toByteArray()));
+            OutputStream os = connection.getOutputStream();
+            os.write(baos.toByteArray());
+            <span class="hljs-keyword">int</span> status = connection.getResponseCode();
+            InputStream is;
+            <span class="hljs-keyword">if</span> (status &gt;= <span class="hljs-number">400</span>) {
+                is = connection.getErrorStream();
+            } <span class="hljs-keyword">else</span> {
+                is = connection.getInputStream();
+            }
+            InputStreamReader isr = <span class="hljs-keyword">new</span> InputStreamReader(is);
+            BufferedReader bufr = <span class="hljs-keyword">new</span> BufferedReader(isr);
+            String line;
+            StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();
+            <span class="hljs-keyword">while</span> ((line = bufr.readLine()) != <span class="hljs-keyword">null</span>) {
+                sb.append(line);
+            }
+            <span class="hljs-keyword">return</span> sb.toString();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+</code></pre>
+<p>下面我们使用新浪微博提供的Api进行网络请求，相关的请求URL和请求参数可以点击<a href="http://open.weibo.com/wiki/2/statuses/upload" target="_blank">这里</a>进行查看。</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">upload</span><span class="hljs-params">()</span> </span>{
+
+
+        Map&lt;String, Object&gt; params = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+        params.put(<span class="hljs-string">"access_token"</span>, <span class="hljs-string">"2.00l35WyB02VWykbbf1c46abc05qOF5"</span>);
+        params.put(<span class="hljs-string">"status"</span>, <span class="hljs-string">"测试测试"</span>);
+
+        params.put(<span class="hljs-string">"pic"</span>, <span class="hljs-keyword">new</span> File(<span class="hljs-string">"/Users/malinkang/Downloads/a.jpg"</span>));
+        String result = HttpUrlConnectionUtils.upload(Constants.UPLOAD_URL, <span class="hljs-keyword">null</span>, params);
+        System.out.println(<span class="hljs-string">"result="</span> + result);
+
+    }
+</code></pre>
+<p>注：请求未成功，Bug未找到。</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="../net/okhttp.html" class="navigation navigation-next navigation-unique" aria-label="Next page: OkHttp"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"malinkang"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -26,16 +26,16 @@
 
   @Override
             public void success(CourseListInfo courseListInfo, Response response) {
-            
-   
-            
+
+
+
                 if (courseListInfo != null
                         && courseListInfo.getResultCode() == 0
                         ) {
                     if (courseListInfo.getData() != null && courseListInfo.getData().size() != 0) {
                         ArrayList<CourseList> roomList = courseListInfo
                                 .getData();
-                        
+
                         }
                         state = LoadDataEvent.State.SUCCESS;
                         event.state = state;

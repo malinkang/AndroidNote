@@ -1,11 +1,31 @@
-<<<<<<< HEAD
+## Drawable Resource
 
-=======
 
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
-# Shape Drawable
+##Layer List
+
+[LayerDrawable](http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html)是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。
 
 语法
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:drawable="@[package:]drawable/drawable_resource"
+        android:id="@[+][package:]id/resource_name"
+        android:top="dimension"
+        android:right="dimension"
+        android:bottom="dimension"
+        android:left="dimension" />
+</layer-list>
+
+```
+
+## Shape Drawable
+
+Shape Drawable用于绘制常见的形状，其基本语法如下。
 
 ```xml
 
@@ -48,20 +68,16 @@
 
 ```
 
-## <shape>
+### shape
 
 
 `android:shape`定义形状，可用的值包括`rectangle(矩形)`、`oval(椭圆形)`、`line(线)`、`ring(圆形)`
 
-**下列属性只有当`android:shape="ring"`时才能使用。**
 
-* `android:innerRadius`尺寸值。 圆形内部半径。
-* `android:innerRadiusRatio`float值。内部半径和圆形宽度比例。例如，如果` android:innerRadiusRatio="5"`时，内部半斤等于圆形宽度除以5。如果设置了`android:innerRadius`，该值讲不起作用。默认值为`9`。
-* `android:thickness`尺寸值。圆形的厚度。
-* `android:thicknessRatio`float值。厚度与圆形宽度的比例。默认值是`3`。
-* `android:useLevel`是否作为一个` LevelListDrawable`。
 
-## <corners>
+### corners
+
+corners标签用于指定角。
 
 * `android:radius`尺寸值。所有角的半径。
 * `android:topLeftRadius`尺寸值。左上角的半径。
@@ -69,71 +85,69 @@
 * `android:bottomLeftRadius`尺寸值。左下角的半径。
 * `android:bottomRightRadius`尺寸值。右下角的半径。
 
-## <gradient>
+### gradient
 
 定义颜色渐变。
 
 * `android:angle`Integer值。渐变的角度。0是从左到右，90是从底部到顶部。值必须是`45`的倍数。默认是`0`。
-* `android:centerX`
-* `android:centerY`
-* `android:centerColor`
-<<<<<<< HEAD
-* `android:endColor`
-=======
-* `android:endColor`
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
-* `android:gradientRadius`
-* `android:startColor`
-* `android:type`
+* `android:centerX`：相对于x为中心
+* `android:centerY`：相对于y为中心
+* `android:centerColor`：中间颜色
+* `android:endColor`：结束颜色
+* `android:gradientRadius`：渐变半径，只有当type为radial时才可用。
+* `android:startColor`：开始颜色
+* `android:type`：可用值得包括linear，radial和sweep。
 
-## <padding>
+### padding
+设置padding
+### size
+设定形状大小
 
-## <size>
-
-## <solid>
-实心的颜色，填充Shape
-
-## <stroke>
+### solid
+用于填充形状。
+### stroke
 
 Shape的边线。
 
-* `android:width`
-* `android:color`
-* `android:dashGap`
-* `android:dashWidth`
+* `android:width`：线的宽度
+* `android:color`：虚线的颜色
+* `android:dashGap`：虚线之间的距离
+* `android:dashWidth`：虚线的宽度
 
 示例
 
 ```xml
-
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
+    <stroke
+        android:width="1dp"
+        android:color="@android:color/holo_blue_bright"
+        android:dashGap="2dp"
+        android:dashWidth="4dp" />
+    <size
+        android:width="100dp"
+        android:height="100dp" />
+
+    <solid android:color="@android:color/holo_orange_light" />
+
+    <corners android:radius="5dp" />
+    <!--覆盖了solid填充的颜色-->
     <gradient
-        android:startColor="#FFFF0000"
-        android:endColor="#80FF00FF"
-        android:angle="45"/>
-    <padding android:left="7dp"
-        android:top="7dp"
-        android:right="7dp"
-        android:bottom="7dp" />
-    <corners android:radius="8dp" />
+        android:angle="45"
+        android:centerColor="@android:color/holo_red_light"
+        android:centerX="0.7"
+        android:endColor="@android:color/holo_purple"
+        android:startColor="@android:color/holo_orange_light"
+        android:type="linear" />
+
 </shape>
 
 ```
 
-
-<<<<<<< HEAD
-
-#扩展阅读：
+![](images/shape_drawable_1.png)
 
 
-* [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)
-=======
-
-#扩展阅读：
 
 
-* [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)
->>>>>>> 43eb28dc379e3887bf933756ee10845587398c6c
-* [TextView英文文档](http://developer.android.com/reference/android/widget/TextView.html)
+## 阅读更多

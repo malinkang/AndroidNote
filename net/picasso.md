@@ -199,6 +199,10 @@ Picasso.with(context).load(new File(...)).into(imageView2);
 
 [Custom Picasso Downloader](http://blog.jpardogo.com/custom-picasso-downloader/)
 
+[picasso-transformations](https://github.com/wasabeef/picasso-transformations)
+
+[glide-transformations](https://github.com/wasabeef/glide-transformations)
+
 
 
 
