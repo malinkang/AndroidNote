@@ -1,4 +1,4 @@
-# TextView使用
+## TextView使用
 
 
 
@@ -8,7 +8,7 @@
   * [3.在TextView中设置字体](#3.在TextView中设置字体)
   * [扩展阅读](#扩展阅读)
 
-
+----------------------------------------------------------
 
 <h3 id="1.TextView常用属性">1.TextView常用属性</h3>
 
@@ -161,9 +161,8 @@ protected void attachBaseContext(Context newBase) {
 
 <h3 id="扩展阅读">扩展阅读</h3>
 
-
-* [TextView中文API](http://www.cnblogs.com/over140/archive/2010/08/27/1809745.html)
-* [TextView英文文档](http://developer.android.com/reference/android/widget/TextView.html)
+* [TextViewApi](http://developer.android.com/reference/android/widget/TextView.html)
+* [Advanced Android TextView](https://github.com/chiuki/advanced-textview)
 
 
 

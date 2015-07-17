@@ -4,7 +4,7 @@
 
 如果要继承PagerAdapter，必须重写四个方法
 
-* public Object instantiateItem(ViewGroup container, int position) 
+* public Object instantiateItem(ViewGroup container, int position)
 * public void destroyItem(ViewGroup container, int position, Object object)
 * public abstract int getCount();
 * public abstract boolean isViewFromObject(View view, Object object);
