@@ -37,7 +37,7 @@
 	* [数据库操作](database/数据库操作.md)
 	* [ActiveAndroid](database/activeandroid.md)
 * [RxJava](RxJava.md)
-* [MVVM](MVVM.md)
+* [数据绑定](数据绑定.md)
 * [JSON解析](parse/gson.md)
 * 网络请求
 	* [HttpURLConnection使用](net/httpurlconnection.md)
@@ -48,6 +48,7 @@
 	* [Android-Universal-Image-Loader](net/android-universal-image-loader.md)
 	* [Picasso](net/picasso.md)
 * [DownloadProvider](net/downloadprovider.md)
+* [依赖注入](依赖注入.md)
 * 注解
    * [ButterKnife](annotation/butterknife.md)
    * [AndroidAnnotations](annotation/androidannotations.md)
