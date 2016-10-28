@@ -1,117 +1,103 @@
-## Okhttp使用
+### Okhttp使用
 
 
-<h3>1.OkHttp使用</h3>
+<h3>okHttp2.0使用</h3>
 
 <h4>1.1Get请求</h4>
 
 略
 
-<h4>1.2表单提交</h4>
+#### 1.2表单提交
 
 ```java
- /**
-     * 使用okhttp进行表单提交
-     * @param url
-     * @param params
-     * @throws IOException
-     */
-    public static void okHttpPost(String url, Map<String, String> params) throws IOException {
+public static String okHttpPost(String url, Map<String, String> headers, Map<String, String> params) {
 
+    try {
+        Request.Builder builder = new Request.Builder();
+        builder.url(url);
         OkHttpClient client = new OkHttpClient();
-        FormEncodingBuilder builder = new FormEncodingBuilder();
-        Iterator<String> iterator = params.keySet().iterator();
-        while (iterator.hasNext()){
-           String key= iterator.next();
-            String value=params.get(key);
-            builder.add(key,value);
+        FormBody.Builder formBodyBuilder = new FormBody.Builder();
+        if (headers != null) {
+            Iterator<String> iterator = params.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                String value = params.get(key);
+                builder.addHeader(key, value);
+            }
         }
-
-        RequestBody formBody=builder.build();
-
-        com.squareup.okhttp.Request request = new
-                com.squareup.okhttp.Request.Builder()
-                .url(url)
+        if (params != null) {
+            Iterator<String> iterator = params.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                String value = params.get(key);
+                formBodyBuilder.add(key, value);
+            }
+        }
+        RequestBody formBody = formBodyBuilder.build();
+        Request request = builder
                 .post(formBody)
                 .build();
-        com.squareup.okhttp.Response response=client.newCall(request).execute();
-
-        if(response.isSuccessful()){
-            System.out.println(response.body().string());
-        }else{
-            System.out.println(response.body().string());
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful()) {
+            return new String(response.body().bytes());
+        } else {
+            return null;
         }
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
     }
-
+}
 ```
 
-调用方法
+
+#### 1.3文件上传
 
 ```java
-
-    private static void post() throws IOException {
-        Map<String, String> p = new HashMap<>();
-        p.put("client_id", Constants.APP_KEY);
-        p.put("client_secret", Constants.APP_SECRET);
-        p.put("code", "f45259c351190e6118734dfaff36ccb9");
-        p.put("redirect_uri", Constants.REDIRECT_URI);
-        HttpUrlConnectionUtils.okHttpPost(Constants.ACCESS_TOKEN_URL, p);
-    }
-
-```
-
-<h4>1.3文件上传</h4>
-
-```java
-
-    public static void okHttpUpload(String url,Map<String,Object> params) throws IOException {
+public static String upload(String url, Map<String, Object> params) {
+    try {
+        Request.Builder builder = new Request.Builder();
+        builder.url(url);
         OkHttpClient client = new OkHttpClient();
-        MultipartBuilder builder=new MultipartBuilder().type(MultipartBuilder.FORM);
-        Iterator<String> iterator= params.keySet().iterator();
-        while (iterator.hasNext()){
-            String key=iterator.next();
-            Object value =params.get(key);
-            if(value instanceof String){
-                builder.addPart(Headers.of("Content-Disposition", "form-data; name=\""+key+"\""),
-                        RequestBody.create(null, (String) value));
-            }else if(value instanceof File){
-                builder.addPart(Headers.of("Content-Disposition", "form-data; name=\""+key+"\";filename=\""+((File)value).getName()+"\""),
-                        RequestBody.create(MediaType.parse(URLConnection.guessContentTypeFromName(((File)value).getName())),(File)value));
+        MultipartBody.Builder multipartBodyBuilder = new MultipartBody.Builder();
+        multipartBodyBuilder.setType(MultipartBody.FORM);
+        Iterator<String> iterator = params.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            Object value = params.get(key);
+            if (value instanceof String) {
+    //                    Headers headers = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"");
+    //                    multipartBodyBuilder.addPart(headers, RequestBody.create(null, (String) value));
+                // 上面两行代码等价于 下面这行
+                multipartBodyBuilder.addFormDataPart(key, (String) value);
+            } else if (value instanceof File) {
+                File file = (File) value;
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+    //                    MultipartBody.Part part = MultipartBody.Part.createFormData(key, file.getName(), requestFile);
+    //                    multipartBodyBuilder.addPart(part);
+    //                    上面两行代码等价于 下面这行
+                multipartBodyBuilder.addFormDataPart(key, file.getName(), requestFile);
             }
-
         }
-
-        RequestBody requestBody=builder.build();
-
-        com.squareup.okhttp.Request request = new
-                com.squareup.okhttp.Request.Builder()
-                .url(url)
+        RequestBody requestBody = multipartBodyBuilder.build();
+        Request request = builder
                 .post(requestBody)
                 .build();
-        com.squareup.okhttp.Response response=client.newCall(request).execute();
-        if(response.isSuccessful()){
-            System.out.println(response.body().string());
-        }else{
-            System.out.println(response.body().string());
+        Response response = client.newCall(request).execute();
+        Log.e(HttpClint.class.getSimpleName(), "response=" + new String(response.body().bytes()));
+        if (response.isSuccessful()) {
+            return new String(response.body().bytes());
+        } else {
+            return null;
         }
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
     }
+}
 ```
 
-方法调用
 
-```java
-    private static void upload() throws IOException {
-
-
-        Map<String, Object> params = new LinkedHashMap<>();
-        params.put("access_token", "2.00l35WyB02VWykbbf1c46abc05qOF5");
-        params.put("status", "测试测试");
-
-        params.put("pic", new File("/Users/malinkang/Downloads/a.jpg"));
-        HttpUrlConnectionUtils.okHttpUpload(Constants.UPLOAD_URL,params);
-    }
-```
-
-<h3>参考</h3>
-* [ OkHttp Recipes page](https://github.com/square/okhttp/wiki/Recipes)
+### 参考
+* [OkHttp Recipes page](https://github.com/square/okhttp/wiki/Recipes)
 * [OkHttp源码解析](http://frodoking.github.io/2015/03/12/android-okhttp/)

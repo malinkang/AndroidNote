@@ -1,0 +1,245 @@
+.gitbook-markdown-body {
+  display: block;
+  word-wrap: break-word;
+  overflow: hidden;
+  color: #000;
+  line-height: 1.7;
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  /* Printing */
+  /* Typography */
+  /* Spacing */
+  /* Links */
+  /* Images */
+  /* Horizontal lines */
+  /* Headings */
+  /* Code blocks */
+  /* Tables */
+  /* Lists */
+  /* Blockquote */
+  /* Description Lists */
+}
+.gitbook-markdown-body * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-size: inherit;
+}
+.gitbook-markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+.gitbook-markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+.gitbook-markdown-body pre,
+.gitbook-markdown-body code,
+.gitbook-markdown-body blockquote,
+.gitbook-markdown-body tr,
+.gitbook-markdown-body img,
+.gitbook-markdown-body table,
+.gitbook-markdown-body figure {
+  page-break-inside: avoid;
+}
+.gitbook-markdown-body p,
+.gitbook-markdown-body h2,
+.gitbook-markdown-body h3,
+.gitbook-markdown-body h4,
+.gitbook-markdown-body h5 {
+  orphans: 3;
+  widows: 3;
+}
+.gitbook-markdown-body h1,
+.gitbook-markdown-body h2,
+.gitbook-markdown-body h3,
+.gitbook-markdown-body h4,
+.gitbook-markdown-body h5 {
+  page-break-after: avoid;
+}
+.gitbook-markdown-body strong,
+.gitbook-markdown-body b {
+  font-weight: bold;
+}
+.gitbook-markdown-body em {
+  font-style: italic;
+}
+.gitbook-markdown-body p,
+.gitbook-markdown-body blockquote,
+.gitbook-markdown-body ul,
+.gitbook-markdown-body ol,
+.gitbook-markdown-body dl,
+.gitbook-markdown-body table {
+  margin-top: 0;
+  margin-bottom: 0.85em;
+}
+.gitbook-markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+  background: transparent;
+}
+.gitbook-markdown-body a:hover,
+.gitbook-markdown-body a:focus,
+.gitbook-markdown-body a:active {
+  outline: 0;
+  text-decoration: underline;
+}
+.gitbook-markdown-body img {
+  border: 0;
+  max-width: 100%;
+}
+.gitbook-markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 1.7em 0;
+  overflow: hidden;
+  background-color: #e7e7e7;
+  border: none;
+}
+.gitbook-markdown-body hr:before,
+.gitbook-markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+.gitbook-markdown-body hr:after {
+  clear: both;
+}
+.gitbook-markdown-body h1,
+.gitbook-markdown-body h2,
+.gitbook-markdown-body h3,
+.gitbook-markdown-body h4,
+.gitbook-markdown-body h5,
+.gitbook-markdown-body h6 {
+  margin-top: 1.275em;
+  margin-bottom: 0.85em;
+  font-weight: bold;
+}
+.gitbook-markdown-body h1 {
+  font-size: 2em;
+}
+.gitbook-markdown-body h2 {
+  font-size: 1.75em;
+}
+.gitbook-markdown-body h3 {
+  font-size: 1.5em;
+}
+.gitbook-markdown-body h4 {
+  font-size: 1.25em;
+}
+.gitbook-markdown-body h5 {
+  font-size: 1em;
+}
+.gitbook-markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+.gitbook-markdown-body code,
+.gitbook-markdown-body pre {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  direction: ltr;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  color: inherit;
+}
+.gitbook-markdown-body pre {
+  overflow: auto;
+  word-wrap: normal;
+  margin: 0px;
+  padding: 0.85em 1em;
+  margin-bottom: 1.275em;
+  background: #f7f7f7;
+}
+.gitbook-markdown-body pre > code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  font-size: 0.85em;
+  white-space: pre;
+  background: transparent;
+}
+.gitbook-markdown-body pre > code:before,
+.gitbook-markdown-body pre > code:after {
+  content: normal;
+}
+.gitbook-markdown-body code {
+  padding: 0.2em;
+  margin: 0;
+  font-size: 0.85em;
+  background-color: #f7f7f7;
+}
+.gitbook-markdown-body code:before,
+.gitbook-markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+.gitbook-markdown-body table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto;
+}
+.gitbook-markdown-body table td,
+.gitbook-markdown-body table th {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+.gitbook-markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+.gitbook-markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+.gitbook-markdown-body table th {
+  font-weight: bold;
+}
+.gitbook-markdown-body ul,
+.gitbook-markdown-body ol {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.85em;
+  padding-left: 2em;
+}
+.gitbook-markdown-body ul ol,
+.gitbook-markdown-body ol ol,
+.gitbook-markdown-body ul ul,
+.gitbook-markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.gitbook-markdown-body ol ol {
+  list-style-type: lower-roman;
+}
+.gitbook-markdown-body blockquote {
+  margin: 0;
+  margin-bottom: 0.85em;
+  padding: 0 15px;
+  color: #858585;
+  border-left: 4px solid #e5e5e5;
+}
+.gitbook-markdown-body blockquote:first-child {
+  margin-top: 0;
+}
+.gitbook-markdown-body blockquote:last-child {
+  margin-bottom: 0;
+}
+.gitbook-markdown-body dl {
+  padding: 0;
+}
+.gitbook-markdown-body dl dt {
+  padding: 0;
+  margin-top: 0.85em;
+  font-style: italic;
+  font-weight: bold;
+}
+.gitbook-markdown-body dl dd {
+  padding: 0 0.85em;
+  margin-bottom: 0.85em;
+}
+.gitbook-markdown-body dd {
+  margin-left: 0;
+}

@@ -1,10 +1,7 @@
-#ButterKnife
-
-
 
 ButterKnife是一个Android View注入的库。
 
-## 1 配置Eclipse
+### 1 配置Eclipse
 
 在使用ButterKnife需要先配置一下Eclipse。
 

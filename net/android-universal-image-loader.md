@@ -1,4 +1,4 @@
-# 1. 介绍
+### 1. 介绍
 
 [Universal Image Loader](https://github.com/nostra13/Android-Universal-Image-Loader) 具有以下特性：
 
@@ -8,9 +8,9 @@
 * 图片可以缓存在内存中和硬盘上
 * 可以监听图片的加载进度和下载进度
 
-# 2.快速入门
+### 2.基本配置
 
-## 2.1 构建项目
+#### 2.1 构建项目
 
 Jar包下载地址：<https://github.com/nostra13/Android-Universal-Image-Loader>
 
@@ -31,7 +31,7 @@ compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
 ```
 
-## 2.2 配置 Android Manifest
+#### 2.2 配置 Android Manifest
 
 在android Mainfest 配置必要的权限
 
@@ -48,7 +48,7 @@ compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
 ```
 
-## 2.3 在Application和Activity中初始化ImageLoader
+#### 2.3 在Application和Activity中初始化ImageLoader
 
 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader
 
@@ -126,9 +126,9 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 
 ```
 
-# 3.使用
+### 3.使用
 
-## 3.1 支持多种URI
+#### 3.1 支持多种URI
 
 Universal Image Loader 不仅可以加载网络图片还可以加载内存卡，asset文件夹下的图片等等。
 
@@ -142,7 +142,7 @@ String imageUri = "drawable://" + R.drawable.img; // from drawables (non-9patch 
 
 ```
 
-## 3.2ImageLoader常用方法
+#### 3.2ImageLoader常用方法
 
 * displayImage：加载图片，转换为Bitmap对象，将Bitmap展示在ImageView上或者其他实现ImageAware接口的View。
 
@@ -186,7 +186,7 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
 
 ```
 
-* loadImage：加载图片，转换为Bitmap对象并且将Bitmap对象返回给回掉函数。
+* loadImage：加载图片，转换为Bitmap对象并且将Bitmap对象返回给回调函数。
 
 ```java
 
@@ -219,4 +219,253 @@ Bitmap bmp = imageLoader.loadImageSync(imageUri);
 
 ```
 
+### 4.源码分析
 
+#### 4.1 ImageLoader
+
+displayImage方法
+
+```java
+public void displayImage(String uri, ImageAware imageAware, DisplayImageOptions options,
+			ImageSize targetSize, ImageLoadingListener listener, ImageLoadingProgressListener progressListener) {
+		checkConfiguration();
+		if (imageAware == null) {
+			throw new IllegalArgumentException(ERROR_WRONG_ARGUMENTS);
+		}
+		if (listener == null) {
+			listener = defaultListener;
+		}
+		if (options == null) {
+			options = configuration.defaultDisplayImageOptions;
+		}
+
+		if (TextUtils.isEmpty(uri)) {
+			engine.cancelDisplayTaskFor(imageAware);
+			listener.onLoadingStarted(uri, imageAware.getWrappedView());
+			if (options.shouldShowImageForEmptyUri()) {
+				imageAware.setImageDrawable(options.getImageForEmptyUri(configuration.resources));
+			} else {
+				imageAware.setImageDrawable(null);
+			}
+			listener.onLoadingComplete(uri, imageAware.getWrappedView(), null);
+			return;
+		}
+
+		if (targetSize == null) {
+			targetSize = ImageSizeUtils.defineTargetSizeForView(imageAware, configuration.getMaxImageSize());
+		}
+		String memoryCacheKey = MemoryCacheUtils.generateKey(uri, targetSize);
+		engine.prepareDisplayTaskFor(imageAware, memoryCacheKey);
+		//监听器执行onLoadingStarted方法
+		listener.onLoadingStarted(uri, imageAware.getWrappedView());
+		//从缓存中读取图片
+		Bitmap bmp = configuration.memoryCache.get(memoryCacheKey);
+		if (bmp != null && !bmp.isRecycled()) {
+			//图片不为空并且没有被回收
+			L.d(LOG_LOAD_IMAGE_FROM_MEMORY_CACHE, memoryCacheKey);
+
+			if (options.shouldPostProcess()) {
+				ImageLoadingInfo imageLoadingInfo = new ImageLoadingInfo(uri, imageAware, targetSize, memoryCacheKey,
+						options, listener, progressListener, engine.getLockForUri(uri));
+				ProcessAndDisplayImageTask displayTask = new ProcessAndDisplayImageTask(engine, bmp, imageLoadingInfo,
+						defineHandler(options));
+				if (options.isSyncLoading()) {
+					//同步
+					displayTask.run();
+				} else {
+					//异步
+					engine.submit(displayTask);
+				}
+			} else {
+				options.getDisplayer().display(bmp, imageAware, LoadedFrom.MEMORY_CACHE);
+				listener.onLoadingComplete(uri, imageAware.getWrappedView(), bmp);
+			}
+		} else {
+			//图片为空
+			if (options.shouldShowImageOnLoading()) {
+				imageAware.setImageDrawable(options.getImageOnLoading(configuration.resources));
+			} else if (options.isResetViewBeforeLoading()) {
+				imageAware.setImageDrawable(null);
+			}
+
+			ImageLoadingInfo imageLoadingInfo = new ImageLoadingInfo(uri, imageAware, targetSize, memoryCacheKey,
+					options, listener, progressListener, engine.getLockForUri(uri));
+			LoadAndDisplayImageTask displayTask = new LoadAndDisplayImageTask(engine, imageLoadingInfo,
+					defineHandler(options));
+			if (options.isSyncLoading()) {
+				displayTask.run();
+			} else {
+				engine.submit(displayTask);
+			}
+		}
+	}
+```
+
+#### 4.2 LoadAndDisplayImageTask
+
+```java
+@Override
+	public void run() {
+		if (waitIfPaused()) return;
+		if (delayIfNeed()) return;
+
+		ReentrantLock loadFromUriLock = imageLoadingInfo.loadFromUriLock;
+		L.d(LOG_START_DISPLAY_IMAGE_TASK, memoryCacheKey);
+		if (loadFromUriLock.isLocked()) {
+			L.d(LOG_WAITING_FOR_IMAGE_LOADED, memoryCacheKey);
+		}
+
+		loadFromUriLock.lock();
+		Bitmap bmp;
+		try {
+			checkTaskNotActual();
+
+			bmp = configuration.memoryCache.get(memoryCacheKey);
+			if (bmp == null || bmp.isRecycled()) {
+				bmp = tryLoadBitmap();
+				if (bmp == null) return; // listener callback already was fired
+
+				checkTaskNotActual();
+				checkTaskInterrupted();
+
+				if (options.shouldPreProcess()) {
+					L.d(LOG_PREPROCESS_IMAGE, memoryCacheKey);
+					bmp = options.getPreProcessor().process(bmp);
+					if (bmp == null) {
+						L.e(ERROR_PRE_PROCESSOR_NULL, memoryCacheKey);
+					}
+				}
+
+				if (bmp != null && options.isCacheInMemory()) {
+					L.d(LOG_CACHE_IMAGE_IN_MEMORY, memoryCacheKey);
+					//缓存到内存中
+					configuration.memoryCache.put(memoryCacheKey, bmp);
+				}
+			} else {
+				loadedFrom = LoadedFrom.MEMORY_CACHE;
+				L.d(LOG_GET_IMAGE_FROM_MEMORY_CACHE_AFTER_WAITING, memoryCacheKey);
+			}
+
+			if (bmp != null && options.shouldPostProcess()) {
+				L.d(LOG_POSTPROCESS_IMAGE, memoryCacheKey);
+				bmp = options.getPostProcessor().process(bmp);
+				if (bmp == null) {
+					L.e(ERROR_POST_PROCESSOR_NULL, memoryCacheKey);
+				}
+			}
+			checkTaskNotActual();
+			checkTaskInterrupted();
+		} catch (TaskCancelledException e) {
+			fireCancelEvent();
+			return;
+		} finally {
+			loadFromUriLock.unlock();
+		}
+
+		DisplayBitmapTask displayBitmapTask = new DisplayBitmapTask(bmp, imageLoadingInfo, engine, loadedFrom);
+		runTask(displayBitmapTask, syncLoading, handler, engine);
+	}
+```
+tryLoadBitmap方法
+
+```java
+private Bitmap tryLoadBitmap() throws TaskCancelledException {
+		Bitmap bitmap = null;
+		try {
+			//从硬盘缓存中获取图片
+			File imageFile = configuration.diskCache.get(uri);
+			if (imageFile != null && imageFile.exists() && imageFile.length() > 0) {
+				L.d(LOG_LOAD_IMAGE_FROM_DISK_CACHE, memoryCacheKey);
+				loadedFrom = LoadedFrom.DISC_CACHE;
+
+				checkTaskNotActual();
+				bitmap = decodeImage(Scheme.FILE.wrap(imageFile.getAbsolutePath()));
+			}
+			//从网络加载图片
+			if (bitmap == null || bitmap.getWidth() <= 0 || bitmap.getHeight() <= 0) {
+				L.d(LOG_LOAD_IMAGE_FROM_NETWORK, memoryCacheKey);
+				loadedFrom = LoadedFrom.NETWORK;
+
+				String imageUriForDecoding = uri;
+				if (options.isCacheOnDisk() && tryCacheImageOnDisk()) {
+					imageFile = configuration.diskCache.get(uri);
+					if (imageFile != null) {
+						imageUriForDecoding = Scheme.FILE.wrap(imageFile.getAbsolutePath());
+					}
+				}
+
+				checkTaskNotActual();
+				bitmap = decodeImage(imageUriForDecoding);
+
+				if (bitmap == null || bitmap.getWidth() <= 0 || bitmap.getHeight() <= 0) {
+					fireFailEvent(FailType.DECODING_ERROR, null);
+				}
+			}
+		} catch (IllegalStateException e) {
+			fireFailEvent(FailType.NETWORK_DENIED, null);
+		} catch (TaskCancelledException e) {
+			throw e;
+		} catch (IOException e) {
+			L.e(e);
+			fireFailEvent(FailType.IO_ERROR, e);
+		} catch (OutOfMemoryError e) {
+			L.e(e);
+			fireFailEvent(FailType.OUT_OF_MEMORY, e);
+		} catch (Throwable e) {
+			L.e(e);
+			fireFailEvent(FailType.UNKNOWN, e);
+		}
+		return bitmap;
+	}
+```
+```java
+//缓存图片到硬盘上
+	private boolean tryCacheImageOnDisk() throws TaskCancelledException {
+		L.d(LOG_CACHE_IMAGE_ON_DISK, memoryCacheKey);
+
+		boolean loaded;
+		try {
+			loaded = downloadImage();
+			if (loaded) {
+				int width = configuration.maxImageWidthForDiskCache;
+				int height = configuration.maxImageHeightForDiskCache;
+				if (width > 0 || height > 0) {
+					L.d(LOG_RESIZE_CACHED_IMAGE_FILE, memoryCacheKey);
+					resizeAndSaveImage(width, height); // TODO : process boolean result
+				}
+			}
+		} catch (IOException e) {
+			L.e(e);
+			loaded = false;
+		}
+		return loaded;
+	}
+```
+
+#### 4.3 下载图片
+
+* ImageDownloader:接口
+    + BaseImageDownloader
+
+#### 4.4 硬盘缓存
+
+* DiskCache
+    + LruDiskCache
+    + BaseDiskCache
+        + UnlimitedDiskCache：默认
+
+
+#### 4.5 内存缓存
+* MemoryCache
+    + LruMemoryCache：默认
+    + FuzzyKeyMemoryCache
+    + BaseMemoryCache
+        + WeakMemoryCache
+        + LimitedMemoryCache
+            + LargestLimitedMemoryCache
+            + UsingFreqLimitedMemoryCache
+            + LRULimitedMemoryCache
+            + LimitedAgeMemoryCache
+            
+### 参考
+* [Android Universal Image Loader 源码分析](http://codekk.com/open-source-project-analysis/detail/Android/huxian99/Android%20Universal%20Image%20Loader%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)

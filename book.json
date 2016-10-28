@@ -1,10 +1,11 @@
 {
-    "plugins": [
-        "disqus"
-    ],
+    "plugins" : [ "back-to-top-button","plantuml","image-captions", "prism","-highlight","expandable-chapters","page-treeview"],
     "pluginsConfig": {
-        "disqus": {
-            "shortName": "malinkang"
+        "fontsettings": {
+        	"theme":"night",
+        	"family":"serif",
+        	"size":2
         }
+      
     }
 }

@@ -872,4 +872,6 @@ public class UrlConnectionClient implements Client {
 
 * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 
+* [Retrofit分析-漂亮的解耦套路](http://www.jianshu.com/p/45cb536be2f4)
+
 

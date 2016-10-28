@@ -1,0 +1,93 @@
+.container-fixed(@gutter: @gb-grid-gutter-width) {
+    position: relative;
+    width: 100%;
+    max-width: @gb-container-lg;
+    margin: 0px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+    box-sizing: border-box;
+}
+
+
+.generate-columns(@grid-prefif; @container-width; @number-cols; @i: 1) when (@i =< @number-cols) {
+    //@container-width -> 1200px
+    //@number-cols -> 12
+    //@i -> 8
+
+    .col-@{grid-prefix}-@{i} {
+        @single-width: 100% / @number-cols;
+        width: (@i * @single-width);
+        padding-left: (@gb-grid-gutter-width / 2);
+        padding-right: (@gb-grid-gutter-width / 2);
+    }
+
+    @y: @i - 1;
+    .col-@{grid-prefix}-offset-@{y} {
+        margin-left: percentage(@y / @number-cols);
+    }
+
+    .generate-columns(@grid-prefix; @container-width; @number-cols; @i + 1);
+}
+
+.make-grid(@grid-prefix; @container-start; @container-width) {
+    @media(min-width: @container-width) {
+        max-width: @container-width;
+
+        .generate-columns(@grid-prefix, @container-width, @gb-grid-columns);
+    }
+}
+
+.make-utilities(@grid-prefix; @container-start; @container-width) {
+    @media(min-width: @container-start) and (max-width: @container-width) {
+        .visible-@{grid-prefix} {
+            display: block !important;
+        }
+
+        .hidden-@{grid-prefix} {
+            display: none !important;
+        }
+    }
+}
+
+.container {
+    .container-fixed();
+
+    &.container-fluid {
+        padding: 0px;
+    }
+
+    [class*='col-'] {
+        float: left;
+        width: 100%;
+        padding-left: (@gb-grid-gutter-width / 2);
+        padding-right: (@gb-grid-gutter-width / 2);
+    }
+
+    .make-grid(xs, 0, @gb-container-xs);
+    .make-grid(sm, @gb-container-xs, @gb-container-sm);
+    .make-grid(md, @gb-container-sm, @gb-container-md);
+    .make-grid(lg, @gb-container-md, @gb-container-lg);
+}
+
+.row {
+    margin-left: -(@gb-grid-gutter-width / 2);
+    margin-right: -(@gb-grid-gutter-width / 2);
+    .clearfix();
+}
+
+.make-utilities(xs, 0, @gb-container-xs-max);
+.make-utilities(sm, @gb-container-sm, @gb-container-sm-max);
+.make-utilities(md, @gb-container-md, @gb-container-md-max);
+@media(min-width: @gb-container-md) {
+    .visible-lg {
+        display: block !important;
+    }
+
+    .hidden-lg {
+        display: none !important;
+    }
+}
+

@@ -1,0 +1,1212 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Retrofit2源码分析 · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-plantuml/test.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="volley.html" />
+    
+    
+    <link rel="prev" href="retrofit.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    用户界面
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../ui/textview.html">
+            
+                <a href="../ui/textview.html">
+            
+                    
+                    TextView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../ui/toolbar.html">
+            
+                <a href="../ui/toolbar.html">
+            
+                    
+                    ToolBar
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../ui/webview.html">
+            
+                <a href="../ui/webview.html">
+            
+                    
+                    WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../ui/recyclerview.html">
+            
+                <a href="../ui/recyclerview.html">
+            
+                    
+                    RecyclerView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../ui/viewpager.html">
+            
+                <a href="../ui/viewpager.html">
+            
+                    
+                    ViewPager
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../ui/listview.html">
+            
+                <a href="../ui/listview.html">
+            
+                    
+                    ListView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../ui/dialog.html">
+            
+                <a href="../ui/dialog.html">
+            
+                    
+                    Dialog
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [2D绘图和动画]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../graphics&animation/drawable-resource.html">
+            
+                <a href="../graphics&animation/drawable-resource.html">
+            
+                    
+                    Drawable使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../graphics&animation/vectordrawable.html">
+            
+                <a href="../graphics&animation/vectordrawable.html">
+            
+                    
+                    矢量图和矢量图动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../触摸和手势/">
+            
+                <a href="../触摸和手势/">
+            
+                    
+                    触摸和手势
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../触摸和手势/Touch事件的分发和消费机制.html">
+            
+                <a href="../触摸和手势/Touch事件的分发和消费机制.html">
+            
+                    
+                    Touch事件的分发和消费机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Intent
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Activity
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../activity/Activity启动模式.html">
+            
+                <a href="../activity/Activity启动模式.html">
+            
+                    
+                    Activity启动模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../activity/页面切换之间的数据传递.html">
+            
+                <a href="../activity/页面切换之间的数据传递.html">
+            
+                    
+                    数据传递
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Fragment
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../fragment/manager.html">
+            
+                <a href="../fragment/manager.html">
+            
+                    
+                    Fragment管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Service
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../get_androidmanifest_info.html">
+            
+                <a href="../get_androidmanifest_info.html">
+            
+                    
+                    获取AndroidManifest.xml信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    [多线程]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../multithread/handler.html">
+            
+                <a href="../multithread/handler.html">
+            
+                    
+                    Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    数据存储
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../data/StatFs.html">
+            
+                <a href="../data/StatFs.html">
+            
+                    
+                    StatFs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../data/database/SQLite.html">
+            
+                <a href="../data/database/SQLite.html">
+            
+                    
+                    SQLite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../data/database/数据库操作.html">
+            
+                <a href="../data/database/数据库操作.html">
+            
+                    
+                    数据库操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../data/database/activeandroid.html">
+            
+                <a href="../data/database/activeandroid.html">
+            
+                    
+                    ActiveAndroid
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../RxJava.html">
+            
+                <a href="../RxJava.html">
+            
+                    
+                    RxJava
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../数据绑定.html">
+            
+                <a href="../数据绑定.html">
+            
+                    
+                    数据绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../parse/gson.html">
+            
+                <a href="../parse/gson.html">
+            
+                    
+                    Gson
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" >
+            
+                <span>
+            
+                    
+                    网络请求
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="httpurlconnection.html">
+            
+                <a href="httpurlconnection.html">
+            
+                    
+                    HttpURLConnection使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="okhttp.html">
+            
+                <a href="okhttp.html">
+            
+                    
+                    OkHttp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="retrofit.html">
+            
+                <a href="retrofit.html">
+            
+                    
+                    Retrofit
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.15.3.1" data-path="retrofit2-source-analysis.html">
+            
+                <a href="retrofit2-source-analysis.html">
+            
+                    
+                    Retrofit2源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="volley.html">
+            
+                <a href="volley.html">
+            
+                    
+                    Volley
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../graphics.html">
+            
+                <a href="../graphics.html">
+            
+                    
+                    Graphics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" >
+            
+                <span>
+            
+                    
+                    网络图片加载
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.17.1" data-path="android-universal-image-loader.html">
+            
+                <a href="android-universal-image-loader.html">
+            
+                    
+                    Android-Universal-Image-Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17.2" data-path="picasso.html">
+            
+                <a href="picasso.html">
+            
+                    
+                    Picasso
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="downloadprovider.html">
+            
+                <a href="downloadprovider.html">
+            
+                    
+                    DownloadProvider
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="../依赖注入.html">
+            
+                <a href="../依赖注入.html">
+            
+                    
+                    依赖注入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" >
+            
+                <span>
+            
+                    
+                    注解
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.20.1" data-path="../annotation/butterknife.html">
+            
+                <a href="../annotation/butterknife.html">
+            
+                    
+                    ButterKnife使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.2" data-path="../annotation/butterknife-source-analysis.html">
+            
+                <a href="../annotation/butterknife-source-analysis.html">
+            
+                    
+                    ButterKnife源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" >
+            
+                <span>
+            
+                    
+                    工具
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.21.1" >
+            
+                <span>
+            
+                    
+                    AndroidStudio
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.21.1.1" data-path="../tools/android-studio/tips_and_tricks.html">
+            
+                <a href="../tools/android-studio/tips_and_tricks.html">
+            
+                    
+                    提示和技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21.2" data-path="../tools/android-resource-remover.html">
+            
+                <a href="../tools/android-resource-remover.html">
+            
+                    
+                    android-resource-remover
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Retrofit2源码分析</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"></div><ul>
+<li><a href="#servicemethod-">ServiceMethod </a></li>
+<li><a href="#okhttpcall">OkHttpCall</a></li>
+<li><a href="#calladapter">CallAdapter</a></li>
+</ul>
+</div>
+
+
+
+
+<h4 id="servicemethod">ServiceMethod</h4><p>ServiceMethod&#x4E3B;&#x8981;&#x7528;&#x6765;&#x89E3;&#x6790;&#x6211;&#x4EEC;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p><pre><code class="lang-java"><span class="token keyword">public</span> <span class="token function">Builder<span class="token punctuation">(</span></span>Retrofit retrofit<span class="token punctuation">,</span> Method method<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>retrofit <span class="token operator">=</span> retrofit<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>method <span class="token operator">=</span> method<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>methodAnnotations <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getAnnotations<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x83B7;&#x53D6;&#x65B9;&#x6CD5;&#x4E0A;&#x7684;&#x6CE8;&#x89E3;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>parameterTypes <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getGenericParameterTypes<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x83B7;&#x53D6;&#x53C2;&#x6570;&#x7C7B;&#x578B;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>parameterAnnotationsArray <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getParameterAnnotations<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x83B7;&#x53D6;&#x53C2;&#x6570;&#x4E0A;&#x7684;&#x6CE8;&#x89E3;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>ServiceMethod&#x7684;createCallAdapter&#x65B9;&#x6CD5;</p><pre><code class="lang-java"><span class="token keyword">private</span> CallAdapter<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">&gt;</span> <span class="token function">createCallAdapter<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Type returnType <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getGenericReturnType<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x83B7;&#x53D6;&#x8FD4;&#x56DE;&#x503C;</span>
+  <span class="token comment" spellcheck="true">//&#x6821;&#x9A8C;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Utils<span class="token punctuation">.</span><span class="token function">hasUnresolvableType<span class="token punctuation">(</span></span>returnType<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span>
+        <span class="token string">&quot;Method return type must not include a type variable or wildcard: %s&quot;</span><span class="token punctuation">,</span> returnType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>returnType <span class="token operator">==</span> <span class="token keyword">void</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;Service methods cannot return void.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> annotations <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getAnnotations<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//noinspection unchecked</span>
+    <span class="token comment" spellcheck="true">//&#x8C03;&#x7528;Retrofit&#x7684; callAdapter&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;CallAdapter</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>CallAdapter<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> R<span class="token operator">&gt;</span><span class="token punctuation">)</span> retrofit<span class="token punctuation">.</span><span class="token function">callAdapter<span class="token punctuation">(</span></span>returnType<span class="token punctuation">,</span> annotations<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// Wide exception range because factories are user code.</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span>e<span class="token punctuation">,</span> <span class="token string">&quot;Unable to create call adapter for %s&quot;</span><span class="token punctuation">,</span> returnType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Retrofit&#x7684;callAdapter&#x65B9;&#x6CD5;</p><pre><code class="lang-java"><span class="token keyword">public</span> CallAdapter<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">&gt;</span> <span class="token function">callAdapter<span class="token punctuation">(</span></span>Type returnType<span class="token punctuation">,</span> Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> annotations<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token function">nextCallAdapter<span class="token punctuation">(</span></span>null<span class="token punctuation">,</span> returnType<span class="token punctuation">,</span> annotations<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> CallAdapter<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span> <span class="token operator">?</span><span class="token operator">&gt;</span> <span class="token function">nextCallAdapter<span class="token punctuation">(</span></span>CallAdapter<span class="token punctuation">.</span>Factory skipPast<span class="token punctuation">,</span> Type returnType<span class="token punctuation">,</span>
+  Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> annotations<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">checkNotNull<span class="token punctuation">(</span></span>returnType<span class="token punctuation">,</span> <span class="token string">&quot;returnType == null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">checkNotNull<span class="token punctuation">(</span></span>annotations<span class="token punctuation">,</span> <span class="token string">&quot;annotations == null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> start <span class="token operator">=</span> adapterFactories<span class="token punctuation">.</span><span class="token function">indexOf<span class="token punctuation">(</span></span>skipPast<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> start<span class="token punctuation">,</span> count <span class="token operator">=</span> adapterFactories<span class="token punctuation">.</span><span class="token function">size<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//&#x8C03;&#x7528;CallAdapter.Factory&#x7684;get&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x7684;CallAdapter</span>
+    <span class="token comment" spellcheck="true">//&#x8FD9;&#x91CC;&#x770B;&#x51FA;&#x662F;&#x6839;&#x636E;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x6765;&#x83B7;&#x53D6;&#x4E0D;&#x540C;&#x7684;CallAdapter</span>
+    <span class="token comment" spellcheck="true">//</span>
+  CallAdapter<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span><span class="token operator">?</span><span class="token operator">&gt;</span> adapter <span class="token operator">=</span> adapterFactories<span class="token punctuation">.</span><span class="token function">get<span class="token punctuation">(</span></span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get<span class="token punctuation">(</span></span>returnType<span class="token punctuation">,</span> annotations<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>adapter <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> adapter<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+StringBuilder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">&quot;Could not locate call adapter for &quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span>returnType<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&quot;.\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>skipPast <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  builder<span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&quot;  Skipped:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> start<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    builder<span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&quot;\n   * &quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span>adapterFactories<span class="token punctuation">.</span><span class="token function">get<span class="token punctuation">(</span></span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  builder<span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+builder<span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&quot;  Tried:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> start<span class="token punctuation">,</span> count <span class="token operator">=</span> adapterFactories<span class="token punctuation">.</span><span class="token function">size<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  builder<span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&quot;\n   * &quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span>adapterFactories<span class="token punctuation">.</span><span class="token function">get<span class="token punctuation">(</span></span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span>builder<span class="token punctuation">.</span><span class="token function">toString<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre><code class="lang-java"><span class="token keyword">public</span> ServiceMethod <span class="token function">build<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  callAdapter <span class="token operator">=</span> <span class="token function">createCallAdapter<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x521B;&#x5EFA;CallAdapter</span>
+  responseType <span class="token operator">=</span> callAdapter<span class="token punctuation">.</span><span class="token function">responseType<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x83B7;&#x53D6;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>responseType <span class="token operator">==</span> Response<span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token operator">||</span> responseType <span class="token operator">==</span> okhttp3<span class="token punctuation">.</span>Response<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;&apos;&quot;</span>
+        <span class="token operator">+</span> Utils<span class="token punctuation">.</span><span class="token function">getRawType<span class="token punctuation">(</span></span>responseType<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+        <span class="token operator">+</span> <span class="token string">&quot;&apos; is not a valid response body type. Did you mean ResponseBody?&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  responseConverter <span class="token operator">=</span> <span class="token function">createResponseConverter<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x521B;&#x5EFA;ResponseConverter</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>Annotation annotation <span class="token operator">:</span> methodAnnotations<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">parseMethodAnnotation<span class="token punctuation">(</span></span>annotation<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x904D;&#x5386;&#x89E3;&#x6790;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>httpMethod <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;HTTP method annotation is required (e.g., @GET, @POST, etc.).&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hasBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isMultipart<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span>
+          <span class="token string">&quot;Multipart can only be specified on HTTP methods with request body (e.g., @POST).&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isFormEncoded<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;FormUrlEncoded can only be specified on HTTP methods with &quot;</span>
+          <span class="token operator">+</span> <span class="token string">&quot;request body (e.g., @POST).&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">int</span> parameterCount <span class="token operator">=</span> parameterAnnotationsArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  parameterHandlers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ParameterHandler</span><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">[</span>parameterCount<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x521B;&#x5EFA;&#x53C2;&#x6570;&#x5904;&#x7406;&#x7684;&#x6570;&#x7EC4;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> p <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> p <span class="token operator">&lt;</span> parameterCount<span class="token punctuation">;</span> p<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Type parameterType <span class="token operator">=</span> parameterTypes<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Utils<span class="token punctuation">.</span><span class="token function">hasUnresolvableType<span class="token punctuation">(</span></span>parameterType<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token function">parameterError<span class="token punctuation">(</span></span>p<span class="token punctuation">,</span> <span class="token string">&quot;Parameter type must not include a type variable or wildcard: %s&quot;</span><span class="token punctuation">,</span>
+          parameterType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> parameterAnnotations <span class="token operator">=</span> parameterAnnotationsArray<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>parameterAnnotations <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token function">parameterError<span class="token punctuation">(</span></span>p<span class="token punctuation">,</span> <span class="token string">&quot;No Retrofit annotation found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    parameterHandlers<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">parseParameter<span class="token punctuation">(</span></span>p<span class="token punctuation">,</span> parameterType<span class="token punctuation">,</span> parameterAnnotations<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>relativeUrl <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>gotUrl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;Missing either @%s URL or @Url parameter.&quot;</span><span class="token punctuation">,</span> httpMethod<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isFormEncoded <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isMultipart <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>hasBody <span class="token operator">&amp;&amp;</span> gotBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;Non-body HTTP method cannot contain @Body.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isFormEncoded <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>gotField<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;Form-encoded method must contain at least one @Field.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isMultipart <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>gotPart<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token function">methodError<span class="token punctuation">(</span></span><span class="token string">&quot;Multipart method must contain at least one @Part.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ServiceMethod</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="okhttpcall">OkHttpCall</h4><p>OkHttpCall&#x7B97;&#x662F;OkHttp&#x7684;&#x5305;&#x88C5;&#x7C7B;&#xFF0C;&#x7528;&#x5B83;&#x8DDF;OkHttp&#x5BF9;&#x63A5;&#xFF0C;&#x6240;&#x6709;OkHttp&#x9700;&#x8981;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x8FD9;&#x4E2A;&#x7C7B;&#x3002;&#x5F53;&#x7136;&#x4E5F;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x6269;&#x5C55;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Call&#x7684;&#xFF0C;&#x6BD4;&#x5982;HttpUrlConnectionCall&#x3002;</p><pre><code class="lang-java">@Override <span class="token keyword">public</span> Response<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token function">execute<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+okhttp3<span class="token punctuation">.</span>Call call<span class="token punctuation">;</span>
+<span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>executed<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">&quot;Already executed.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  executed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>creationFailure <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>creationFailure <span class="token keyword">instanceof</span> <span class="token class-name">IOException</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token punctuation">(</span>IOException<span class="token punctuation">)</span> creationFailure<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token punctuation">(</span>RuntimeException<span class="token punctuation">)</span> creationFailure<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  call <span class="token operator">=</span> rawCall<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>call <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      call <span class="token operator">=</span> rawCall <span class="token operator">=</span> <span class="token function">createRawCall<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> RuntimeException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      creationFailure <span class="token operator">=</span> e<span class="token punctuation">;</span>
+      <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>canceled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  call<span class="token punctuation">.</span><span class="token function">cancel<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> <span class="token function">parseResponse<span class="token punctuation">(</span></span>call<span class="token punctuation">.</span><span class="token function">execute<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre><code class="lang-java"><span class="token keyword">private</span> okhttp3<span class="token punctuation">.</span>Call <span class="token function">createRawCall<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+Request request <span class="token operator">=</span> serviceMethod<span class="token punctuation">.</span><span class="token function">toRequest<span class="token punctuation">(</span></span>args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x6784;&#x5EFA;&#x8BF7;&#x6C42;&#x53C2;&#x6570;</span>
+okhttp3<span class="token punctuation">.</span>Call call <span class="token operator">=</span> serviceMethod<span class="token punctuation">.</span>callFactory<span class="token punctuation">.</span><span class="token function">newCall<span class="token punctuation">(</span></span>request<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&#x6267;&#x884C;&#x8BF7;&#x6C42;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>call <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token string">&quot;Call.Factory returned null.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> call<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre><code class="lang-java"><span class="token comment" spellcheck="true">//&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x503C;</span>
+Response<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token function">parseResponse<span class="token punctuation">(</span></span>okhttp3<span class="token punctuation">.</span>Response rawResponse<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+ResponseBody rawBody <span class="token operator">=</span> rawResponse<span class="token punctuation">.</span><span class="token function">body<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// Remove the body&apos;s source (the only stateful object) so we can pass the response along.</span>
+rawResponse <span class="token operator">=</span> rawResponse<span class="token punctuation">.</span><span class="token function">newBuilder<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">body<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">NoContentResponseBody</span><span class="token punctuation">(</span>rawBody<span class="token punctuation">.</span><span class="token function">contentType<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span> rawBody<span class="token punctuation">.</span><span class="token function">contentLength<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> code <span class="token operator">=</span> rawResponse<span class="token punctuation">.</span><span class="token function">code<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>code <span class="token operator">&lt;</span> <span class="token number">200</span> <span class="token operator">||</span> code <span class="token operator">&gt;=</span> <span class="token number">300</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Buffer the entire body to avoid future I/O.</span>
+    ResponseBody bufferedBody <span class="token operator">=</span> Utils<span class="token punctuation">.</span><span class="token function">buffer<span class="token punctuation">(</span></span>rawBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Response<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span>bufferedBody<span class="token punctuation">,</span> rawResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+    rawBody<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>code <span class="token operator">==</span> <span class="token number">204</span> <span class="token operator">||</span> code <span class="token operator">==</span> <span class="token number">205</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Response<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>null<span class="token punctuation">,</span> rawResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ExceptionCatchingRequestBody catchingBody <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ExceptionCatchingRequestBody</span><span class="token punctuation">(</span>rawBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  T body <span class="token operator">=</span> serviceMethod<span class="token punctuation">.</span><span class="token function">toResponse<span class="token punctuation">(</span></span>catchingBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Response<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>body<span class="token punctuation">,</span> rawResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// If the underlying source threw an exception, propagate that rather than indicating it was</span>
+  <span class="token comment" spellcheck="true">// a runtime exception.</span>
+  catchingBody<span class="token punctuation">.</span><span class="token function">throwIfCaught<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="calladapter">CallAdapter</h4><p>RxJavaCallAdapter&#x7684;adapt&#x65B9;&#x6CD5;</p><pre><code class="lang-java">@Override
+<span class="token keyword">public</span> Object <span class="token function">adapt<span class="token punctuation">(</span></span>Call<span class="token operator">&lt;</span>R<span class="token operator">&gt;</span> call<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ResponseCallable<span class="token operator">&lt;</span>R<span class="token operator">&gt;</span> resultCallable <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ResponseCallable</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>call<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Observable<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> observable<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        observable <span class="token operator">=</span> Observable<span class="token punctuation">.</span><span class="token function">fromCallable<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">ResultCallable</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>resultCallable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>isBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        observable <span class="token operator">=</span> Observable<span class="token punctuation">.</span><span class="token function">fromCallable<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">BodyCallable</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>resultCallable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        observable <span class="token operator">=</span> Observable<span class="token punctuation">.</span><span class="token function">fromCallable<span class="token punctuation">(</span></span>resultCallable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>scheduler <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        observable <span class="token operator">=</span> observable<span class="token punctuation">.</span><span class="token function">subscribeOn<span class="token punctuation">(</span></span>scheduler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isSingle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> observable<span class="token punctuation">.</span><span class="token function">toSingle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isCompletable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> CompletableHelper<span class="token punctuation">.</span><span class="token function">toCompletable<span class="token punctuation">(</span></span>observable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> observable<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="retrofit.html" class="navigation navigation-prev " aria-label="Previous page: Retrofit">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="volley.html" class="navigation navigation-next " aria-label="Next page: Volley">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Retrofit2源码分析","level":"1.15.3.1","depth":3,"next":{"title":"Volley","level":"1.15.4","depth":2,"path":"net/volley.md","ref":"net/volley.md","articles":[]},"previous":{"title":"Retrofit","level":"1.15.3","depth":2,"path":"net/retrofit.md","ref":"net/retrofit.md","articles":[{"title":"Retrofit2源码分析","level":"1.15.3.1","depth":3,"path":"net/retrofit2-source-analysis.md","ref":"net/retrofit2-source-analysis.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"_pictures":[{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.1","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":1,"url":"/images/vectordrawable-1.jpeg","index":1,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.1"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.2","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":2,"url":"/images/vectordrawable-2.jpeg","index":2,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.2"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.3","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":3,"url":"/images/vectordrawable-3.gif","index":3,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.3"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.1","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":4,"url":"log1.png","index":1,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.1"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.2","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":5,"url":"log2.png","index":2,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.2"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.3","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":6,"url":"log3.png","index":3,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.3"},{"backlink":"activity/页面切换之间的数据传递.html#fig1.6.2.1","level":"1.6.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":7,"url":"images/parcelable-vs-seralizable.png","index":1,"page_level":"1.6.2","label":"","attributes":{},"skip":false,"key":"1.6.2.1"},{"backlink":"graphics.html#fig1.16.1","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":8,"url":"images/graphics-1.png","index":1,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"graphics.html#fig1.16.2","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":9,"url":"images/graphics-2.png","index":2,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"graphics.html#fig1.16.3","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":10,"url":"images/graphics-3.png","index":3,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"graphics.html#fig1.16.4","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":11,"url":"images/graphics-4.png","index":4,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"net/picasso.html#fig1.17.2.1","level":"1.17.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":12,"url":"http://square.github.io/picasso/static/debug.png","index":1,"page_level":"1.17.2","label":"","attributes":{},"skip":false,"key":"1.17.2.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.1","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":13,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse1.png","index":1,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.2","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":14,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse2.png","index":2,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.2"},{"backlink":"annotation/butterknife-source-analysis.html#fig1.20.2.1","level":"1.20.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":15,"url":"/images/butterknife-1.png","index":1,"page_level":"1.20.2","label":"","attributes":{},"skip":false,"key":"1.20.2.1"}]},"plugins":["back-to-top-button","plantuml","image-captions","prism","-highlight","expandable-chapters","page-treeview","livereload"],"pluginsConfig":{"page-treeview":{"copyright":"Copyright © aleen42","styles (markdown)":"normal"},"prism":{},"livereload":{},"search":{},"plantuml":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"night","family":"serif","size":2},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"image-captions":{"variable_name":"_pictures"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"net/retrofit2-source-analysis.md","mtime":"2016-10-13T03:57:53.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-27T10:28:01.627Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-plantuml/test.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
