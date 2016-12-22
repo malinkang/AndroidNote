@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Fragment管理 · GitBook</title>
+        <title>android-resource-remover · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -77,6 +77,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="../android-architecture.html" />
+    
+    
+    <link rel="prev" href="android-studio/tips_and_tricks.html" />
     
 
     </head>
@@ -377,9 +381,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.7.1" data-path="manager.html">
+        <li class="chapter " data-level="1.7.1" data-path="../fragment/manager.html">
             
-                <a href="manager.html">
+                <a href="../fragment/manager.html">
             
                     
                     Fragment管理
@@ -810,9 +814,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.21.1.1" data-path="../tools/android-studio/tips_and_tricks.html">
+        <li class="chapter " data-level="1.21.1.1" data-path="android-studio/tips_and_tricks.html">
             
-                <a href="../tools/android-studio/tips_and_tricks.html">
+                <a href="android-studio/tips_and_tricks.html">
             
                     
                     提示和技巧
@@ -828,9 +832,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.21.2" data-path="../tools/android-resource-remover.html">
+        <li class="chapter active" data-level="1.21.2" data-path="android-resource-remover.html">
             
-                <a href="../tools/android-resource-remover.html">
+                <a href="android-resource-remover.html">
             
                     
                     android-resource-remover
@@ -889,7 +893,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Fragment管理</a>
+        <a href=".." >android-resource-remover</a>
     </h1>
 </div>
 
@@ -905,19 +909,22 @@
                                 <section class="normal markdown-section">
                                 
                                 <div class="treeview__container"><div class="treeview__container-title"></div><ul>
-<li><a href="#fragment&#x7BA1;&#x7406;">Fragment&#x7BA1;&#x7406;</a>
+<li><a href="#android-resource-remover&#x4F7F;&#x7528;">android-resource-remover&#x4F7F;&#x7528;</a>
 <ul>
-<li><a href="#add&#x65B9;&#x6CD5;&#x548C;remove&#x65B9;&#x6CD5;">add&#x65B9;&#x6CD5;&#x548C;remove&#x65B9;&#x6CD5;</a></li>
-<li><a href="#repleace&#x65B9;&#x6CD5;">repleace&#x65B9;&#x6CD5;</a></li>
-<li><a href="#detach&#x65B9;&#x6CD5;&#x548C;attach&#x65B9;&#x6CD5;">detach&#x65B9;&#x6CD5;&#x548C;attach&#x65B9;&#x6CD5;</a></li>
-<li><a href="#hide&#x548C;show&#x65B9;&#x6CD5;">hide&#x548C;show&#x65B9;&#x6CD5;</a></li>
+<li><a href="#&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</a></li>
+<li><a href="#&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
 </ul></li>
 </ul>
 </div>
 
 
 
-<h2 id="fragment&#x7BA1;&#x7406;">Fragment&#x7BA1;&#x7406;</h2><h3 id="add&#x65B9;&#x6CD5;&#x548C;remove&#x65B9;&#x6CD5;">add&#x65B9;&#x6CD5;&#x548C;remove&#x65B9;&#x6CD5;</h3><h3 id="repleace&#x65B9;&#x6CD5;">repleace&#x65B9;&#x6CD5;</h3><p>&#x4F7F;&#x7528;repleace&#x65B9;&#x6CD5;&#x4F1A;&#x5C06;&#x4E4B;&#x524D;&#x7684;Fragment&#x7684;view&#x4ECE;viewtree&#x4E2D;&#x5220;&#x9664;&#x3002;</p><h3 id="detach&#x65B9;&#x6CD5;&#x548C;attach&#x65B9;&#x6CD5;">detach&#x65B9;&#x6CD5;&#x548C;attach&#x65B9;&#x6CD5;</h3><p>&#x5F53;&#x8C03;&#x7528;detach(),fragment&#x5C06;&#x4F9D;&#x6B21;&#x6267;&#x884C;</p><blockquote><p>onPause-&gt;onStop-&gt;onDestoryView</p></blockquote><p>detach&#x4F1A;&#x5C06;view&#x4ECE;viewtree&#x4E2D;&#x5220;&#x9664;&#xFF0C;&#x6B64;&#x65F6;fragment&#x7684;&#x72B6;&#x6001;&#x4F9D;&#x65E7;&#x4FDD;&#x6301;&#x7740;&#xFF0C;</p><p>&#x518D;&#x4F7F;&#x7528;attach()&#x4F1A;&#x4F9D;&#x6B21;&#x8C03;&#x7528;</p><blockquote><p>onCreateView-&gt;onActivityCreated</p></blockquote><h3 id="hide&#x548C;show&#x65B9;&#x6CD5;">hide&#x548C;show&#x65B9;&#x6CD5;</h3><p>hide&#x65B9;&#x6CD5;&#x53EA;&#x662F;&#x9690;&#x85CF;&#x4E86;fragment&#x7684;view&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5C06;view&#x4ECE;viewtree&#x4E2D;&#x5220;&#x9664;&#xFF0C;&#x968F;&#x540E;&#x53EF;&#x8C03;&#x7528;show&#x65B9;&#x6CD5;&#x5C06;view&#x8BBE;&#x7F6E;&#x4E3A;&#x663E;&#x793A;&#x3002;</p><ul><li><a href="http://blog.csdn.net/mobilexu/article/details/11711865" target="_blank">&#x5927;&#x8BDD;Fragment&#x7BA1;&#x7406;</a>
+<h2 id="android-resource-remover&#x4F7F;&#x7528;">android-resource-remover&#x4F7F;&#x7528;</h2><p>android-resource-remover &#x7528;&#x4E8E;&#x5220;&#x9664;&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x65E0;&#x7528;&#x8D44;&#x6E90;&#x3002;</p><h3 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h3><p>1.&#x5B89;&#x88C5;Python</p><p>2.pip</p><p>&#x53C2;&#x8003;:<a href="https://pip.pypa.io/en/latest/installing.html" target="_blank">https://pip.pypa.io/en/latest/installing.html</a></p><p>3.&#x5B89;&#x88C5; android-resource-remover</p><pre><code>pip install android-resource-remover
+</code></pre>
+<h3 id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</h3><p>&#x6267;&#x884C;<code>android-resource-remover</code>&#x547D;&#x4EE4;</p><h3 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h3><ul><li><a href="https://github.com/KeepSafe/android-resource-remover" target="_blank">android-resource-remover</a>
+</li>
+<li><a href="http://blog.csdn.net/mlj1668956679/article/details/38643145" target="_blank">android-resource-remover&#x7684;&#x7814;&#x7A76;&#x548C;&#x5B9E;&#x9A8C;</a>
 </li></ul>
 
                                 
@@ -946,6 +953,14 @@
 
             
                 
+                <a href="android-studio/tips_and_tricks.html" class="navigation navigation-prev " aria-label="Previous page: 提示和技巧">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../android-architecture.html" class="navigation navigation-next " aria-label="Next page: Android架构">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -954,7 +969,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fragment管理","level":"1.7.1","depth":2,"next":{"title":"Service","level":"1.8","depth":1,"ref":"","articles":[]},"previous":{"title":"Fragment","level":"1.7","depth":1,"ref":"","articles":[{"title":"Fragment管理","level":"1.7.1","depth":2,"path":"fragment/manager.md","ref":"fragment/manager.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"_pictures":[{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.1","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":1,"url":"/images/vectordrawable-1.jpeg","index":1,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.1"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.2","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":2,"url":"/images/vectordrawable-2.jpeg","index":2,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.2"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.3","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":3,"url":"/images/vectordrawable-3.gif","index":3,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.3"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.1","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":4,"url":"log1.png","index":1,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.1"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.2","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":5,"url":"log2.png","index":2,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.2"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.3","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":6,"url":"log3.png","index":3,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.3"},{"backlink":"activity/页面切换之间的数据传递.html#fig1.6.2.1","level":"1.6.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":7,"url":"images/parcelable-vs-seralizable.png","index":1,"page_level":"1.6.2","label":"","attributes":{},"skip":false,"key":"1.6.2.1"},{"backlink":"graphics.html#fig1.16.1","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":8,"url":"images/graphics-1.png","index":1,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"graphics.html#fig1.16.2","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":9,"url":"images/graphics-2.png","index":2,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"graphics.html#fig1.16.3","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":10,"url":"images/graphics-3.png","index":3,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"graphics.html#fig1.16.4","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":11,"url":"images/graphics-4.png","index":4,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"net/picasso.html#fig1.17.2.1","level":"1.17.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":12,"url":"http://square.github.io/picasso/static/debug.png","index":1,"page_level":"1.17.2","label":"","attributes":{},"skip":false,"key":"1.17.2.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.1","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":13,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse1.png","index":1,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.2","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":14,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse2.png","index":2,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.2"},{"backlink":"annotation/butterknife-source-analysis.html#fig1.20.2.1","level":"1.20.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":15,"url":"/images/butterknife-1.png","index":1,"page_level":"1.20.2","label":"","attributes":{},"skip":false,"key":"1.20.2.1"}]},"plugins":["back-to-top-button","plantuml","image-captions","prism","-highlight","expandable-chapters","page-treeview","livereload"],"pluginsConfig":{"page-treeview":{"copyright":"Copyright © aleen42","styles (markdown)":"normal"},"prism":{},"livereload":{},"search":{},"plantuml":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"night","family":"serif","size":2},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"image-captions":{"variable_name":"_pictures"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"fragment/manager.md","mtime":"2016-09-02T09:35:29.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-22T02:20:45.884Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"android-resource-remover","level":"1.21.2","depth":2,"next":{"title":"Android架构","level":"1.22","depth":1,"path":"android-architecture.md","ref":"android-architecture.md","articles":[]},"previous":{"title":"提示和技巧","level":"1.21.1.1","depth":3,"path":"tools/android-studio/tips_and_tricks.md","ref":"tools/android-studio/tips_and_tricks.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"_pictures":[{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.1","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":1,"url":"/images/vectordrawable-1.jpeg","index":1,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.1"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.2","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":2,"url":"/images/vectordrawable-2.jpeg","index":2,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.2"},{"backlink":"graphics&animation/vectordrawable.html#fig1.3.2.3","level":"1.3.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":3,"url":"/images/vectordrawable-3.gif","index":3,"page_level":"1.3.2","label":"","attributes":{},"skip":false,"key":"1.3.2.3"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.1","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":4,"url":"log1.png","index":1,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.1"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.2","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":5,"url":"log2.png","index":2,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.2"},{"backlink":"触摸和手势/Touch事件的分发和消费机制.html#fig1.4.1.3","level":"1.4.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":6,"url":"log3.png","index":3,"page_level":"1.4.1","label":"","attributes":{},"skip":false,"key":"1.4.1.3"},{"backlink":"activity/页面切换之间的数据传递.html#fig1.6.2.1","level":"1.6.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":7,"url":"images/parcelable-vs-seralizable.png","index":1,"page_level":"1.6.2","label":"","attributes":{},"skip":false,"key":"1.6.2.1"},{"backlink":"graphics.html#fig1.16.1","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":8,"url":"images/graphics-1.png","index":1,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.1"},{"backlink":"graphics.html#fig1.16.2","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":9,"url":"images/graphics-2.png","index":2,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.2"},{"backlink":"graphics.html#fig1.16.3","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":10,"url":"images/graphics-3.png","index":3,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.3"},{"backlink":"graphics.html#fig1.16.4","level":"1.16","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":11,"url":"images/graphics-4.png","index":4,"page_level":"1.16","label":"","attributes":{},"skip":false,"key":"1.16.4"},{"backlink":"net/picasso.html#fig1.17.2.1","level":"1.17.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":12,"url":"http://square.github.io/picasso/static/debug.png","index":1,"page_level":"1.17.2","label":"","attributes":{},"skip":false,"key":"1.17.2.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.1","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":13,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse1.png","index":1,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.1"},{"backlink":"annotation/butterknife.html#fig1.20.1.2","level":"1.20.1","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":14,"url":"http://jakewharton.github.io/butterknife/static/ide-eclipse2.png","index":2,"page_level":"1.20.1","label":"","attributes":{},"skip":false,"key":"1.20.1.2"},{"backlink":"annotation/butterknife-source-analysis.html#fig1.20.2.1","level":"1.20.2","list_caption":"Figure: ","caption":"Figure: ","alt":"","nro":15,"url":"/images/butterknife-1.png","index":1,"page_level":"1.20.2","label":"","attributes":{},"skip":false,"key":"1.20.2.1"}]},"plugins":["back-to-top-button","plantuml","image-captions","prism","-highlight","expandable-chapters","page-treeview","livereload"],"pluginsConfig":{"page-treeview":{"copyright":"Copyright © aleen42","styles (markdown)":"normal"},"prism":{},"livereload":{},"search":{},"plantuml":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"night","family":"serif","size":2},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"image-captions":{"variable_name":"_pictures"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tools/android-resource-remover.md","mtime":"2015-04-03T09:07:39.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-22T02:20:45.884Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

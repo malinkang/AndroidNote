@@ -32,3 +32,9 @@
 |[查找和替换](https://www.jetbrains.com/idea/help/find-and-replace-in-path.html)|查找cmd+shift+F 替换cmd+shift+R||  |
 |Surround with| cmd+alt+T|ctrl+alt+T|  |
 
+局部变量抽取为成员变量ctrl + alt + F
+多行编辑ctrl+g
+显示粘贴板 shift + commd+v
+
+http://zlv.me/posts/2015/07/13/14_android-studio-tips/
+https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm

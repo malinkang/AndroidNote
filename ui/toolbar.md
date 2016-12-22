@@ -2,14 +2,13 @@
 
 #### 1.使用ToolBar
 
-Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，Google非常推荐大家使用Toolbar 来作为Android客户端的导航栏，以此来取代之前的Actionbar。与Actionbar相比，Toolbar明显要灵活的多。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。
+`Toolbar`是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。
 
-Toobar是Android5.0才引入的，Google也在兼容包`appcompat-v7`中提供了向下兼容的ToolBar：`android.support.v7.widget.Toolbar`。
+`Toobar`是Android5.0才引入的，Google也在兼容包`appcompat-v7`中提供了向下兼容的`ToolBar`：`android.support.v7.widget.Toolbar`。
 
 ##### 1.1基本使用
 
 首先，我们要在build.gradle中添加依赖。
-
 ```
 compile 'com.android.support:appcompat-v7:24.2.0'
 ```
@@ -31,7 +30,6 @@ compile 'com.android.support:appcompat-v7:24.2.0'
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 ##### 1.2 ActionBar常用方法
+
 一旦设置了Toolbar作为activity的actionbar，就可以调用ActionBar类提供的方法来设置ActionBar。ActionBar常用的方法：
 * hide():隐藏ActionBar
 * show():显示ActionBar
@@ -63,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
 * setDisplayShowHomeEnabled(boolean b);是否显示icon
 * setDisplayShowTitleEnabled(boolean b);是否显示标题
 * setDisplayShowCustomEnabled(boolean b);是否显示自定义view
+* setHomeAsUpIndicator(@Nullable Drawable indicator)设置返回图标
 * setIcon();设置Icon
 * setTitle();设置标题
 
 ##### 1.3 ToolBar常用属性
+
 ```xml
 <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -226,6 +227,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 
 ##### 2.3添加 Action Provider
+
 类似action view，action provider通过自定义布局来替换一个操作按钮.但是action provider控制所有的动作行为并且在被点击时能够显示一个子菜单。
 
 通过为actionViewClass属性设置一个ActionProvider类，来添加action provider.也可以通过继承ActionProvider来创建自定义的action provider.Android提供了一些action provider,例如ShareActionProvider。
@@ -300,6 +302,20 @@ public boolean onOptionsItemSelected(MenuItem item) {
     }
 }
 ```
+
+#### 使用中的问题
+
+1.自定义Title不能居中
+
+解决办法：让原始的toolbar的title不显示
+```java
+mActionBar.setDisplayShowTitleEnabled(false);
+```
+
+2.ToolBar setNavigationIcon不起作用
+
+解决办法：[Android toolbar setNavigationIcon not working](http://stackoverflow.com/questions/26641259/android-toolbar-setnavigationicon-not-working)
+
 
 #### 参考
 * [Adding the App Bar](https://developer.android.com/training/appbar/index.html)

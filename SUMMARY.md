@@ -36,9 +36,9 @@
 * 网络请求
 	* [HttpURLConnection使用](net/httpurlconnection.md)
 	* [OkHttp](net/okhttp.md) 
-	* [Retrofit](net/retrofit.md)
-  * [Retrofit2源码分析](net/retrofit2-source-analysis.md) 
-	* [Volley](net/volley.md)
+	* [Retrofit1使用](net/retrofit.md)
+  * [Retrofit2源码分析](net/retrofit2-source-analysis.md)
+  * [Volley](net/volley.md)
 * [Graphics](graphics.md)
 * 网络图片加载
 	* [Android-Universal-Image-Loader](net/android-universal-image-loader.md)
@@ -52,3 +52,4 @@
    * AndroidStudio
        * [提示和技巧](tools/android-studio/tips_and_tricks.md)
    * [android-resource-remover](tools/android-resource-remover.md)
+* [Android架构](android-architecture.md)
