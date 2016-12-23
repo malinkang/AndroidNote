@@ -1,55 +1,55 @@
-
 # Summary
 
 * [Introduction](README.md)
 * 用户界面
-  * [TextView](ui/textview.md)
-  * [ToolBar](ui/toolbar.md)
-  * [WebView](ui/webview.md)
-  * [RecyclerView](ui/recyclerview.md)
-  * [ViewPager](ui/viewpager.md)
-  * [ListView](ui/listview.md)
-  * [Dialog](ui/dialog.md)
-* [2D绘图和动画]
-	* [Drawable使用](graphics&animation/drawable-resource.md)
+    * [TextView](ui/textview.md)
+    * [ToolBar](ui/toolbar.md)
+    * [WebView](ui/webview.md)
+    * [RecyclerView](ui/recyclerview.md)
+    * [ViewPager](ui/viewpager.md)
+    * [ListView](ui/listview.md)
+    * [Dialog](ui/dialog.md)
+* \[2D绘图和动画\]
+    * [Drawable使用](graphics&animation/drawable-resource.md)
     * [矢量图和矢量图动画](graphics&animation/vectordrawable.md)
 * [触摸和手势](触摸和手势/index.md)
-	* [Touch事件的分发和消费机制](触摸和手势/Touch事件的分发和消费机制.md)
+    * [Touch事件的分发和消费机制](触摸和手势/Touch事件的分发和消费机制.md)
 * Intent
 * Activity
     * [Activity启动模式](activity/Activity启动模式.md)
     * [数据传递](activity/页面切换之间的数据传递.md)
 * Fragment
-   * [Fragment管理](fragment/manager.md)
+    * [Fragment管理](fragment/manager.md)
 * Service
 * [获取AndroidManifest.xml信息](get_androidmanifest_info.md)
-* [多线程]
-   * [Handler](multithread/handler.md)
-* 数据存储 
-   * [StatFs](data/StatFs.md)
-   * [SQLite](data/database/SQLite.md)
-   * [数据库操作](data/database/数据库操作.md)
-   * [ActiveAndroid](data/database/activeandroid.md)
+* \[多线程\]
+    * [Handler](multithread/handler.md)
+* 数据存储
+    * [StatFs](data/StatFs.md)
+    * [SQLite](data/database/SQLite.md)
+    * [数据库操作](data/database/数据库操作.md)
+    * [ActiveAndroid](data/database/activeandroid.md)
 * [RxJava](RxJava.md)
 * [数据绑定](数据绑定.md)
 * [Gson](parse/gson.md)
-* 网络请求
-	* [HttpURLConnection使用](net/httpurlconnection.md)
-	* [OkHttp](net/okhttp.md) 
-	* [Retrofit1使用](net/retrofit.md)
-  * [Retrofit2源码分析](net/retrofit2-source-analysis.md)
-  * [Volley](net/volley.md)
+* [网络请求](网络请求.md)
+    * [HttpURLConnection使用](net/httpurlconnection.md)
+    * [OkHttp](net/okhttp.md)
+    * [Volley](net/volley.md)
+    * [Retrofit1使用](net/retrofit.md)
+    * [Retrofit2源码分析](net/retrofit2-source-analysis.md)
 * [Graphics](graphics.md)
 * 网络图片加载
-	* [Android-Universal-Image-Loader](net/android-universal-image-loader.md)
-	* [Picasso](net/picasso.md)
+    * [Android-Universal-Image-Loader](net/android-universal-image-loader.md)
+    * [Picasso](net/picasso.md)
 * [DownloadProvider](net/downloadprovider.md)
 * [依赖注入](依赖注入.md)
 * 注解
-   * [ButterKnife使用](annotation/butterknife.md)
-   * [ButterKnife源码分析](annotation/butterknife-source-analysis.md)
+    * [ButterKnife使用](annotation/butterknife.md)
+    * [ButterKnife源码分析](annotation/butterknife-source-analysis.md)
 * 工具
-   * AndroidStudio
-       * [提示和技巧](tools/android-studio/tips_and_tricks.md)
-   * [android-resource-remover](tools/android-resource-remover.md)
+    * AndroidStudio
+        * [提示和技巧](tools/android-studio/tips_and_tricks.md)
+    * [android-resource-remover](tools/android-resource-remover.md)
 * [Android架构](android-architecture.md)
+
