@@ -11,13 +11,13 @@ Handler主要有两个作用：
 * 在工作线程中发送消息。
 * 在UI线程中获取、处理消息。
 
-### 1.创建Handler
+#### 1.创建Handler
 
 Handler具有下列构造函数：
 
 
 
-### 2.使用Handler
+#### 2.使用Handler
 
 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。
 
