@@ -116,9 +116,54 @@ class MainActivity : AppCompatActivity() {
 }
 
 ```
-然后将kotlin代码移到kotlin目录下。
+然后将kotlin代码移到kotlin目录下，运行。
 
 #### 3.Kotlin语法
+
+我们的第一个Kotlin项目已经运行起来了，虽然我们没写一行代码。接下来将详细学习一下Kotlin的语法。
+
+##### 3.1基本语法
+
+**包名**
+```java
+package com.malinkang.kotlin;//定义包名
+```
+**声明常量**
+
+使用关键字`val`声明常量
+
+
+
+```kotlin
+val a :Int = 1;//定义一个int值
+val b = 1;//推导出Int类型
+val c:Int;//当没有初始化时必须声明类型
+c = 1
+
+```
+**声明变量**
+
+```kotlin
+var x:Int= 5;
+var y = 10;
+
+```
+**注释**
+
+和Java一样，支持单行注释和块注释
+```
+//单行注释
+
+/*块注释*/
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -126,5 +171,6 @@ class MainActivity : AppCompatActivity() {
 
 
 #### 参考
+* [Kotlin中文文档](http://kotlindoc.com/)
 * [使用 Kotlin 和 Anko 的安卓开发入门](https://realm.io/cn/news/getting-started-with-kotlin-and-anko/)
 * [Android开发必备知识：为什么说Kotlin值得一试](http://www.cnblogs.com/bugly/p/5219895.html)
