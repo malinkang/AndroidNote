@@ -52,4 +52,5 @@
         * [提示和技巧](tools/android-studio/tips_and_tricks.md)
     * [android-resource-remover](tools/android-resource-remover.md)
 * [Android架构](android-architecture.md)
+* [Kotlin](kotlin.md)
 
