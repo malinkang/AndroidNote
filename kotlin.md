@@ -43,9 +43,6 @@ task clean(type: Delete) {
 
 ```
 app下的build.gradle中应用kotlin插件和kotlin依赖。
-
-
-
 ```java
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
