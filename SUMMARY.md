@@ -9,6 +9,7 @@
     * [ViewPager](ui/viewpager.md)
     * [ListView](ui/listview.md)
     * [Dialog](ui/dialog.md)
+    * [RecyclerView](recyclerview.md)
 * \[2D绘图和动画\]
     * [Drawable使用](graphics&animation/drawable-resource.md)
     * [矢量图和矢量图动画](graphics&animation/vectordrawable.md)
