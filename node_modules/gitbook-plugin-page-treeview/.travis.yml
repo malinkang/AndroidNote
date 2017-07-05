@@ -10,6 +10,6 @@ node_js:
   - "0.11"
   - "0.10"
   - "iojs"
-script: make test
-os: 
+script: npm test
+os:
   - linux

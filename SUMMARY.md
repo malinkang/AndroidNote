@@ -1,57 +1,34 @@
 # Summary
 
 * [Introduction](README.md)
-* [用户界面](用户界面.md)
-    * [TextView](ui/textview.md)
+* 应用组件
+    * [Intent](components/intent.md)
+    * [Activity](components/activity.md)
+    * [Fragment](components/fragment.md)
+    * [Parceable](components/parceable.md)
+    * [进程和线程](components/processes-and-threads.md)
+* 用户界面
+    * [BottomSheet](ui/bottomsheet.md)
+    * [Notification](ui/notifications.md)
     * [ToolBar](ui/toolbar.md)
-    * [WebView](ui/webview.md)
-    * [RecyclerView](ui/recyclerview.md)
-    * [ViewPager](ui/viewpager.md)
-    * [ListView](ui/listview.md)
-    * [Dialog](ui/dialog.md)
-    * [RecyclerView](recyclerview.md)
-* \[2D绘图和动画\]
-    * [Drawable使用](graphics&animation/drawable-resource.md)
-    * [矢量图和矢量图动画](graphics&animation/vectordrawable.md)
-* [触摸和手势](触摸和手势/index.md)
-    * [Touch事件的分发和消费机制](触摸和手势/Touch事件的分发和消费机制.md)
-* Intent
-* Activity
-    * [Activity启动模式](activity/Activity启动模式.md)
-    * [数据传递](activity/页面切换之间的数据传递.md)
-* Fragment
-    * [Fragment管理](fragment/manager.md)
-* Service
-* [获取AndroidManifest.xml信息](get_androidmanifest_info.md)
-* \[多线程\]
-    * [Handler](multithread/handler.md)
+* 图像与动画
+* 性能优化
+    * 代码优化
+    * 性能优化
+* 异步操作
+    * Handler
+    * AsyncTask
+    * RxJava
+* 多媒体
+    * [ExoPlayer使用](multimedia/exoplayer.md)
+* 网络请求
+    * [Retrofit](network/retrofit.md)
+    * JSON解析
+        * [Gson](network/gson.md)
+    * Xml解析
+* Kotlin
+* 数据绑定
 * 数据存储
-    * [StatFs](data/StatFs.md)
-    * [SQLite](data/database/SQLite.md)
-    * [数据库操作](data/database/数据库操作.md)
-    * [ActiveAndroid](data/database/activeandroid.md)
-* [RxJava](RxJava.md)
-* [数据绑定](数据绑定.md)
-* [Gson](parse/gson.md)
-* [网络请求](网络请求.md)
-    * [HttpURLConnection使用](net/httpurlconnection.md)
-    * [OkHttp](net/okhttp.md)
-    * [Volley](net/volley.md)
-    * [Retrofit1使用](net/retrofit.md)
-    * [Retrofit2源码分析](net/retrofit2-source-analysis.md)
-* [Graphics](graphics.md)
-* [网络图片加载](网络图片加载.md)
-    * [Android-Universal-Image-Loader](net/android-universal-image-loader.md)
-    * [Picasso](net/picasso.md)
-* [DownloadProvider](net/downloadprovider.md)
-* [依赖注入](依赖注入.md)
-* 注解
-    * [ButterKnife使用](annotation/butterknife.md)
-    * [ButterKnife源码分析](annotation/butterknife-source-analysis.md)
-* 工具
-    * AndroidStudio
-        * [提示和技巧](tools/android-studio/tips_and_tricks.md)
-    * [android-resource-remover](tools/android-resource-remover.md)
-* [Android架构](android-architecture.md)
-* [Kotlin](kotlin.md)
-
+* Android架构
+* 工具使用
+* 第三方sdk集成

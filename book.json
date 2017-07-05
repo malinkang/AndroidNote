@@ -1,10 +1,16 @@
 {
-    "plugins" : [ "back-to-top-button","plantuml","image-captions", "prism","-highlight","expandable-chapters","page-treeview"],
+    "plugins" : [ "back-to-top-button","plantuml","image-captions", "prism","-highlight","expandable-chapters","page-treeview","emphasize"],
     "pluginsConfig": {
+    	"page-treeview": {
+            "style": "markdown",
+            "copyright": "",
+            "minHeaderCount": "1",
+            "minHeaderDeep": "1"
+        },
         "fontsettings": {
-        	"theme":"night",
+        	"theme":"white",
         	"family":"serif",
-        	"size":2
+        	"size":1
         }
       
     }
