@@ -381,4 +381,5 @@ canvas.drawPosText(str, new float[] {
 ### 参考
 
 * [AndroidNote](https://github.com/GcsSloop/AndroidNote)
+* [Fun with Android Shaders and Filters](http://chiuki.github.io/android-shaders-filters/)
 
