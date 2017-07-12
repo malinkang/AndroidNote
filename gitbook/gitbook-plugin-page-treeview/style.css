@@ -1,41 +1,30 @@
-.level1,
-.level2,
-.level3,
-.level4,
-.level5,
-.level6 {
-	display: block;
+.level__item {
+    display: inline-block;
 }
 
-.level1 {
-	font-size: 24px;
+.level__parent::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    display: inline-block;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
-.level2 {
-	margin-left: 4px;
-	font-size: 20px;
+.level__parent--hidden::after {
+    border-top: 5px solid #000;
+    margin-top: 5px;
 }
 
-.level3 {
-	margin-left: 8px;
-	font-size: 16px;
+.level__parent--opened::after {
+    border-bottom: 5px solid #000;
+    margin-bottom: 5px;
 }
 
-.level4 {
-	margin-left: 12px;
-	font-size: 14px;
-}
-
-.level5 {
-	margin-left: 16px;
-	font-size: 12px;
-}
-
-.level6 {
-	margin-left: 20px;
-	font-size: 12px;
-	color: #cdcdcd !important;
-	text-decoration: none;
+.content {
+    vertical-align: middle;
 }
 
 /**
@@ -51,7 +40,7 @@
 .treeview__container-title {
 	position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -35px;
     border-bottom: 1px solid #ccc;
 }
 

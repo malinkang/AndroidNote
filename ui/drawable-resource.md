@@ -1,6 +1,15 @@
 ## Drawable Resource
 
 
+http://blog.csdn.net/guolin_blog/article/details/51763825
+https://gist.github.com/hamakn/8939eb68a920a6d7a498#gistcomment-2029814
+https://developer.android.com/training/system-ui/status.html
+https://github.com/laobie/StatusBarUtil
+http://www.jianshu.com/p/aca4fd6743b1
+https://medium.com/google-developers/why-would-i-want-to-fitssystemwindows-4e26d9ce1eec
+http://www.jianshu.com/p/0acc12c29c1b
+https://github.com/hehonghui/android-tech-frontier/blob/master/issue-35/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E7%94%A8fitsSystemWindows.md
+http://www.jianshu.com/p/f3683e27fd94
 ##Layer List
 
 [LayerDrawable](http://developer.android.com/reference/android/graphics/drawable/LayerDrawable.html)是一个能够管理一组drawable的drawable对象。一组中的每一个对象将会按照顺序进行绘制。
