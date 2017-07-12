@@ -185,9 +185,9 @@ public class ExampleActivity extends Activity {
 
 * Activity 的**前台生命周期**发生在 onResume() 调用与 onPause() 调用之间。在这段时间，Activity 位于屏幕上的所有其他 Activity 之前，并具有用户输入焦点。 Activity 可频繁转入和转出前台 — 例如，当设备转入休眠状态或出现对话框时，系统会调用 onPause()。 由于此状态可能经常发生转变，因此这两个方法中应采用适度轻量级的代码，以避免因转变速度慢而让用户等待。
 
-图 1 说明了这些循环以及 Activity 在状态转变期间可能经过的路径。矩形表示回调方法，当 Activity 在不同状态之间转变时，您可以实现这些方法来执行操作。
+下图 说明了这些循环以及 Activity 在状态转变期间可能经过的路径。矩形表示回调方法，当 Activity 在不同状态之间转变时，您可以实现这些方法来执行操作。
 
-![图 1. Activity 生命周期。](/assets/images/activity_lifecycle.png)
+![ Activity 生命周期。](/assets/images/activity_lifecycle.png)
 
 
 
@@ -212,6 +212,7 @@ public class ExampleActivity extends Activity {
 >注：根据表 1 中的定义属于技术上无法“终止”的 Activity 仍可能被系统终止 — 但这种情况只有在无任何其他资源的极端情况下才会发生。进程和线程处理文档对可能会终止 Activity 的情况做了更详尽的阐述。
 
 #### 4.2 保存 Activity 状态
+
 当 Activity 暂停或停止时，Activity 的状态会得到保留。 确实如此，因为当 Activity 暂停或停止时，Activity 对象仍保留在内存中 — 有关其成员和当前状态的所有信息仍处于活动状态。 因此，用户在 Activity 内所做的任何更改都会得到保留，这样一来，当 Activity 返回前台（当它“继续”）时，这些更改仍然存在。
 
 不过，当系统为了恢复内存而销毁某项 Activity 时，Activity 对象也会被销毁，因此系统在继续 Activity 时根本无法让其状态保持完好，而是必须在用户返回 Activity 时重建 Activity 对象。但用户并不知道系统销毁 Activity 后又对其进行了重建，因此他们很可能认为 Activity 状态毫无变化。 在这种情况下，您可以实现另一个回调方法对有关 Activity 状态的信息进行保存，以确保有关 Activity 状态的重要信息得到保留：onSaveInstanceState()。
@@ -558,7 +559,6 @@ taskAffinity 属性取字符串值，该值必须不同于在 <manifest> 元素�
 第二个功能非常重要：用户必须能够在离开任务后，再使用此 Activity 启动器返回该任务。 因此，只有在 Activity 具有 ACTION_MAIN 和 CATEGORY_LAUNCHER 过滤器时，才应该使用将 Activity 标记为“始终启动任务”的两种启动模式，即 "singleTask" 和 "singleInstance"。例如，我们可以想像一下如果缺少过滤器会发生什么情况： Intent 启动一个 "singleTask" Activity，从而启动一个新任务，并且用户花了些时间处理该任务。然后，用户按“主页”按钮。 任务现已发送到后台，而且不可见。现在，用户无法返回到任务，因为该任务未显示在应用启动器中。
 
 如果您并不想用户能够返回到 Activity，对于这些情况，请将 <activity> 元素的 finishOnTaskLaunch 设置为 "true"（请参阅清理堆栈）。
-
 
 ### 参考
 

@@ -4,6 +4,8 @@
 * 应用组件
     * [Intent](components/intent.md)
     * [Activity](components/activity.md)
+    * [Service](components/service.md)
+    * [Broadcasts](components/broadcasts.md)
     * [Fragment](components/fragment.md)
     * [Parceable](components/parceable.md)
     * [进程和线程](components/processes-and-threads.md)
@@ -12,23 +14,36 @@
     * [Notification](ui/notifications.md)
     * [ToolBar](ui/toolbar.md)
 * 图像与动画
+    * [画布](graphics/canvas.md)
 * 性能优化
+    * [布局优化](performance/optimizing-layout.md)
     * 代码优化
     * 性能优化
 * 异步操作
     * Handler
     * AsyncTask
-    * RxJava
+* RxJava
+    * 操作符
+        * [聚合运算符](rxjava/operators/aggregate-operators.md)
 * 多媒体
     * [ExoPlayer使用](multimedia/exoplayer.md)
 * 网络请求
-    * [Retrofit](network/retrofit.md)
     * JSON解析
         * [Gson](network/gson.md)
     * Xml解析
+    * [Retrofit](network/retrofit.md)
 * Kotlin
 * 数据绑定
 * 数据存储
 * Android架构
 * 工具使用
-* 第三方sdk集成
+    * AndroidStudio
+    * 静态代码分析工具
+        * [lint](tools/static-analysis/lint.md)
+        * [findbugs](tools/static-analysis/findbugs.md)
+        * [pmd](tools/static-analysis/pmd.md)
+    * 命令行工具
+        * [adb](tools/command-line/adb.md)
+        * dumpsys
+        * logcat
+* 测试
