@@ -34,6 +34,7 @@ Activity 的用户界面是由层级式视图 — 衍生自 View 类的对象 �
 
 #### 1.2 在清单文件中声明 Activity
 您必须在清单文件中声明您的 Activity，这样系统才能访问它。 要声明您的 Activity，请打开您的清单文件，并将 <activity> 元素添加为 <application> 元素的子项。例如：
+
 ```xml
 <manifest ... >
   <application ... >
@@ -43,6 +44,7 @@ Activity 的用户界面是由层级式视图 — 衍生自 View 类的对象 �
   ...
 </manifest >
 ```
+
 您还可以在此元素中加入几个其他特性，以定义 Activity 标签、Activity 图标或风格主题等用于设置 Activity UI 风格的属性。 android:name 属性是唯一必需的属性—它指定 Activity 的类名。应用一旦发布，即不应更改此类名，否则，可能会破坏诸如应用快捷方式等一些功能。
 
 请参阅 <activity> 元素参考文档，了解有关在清单文件中声明 Activity 的详细信息。

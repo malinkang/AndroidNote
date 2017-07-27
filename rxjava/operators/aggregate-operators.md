@@ -1,6 +1,7 @@
 
 ### concat
 
+
 concat操作符将多个Observable结合成一个Observable并发射数据，并且严格按照先后顺序发射数据，前一个Observable的数据没有发射完，是不能发射后面Observable的数据的。
 
 ```java
@@ -127,6 +128,8 @@ Observable.from(new Person[]{new Person("a", 22), new Person("b", 18), new Perso
         });
 
 ```
+
+
 
 * 传递一个函数
 

@@ -48,6 +48,7 @@ Canvas提供了三个绘制点的方法：
 *  public void drawPoints(@Size(multiple=2) @NonNull float[] pts, @NonNull Paint paint) 绘制多个点
 *   public void drawPoints(@Size(multiple=2) float[] pts, int offset, int count, @NonNull Paint paint)
 
+
 ```java
 //在坐标(200,200)位置绘制一个点
 canvas.drawPoint(200, 200, mPaint);
@@ -58,6 +59,7 @@ canvas.drawPoints(new float[]{
     500,700
 },mPaint);
 ```
+
 ![](/assets/images/canvas-point.jpeg)
 
 #### 绘制直线
@@ -376,7 +378,8 @@ canvas.drawPosText(str, new float[] {
     600, 600
 }, mPaint);
 ```
-![](/assets/images/canvas-text.jpeg)
+
+![](/assets/images/canvas-text2.jpeg)
 
 ### 参考
 

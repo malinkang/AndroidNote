@@ -20,6 +20,7 @@ private final boolean required;//是否必须
 ```
 
 `MethodViewBinding`封装了使用`@OnClick`等注解注解的方法的信息。
+
 ```java
 private final String name;//方法名
 private final List<Parameter> parameters;//方法参数
@@ -243,7 +244,9 @@ final class FieldResourceBinding implements ResourceBinding {
     }
 }
 ```
+
 #### 解析注解
+
 
 知道各个类的作用之后，下一步工作就是了解如何解析这些标注了注解的字段和方法的信息，并封装成类。
 ButterKnife解析这些信息的类为`ButterKnifeProcessor`，解析的工作由`findAndParseTargets`方法完成。
@@ -900,6 +903,7 @@ private void addViewBindings(MethodSpec.Builder result, ViewBindings bindings) {
 #### 调用辅助方法
 
 我们在类中通过调用ButterKnife的bind方法来调用辅助类的。
+
 ```java
 @NonNull @UiThread
 public static Unbinder bind(@NonNull Object target, @NonNull View source) {

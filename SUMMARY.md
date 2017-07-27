@@ -10,11 +10,18 @@
     * [Parceable](components/parceable.md)
     * [进程和线程](components/processes-and-threads.md)
 * 用户界面
+    * Layout
+        * [constraintlayout](ui/layout/constraint-layout.md)
     * [BottomSheet](ui/bottomsheet.md)
     * [Notification](ui/notifications.md)
     * [ToolBar](ui/toolbar.md)
 * 图像与动画
     * [画布](graphics/canvas.md)
+    * [Path](graphics/path.md)
+    * [PathMeasure](graphics/pathmeasure.md)
+    * [Matrix](graphics/matrix.md)
+    * [Paint](graphics/paint.md)
+    * [属性动画](graphics/property-animation.md)
 * 性能优化
     * [布局优化](performance/optimizing-layout.md)
     * 代码优化
@@ -35,9 +42,12 @@
 * Kotlin
 * 数据绑定
 * 数据存储
-* Android架构
+    * 数据库
+        * [Room](data/database/room.md)
+* [Android架构](android-architecture.md)
 * 工具使用
     * AndroidStudio
+        * [应用发布](tools/android-studio/publish-app.md)
     * 静态代码分析工具
         * [lint](tools/static-analysis/lint.md)
         * [findbugs](tools/static-analysis/findbugs.md)
