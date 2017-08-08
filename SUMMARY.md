@@ -40,7 +40,7 @@
     * Xml解析
     * [Retrofit](network/retrofit.md)
 * Kotlin
-* 数据绑定
+* [数据绑定](data-binding.md)
 * 数据存储
     * 数据库
         * [Room](data/database/room.md)

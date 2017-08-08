@@ -188,3 +188,4 @@ animatorSet.start();
 * [Introducing ViewPropertyAnimator](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
 * [Android animations powered by RxJava](https://pspdfkit.com/blog/2016/android-animations-powered-by-rx-java/)
 * [Android-SpinKit](https://github.com/ybq/Android-SpinKit)
+* 
