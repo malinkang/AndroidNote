@@ -1,12 +1,14 @@
-### Android笔记
+# Introduction
+
+## Android笔记
 
 很多知识学过之后，长时间不用就会遗忘。所以就有了记笔记的想法，希望能够把日常学习和工作上学到的东西记录下来，形成自己的知识体系，也方便日后的翻阅。
 
 本笔记使用Gitbook构建，生成的静态Html托管在Github上，可以通过网址[http://malinkang.github.io/AndroidNote/](http://malinkang.github.io/AndroidNote/)直接访问。
 
-### License
+## License
 
-```
+```text
 MIT License
 
 Copyright (c) 2015 malinkang
@@ -29,6 +31,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-
 

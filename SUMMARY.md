@@ -1,59 +1,60 @@
-# Summary
+# Table of contents
 
 * [Introduction](README.md)
-* 应用组件
-    * [Intent](components/intent.md)
-    * [Activity](components/activity.md)
-    * [Service](components/service.md)
-    * [Broadcasts](components/broadcasts.md)
-    * [Fragment](components/fragment.md)
-    * [Parceable](components/parceable.md)
-    * [进程和线程](components/processes-and-threads.md)
-* 用户界面
-    * Layout
-        * [constraintlayout](ui/layout/constraint-layout.md)
-    * [BottomSheet](ui/bottomsheet.md)
-    * [Notification](ui/notifications.md)
-    * [ToolBar](ui/toolbar.md)
-* 图像与动画
-    * [画布](graphics/canvas.md)
-    * [Path](graphics/path.md)
-    * [PathMeasure](graphics/pathmeasure.md)
-    * [Matrix](graphics/matrix.md)
-    * [Paint](graphics/paint.md)
-    * [属性动画](graphics/property-animation.md)
-* 性能优化
-    * [布局优化](performance/optimizing-layout.md)
-    * 代码优化
-    * 性能优化
-* 异步操作
-    * Handler
-    * AsyncTask
-* RxJava
-    * 操作符
-        * [聚合运算符](rxjava/operators/aggregate-operators.md)
-* 多媒体
-    * [ExoPlayer使用](multimedia/exoplayer.md)
-* 网络请求
-    * JSON解析
-        * [Gson](network/gson.md)
-    * Xml解析
-    * [Retrofit](network/retrofit.md)
-* Kotlin
-* [数据绑定](data-binding.md)
-* 数据存储
-    * 数据库
-        * [Room](data/database/room.md)
-* [Android架构](android-architecture.md)
-* 工具使用
-    * AndroidStudio
-        * [应用发布](tools/android-studio/publish-app.md)
-    * 静态代码分析工具
-        * [lint](tools/static-analysis/lint.md)
-        * [findbugs](tools/static-analysis/findbugs.md)
-        * [pmd](tools/static-analysis/pmd.md)
-    * 命令行工具
-        * [adb](tools/command-line/adb.md)
-        * dumpsys
-        * logcat
-* 测试
+* [应用组件](ying-yong-zu-jian/README.md)
+  * [Intent](ying-yong-zu-jian/intent.md)
+  * [Activity](ying-yong-zu-jian/activity.md)
+  * [Service](ying-yong-zu-jian/service.md)
+  * [Broadcasts](ying-yong-zu-jian/broadcasts.md)
+  * [Fragment](ying-yong-zu-jian/fragment.md)
+  * [Parceable](ying-yong-zu-jian/parceable.md)
+  * [进程和线程](ying-yong-zu-jian/jin-cheng-he-xian-cheng.md)
+* [用户界面](yong-hu-jie-mian/README.md)
+  * [Layout](yong-hu-jie-mian/layout/README.md)
+    * [constraintlayout](yong-hu-jie-mian/layout/constraintlayout.md)
+  * [BottomSheet](yong-hu-jie-mian/bottomsheet.md)
+  * [Notification](yong-hu-jie-mian/notification.md)
+  * [ToolBar](yong-hu-jie-mian/toolbar.md)
+* [图像与动画](tu-xiang-yu-dong-hua/README.md)
+  * [画布](tu-xiang-yu-dong-hua/hua-bu.md)
+  * [Path](tu-xiang-yu-dong-hua/path.md)
+  * [PathMeasure](tu-xiang-yu-dong-hua/pathmeasure.md)
+  * [Matrix](tu-xiang-yu-dong-hua/matrix.md)
+  * [Paint](tu-xiang-yu-dong-hua/paint.md)
+  * [属性动画](tu-xiang-yu-dong-hua/shu-xing-dong-hua.md)
+* [性能优化](xing-neng-you-hua/README.md)
+  * [布局优化](xing-neng-you-hua/bu-ju-you-hua.md)
+  * [代码优化](xing-neng-you-hua/dai-ma-you-hua.md)
+  * [性能优化](xing-neng-you-hua/xing-neng-you-hua.md)
+* [异步操作](yi-bu-cao-zuo/README.md)
+  * [Handler](yi-bu-cao-zuo/handler.md)
+  * [AsyncTask](yi-bu-cao-zuo/asynctask.md)
+* [RxJava](rxjava/README.md)
+  * [操作符](rxjava/cao-zuo-fu/README.md)
+    * [聚合运算符](rxjava/cao-zuo-fu/ju-he-yun-suan-fu.md)
+* [多媒体](duo-mei-ti/README.md)
+  * [ExoPlayer使用](duo-mei-ti/exoplayer-shi-yong.md)
+* [网络请求](wang-luo-qing-qiu/README.md)
+  * [JSON解析](wang-luo-qing-qiu/json-jie-xi/README.md)
+    * [Gson](wang-luo-qing-qiu/json-jie-xi/gson.md)
+  * [Xml解析](wang-luo-qing-qiu/xml-jie-xi.md)
+  * [Retrofit](wang-luo-qing-qiu/retrofit.md)
+* [Kotlin](kotlin.md)
+* [数据绑定](shu-ju-bang-ding.md)
+* [数据存储](shu-ju-cun-chu/README.md)
+  * [数据库](shu-ju-cun-chu/shu-ju-ku/README.md)
+    * [Room](shu-ju-cun-chu/shu-ju-ku/room.md)
+* [Android架构](android-jia-gou.md)
+* [工具使用](gong-ju-shi-yong/README.md)
+  * [AndroidStudio](gong-ju-shi-yong/androidstudio/README.md)
+    * [应用发布](gong-ju-shi-yong/androidstudio/ying-yong-fa-bu.md)
+  * [静态代码分析工具](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/README.md)
+    * [lint](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/lint.md)
+    * [findbugs](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/findbugs.md)
+    * [pmd](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/pmd.md)
+  * [命令行工具](gong-ju-shi-yong/ming-ling-hang-gong-ju/README.md)
+    * [adb](gong-ju-shi-yong/ming-ling-hang-gong-ju/adb.md)
+    * [dumpsys](gong-ju-shi-yong/ming-ling-hang-gong-ju/dumpsys.md)
+    * [logcat](gong-ju-shi-yong/ming-ling-hang-gong-ju/logcat.md)
+* [测试](ce-shi.md)
+
