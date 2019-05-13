@@ -32,7 +32,7 @@ mTextView.setText(Html.from("<font color='red'>红色</font>"));
 
 
 #### 扩展阅读
-[TextViewApi](http://developer.android.com/reference/android/widget/TextView.html)
+* [TextViewApi](http://developer.android.com/reference/android/widget/TextView.html)
 * [Advanced Android TextView](http://chiuki.github.io/advanced-android-textview/)
 * [Spans, a Powerful Concept.](http://flavienlaurent.com/blog/2014/01/31/spans/)
 * [String资源文件中使用占位符](http://stackoverflow.com/questions/5854647/how-to-put-variable-inside-string-resources)
