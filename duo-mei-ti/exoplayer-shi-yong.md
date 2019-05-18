@@ -141,5 +141,9 @@ player.prepare(videoSource);
 ## 扩展阅读
 
 
-* [视音频编解码技术零基础学习方法](http://blog.csdn.net/leixiaohua1020/article/details/18893769)
+ijkplayer对比ExoPlayer优势：
+* ijkplayer基于ffmpeg，更容易定制
+* 扩平台更容易维护
+* ijkplayer支持2.3+，ExoPlayer支持4.1+
+
 

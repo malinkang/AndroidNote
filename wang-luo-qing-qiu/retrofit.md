@@ -1,11 +1,12 @@
 # Retrofit
 
-## 1.介绍hhhh
+## 1.介绍
 
 [Retrofit](http://square.github.io/retrofit/) 是一个类型安全的Java [Rest](http://zh.wikipedia.org/wiki/REST) 客户端，而且也适用于Android。
 
 [Retrofit](http://square.github.io/retrofit/)可以将Rest Api转换为Java的接口。
 
+`Retrofit`将HTTP API转换成一个Java接口。
 ```java
 public interface GitHubService {
   @GET("/users/{user}/repos")
@@ -13,14 +14,14 @@ public interface GitHubService {
 }
 ```
 
-通过RestAdapter类，可以创建GithubService的实例。
+通过`Retrofit`类，可以创建`GithubService`的实例。
 
 ```java
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setEndpoint("https://api.github.com")
+Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com/")
     .build();
 
-GitHubService service = restAdapter.create(GitHubService.class);
+GitHubService service = retrofit.create(GitHubService.class);
 ```
 
 接着就可以调用创建的GithubService的方法进行网络请求。
@@ -99,30 +100,22 @@ interface Foo {
 }
 ```
 
-如果你想直接发送一个JSON串，可以使用 `TypedByteArray`。
-
-```java
-String json = "{\"foo\":\"kit\",\"bar\":\"kat\"}";
-TypedInput in = new TypedByteArray("application/json", json.getBytes("UTF-8"));
-FooResponse response = foo.postRawJson(in);
-```
-
 ### 2.4.表单提交和文件上传
 
 使用`@FormUrlEncoded`可以进行表单提交。每一个包含名字和提供数据对象的键值对需要使用`@Field`进行注解。
 
 ```java
 @FormUrlEncoded
-@POST("/user/edit")
-User updateUser(@Field("first_name") String first, @Field("last_name") String last);
+@POST("user/edit")
+Call<User> updateUser(@Field("first_name") String first, @Field("last_name") String last);
 ```
 
 使用`@Multipart`注解，可以进行文件上传。`Parts`使用`@Part`进行注解。
 
 ```java
 @Multipart
-@PUT("/user/photo")
-User updateUser(@Part("photo") TypedFile photo, @Part("description") TypedString description);
+@PUT("user/photo")
+Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
 ```
 
 ### 2.5.请求头
@@ -131,8 +124,8 @@ User updateUser(@Part("photo") TypedFile photo, @Part("description") TypedString
 
 ```java
 @Headers("Cache-Control: max-age=640000")
-@GET("/widget/list")
-List<Widget> widgetList();
+@GET("widget/list")
+Call<List<Widget>> widgetList();
 ```
 
 添加多个请求头
@@ -142,8 +135,8 @@ List<Widget> widgetList();
     "Accept: application/vnd.github.v3.full+json",
     "User-Agent: Retrofit-Sample-App"
 })
-@GET("/users/{username}")
-User getUser(@Path("username") String username);
+@GET("users/{username}")
+Call<User> getUser(@Path("username") String username);
 ```
 
 请求头不会被互相覆盖，所有拥有相同名字的请求头都会被包含在请求里。
@@ -151,164 +144,24 @@ User getUser(@Path("username") String username);
 一个请求头可以使用`@Header`注解动态的更新，并且必须为`@Header`提供一个相应的字符串参数。如果值为空，请求头将被忽略。
 
 ```java
-@GET("/user")
-void getUser(@Header("Authorization") String authorization, Callback<User> callback)
+@GET("user")
+Call<User> getUser(@Header("Authorization") String authorization)
 ```
 
-如果请求头需要被添加到所有的请求中，可以使用一个RequestInterceptor进行指定。在下面的代码中创建了一个`RequestInterceptor`，它为每一个请求都添加了一个`User-Agent`请求头。
+和请求参数一样，对于复杂的请求头，可以使用`Map`。
 
 ```java
-RequestInterceptor requestInterceptor = new RequestInterceptor() {
-  @Override
-  public void intercept(RequestFacade request) {
-    request.addHeader("User-Agent", "Retrofit-Sample-App");
-  }
-};
-
-RestAdapter restAdapter = new RestAdapter.Builder()
-  .setEndpoint("https://api.github.com")
-  .setRequestInterceptor(requestInterceptor)
-  .build();
+@GET("user")
+Call<User> getUser(@HeaderMap Map<String, String> headers)
 ```
 
-### 2.6.同步和异步加载
+如果每个请求都有相同的请求头，可以使用OkHttp拦截器。
 
-可以声明方法是同步执行还是异步执行。
-
-带有返回值类型的方法将被同步执行。
-
-```java
-@GET("/user/{id}/photo")
-Photo getUserPhoto(@Path("id") int id);
-```
-
-异步执行要求方法的最后一个参数是`Callback`，反省类型为请求的返回值，如果没有返回值或者不需要对返回值进行处理可以设置成`Callback<Void>`
-
-```java
-@GET("/user/{id}/photo")
-void getUserPhoto(@Path("id") int id, Callback<Photo> cb);
-```
-
-在android中，`callbacks`在主线程中被执行。对于桌面应用，回调和执行HTTP请求在同一线程中。
-
-Retrofit集成了RxJava，允许方法返回一个`rx.Observable`类型。
-
-```java
-@GET("/user/{id}/photo")
-Observable<Photo> getUserPhoto(@Path("id") int id);
-```
-
-Observable请求被异步的订阅并且在执行HTTP请求的线程中被观察。如果希望在不同的线程中观察，调用`observeOn(Scheduler)`返回`Observable`。
-
-### 2.7.返回数据类型
-
-如果你的接口返回的是JSON数据类型，`RestAdapter`会自动转换为方法声明的或者CallBack和Observable中指定的对象。如果是XML或其它数据类型，则需要自定义`RestAdapter`转换器。关于如何自定义`RestAdapter`转换器，将在下面的文章中讲到。
-
-```java
-@GET("/users/list")
-List<User> userList();
-
-@GET("/users/list")
-void userList(Callback<List<User>> cb);
-
-@GET("/users/list")
-Observable<List<User>> userList();
-```
-
-如果不希望返回值被处理成指定的类型，则可以通过在方法返回值声明、CallBack以及Observable中使用`Response`对象来实现。
-
-```java
-@GET("/users/list")
-Response userList();
-
-@GET("/users/list")
-void userList(Callback<Response> cb);
-
-@GET("/users/list")
-Observable<Response> userList();
-```
-
-## 3.RestAdapter配置
-
-除了使用Retrofit提供的默认RestAdapter以外，我们还可以进行设置转换器和设置客户端等自定义操作
-
-### 3.1.设置自定义转换器
-
-Retrofit使用未进行任何配置的GSON来转换数据，如果希望使用经过GsonBuilder配置过的Gson，需要创建一个新的GsonConvert。
-
-```java
-Gson gson = new GsonBuilder()
-    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-    .registerTypeAdapter(Date.class, new DateTypeAdapter())
-    .create();
-
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setEndpoint("https://api.github.com")
-    .setConverter(new GsonConverter(gson))
-    .build();
-
-GitHubService service = restAdapter.create(GitHubService.class);
-```
-
-如果请求返回值是XML或者`Protocol Buffers`格式，Retrofit也提供了XML和`Protocol Buffers`格式的转换器。
-
-下面的代码演示了如何使用`SimpleXMLConvert`。
-
-```java
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setEndpoint("https://api.soundcloud.com")
-    .setConverter(new SimpleXMLConverter())
-    .build();
-
-SoundCloudService service = restAdapter.create(SoundCloudService.class);
-```
-
-`ProtoConverter`使用
-
-```java
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setEndpoint("https://api.example.com")
-    .setConverter(new ProtoConverter())
-    .build();
-```
-
-如果你需要使用Retrofit不提供的内容格式来进行数据交换或者你想使用其他的库来转换已经存在的格式，可以通过实现Convert接口创建自己的转换器。
-
-### 3.2.自定义错误处理
-
-提供自定义的`ErrorHandler`可以自定义错误处理，下面的代码中演示了当返回401如何抛出一个自定义异常。
-
-```java
-class MyErrorHandler implements ErrorHandler {
-  @Override public Throwable handleError(RetrofitError cause) {
-    Response r = cause.getResponse();
-    if (r != null && r.getStatus() == 401) {
-      return new UnauthorizedException(cause);
-    }
-    return cause;
-  }
-}
-
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setEndpoint("https://api.github.com")
-    .setErrorHandler(new MyErrorHandler())
-    .build();
-```
-
-### 3.3.设置Log
-
-`RestAdapter`可以通过setLogLevel方法配置Log的级别，打印不同的Log信息。Retrofit提供了`BASIC`,`FULL`,`HEADERS`和`NONE`等四种Log过滤条件。
-
-```java
-RestAdapter restAdapter = new RestAdapter.Builder()
-    .setLogLevel(RestAdapter.LogLevel.FULL)
-    .setEndpoint("https://api.github.com")
-    .build();
-```
 
 ## 参考
 
 * [理解RESTful架构](http://www.ruanyifeng.com/blog/2011/09/restful.html)
+* [How to POST raw whole JSON in the body of a Retrofit request?](https://stackoverflow.com/questions/21398598/how-to-post-raw-whole-json-in-the-body-of-a-retrofit-request)
 * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 * [Retrofit分析-漂亮的解耦套路](http://www.jianshu.com/p/45cb536be2f4)
 
