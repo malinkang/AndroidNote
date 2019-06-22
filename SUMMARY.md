@@ -45,7 +45,7 @@
   * [数据库](shu-ju-cun-chu/shu-ju-ku/README.md)
     * [Room](shu-ju-cun-chu/shu-ju-ku/room.md)
 * [Android架构](android-jia-gou.md)
-* [AndroidStudio](androidstudio/android-studio.md)
+* [AndroidStudio](android-studio.md)
 * [应用发布](androidstudio/ying-yong-fa-bu.md)
 * [静态代码分析工具](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/README.md)
     * [lint](gong-ju-shi-yong/jing-tai-dai-ma-fen-xi-gong-ju/lint.md)
