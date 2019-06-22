@@ -1,5 +1,4 @@
 # Matrix
-
 * [深入理解 Android 中的 Matrix](http://www.jianshu.com/p/6aa6080373ab)
 * [安卓自定义View进阶-Matrix详解](http://www.gcssloop.com/customview/Matrix_Method)
 * [安卓自定义View进阶-Matrix原理](http://www.gcssloop.com/customview/Matrix_Basic)
