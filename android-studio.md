@@ -45,8 +45,8 @@
 ||alt+cmd+F |
 |[查找和替换](https://www.jetbrains.com/idea/help/find-and-replace-in-path.html)|查找cmd+shift+F 替换cmd+shift+R|
 |Surround with| cmd+alt+T|
-|布局中Design和Text切换| <kbd>⌃<kbd>+<kbd>⇧<kbd>+ ← / → |
-|布局和代码切换|  |
+|布局中Design和Text切换| <kbd>⌃</kbd>+<kbd>⇧</kbd>+ ← / → |
+|布局和代码切换| <kbd>⌘</kbd>+<kbd>⌃</kbd>+↑ |
 
 局部变量抽取为成员变量ctrl + alt + F
 多行编辑ctrl+g
