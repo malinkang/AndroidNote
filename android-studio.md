@@ -57,5 +57,5 @@
 
    * [Keyboard Shortcuts](https://developer.android.com/studio/intro/keyboard-shortcuts.html)
 
-* <http://zlv.me/posts/2015/07/13/14_android-studio-tips/>
+   
 https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm
