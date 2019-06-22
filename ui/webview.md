@@ -32,6 +32,7 @@ loadDataWithBaseURL(null, htmlStr,"text/html", "utf-8", null);
 ##### WebChromeClient
 
 `WebChromeClient`是辅助`WebView`处理`Javascript`的对话框,网站图标,网站title等。常用方法如下：
+
 * public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度
 
 ##### WebViewClient
@@ -39,6 +40,8 @@ loadDataWithBaseURL(null, htmlStr,"text/html", "utf-8", null);
 
 
 #####更多阅读
+
+* https://tech.meituan.com/2017/06/09/webviewperf.html
 
 * [WebView Api](http://developer.android.com/reference/android/webkit/WebView.html)
 * [Building Web Apps in WebView](http://developer.android.com/guide/webapps/webview.html)
