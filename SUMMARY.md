@@ -22,10 +22,9 @@
   * [Matrix](tu-xiang-yu-dong-hua/matrix.md)
   * [Paint](tu-xiang-yu-dong-hua/paint.md)
   * [属性动画](tu-xiang-yu-dong-hua/shu-xing-dong-hua.md)
-* [性能优化](xing-neng-you-hua/README.md)
-  * [布局优化](xing-neng-you-hua/bu-ju-you-hua.md)
-  * [代码优化](xing-neng-you-hua/dai-ma-you-hua.md)
-  * [性能优化](xing-neng-you-hua/xing-neng-you-hua.md)
+* 性能优化
+  * [内存优化](performance/memory.md)
+  * 
 * [异步操作](yi-bu-cao-zuo/README.md)
   * [Handler](yi-bu-cao-zuo/handler.md)
   * [AsyncTask](yi-bu-cao-zuo/asynctask.md)
