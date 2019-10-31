@@ -1,6 +1,6 @@
 ## StatFs 类
 
-[StatFs](https://developer.android.com/reference/android/os/StatFs.html)用于获取文件系统的所有空间信息，这是一个对unix中的statvfs()函数的包装。
+[StatFs](https://developer.android.com/reference/android/os/StatFs.html)用于获取文件系统的所有空间信息，这是一个对unix中的`statvfs()`函数的包装。
 
 StatFs 的构造函数需要传入一个路径。
 
@@ -21,7 +21,6 @@ StatFs (String path)
 
 ```java
 //获取SD卡总的空间大小
-@SuppressLint("NewApi")
 public static String getSDTotalSize(Context context) {
     File sdcardDir = Environment.getExternalStorageDirectory();
     StatFs statFs = new StatFs(sdcardDir.getPath());
