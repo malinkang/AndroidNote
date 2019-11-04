@@ -6,6 +6,13 @@
   * 将文件保存在设备存储空间中
     * [将文件保存在内部存储中](data-storage/files/internal.md)
     * [将文件保存到外部存储中](data-storage/files/external.md)
+  * 将数据保存到本地数据库
+    * [概览](data-storage/room/room.md)
+    * [使用实体定义数据库](data-storage/room/defining-data.md)
+    * [定义对象之间的关系](data-storage/room/relationships.md)
+    * [在数据库中创建视图](data-storage/room/creating-views.md)
+    * [使用Room DAO访问数据](data-storage/room/accessing-data.md)
+    * [引用复杂数据](data-storage/room/referencing-data.md)
   * [保存键值对数据](data-storage/shared-preferences.md)
   * 内容提供程序
     * [内容提供程序基础知识](data-storage/providers/content-provider-basics.md)
