@@ -12,15 +12,15 @@ Volley的基本流程就是：
 ## 创建RequestQueue
 
 ```java
-    /**
-     * Creates a default instance of the worker pool and calls {@link RequestQueue#start()} on it.
-     *
-     * @param context A {@link Context} to use for creating the cache dir.
-     * @return A started {@link RequestQueue} instance.
-     */
-    public static RequestQueue newRequestQueue(Context context) {
-        return newRequestQueue(context, (BaseHttpStack) null);
-    }
+/**
+ * Creates a default instance of the worker pool and calls {@link RequestQueue#start()} on it.
+ *
+ * @param context A {@link Context} to use for creating the cache dir.
+ * @return A started {@link RequestQueue} instance.
+ */
+public static RequestQueue newRequestQueue(Context context) {
+    return newRequestQueue(context, (BaseHttpStack) null);
+}
 ```
 
 ```java
@@ -153,189 +153,189 @@ Volley的基本流程就是：
 ### CacheDispatcher
 
 ```java
-    public CacheDispatcher(
-            BlockingQueue<Request<?>> cacheQueue,
-            BlockingQueue<Request<?>> networkQueue,
-            Cache cache,
-            ResponseDelivery delivery) {
-        mCacheQueue = cacheQueue; //缓存队列
-        mNetworkQueue = networkQueue; //网络请求队列
-        mCache = cache; //缓存 
-        mDelivery = delivery; 
-        mWaitingRequestManager = new WaitingRequestManager(this);
-    }
+public CacheDispatcher(
+        BlockingQueue<Request<?>> cacheQueue,
+        BlockingQueue<Request<?>> networkQueue,
+        Cache cache,
+        ResponseDelivery delivery) {
+    mCacheQueue = cacheQueue; //缓存队列
+    mNetworkQueue = networkQueue; //网络请求队列
+    mCache = cache; //缓存 
+    mDelivery = delivery; 
+    mWaitingRequestManager = new WaitingRequestManager(this);
+}
 
 ```
 
 ```java
-    @Override
-    public void run() {
-        if (DEBUG) VolleyLog.v("start new dispatcher");
-        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+@Override
+public void run() {
+    if (DEBUG) VolleyLog.v("start new dispatcher");
+    Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
-        // Make a blocking call to initialize the cache.
-        mCache.initialize();
+    // Make a blocking call to initialize the cache.
+    mCache.initialize();
 
-        while (true) {
-            try {
-                processRequest();
-            } catch (InterruptedException e) {
-                // We may have been interrupted because it was time to quit.
-                if (mQuit) {
-                    Thread.currentThread().interrupt();
-                    return;
-                }
-                VolleyLog.e(
-                        "Ignoring spurious interrupt of CacheDispatcher thread; "
-                                + "use quit() to terminate it");
-            }
-        }
-    }
-```
-
-```java
-    @VisibleForTesting
-    void processRequest(final Request<?> request) throws InterruptedException {
-        request.addMarker("cache-queue-take");
-        request.sendEvent(RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_STARTED);
-
+    while (true) {
         try {
-            // If the request has been canceled, don't bother dispatching it.
-            if (request.isCanceled()) {
-                request.finish("cache-discard-canceled");
+            processRequest();
+        } catch (InterruptedException e) {
+            // We may have been interrupted because it was time to quit.
+            if (mQuit) {
+                Thread.currentThread().interrupt();
                 return;
             }
-            // Attempt to retrieve this item from cache.
-            Cache.Entry entry = mCache.get(request.getCacheKey());
-            if (entry == null) {
-                request.addMarker("cache-miss");
-                // Cache miss; send off to the network dispatcher.
-                //没有在等待队列中添加到请求队列中
-                if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
-                    mNetworkQueue.put(request);
-                }
-                return;
-            }
-
-            // If it is completely expired, just send it to the network.
-            if (entry.isExpired()) {
-                request.addMarker("cache-hit-expired");
-                request.setCacheEntry(entry);
-                if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
-                    mNetworkQueue.put(request);
-                }
-                return;
-            }
-
-            // We have a cache hit; parse its data for delivery back to the request.
-            request.addMarker("cache-hit");
-            Response<?> response =
-                    request.parseNetworkResponse(
-                            new NetworkResponse(entry.data, entry.responseHeaders));
-            request.addMarker("cache-hit-parsed");
-
-            if (!entry.refreshNeeded()) {
-                // Completely unexpired cache hit. Just deliver the response.
-                mDelivery.postResponse(request, response);
-            } else {
-                // Soft-expired cache hit. We can deliver the cached response,
-                // but we need to also send the request to the network for
-                // refreshing.
-                request.addMarker("cache-hit-refresh-needed");
-                request.setCacheEntry(entry);
-                // Mark the response as intermediate.
-                response.intermediate = true;
-
-                if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
-                    // Post the intermediate response back to the user and have
-                    // the delivery then forward the request along to the network.
-                    mDelivery.postResponse(
-                            request,
-                            response,
-                            new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        mNetworkQueue.put(request);
-                                    } catch (InterruptedException e) {
-                                        // Restore the interrupted status
-                                        Thread.currentThread().interrupt();
-                                    }
-                                }
-                            });
-                } else {
-                    // request has been added to list of waiting requests
-                    // to receive the network response from the first request once it returns.
-                    mDelivery.postResponse(request, response);
-                }
-            }
-        } finally {
-            request.sendEvent(RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_FINISHED);
+            VolleyLog.e(
+                    "Ignoring spurious interrupt of CacheDispatcher thread; "
+                            + "use quit() to terminate it");
         }
     }
+}
+```
+
+```java
+@VisibleForTesting
+void processRequest(final Request<?> request) throws InterruptedException {
+    request.addMarker("cache-queue-take");
+    request.sendEvent(RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_STARTED);
+
+    try {
+        // If the request has been canceled, don't bother dispatching it.
+        if (request.isCanceled()) {
+            request.finish("cache-discard-canceled");
+            return;
+        }
+        // Attempt to retrieve this item from cache.
+        Cache.Entry entry = mCache.get(request.getCacheKey());
+        if (entry == null) {
+            request.addMarker("cache-miss");
+            // Cache miss; send off to the network dispatcher.
+            //没有在等待队列中添加到请求队列中
+            if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                mNetworkQueue.put(request);
+            }
+            return;
+        }
+
+        // If it is completely expired, just send it to the network.
+        if (entry.isExpired()) {
+            request.addMarker("cache-hit-expired");
+            request.setCacheEntry(entry);
+            if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                mNetworkQueue.put(request);
+            }
+            return;
+        }
+
+        // We have a cache hit; parse its data for delivery back to the request.
+        request.addMarker("cache-hit");
+        Response<?> response =
+                request.parseNetworkResponse(
+                        new NetworkResponse(entry.data, entry.responseHeaders));
+        request.addMarker("cache-hit-parsed");
+
+        if (!entry.refreshNeeded()) {
+            // Completely unexpired cache hit. Just deliver the response.
+            mDelivery.postResponse(request, response);
+        } else {
+            // Soft-expired cache hit. We can deliver the cached response,
+            // but we need to also send the request to the network for
+            // refreshing.
+            request.addMarker("cache-hit-refresh-needed");
+            request.setCacheEntry(entry);
+            // Mark the response as intermediate.
+            response.intermediate = true;
+
+            if (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                // Post the intermediate response back to the user and have
+                // the delivery then forward the request along to the network.
+                mDelivery.postResponse(
+                        request,
+                        response,
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    mNetworkQueue.put(request);
+                                } catch (InterruptedException e) {
+                                    // Restore the interrupted status
+                                    Thread.currentThread().interrupt();
+                                }
+                            }
+                        });
+            } else {
+                // request has been added to list of waiting requests
+                // to receive the network response from the first request once it returns.
+                mDelivery.postResponse(request, response);
+            }
+        }
+    } finally {
+        request.sendEvent(RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_FINISHED);
+    }
+}
 ```
 
 ### NetworkDispatcher
 
 ```java
-    @VisibleForTesting
-    void processRequest(Request<?> request) {
-        long startTimeMs = SystemClock.elapsedRealtime();
-        request.sendEvent(RequestQueue.RequestEvent.REQUEST_NETWORK_DISPATCH_STARTED);
-        try {
-            request.addMarker("network-queue-take");
+@VisibleForTesting
+void processRequest(Request<?> request) {
+    long startTimeMs = SystemClock.elapsedRealtime();
+    request.sendEvent(RequestQueue.RequestEvent.REQUEST_NETWORK_DISPATCH_STARTED);
+    try {
+        request.addMarker("network-queue-take");
 
-            // If the request was cancelled already, do not perform the
-            // network request.
-            if (request.isCanceled()) {
-                request.finish("network-discard-cancelled");
-                request.notifyListenerResponseNotUsable();
-                return;
-            }
-
-            addTrafficStatsTag(request);
-
-            // Perform the network request.
-            NetworkResponse networkResponse = mNetwork.performRequest(request);
-            request.addMarker("network-http-complete");
-
-            // If the server returned 304 AND we delivered a response already,
-            // we're done -- don't deliver a second identical response.
-            if (networkResponse.notModified && request.hasHadResponseDelivered()) {
-                request.finish("not-modified");
-                request.notifyListenerResponseNotUsable();
-                return;
-            }
-
-            // Parse the response here on the worker thread.
-            Response<?> response = request.parseNetworkResponse(networkResponse);
-            request.addMarker("network-parse-complete");
-
-            // Write to cache if applicable.
-            // TODO: Only update cache metadata instead of entire record for 304s.
-            if (request.shouldCache() && response.cacheEntry != null) {
-                mCache.put(request.getCacheKey(), response.cacheEntry);
-                request.addMarker("network-cache-written");
-            }
-
-            // Post the response back.
-            request.markDelivered();
-            mDelivery.postResponse(request, response);
-            request.notifyListenerResponseReceived(response);
-        } catch (VolleyError volleyError) {
-            volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
-            parseAndDeliverNetworkError(request, volleyError);
+        // If the request was cancelled already, do not perform the
+        // network request.
+        if (request.isCanceled()) {
+            request.finish("network-discard-cancelled");
             request.notifyListenerResponseNotUsable();
-        } catch (Exception e) {
-            VolleyLog.e(e, "Unhandled exception %s", e.toString());
-            VolleyError volleyError = new VolleyError(e);
-            volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
-            mDelivery.postError(request, volleyError);
-            request.notifyListenerResponseNotUsable();
-        } finally {
-            request.sendEvent(RequestQueue.RequestEvent.REQUEST_NETWORK_DISPATCH_FINISHED);
+            return;
         }
+
+        addTrafficStatsTag(request);
+
+        // Perform the network request.
+        NetworkResponse networkResponse = mNetwork.performRequest(request);
+        request.addMarker("network-http-complete");
+
+        // If the server returned 304 AND we delivered a response already,
+        // we're done -- don't deliver a second identical response.
+        if (networkResponse.notModified && request.hasHadResponseDelivered()) {
+            request.finish("not-modified");
+            request.notifyListenerResponseNotUsable();
+            return;
+        }
+        //负责解析返回值
+        // Parse the response here on the worker thread.
+        Response<?> response = request.parseNetworkResponse(networkResponse);
+        request.addMarker("network-parse-complete");
+
+        // Write to cache if applicable.
+        // TODO: Only update cache metadata instead of entire record for 304s.
+        if (request.shouldCache() && response.cacheEntry != null) {
+            mCache.put(request.getCacheKey(), response.cacheEntry);
+            request.addMarker("network-cache-written");
+        }
+
+        // Post the response back.
+        request.markDelivered();
+        mDelivery.postResponse(request, response);
+        request.notifyListenerResponseReceived(response);
+    } catch (VolleyError volleyError) {
+        volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
+        parseAndDeliverNetworkError(request, volleyError);
+        request.notifyListenerResponseNotUsable();
+    } catch (Exception e) {
+        VolleyLog.e(e, "Unhandled exception %s", e.toString());
+        VolleyError volleyError = new VolleyError(e);
+        volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
+        mDelivery.postError(request, volleyError);
+        request.notifyListenerResponseNotUsable();
+    } finally {
+        request.sendEvent(RequestQueue.RequestEvent.REQUEST_NETWORK_DISPATCH_FINISHED);
     }
+}
 ```
 
 ## 执行完请求之后通过handler发送到主线程
