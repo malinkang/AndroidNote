@@ -339,6 +339,7 @@ public void prepareToConnect(Request request) {
   }
 
   this.request = request;
+  //创建ExchangeFinder
   this.exchangeFinder = new ExchangeFinder(this, connectionPool, createAddress(request.url()),
       call, eventListener);
 }
@@ -356,7 +357,6 @@ public final class ConnectInterceptor implements Interceptor {
     RealInterceptorChain realChain = (RealInterceptorChain) chain;
     Request request = realChain.request();
     Transmitter transmitter = realChain.transmitter();
-
     // We need the network to satisfy this request. Possibly for validating a conditional GET.
     boolean doExtensiveHealthChecks = !request.method().equals("GET");
     Exchange exchange = transmitter.newExchange(chain, doExtensiveHealthChecks);
@@ -379,7 +379,7 @@ Exchange newExchange(Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
           + "is still open: please call response.close()");
     }
   }
-
+  //获取ExchangeCodec
   ExchangeCodec codec = exchangeFinder.find(client, chain, doExtensiveHealthChecks);
   Exchange result = new Exchange(this, call, eventListener, exchangeFinder, codec);
 
@@ -391,6 +391,160 @@ Exchange newExchange(Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
   }
 }
 ```
+
+```java
+public ExchangeCodec find(
+    OkHttpClient client, Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
+  int connectTimeout = chain.connectTimeoutMillis();
+  int readTimeout = chain.readTimeoutMillis();
+  int writeTimeout = chain.writeTimeoutMillis();
+  int pingIntervalMillis = client.pingIntervalMillis();
+  boolean connectionRetryEnabled = client.retryOnConnectionFailure();
+
+  try {
+    //获取RealConnection对象
+    RealConnection resultConnection = findHealthyConnection(connectTimeout, readTimeout,
+        writeTimeout, pingIntervalMillis, connectionRetryEnabled, doExtensiveHealthChecks);
+    return resultConnection.newCodec(client, chain);
+  } catch (RouteException e) {
+    trackFailure();
+    throw e;
+  } catch (IOException e) {
+    trackFailure();
+    throw new RouteException(e);
+  }
+}
+```
+
+```java
+/**
+   * Returns a connection to host a new stream. This prefers the existing connection if it exists,
+   * then the pool, finally building a new connection.
+   */
+  private RealConnection findConnection(int connectTimeout, int readTimeout, int writeTimeout,
+      int pingIntervalMillis, boolean connectionRetryEnabled) throws IOException {
+    boolean foundPooledConnection = false;
+    RealConnection result = null;
+    Route selectedRoute = null;
+    RealConnection releasedConnection;
+    Socket toClose;
+    synchronized (connectionPool) {
+      if (transmitter.isCanceled()) throw new IOException("Canceled");
+      hasStreamFailure = false; // This is a fresh attempt.
+
+      // Attempt to use an already-allocated connection. We need to be careful here because our
+      // already-allocated connection may have been restricted from creating new exchanges.
+      releasedConnection = transmitter.connection;
+      toClose = transmitter.connection != null && transmitter.connection.noNewExchanges
+          ? transmitter.releaseConnectionNoEvents()
+          : null;
+
+      if (transmitter.connection != null) {
+        // We had an already-allocated connection and it's good.
+        result = transmitter.connection;
+        releasedConnection = null;
+      }
+
+      if (result == null) {
+        // Attempt to get a connection from the pool.
+        if (connectionPool.transmitterAcquirePooledConnection(address, transmitter, null, false)) {
+          foundPooledConnection = true;
+          result = transmitter.connection;
+        } else if (nextRouteToTry != null) {
+          selectedRoute = nextRouteToTry;
+          nextRouteToTry = null;
+        } else if (retryCurrentRoute()) {
+          selectedRoute = transmitter.connection.route();
+        }
+      }
+    }
+    closeQuietly(toClose);
+
+    if (releasedConnection != null) {
+      eventListener.connectionReleased(call, releasedConnection);
+    }
+    if (foundPooledConnection) {
+      eventListener.connectionAcquired(call, result);
+    }
+    if (result != null) {
+      // If we found an already-allocated or pooled connection, we're done.
+      return result;
+    }
+
+    // If we need a route selection, make one. This is a blocking operation.
+    boolean newRouteSelection = false;
+    if (selectedRoute == null && (routeSelection == null || !routeSelection.hasNext())) {
+      newRouteSelection = true;
+      routeSelection = routeSelector.next();
+    }
+
+    List<Route> routes = null;
+    synchronized (connectionPool) {
+      if (transmitter.isCanceled()) throw new IOException("Canceled");
+
+      if (newRouteSelection) {
+        // Now that we have a set of IP addresses, make another attempt at getting a connection from
+        // the pool. This could match due to connection coalescing.
+        routes = routeSelection.getAll();
+        if (connectionPool.transmitterAcquirePooledConnection(
+            address, transmitter, routes, false)) {
+          foundPooledConnection = true;
+          result = transmitter.connection;
+        }
+      }
+
+      if (!foundPooledConnection) {
+        if (selectedRoute == null) {
+          selectedRoute = routeSelection.next();
+        }
+
+        // Create a connection and assign it to this allocation immediately. This makes it possible
+        // for an asynchronous cancel() to interrupt the handshake we're about to do.
+        result = new RealConnection(connectionPool, selectedRoute);
+        connectingConnection = result;
+      }
+    }
+
+    // If we found a pooled connection on the 2nd time around, we're done.
+    if (foundPooledConnection) {
+      eventListener.connectionAcquired(call, result);
+      return result;
+    }
+
+    // Do TCP + TLS handshakes. This is a blocking operation.
+    //RealConnection 连接socket
+    result.connect(connectTimeout, readTimeout, writeTimeout, pingIntervalMillis,
+        connectionRetryEnabled, call, eventListener);
+    connectionPool.routeDatabase.connected(result.route());
+
+    Socket socket = null;
+    synchronized (connectionPool) {
+      connectingConnection = null;
+      // Last attempt at connection coalescing, which only occurs if we attempted multiple
+      // concurrent connections to the same host.
+      if (connectionPool.transmitterAcquirePooledConnection(address, transmitter, routes, true)) {
+        // We lost the race! Close the connection we created and return the pooled connection.
+        result.noNewExchanges = true;
+        socket = result.socket();
+        result = transmitter.connection;
+
+        // It's possible for us to obtain a coalesced connection that is immediately unhealthy. In
+        // that case we will retry the route we just successfully connected with.
+        nextRouteToTry = selectedRoute;
+      } else {
+        connectionPool.put(result);
+        transmitter.acquireConnectionNoEvents(result);
+      }
+    }
+    closeQuietly(socket);
+
+    eventListener.connectionAcquired(call, result);
+    return result;
+  }
+
+```
+
+
 
 ExchangeCodec类负责处理网络请求和解码返回值。
 
