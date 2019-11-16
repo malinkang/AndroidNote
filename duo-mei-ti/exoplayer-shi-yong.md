@@ -143,7 +143,7 @@ player.prepare(videoSource);
 
 ijkplayer对比ExoPlayer优势：
 * ijkplayer基于ffmpeg，更容易定制
-* 扩平台更容易维护
+* 跨平台更容易维护
 * ijkplayer支持2.3+，ExoPlayer支持4.1+
 
 
