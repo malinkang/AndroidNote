@@ -1,0 +1,34 @@
+@startuml
+interface IPlayerManager{
+
+}
+IPlayerManager <|--BasePlayerManager
+BasePlayerManager <|--IjkPlayerManager 
+BasePlayerManager <|--GSYExoPlayerManager
+
+GSYTextureRenderView <|-- GSYVideoView
+GSYVideoView <|--BaseVideoPlayer
+abstract class GSYVideoPlayer {
+    getGSYVideoManager()
+}
+BaseVideoPlayer<|--GSYVideoPlayer
+
+GSYVideoViewBridge <|--GSYVideoBaseManager
+
+GSYVideoBaseManager <|--GSYVideoManager
+
+IMediaPlayer <|-- AbstractMediaPlayer
+
+AbstractMediaPlayer<|--IjkExo2MediaPlayer
+
+IjkExo2MediaPlayer<|--GSYExo2MediaPlayer
+SurfaceView<|-GSYSurfaceView
+TextureView <|-GSYTextureView
+
+
+ICacheManager<|--ProxyCacheManager
+
+
+
+
+@enduml

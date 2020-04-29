@@ -14,28 +14,28 @@ URLConnection是JDK提供的网络请求的APi。URLConnection是一个抽象类
 
 ```java
 // 设置连接超时时间
-  connection.setConnectTimeout(CONNECT_TIMEOUT);
+connection.setConnectTimeout(CONNECT_TIMEOUT);
 // 设置读取超时时间
-  connection.setReadTimeout(READ_TIMEOUT);
+connection.setReadTimeout(READ_TIMEOUT);
 //设置是否向HttpURLConnection输出，Post请求参数要放在正文中，因此需要设为true，默认情况为false。
-  connection.setDoOutput(true);
+connection.setDoOutput(true);
 //设置是否从HttpURLConnection输入，默认情况下true
-  connection.setDoInput(true);
-  // 设置请求方法
-  connection.setRequestMethod("POST");
-  //添加请求头
-  connection.addRequestProperty("Content-Length", "106512");
+connection.setDoInput(true);
+//设置请求方法
+connection.setRequestMethod("POST");
+//添加请求头
+connection.addRequestProperty("Content-Length", "106512");
 ```
 ### 2.示例
 
 接下来我们将用实例来演示HttpUrlConnection的用法
 
 
-#### 2.1Get请求
+### 2.1Get请求
 
 略
 
-<h4>2.2Post请求</h4>
+### 2.2Post请求
 
 ```java
 public static String postRequest(String url, Map<String, String> headers, Map<String, String> params) {

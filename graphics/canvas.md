@@ -60,7 +60,7 @@ canvas.drawPoints(new float[]{
 },mPaint);
 ```
 
-![](/assets/images/canvas-point.jpeg)
+![](../assets/images/canvas-point.jpeg)
 
 #### 绘制直线
 
@@ -78,7 +78,7 @@ canvas.drawLines(new float[] {               // 绘制一组线 每四数字(两
     100, 200, 200, 200, 100, 300, 200, 300
 }, mPaint);
 ```
-![](/assets/images/canvas-line.jpeg)
+![](../assets/images/canvas-line.jpeg)
 
 
 #### 绘制矩形
