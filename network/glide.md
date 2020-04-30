@@ -9,6 +9,7 @@
 
 ## 相关文档
 
+* https://bumptech.github.io/glide/
 * https://github.com/wasabeef/glide-transformations
-* 
+
 
