@@ -1,4 +1,4 @@
-## Menus 
+# Menus 
 
 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用[Menu](http://developer.android.com/reference/android/view/Menu.html)API去呈现用户操作和你Activity的其它选项。
 
@@ -19,6 +19,9 @@ Android 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕�
 一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。
 
 当为Android 3.0或者以上开发，你应该当使用使用`contextual action mode `在所选内容上启用操作。
+
+
+* [Menus](https://developer.android.com/guide/topics/ui/menus)
 
 
 

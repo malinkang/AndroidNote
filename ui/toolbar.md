@@ -1,12 +1,12 @@
+## Toolbar
 
-
-#### 1.使用ToolBar
+## 1.使用ToolBar
 
 `Toolbar`是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。
 
 `Toobar`是Android5.0才引入的，Google也在兼容包`appcompat-v7`中提供了向下兼容的`ToolBar`：`android.support.v7.widget.Toolbar`。
 
-##### 1.1基本使用
+### 1.1基本使用
 
 首先，我们要在build.gradle中添加依赖。
 ```
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-##### 1.2 ActionBar常用方法
+### 1.2 ActionBar常用方法
 
 一旦设置了Toolbar作为activity的actionbar，就可以调用ActionBar类提供的方法来设置ActionBar。ActionBar常用的方法：
 * hide():隐藏ActionBar
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 * setIcon();设置Icon
 * setTitle();设置标题
 
-##### 1.3 ToolBar常用属性
+### 1.3 ToolBar常用属性
 
 ```xml
 <android.support.v7.widget.Toolbar
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 <image src="../images/toolbar-3.png" width="375" height="230"/>
 
-#### 2.添加Action Buttons
+## 2.添加Action Buttons
 
 我们可以使用菜单资源文件来添菜单。
 ```xml

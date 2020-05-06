@@ -1,6 +1,6 @@
 
 
-##### WebView常用方法
+## WebView常用方法
 * public void loadUrl (String url)
 ```java
 //打开本包内asset目录下的test.html文件
@@ -29,14 +29,11 @@ loadDataWithBaseURL(null, htmlStr,"text/html", "utf-8", null);
 ```
 * public String getTitle()：获取当前页面的title
 
-##### WebChromeClient
+## WebChromeClient
 
 `WebChromeClient`是辅助`WebView`处理`Javascript`的对话框,网站图标,网站title等。常用方法如下：
 
 * public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度
-
-##### WebViewClient
-
 
 
 
@@ -148,7 +145,7 @@ public void addPossiblyUnsafeJavascriptInterface(Object object, String name,
 
 
 
-#####更多阅读
+## 更多阅读
 
 * https://tech.meituan.com/2017/06/09/webviewperf.html
 

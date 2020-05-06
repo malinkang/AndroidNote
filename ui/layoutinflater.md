@@ -142,24 +142,22 @@ activity_main.xml
 MainActivity
 
 ```java
-  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ViewGroup parent = (ViewGroup) findViewById(R.id.container);
-        view = LayoutInflater.from(this).inflate(R.layout.red, null);
-        parent.addView(view);
-        Log.d(TAG, view.toString());
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ViewGroup parent = (ViewGroup) findViewById(R.id.container);
+    view = LayoutInflater.from(this).inflate(R.layout.red, null);
+    parent.addView(view);
+    Log.d(TAG, view.toString());
 
-        view = LayoutInflater.from(this).inflate(R.layout.red, parent, false);
-        parent.addView(view);
-        Log.d(TAG, view.toString());
-        view = LayoutInflater.from(this).inflate(R.layout.red, parent, true);
-        Log.d(TAG, view.toString());
+    view = LayoutInflater.from(this).inflate(R.layout.red, parent, false);
+    parent.addView(view);
+    Log.d(TAG, view.toString());
+    view = LayoutInflater.from(this).inflate(R.layout.red, parent, true);
+    Log.d(TAG, view.toString());
 
-    }
-
-
+}
 ```
 
 运行结果
