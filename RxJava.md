@@ -19,21 +19,21 @@
 
 创建`Subscriber`
 ```java
-        Subscriber<String> mySubscriber = new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
+Subscriber<String> mySubscriber = new Subscriber<String>() {
+    @Override
+    public void onCompleted() {
 
-            }
+    }
 
-            @Override
-            public void onError(Throwable e) {
-            }
+    @Override
+    public void onError(Throwable e) {
+    }
 
-            @Override
-            public void onNext(String s) {
-                System.out.println(s);
-            }
-        };
+    @Override
+    public void onNext(String s) {
+        System.out.println(s);
+    }
+};
 ```
 创建`Observable`
 

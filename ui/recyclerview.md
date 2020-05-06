@@ -1,6 +1,6 @@
-### RecyclerView
+# RecyclerView
 
-#### 简化Adapter
+## 简化Adapter
 
 在实际的开发中，我们的项目中可能存在多个列表，每个列表都必须创建一个Adapter。每一个Adapter都有大量的重复代码，比如`onCreateViewHolder`方法，每个adapter的操作都差不多，获取view，然后创建一个ViewHolder并返回。我们可以保留相同的操作，将不同的操作抽取出来，达到简化代码的效果。
 

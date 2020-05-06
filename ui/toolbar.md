@@ -321,6 +321,6 @@ mActionBar.setDisplayShowTitleEnabled(false);
 * [Adding the App Bar](https://developer.android.com/training/appbar/index.html)
 * [Using the App ToolBar](https://guides.codepath.com/android/Using-the-App-ToolBar)
 * [Android开发：最详细的 Toolbar 开发实践总结](http://www.jianshu.com/p/79604c3ddcae)
-* [ 自定义ActionProvider ToolBar 自定义Menu小红点](http://blog.csdn.net/yanzhenjie1003/article/details/51902796)
+* [自定义ActionProvider ToolBar 自定义Menu小红点](http://blog.csdn.net/yanzhenjie1003/article/details/51902796)
 * [Android-ActionItemBadge](https://github.com/mikepenz/Android-ActionItemBadge)
 * [Android: Toolbar text is coming as black instead of white](https://stackoverflow.com/questions/32794575/android-toolbar-text-is-coming-as-black-instead-of-white)

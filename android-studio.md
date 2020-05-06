@@ -1,13 +1,7 @@
 
 ### 知识结构
 
-* 64k限制
-    * [Configure Apps with Over 64K Methods](https://developer.android.com/studio/build/multidex.html)
-    * [dex分包变形记](https://dev.qq.com/topic/5913db5c29d8be2a14b64da8)
-    * [美团Android DEX自动拆包及动态加载简介](http://tech.meituan.com/mt-android-auto-split-dex.html)
-* Gradle
-    * [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds)
-    * [Gradle详解](http://www.infoq.com/cn/articles/android-in-depth-gradle)
+
 
 
 
@@ -55,7 +49,13 @@
 
 ### 文章
 
-   * [Keyboard Shortcuts](https://developer.android.com/studio/intro/keyboard-shortcuts.html)
-
-   
+* [Keyboard Shortcuts](https://developer.android.com/studio/intro/keyboard-shortcuts.html)
+  
 https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm
+* 64k限制
+    * [Configure Apps with Over 64K Methods](https://developer.android.com/studio/build/multidex.html)
+    * [dex分包变形记](https://dev.qq.com/topic/5913db5c29d8be2a14b64da8)
+    * [美团Android DEX自动拆包及动态加载简介](http://tech.meituan.com/mt-android-auto-split-dex.html)
+* Gradle
+    * [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds)
+    * [Gradle详解](http://www.infoq.com/cn/articles/android-in-depth-gradle)
