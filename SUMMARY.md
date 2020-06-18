@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+<<<<<<< HEAD
 * 界面
     * [TextView](ui/textview.md)
     * [EditText](ui/edittext.md)
