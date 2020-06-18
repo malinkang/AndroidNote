@@ -32,5 +32,7 @@
 * 音频和视频
     * [ExoPlayer](media/exoplayer.md)
     * [GsyVideoPlayer](media/gsyvideoplayer.md)
+* 混合开发
 * 性能优化
     * [内存优化](memory.md)
+    * [安装包大小优化](performance/reduce-apk-size.md)
