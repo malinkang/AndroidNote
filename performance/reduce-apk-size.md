@@ -9,5 +9,7 @@
 * [深入探索 Android 包体积优化（匠心制作）]()
 
 ## 开源库
+* [shwenzhang/AndResGuard](https://github.com/shwenzhang/AndResGuard)
 * [McImage](https://github.com/smallSohoSolo/McImage)
 * [bytedance/AabResGuard](https://github.com/bytedance/AabResGuard)
+* [didi/booster](https://github.com/didi/booster)
