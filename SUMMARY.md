@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Introduction](README.md)
-<<<<<<< HEAD
 * 界面
     * [TextView](ui/textview.md)
     * [EditText](ui/edittext.md)
@@ -35,5 +34,6 @@
     * [GsyVideoPlayer](media/gsyvideoplayer.md)
 * 混合开发
 * 性能优化
-    * [内存优化](memory.md)
+    * [内存优化](performance/memory.md)
+    * [LeakCanary如何工作](performance/fundamentals-how-leakcanary-works.md)
     * [安装包大小优化](performance/reduce-apk-size.md)
