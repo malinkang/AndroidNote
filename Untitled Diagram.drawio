@@ -1,1 +1,106 @@
-<mxfile host="app.diagrams.net" modified="2020-08-06T08:28:22.988Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="YbSzGpmkwZvAjFIAIVUh" version="13.6.0" type="github"><diagram id="RAhzDe-Pyflg7GqXkfWx" name="Page-1">7Vxdj9o4FP01SN2HqYidBHjsMEO71VaqNKq2++hJPCGtiVPHDLC/fp1vQoBlBNgJvfMwxDe2c+Oce8+JbRjg6WL9UZB4/oX7lA3Q0F8P8MMAITQc2+ojtWxyi4UtlFsCEfqFrTY8hf/SwjgsrMvQp0mjouScyTBuGj0eRdSTDRsRgq+a1V44a141JgFtGZ48wtrWv0NfznPrGI1q+ycaBvPyypY7yc8sSFm5uJNkTny+2jLhxwGeCs5lfrRYTylLR68cl7zd7MDZyjFBI3lKg9njR/YjWb867Mvnr8Ev6/Pd9Pmu6CWRm/KGqa/uvyhyIec84BFhj7X1XvBl5NO016Eq1XX+4jxWRksZf1ApN8XDJEvJlWkuF6w4S9eh/L51/E/a1XunKD2si56zwqYsRFJsvm8XtlqlxbpZVirbMfJM2T3xfgaZ21POuMhuFM+yP1XlhUdyy+5mf8qeD006HgdHvBw+vhQePTLMToFcIgIqj9QbV7hQEUX5gqpbUe0EZUSGr00/SIHsoKpXP3x1UDz/N2ABARa6hAXLNQkGDGDoFBiwSTDYAIZOgWFoEgyFl6+ELYsrDZDLlL/3saANlLi/lqm4yYbu7oUsQqbG+8Mg1SkuWcTZ4GFsq0+PJB7xQ5IJOZ+2zqdtsv9ZV0kGmbQjC8Wyvo46CorPzJ8kJtFeh56rJ33n5Y807UwEz++Q42T+qaEZ7hz/cfhCqVeZ6yU86oolUFptn6QIo6DsQT2JvJNmx8qc30TLnI11ad0Jzjr00thZzUNJn2KSQW+lZHozzCpZmo5wwEiSFMfJTyq9eXlCqMdD6wiIeESrS79SIen6OPzbaK3eEfIW1QtCUV5tqe3CNN8S2s7wSvB2ewPvrvlz9XD7M4qXUsUNJYs3BkjHwuY4l5wVTs64GU9uO5zQUGc8jUA76NAO4xO1g9GXijHk1hvx5+q5/oFI8k2oiCc+Fe/zpD8jnuQpDC+Q+38fRrDcJiOgNiPgkU5GmAAj6GCEcga925RQegmc0Ht/rs4J+SszUMLFKWFimhIsC7LAjfhz9SzwlSjeY7OQ0QeaeCKMVQKA+D9rksAyPktQ7goAUXhlUYhPFIXWAQRpUoUY+OBG/NGrCg8QQZMt2qIR2OGIOtzHDprloQ3poOf+fEgSKrXlBFCHF1SHaM+SrGZ16IA61KIO3VPVoW1UHcIa/a340wl1mHETSMRz1pT2UIRmiQj7DLRQRPUljP+jCGSWIsYAh07BASOjcIA1527BAU1MwqH6ShbAoSNwMLoHAfVn9bHTW9q/iXBLBMN+9rRoO21lrHU/O0K9AXfX/IEN7R141dydjcRj07ORCL4bqUc92KeqB6PvFggWp/rujxIu+QyhtswP2xcvOPuIbdOzjwgWqPRQwqkLVIYpARao+u7PJyljA7RwgAlgOepNhGBbxglhBBngRvyBDe3dTwC7kwS2+UkCWIDUowgnpyrCkVFFOAE+6Lk/HVKDsFXpDG24hxr0asNyrxTkgt76A7vZexP/u9LQ2bMgq1caYvjRXS3SEKMTpWGekE1Jw9JNoIPe+tMdaQhb2c/Vh/v44VL6UBXr33vPzm39bD5+/A8=</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-08-07T03:28:52.309Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="5oNoYt4eGr_pVK4pWWhF" version="13.6.0" type="github">
+  <diagram id="RAhzDe-Pyflg7GqXkfWx" name="Page-1">
+    <mxGraphModel dx="1042" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-5" target="FEGljsxv5lMJPgq1J-Cb-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-5" target="FEGljsxv5lMJPgq1J-Cb-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-5" target="FEGljsxv5lMJPgq1J-Cb-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-5" target="FEGljsxv5lMJPgq1J-Cb-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-5" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;font color=&quot;#666666&quot;&gt;String&lt;/font&gt;&lt;/span&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="130" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-6" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;InputStream&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="60" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-8" target="FEGljsxv5lMJPgq1J-Cb-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-8" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;DataUrlLoader.StreamFactory&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="20" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-10" target="FEGljsxv5lMJPgq1J-Cb-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-10" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;StringLoader.StreamFactory&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="90" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-11" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;ParcelFileDescriptor&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="160" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-13" target="FEGljsxv5lMJPgq1J-Cb-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-13" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;StringLoader.&lt;/span&gt;FileDescriptorFactory&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="160" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-14" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;Asset&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;FileDescriptor&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="230" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-16" target="FEGljsxv5lMJPgq1J-Cb-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-16" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;StringLoader.&lt;/span&gt;AssetFileDescriptorFactory&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="230" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-21" target="FEGljsxv5lMJPgq1J-Cb-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-21" target="FEGljsxv5lMJPgq1J-Cb-32" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-21" target="FEGljsxv5lMJPgq1J-Cb-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-21" target="FEGljsxv5lMJPgq1J-Cb-26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-21" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;&lt;font color=&quot;#666666&quot;&gt;Uri&lt;/font&gt;&lt;/span&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="450" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-22" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;InputStream&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="380" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-24" target="FEGljsxv5lMJPgq1J-Cb-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-24" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;UriLoader&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;.StreamFactory&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="340" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-26" target="FEGljsxv5lMJPgq1J-Cb-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-26" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;HttpUriLoader&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;.&lt;/span&gt;Factory&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="410" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-27" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;ParcelFileDescriptor&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="480" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-29" target="FEGljsxv5lMJPgq1J-Cb-27" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-29" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;UriLoader&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;.&lt;/span&gt;FileDescriptorFactory&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="480" width="370" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-30" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;Asset&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;FileDescriptor&lt;/span&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="580" y="550" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#FFFFFF;fontColor=#666666;" parent="1" source="FEGljsxv5lMJPgq1J-Cb-32" target="FEGljsxv5lMJPgq1J-Cb-30" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEGljsxv5lMJPgq1J-Cb-32" value="&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;&lt;pre style=&quot;font-family: &amp;#34;cascadia code&amp;#34; ; font-size: 12pt&quot;&gt;UriLoader&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;.&lt;/span&gt;AssetFileDescriptorFactory&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;gradientColor=none;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="160" y="550" width="370" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
