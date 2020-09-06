@@ -1,5 +1,22 @@
 # Glide使用
 
+## 使用
+
+```java
+//加载asset目录下的文件
+ GlideApp.with(imageView)
+        .load("file:///android_asset/image.png")
+        .into(imageView);
+//加载res目录下的图片
+GlideApp.with(imageView)
+        .load("android.resource://" + getPackageName() + "/" + R.drawable.image)
+        .into(imageView);
+
+GlideApp.with(imageView)
+    .load(R.drawable.image)
+    .into(imageView);
+```
+
 ## 遇到的坑
 
 1. 设置圆角有时候不生效，[解决方案](https://github.com/wasabeef/glide-transformations/issues/94)。

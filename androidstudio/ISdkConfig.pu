@@ -1,0 +1,6 @@
+@startuml
+interface ISdkConfig{}
+ISdkConfig <|-- BaseConfig
+BaseConfig <|-- MeishuAdConfig
+BaseConfig <|-- BDSdkConfig
+@enduml

@@ -6,7 +6,8 @@
 * [抖音包大小优化-资源优化](https://mp.weixin.qq.com/s/xxrvRKXXDquJaezjrOlLwA)
 * [美团Android App包瘦身优化实践](https://tech.meituan.com/2017/04/07/android-shrink-overall-solution.html)
 * [西瓜视频apk瘦身之 Java access 方法删除](https://mp.weixin.qq.com/s/ZHisCVjO_ZrtvvEWBYUQFQ)
-* [深入探索 Android 包体积优化（匠心制作）]()
+* [Removing unused code (Android Performance Patterns Season 4 ep7)](https://www.youtube.com/watch?v=5frxLkO4oTM&list=PLOU2XLYxmsIKEOXh5TwZEv89aofHzNCiu&index=7)
+* [Removing unused resources (Android Performance Patterns Season 4 ep8)](https://www.youtube.com/watch?v=HxeW6DHEDQU&list=PLOU2XLYxmsIKEOXh5TwZEv89aofHzNCiu&index=8)
 
 ## 开源库
 * [shwenzhang/AndResGuard](https://github.com/shwenzhang/AndResGuard)

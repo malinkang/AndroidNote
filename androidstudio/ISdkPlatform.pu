@@ -1,0 +1,8 @@
+@startuml
+interface ISdkPlatform{}
+ISdkPlatform<|--BasePlatform
+BasePlatform<|--BDSdkPlatform
+BasePlatform<|--CSJSdkPlatform
+BasePlatform<|--MSSdkPlatform
+BasePlatform<|--GDTSdkPlatform
+@enduml
