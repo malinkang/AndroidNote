@@ -10,6 +10,7 @@
 * [Android OOM案例分析 - 美团技术团队](https://tech.meituan.com/2017/04/14/oom-analysis.html)
 * [Probe：Android线上OOM问题定位组件](https://tech.meituan.com/2019/11/14/crash-oom-probe-practice.html)
 * [Android中的稀疏数组：SparseArray](https://www.liaohuqiu.net/cn/posts/sparse-array-in-android/)
+* [Fun with ArrayMaps (Android Performance Patterns Season 3 ep1)](https://www.youtube.com/watch?v=ORgucLTtTDI&list=PLOU2XLYxmsIKEOXh5TwZEv89aofHzNCiu&index=18)
 
 
 

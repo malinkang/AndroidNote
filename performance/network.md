@@ -19,3 +19,5 @@ DNS 的解析是我们网络请求的第一项工作，默认我们使用运营�
 
 * [百度App网络深度优化系列《一》DNS优化](https://mp.weixin.qq.com/s/iaPtSF-twWz-AN66UJUBDg)
 * [减少网络耗电量](https://developer.android.com/topic/performance/power/network)
+* [Android性能优化典范 - 第4季](http://hukai.me/android-performance-patterns-season-4/)
+* [Android Performance Patterns Season 4](https://www.youtube.com/watch?v=7lxVqqWwTb0&list=PLOU2XLYxmsIKEOXh5TwZEv89aofHzNCiu&index=1)

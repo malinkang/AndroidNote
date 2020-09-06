@@ -56,4 +56,5 @@
     * [渲染优化](performance/render.md)
     * [电池优化](performance/power.md)
     * [启动优化](performance/launch-time.md)
+    * [网络优化](performance/network.md)
     * [安装包大小优化](performance/reduce-apk-size.md)
