@@ -426,7 +426,7 @@ public class HashMapTest {
 
 在 `HashMap` 中，桶数组的长度均是2的幂，阈值大小为桶数组长度与负载因子的乘积。当 `HashMap` 中的键值对数量超过阈值时，进行扩容。
 
-HashMap 的扩容机制与其他变长集合的套路不太一样，HashMap 按当前桶数组长度的2倍进行扩容，阈值也变为原来的2倍（如果计算过程中，阈值溢出归零，则按阈值公式重新计算）。扩容之后，要重新计算键值对的位置，并把它们移动到合适的位置上去。以上就是 `HashMap` 的扩容大致过程，接下来我们来看看具体的实现：
+`HashMap` 的扩容机制与其他变长集合的套路不太一样，`HashMap` 按当前桶数组长度的2倍进行扩容，阈值也变为原来的2倍（如果计算过程中，阈值溢出归零，则按阈值公式重新计算）。扩容之后，要重新计算键值对的位置，并把它们移动到合适的位置上去。以上就是 `HashMap` 的扩容大致过程，接下来我们来看看具体的实现：
 
 ```java
 final Node<K,V>[] resize() {
@@ -522,8 +522,8 @@ final Node<K,V>[] resize() {
 
 上面的源码有点长，希望大家耐心看懂它的逻辑。上面的源码总共做了3件事，分别是：
 
-1. 计算新桶数组的容量 newCap 和新阈值 newThr
-2. 根据计算出的 newCap 创建新的桶数组，桶数组 table 也是在这里进行初始化的
+1. 计算新桶数组的容量 `newCap` 和新阈值 `newThr`
+2. 根据计算出的 `newCap` 创建新的桶数组，桶数组 `table` 也是在这里进行初始化的
 3. 将键值对节点重新映射到新的桶数组里。如果节点是 TreeNode 类型，则需要拆分红黑树。如果是普通节点，则节点按原顺序进行分组。
 
 上面列的三点中，创建新的桶数组就一行代码，不用说了。接下来，来说说第一点和第三点，先说说 `newCap` 和 `newThr` 计算过程。该计算过程对应 `resize` 源码的第一和第二个条件分支，如下：
@@ -894,7 +894,7 @@ final Node<K,V> removeNode(int hash, Object key, Object value,
 
 以上两个问题中，第一个问题比较好理解，第二个问题解释一下。HashMap 的`get/put/remove`等方法第一步就是根据 hash 找到键所在的桶位置，但如果键没有覆写 hashCode 方法，计算 hash 时最终调用 Object 中的 hashCode 方法。但 Object 中的 hashCode 方法是 native 型的，不同的 JVM 下，可能会有不同的实现，产生的 hash 可能也是不一样的。也就是说同一个键在不同平台下可能会产生不同的 hash，此时再对在同一个 table 继续操作，就会出现问题。
 
-综上所述，大家应该能明白 HashMap 不序列化 table 的原因了。
+综上所述，大家应该能明白 `HashMap` 不序列化 `table` 的原因了。
 
 ### 3.7 总结
 
@@ -916,6 +916,7 @@ final Node<K,V> removeNode(int hash, Object key, Object value,
 * [Java 8系列之重新认识HashMap - 美团技术博客](https://tech.meituan.com/java-hashmap.html)
 * [python内置的hash函数对于字符串来说，每次得到的值不一样？- 知乎](https://www.zhihu.com/question/57526436/answer/153262129)
 * [Java中HashMap关键字transient的疑惑 - segmentFault](https://segmentfault.com/q/1010000000630486)
+* [HashMap的负载因子初始值为什么是0.75？这篇文章以最通俗的方式告诉你答案](https://zhuanlan.zhihu.com/p/103449454)
 
 
 
