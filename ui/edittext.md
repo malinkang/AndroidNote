@@ -1,10 +1,10 @@
-## EditText使用
+# EditText
 
-### 控制确认键操作
+## 控制确认键操作
 
 通过EditText的`imeOptions`属性可以指定动作。
 
-```xml
+```markup
 <EditText
     android:id="@+id/et_search"
     android:layout_width=“match_parent”
@@ -13,7 +13,9 @@
     android:imeOptions="actionSearch"
     />
 ```
+
 操作监听器。
+
 ```java
 mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
         @Override
@@ -29,3 +31,4 @@ mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() 
         }
     });
 ```
+
