@@ -27,6 +27,7 @@
 * [数据存储](shu-ju-cun-chu.md)
 * [系统源码分析](system/README.md)
   * [RecyclerView](system/recyclerview.md)
+  * [HashMap](system/hashmap.md)
   * [ArrayMap](system/arraymap.md)
   * [Handler](system/handler.md)
 * [图形和图像](tu-xing-he-tu-xiang/README.md)
