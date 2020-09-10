@@ -1,6 +1,0 @@
-@startuml
-interface IAd{}
-IAd <|-- RewardVideoAd
-RewardVideoAd <|-- BaseAd
-BaseAd <|-- RewardVideoAdAdapter
-@enduml

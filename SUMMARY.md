@@ -13,9 +13,14 @@
     * [通知](ui/notifications.md)
     * [LayoutInfalter](ui/layoutInfalter.md)
     * [屏幕适配](ui/screen-adaptation.md)
-    * [View]
+    * View
         * View事件分发
     * 自定义View
+        * [Canvas使用](graphics/canvas.md)
+        * [Paint使用](graphics/paint.md)
+        * [Path使用](graphics/path.md)
+        * [PathMeasure使用](graphics/pathmeasure.md)
+        * [Matrix使用](graphics/pathmeasure.md)
 * 四大组件
     * Activity
     * Service
@@ -23,13 +28,8 @@
 * 系统源码分析
     * RecyclerView
     * ArrayMap
-    * Handler
+    * [Handler](aosp/handler.md)
 * 图形和图像
-    * [Canvas使用](graphics/canvas.md)
-    * [Paint使用](graphics/paint.md)
-    * [Path使用](graphics/path.md)
-    * [PathMeasure使用](graphics/pathmeasure.md)
-    * [Matrix使用](graphics/pathmeasure.md)
     * [Drawable使用](graphics/drawable.md)
 * 第三方库使用以及分析
     * [Okhttp源码分析](network/okhttp-source.md)
@@ -48,7 +48,6 @@
 * 音频和视频
     * [ExoPlayer](media/exoplayer.md)
     * [GsyVideoPlayer](media/gsyvideoplayer.md)
-* 混合开发
 * 性能优化
     * [崩溃优化](performance/crash.md)
     * [内存优化](performance/memory.md)

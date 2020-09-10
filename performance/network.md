@@ -1,3 +1,13 @@
+# 网络优化
+
+## 网络基础知识
+
+* [HTTPS 详解一：附带最精美详尽的 HTTPS 原理图](https://segmentfault.com/a/1190000021494676)
+* [HTTPS详解二：SSL / TLS 工作原理和详细握手过程](https://segmentfault.com/a/1190000021559557)
+* [HTTP 2.0与OkHttp](https://juejin.im/post/6844903785232498696)
+
+
+
 
 # 使用HttpDns优化DNS解析 
 

@@ -1,5 +1,0 @@
-@startuml
-interface RecyclerAdData{}
-RecyclerAdData<|--BaseAd 
-BaseAd<|--BDRecyclerAd
-@enduml
