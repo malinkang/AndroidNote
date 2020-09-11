@@ -26,7 +26,7 @@
   * [Service](components/service.md)
   * [Broadcasts](components/components.md)
   * [Fragment](components/fragment.md)
-  * [contentprovider](components/contentprovider.md)
+  * [ContentProvider](components/contentprovider.md)
 * [数据存储](data.md)
 * [系统源码分析](system/README.md)
   * [RecyclerView](system/recyclerview.md)
