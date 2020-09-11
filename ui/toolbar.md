@@ -1,4 +1,4 @@
-# Toolbar使用
+# Toolbar
 
 ## 1.使用ToolBar
 
@@ -9,11 +9,14 @@
 ### 1.1基本使用
 
 首先，我们要在build.gradle中添加依赖。
-```
+
+```text
 compile 'com.android.support:appcompat-v7:24.2.0'
 ```
+
 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。
-```xml
+
+```markup
 <!-- Base application theme. -->
 <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Customize your theme here. -->
@@ -22,8 +25,10 @@ compile 'com.android.support:appcompat-v7:24.2.0'
     <item name="colorAccent">@color/colorAccent</item>
 </style>
 ```
+
 然后我们就可以在布局文件中添加ToolBar。
-```xml
+
+```markup
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,7 +44,9 @@ compile 'com.android.support:appcompat-v7:24.2.0'
         app:titleTextColor="@android:color/white"/>
 </LinearLayout>
 ```
+
 最后，在Activity或者Fragment中，通过调用setSupportActionBar让ToolBar扮演ActionBar的角色。
+
 ```java
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -51,24 +58,26 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+
 ### 1.2 ActionBar常用方法
 
 一旦设置了Toolbar作为activity的actionbar，就可以调用ActionBar类提供的方法来设置ActionBar。ActionBar常用的方法：
-* hide():隐藏ActionBar
-* show():显示ActionBar
-* isShowing():判断ActionBar是否显示
-* setBackgroundDrawable(Drawable drawable):为ActionBar设置背景。
-* setDisplayHomeAsUpEnabled(boolean b)：是否显示返回的按钮。
-* setDisplayShowHomeEnabled(boolean b);是否显示icon
-* setDisplayShowTitleEnabled(boolean b);是否显示标题
-* setDisplayShowCustomEnabled(boolean b);是否显示自定义view
-* setHomeAsUpIndicator(@Nullable Drawable indicator)设置返回图标
-* setIcon();设置Icon
-* setTitle();设置标题
+
+* hide\(\):隐藏ActionBar
+* show\(\):显示ActionBar
+* isShowing\(\):判断ActionBar是否显示
+* setBackgroundDrawable\(Drawable drawable\):为ActionBar设置背景。
+* setDisplayHomeAsUpEnabled\(boolean b\)：是否显示返回的按钮。
+* setDisplayShowHomeEnabled\(boolean b\);是否显示icon
+* setDisplayShowTitleEnabled\(boolean b\);是否显示标题
+* setDisplayShowCustomEnabled\(boolean b\);是否显示自定义view
+* setHomeAsUpIndicator\(@Nullable Drawable indicator\)设置返回图标
+* setIcon\(\);设置Icon
+* setTitle\(\);设置标题
 
 ### 1.3 ToolBar常用属性
 
-```xml
+```markup
 <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -83,11 +92,9 @@ public class MainActivity extends AppCompatActivity {
         app:theme="@style/ToolBarTheme"/>
 ```
 
-<image src="../images/toolbar-1.png" width="375" height="230"/>
-
 `app:theme="@style/ToolBarTheme"`用于指定ToolBar的主题。
 
-```xml
+```markup
 <style name="ToolBarTheme">
     <item name="android:textColorPrimary">@android:color/holo_orange_dark</item>
     <item name="actionMenuTextColor">@android:color/holo_green_light</item>
@@ -95,22 +102,19 @@ public class MainActivity extends AppCompatActivity {
 </style>
 ```
 
-
-<image src="../images/toolbar-2.png" width="375" height="175"/>
-
 `app:popupTheme="@style/AppTheme.PopupOverlay"`用于设置弹出列表菜单的样式。
-```xml
+
+```markup
 <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
     <item name="android:textColorPrimary">@android:color/holo_red_light</item>
 </style>
 ```
 
-<image src="../images/toolbar-3.png" width="375" height="230"/>
-
 ## 2.添加Action Buttons
 
 我们可以使用菜单资源文件来添菜单。
-```xml
+
+```markup
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
@@ -125,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
         app:showAsAction="ifRoom"/>
 </menu>
 ```
-在activity中调用onCreateOptionsMenu()方法来填充菜单。
+
+在activity中调用onCreateOptionsMenu\(\)方法来填充菜单。
+
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,19 +141,19 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }
 ```
 
-##### 2.1 showAsAction属性
-`app:showAsAction`属性用来设置菜单是否显示。可选的值包括`ifRoom`、`never`、`always`和`collapseActionView`。`ifRoom`：如果有足够的空间，将以炫富菜单的样式显示。`never`表示从不显示。`always`一直显示。 
-`android:title`为必选属性。如果空间不足，菜单将以悬浮状态显示，并且只显示title。如果action item只显示icon,用户可以通过长按条目显示title。
+**2.1 showAsAction属性**
 
-##### 2.2 actionViewClass和acionLayout
+`app:showAsAction`属性用来设置菜单是否显示。可选的值包括`ifRoom`、`never`、`always`和`collapseActionView`。`ifRoom`：如果有足够的空间，将以炫富菜单的样式显示。`never`表示从不显示。`always`一直显示。 `android:title`为必选属性。如果空间不足，菜单将以悬浮状态显示，并且只显示title。如果action item只显示icon,用户可以通过长按条目显示title。
+
+**2.2 actionViewClass和acionLayout**
 
 上面只是提供了简单菜单的添加方式，`app:actionLayout`属性和`app:actionViewClass`属性可以添加更加复杂的菜单。`app:actionLayout`值是一个布局文件，`app:actionViewClass`值为一个类。
 
 首先我们先来使用`app:actionLayout`属性为actionbar添加一个switch。
 
-定义布局layout_switch.xml
+定义布局layout\_switch.xml
 
-```xml
+```markup
 <android.support.v7.widget.SwitchCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/action_switch"
@@ -155,8 +161,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
     android:layout_height="wrap_content"
     android:switchPadding="10dp"/>
 ```
+
 定义菜单文件
-```xml
+
+```markup
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
@@ -188,10 +196,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }
 ```
 
-<image src="../images/toolbar-4.gif" width="380" height="596"/>
-
 Android为我们提供了一个组件android.support.v7.widget.SearchView，我们可以通过actionViewClass来引入这个组件。
-```xml
+
+```markup
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
@@ -202,6 +209,7 @@ Android为我们提供了一个组件android.support.v7.widget.SearchView，我�
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>
 ```
+
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -223,22 +231,19 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }
 ```
 
-<image src="../images/toolbar-5.gif" width="380" height="596"/>
-
-
-##### 2.3添加 Action Provider
+**2.3添加 Action Provider**
 
 类似action view，action provider通过自定义布局来替换一个操作按钮.但是action provider控制所有的动作行为并且在被点击时能够显示一个子菜单。
 
 通过为actionViewClass属性设置一个ActionProvider类，来添加action provider.也可以通过继承ActionProvider来创建自定义的action provider.Android提供了一些action provider,例如ShareActionProvider。
 
-由于每一个ActionProvider类定义自己的动作行为，所以不需要通过onOptionsItemSelected()方法来设置其点击事件，但是你仍然可以通过此方法来设置其他操作，也可以通过onPerformDefaultAction()来设置别的操作。
+由于每一个ActionProvider类定义自己的动作行为，所以不需要通过onOptionsItemSelected\(\)方法来设置其点击事件，但是你仍然可以通过此方法来设置其他操作，也可以通过onPerformDefaultAction\(\)来设置别的操作。
 
-如果action Provider提供一个子菜单，用户打开列表或者选中一个子菜单，activity将不调用onOptionsItemSelected()。
+如果action Provider提供一个子菜单，用户打开列表或者选中一个子菜单，activity将不调用onOptionsItemSelected\(\)。
 
-使用ShareActionProvider添加一个分享操作需要一下步骤：
-1.设置actionProviderClass属性值为ShareActionProvider类.
-```xml
+使用ShareActionProvider添加一个分享操作需要一下步骤： 1.设置actionProviderClass属性值为ShareActionProvider类.
+
+```markup
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
@@ -255,7 +260,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
         app:showAsAction="ifRoom"/>
 </menu>
 ```
-2.定义你想要分享的Intent。在onCreateOptionsMenu()方法中调用MenuItemCompat.getActionProvider()获取ShareActionProvider对象，然后调用ShareActionProvider的setShareIntent()设置分享意图。
+
+2.定义你想要分享的Intent。在onCreateOptionsMenu\(\)方法中调用MenuItemCompat.getActionProvider\(\)获取ShareActionProvider对象，然后调用ShareActionProvider的setShareIntent\(\)设置分享意图。
+
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -276,12 +283,10 @@ private Intent getDefaultIntent() {
 }
 ```
 
-<image src="../images/toolbar-6.gif" width="380" height="596"/>
-
-
 #### 3.处理条目点击
 
-当用户点击一个条目时，系统将点击的MenuItem传递给Activity的onOptionsItemSelected() 方法。
+当用户点击一个条目时，系统将点击的MenuItem传递给Activity的onOptionsItemSelected\(\) 方法。
+
 ```java
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
@@ -308,6 +313,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 1.自定义Title不能居中
 
 解决办法：让原始的toolbar的title不显示
+
 ```java
 mActionBar.setDisplayShowTitleEnabled(false);
 ```
@@ -316,11 +322,12 @@ mActionBar.setDisplayShowTitleEnabled(false);
 
 解决办法：[Android toolbar setNavigationIcon not working](http://stackoverflow.com/questions/26641259/android-toolbar-setnavigationicon-not-working)
 
-
 #### 参考
+
 * [Adding the App Bar](https://developer.android.com/training/appbar/index.html)
 * [Using the App ToolBar](https://guides.codepath.com/android/Using-the-App-ToolBar)
 * [Android开发：最详细的 Toolbar 开发实践总结](http://www.jianshu.com/p/79604c3ddcae)
 * [自定义ActionProvider ToolBar 自定义Menu小红点](http://blog.csdn.net/yanzhenjie1003/article/details/51902796)
 * [Android-ActionItemBadge](https://github.com/mikepenz/Android-ActionItemBadge)
 * [Android: Toolbar text is coming as black instead of white](https://stackoverflow.com/questions/32794575/android-toolbar-text-is-coming-as-black-instead-of-white)
+

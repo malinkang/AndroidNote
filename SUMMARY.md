@@ -1,59 +1,61 @@
 # Table of contents
 
 * [Introduction](README.md)
-* UI
-    * [TextView](ui/textview.md)
-    * [EditText](ui/edittext.md)
-    * [菜单](ui/menu.md)
-    * [Toolbar](ui/toolbar.md)
-    * [WebView](ui/webview.md)
-    * [RecyclerView](ui/recyclerview.md)
-    * [ViewPager](ui/viewpager.md)
-    * [BottomSheet](ui/bottomsheet.md)
-    * [通知](ui/notifications.md)
-    * [LayoutInfalter](ui/layoutInfalter.md)
-    * [屏幕适配](ui/screen-adaptation.md)
-    * View
-        * View事件分发
-    * 自定义View
-        * [Canvas使用](graphics/canvas.md)
-        * [Paint使用](graphics/paint.md)
-        * [Path使用](graphics/path.md)
-        * [PathMeasure使用](graphics/pathmeasure.md)
-        * [Matrix使用](graphics/pathmeasure.md)
-* 四大组件
-    * Activity
-    * Service
-* 数据存储
-* 系统源码分析
-    * RecyclerView
-    * ArrayMap
-    * [Handler](aosp/handler.md)
-* 图形和图像
-    * [Drawable使用](graphics/drawable.md)
-* 第三方库使用以及分析
-    * [Okhttp源码分析](network/okhttp-source.md)
-    * [Retrofit使用](network/retrofit.md)
-    * [Retrofit源码分析](network/retrofit-source.md)
-    * [HttpURLConnection使用](network/httpurlconnection.md)
-    * [Volley使用](network/volley.md)
-    * [Volley源码分析](network/volley-source.md)
-    * [Glide使用](network/glide.md)
-    * [Glide源码分析](network/glide-source.md)
-    * [RxJava](RxJava.md)
-    * EventBus
-* 组件化与插件化
-* JetPacket
-* NDK开发
-* 音频和视频
-    * [ExoPlayer](media/exoplayer.md)
-    * [GsyVideoPlayer](media/gsyvideoplayer.md)
-* 性能优化
-    * [崩溃优化](performance/crash.md)
-    * [内存优化](performance/memory.md)
-        * [LeakCanary如何工作](performance/fundamentals-how-leakcanary-works.md)
-    * [渲染优化](performance/render.md)
-    * [电池优化](performance/power.md)
-    * [启动优化](performance/launch-time.md)
-    * [网络优化](performance/network.md)
-    * [安装包大小优化](performance/reduce-apk-size.md)
+* [UI](ui/README.md)
+  * [TextView](ui/textview.md)
+  * [EditText](ui/edittext.md)
+  * [菜单](ui/menu.md)
+  * [Toolbar](ui/toolbar.md)
+  * [WebView](ui/webview.md)
+  * [RecyclerView](ui/recyclerview.md)
+  * [ViewPager](ui/viewpager.md)
+  * [BottomSheet](ui/bottomsheet.md)
+  * [通知](ui/notifications.md)
+  * [LayoutInfalter](ui/layoutinfalter.md)
+  * [屏幕适配](ui/screen-adaptation.md)
+  * [View](ui/view/README.md)
+    * [View事件分发](ui/view/view-shi-jian-fen-fa.md)
+  * [自定义View](ui/zi-ding-yi-view/README.md)
+    * [Canvas使用](ui/zi-ding-yi-view/canvas.md)
+    * [Paint使用](ui/zi-ding-yi-view/paint.md)
+    * [Path使用](ui/zi-ding-yi-view/path.md)
+    * [PathMeasure使用](ui/zi-ding-yi-view/pathmeasure.md)
+    * [Matrix使用](ui/zi-ding-yi-view/pathmeasure-1.md)
+* [组件](components/README.md)
+  * [Activity](components/activity.md)
+  * [Service](components/service.md)
+* [数据存储](data.md)
+* [系统源码分析](system/README.md)
+  * [RecyclerView](system/recyclerview.md)
+  * [HashMap](system/hashmap.md)
+  * [ArrayMap](system/arraymap.md)
+  * [Handler](system/handler.md)
+* [图形和图像](tu-xing-he-tu-xiang/README.md)
+  * [Drawable使用](tu-xing-he-tu-xiang/drawable.md)
+* [第三方库使用以及分析](third-party/README.md)
+  * [Okhttp源码分析](third-party/okhttp-source.md)
+  * [Retrofit使用](third-party/retrofit.md)
+  * [Retrofit源码分析](third-party/retrofit-source.md)
+  * [HttpURLConnection使用](third-party/httpurlconnection.md)
+  * [Volley使用](third-party/volley.md)
+  * [Volley源码分析](third-party/volley-source.md)
+  * [Glide使用](third-party/glide.md)
+  * [Glide源码分析](third-party/glide-source.md)
+  * [RxJava](third-party/rxjava.md)
+  * [EventBus](third-party/eventbus.md)
+* [组件化与插件化](zu-jian-hua-yu-cha-jian-hua.md)
+* [JetPacket](jetpacket.md)
+* [NDK开发](ndk-kai-fa.md)
+* [音频和视频](yin-pin-he-shi-pin/README.md)
+  * [ExoPlayer](yin-pin-he-shi-pin/exoplayer.md)
+  * [GsyVideoPlayer](yin-pin-he-shi-pin/gsyvideoplayer.md)
+* [性能优化](xing-neng-you-hua/README.md)
+  * [崩溃优化](xing-neng-you-hua/crash.md)
+  * [内存优化](xing-neng-you-hua/memory/README.md)
+    * [LeakCanary如何工作](xing-neng-you-hua/memory/fundamentals-how-leakcanary-works.md)
+  * [渲染优化](xing-neng-you-hua/render.md)
+  * [电池优化](xing-neng-you-hua/power.md)
+  * [启动优化](xing-neng-you-hua/launch-time.md)
+  * [网络优化](xing-neng-you-hua/network.md)
+  * [安装包大小优化](xing-neng-you-hua/reduce-apk-size.md)
+

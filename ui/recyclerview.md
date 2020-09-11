@@ -130,16 +130,20 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
     }
 }
 ```
+
 我们通过观察可以发现，每个Adapter不同的地方就是布局文件不同和绑定数据不一样。我们封装了一个AdapterItem的类来处理这些不同的操作。
+
 ```java
 public interface AdapterItem<T> {
     @LayoutRes
     int getLayoutResId(int viewType);//获取布局文件的id
     void bindViews(final View root);//进行findViewById的操作
     void bindData(Context context, int position, T t, int viewType);//绑定数据
-}  
+}
 ```
+
 多个不同的列表我们就不需要创建多个Adapter，只需要实现自己的AdapterItem传给BaseRecyclerViewAdapter即可。AdapterItem相比创建一个Adapter代码量少很多。
+
 ```java
 //实现自己的AdapterItem
 public class FeedBackAdapterItem implements AdapterItem<FeedBackMessage> {
@@ -174,11 +178,11 @@ BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter<FeedBackMessage>(t
     }
 };
 ```
+
 ## 更多阅读
 
 * [RecyclerView Part 1: Fundamentals For ListView Experts](http://www.bignerdranch.com/blog/recyclerview-part-1-fundamentals-for-listview-experts/)
 * [RecyclerView Part 2: Choice Modes](https://www.bignerdranch.com/blog/recyclerview-part-2-choice-modes/)
 * [CursorRecyclerAdapter](https://gist.github.com/Shywim/127f207e7248fe48400b)
 * [expandable-recycler-view](https://github.com/bignerdranch/expandable-recycler-view)
-
 
