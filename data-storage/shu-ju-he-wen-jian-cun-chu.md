@@ -10,7 +10,7 @@ Android 使用的文件系统类似于其他平台上基于磁盘的文件系统
 下表汇总了这些选项的特点：
 
 | 内容类型 | 访问方法 | 所需权限 | 其他应用是否可以访问？ | 卸载应用时是否移除文件？ |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :---: | :--- | :--- | :--- | :--- |
 | [应用专属文件](https://developer.android.com/training/data-storage/app-specific) | 仅供您的应用使用的文件 | 从内部存储空间访问，可以使用 `getFilesDir()` 或 `getCacheDir()` 方法  从外部存储空间访问，可以使用 `getExternalFilesDir()` 或 `getExternalCacheDir()` 方法 | 从内部存储空间访问不需要任何权限  如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 | 如果文件存储在内部存储空间中的目录内，则不能访问  如果文件存储在外部存储空间中的目录内，则可以访问 | 是 |
 | [媒体](https://developer.android.com/training/data-storage/shared/media) | 可共享的媒体文件（图片、音频文件、视频） | `MediaStore` API | 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 `READ_EXTERNAL_STORAGE` 或 `WRITE_EXTERNAL_STORAGE` 权限  在 Android 9（API 级别 28）或更低版本中，访问**所有**文件均需要相关权限 | 是，但其他应用需要 `READ_EXTERNAL_STORAGE` 权限 | 否 |
 | [文档和其他文件](https://developer.android.com/training/data-storage/shared/documents-files) | 其他类型的可共享内容，包括已下载的文件 | 存储访问框架 | 无 | 是，可以通过系统文件选择器访问 | 否 |
@@ -86,6 +86,16 @@ Android 为对外部存储空间的读写访问定义了以下权限：[`READ_EX
 
 * 如果您需要[与其他应用共享特定文件](https://developer.android.com/training/secure-file-sharing)，请使用 [`FileProvider`](https://developer.android.com/reference/androidx/core/content/FileProvider) API。
 * 如果您需要向其他应用提供数据，可以使用[内容提供器](https://developer.android.com/guide/topics/providers/content-providers)。借助内容提供器，您可以完全控制向其他应用提供的读取和写入访问权限。尽管您可以将内容提供器与任何存储媒介一起使用，但它们通常与数据库一起使用。
+
+## 查看设备上的文件
+
+您可以使用 Android Studio 的[设备文件浏览器](https://developer.android.com/studio/debug/device-file-explorer)查看存储在设备上的文件。
+
+## 参考
+
+* [为采用分区存储做好准备（2019 年 Android 开发者峰会）](https://www.youtube.com/watch?v=UnJ3amzJM94)
+
+###  
 
   
 
