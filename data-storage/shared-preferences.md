@@ -1,8 +1,8 @@
 # 保存键值对数据
 
-> 原文：https://developer.android.com/training/data-storage/shared-preferences
+> 原文：[https://developer.android.com/training/data-storage/shared-preferences](https://developer.android.com/training/data-storage/shared-preferences)
 
-如果您要保存的键值集合相对较小，则应使用`SharedPreferences`API。一个`SharedPreferences`对象指向一个包含键-值对的文件，并提供简单的方法来读取和写入它们。` shared preference`文件以xml格式存储在`/data/data/<package name>/shared_prefs`目录下。每个 `SharedPreferences`文件都由框架管理，可以是私有的也可以是共享的。
+如果您要保存的键值集合相对较小，则应使用`SharedPreferences`API。一个`SharedPreferences`对象指向一个包含键-值对的文件，并提供简单的方法来读取和写入它们。`shared preference`文件以xml格式存储在`/data/data/<package name>/shared_prefs`目录下。每个 `SharedPreferences`文件都由框架管理，可以是私有的也可以是共享的。
 
 该页面显示了如何使用`SharedPreferences`API来存储和检索简单值。
 
@@ -12,8 +12,8 @@
 
 您可以通过调用以下方法之一来创建新的共享首选项文件或访问现有的文件：
 
-- `getSharedPreferences()`—如果需要多个用名称标识的` shared preference`文件，请使用此方法，并用第一个参数指定名称。您可以从应用程序中的任何一个`Context`调用它 。
-- `getPreferences()`— 如果只需要为`Activity`使用一个` shared preference`文件，则从中使用此 选项。因为这会检索属于该活动的默认共享首选项文件，所以您无需提供名称。
+* `getSharedPreferences()`—如果需要多个用名称标识的`shared preference`文件，请使用此方法，并用第一个参数指定名称。您可以从应用程序中的任何一个`Context`调用它 。
+* `getPreferences()`— 如果只需要为`Activity`使用一个`shared preference`文件，则从中使用此 选项。因为这会检索属于该活动的默认共享首选项文件，所以您无需提供名称。
 
 例如，以下代码访问由资源字符串标识的共享首选项文件，`R.string.preference_file_key`并使用私有模式将其打开，因此仅您的应用可以访问该文件：
 
@@ -52,7 +52,7 @@ editor.commit();
 
 ## 读Shared Preference
 
-为了从`shared preference`中读取数据，可以通过类似于 `getInt()` 和` getString()`等方法来读取。在那些方法里面传递我们想要获取的value对应的key，并提供一个默认的`value`作为查找的`key`不存在时函数的返回值。如下：
+为了从`shared preference`中读取数据，可以通过类似于 `getInt()` 和`getString()`等方法来读取。在那些方法里面传递我们想要获取的value对应的key，并提供一个默认的`value`作为查找的`key`不存在时函数的返回值。如下：
 
 ```java
 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -60,8 +60,7 @@ int defaultValue = getResources().getInteger(R.integer.saved_high_score_default_
 int highScore = sharedPref.getInt(getString(R.string.saved_high_score_key), defaultValue);
 ```
 
-
-
 ## 其他资源
 
 * [全面剖析SharedPreferences](http://gityuan.com/2017/06/18/SharedPreferences/)
+
