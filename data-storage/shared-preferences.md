@@ -26,7 +26,7 @@ val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this)
 sharedPreferences3.edit().putInt("value3",3).apply()
 ```
 
-![](../.gitbook/assets/image%20%2849%29.png)
+![](../.gitbook/assets/image%20%2850%29.png)
 
 {% hint style="info" %}
 **注意**：自 API 级别 17 起，[`MODE_WORLD_READABLE`](https://developer.android.com/reference/android/content/Context#MODE_WORLD_READABLE) 和 [`MODE_WORLD_WRITEABLE`](https://developer.android.com/reference/android/content/Context#MODE_WORLD_WRITEABLE) 模式已被弃用。 从 Android 7.0（API 级别 24）开始，如果您使用这些模式，Android 会抛出 [`SecurityException`](https://developer.android.com/reference/java/lang/SecurityException)。如果您的应用需要与其他应用共享私有文件，可以通过 [`FLAG_GRANT_READ_URI_PERMISSION`](https://developer.android.com/reference/android/content/Intent#FLAG_GRANT_READ_URI_PERMISSION) 使用 [`FileProvider`](https://developer.android.com/reference/androidx/core/content/FileProvider)。如需了解详情，另请参阅[共享文件](https://developer.android.com/training/secure-file-sharing)。
