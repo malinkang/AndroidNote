@@ -850,6 +850,81 @@ public <ResourceType> RequestBuilder<ResourceType> as(
 
 ![&#x7B2C;&#x4E00;&#x6B21;&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#x7684;&#x7F16;&#x89E3;&#x7801;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2859%29.png)
 
+### 缓存过程
+
+```java
+//从缓存中获取
+@Nullable
+private EngineResource<?> loadFromMemory(
+    EngineKey key, boolean isMemoryCacheable, long startTime) {
+  //内存缓存不可用直接返回null
+  if (!isMemoryCacheable) {
+    return null;
+  }
+  //先从弱引用中获取，如果获取不到则从LruResourceCache中获取缓存
+  EngineResource<?> active = loadFromActiveResources(key);
+  if (active != null) {
+    if (VERBOSE_IS_LOGGABLE) {
+      logWithTimeAndKey("Loaded resource from active resources", startTime, key);
+    }
+    return active;
+  }
+
+  EngineResource<?> cached = loadFromCache(key);
+  if (cached != null) {
+    if (VERBOSE_IS_LOGGABLE) {
+      logWithTimeAndKey("Loaded resource from cache", startTime, key);
+    }
+    return cached;
+  }
+  return null;
+}
+@Nullable
+private EngineResource<?> loadFromActiveResources(Key key) {
+  //从弱引用中获取
+  EngineResource<?> active = activeResources.get(key);
+  if (active != null) {
+    active.acquire();
+  }
+  return active;
+}
+private EngineResource<?> loadFromCache(Key key) {
+  EngineResource<?> cached = getEngineResourceFromCache(key);
+  if (cached != null) {
+    cached.acquire();
+    activeResources.activate(key, cached);
+  }
+  return cached;
+}
+private EngineResource<?> getEngineResourceFromCache(Key key) {
+  //从LruResourceCache中获取缓存
+  Resource<?> cached = cache.remove(key);
+  final EngineResource<?> result;
+  if (cached == null) {
+    result = null;
+  } else if (cached instanceof EngineResource) {
+    // Save an object allocation if we've cached an EngineResource (the typical case).
+    result = (EngineResource<?>) cached;
+  } else {
+    result =
+        new EngineResource<>(
+            cached, /*isMemoryCacheable=*/ true, /*isRecyclable=*/ true, key, /*listener=*/ this);
+  }
+  return result;
+}
+//写入缓存
+@Override
+public synchronized void onResourceReleased(Key cacheKey, EngineResource<?> resource) {
+  activeResources.deactivate(cacheKey);
+  if (resource.isMemoryCacheable()) {
+    cache.put(cacheKey, resource);
+  } else {
+    resourceRecycler.recycle(resource);
+  }
+}
+```
+```
+
 ### ModelLoader
 
 `ModelLoader`类负责将`model`转换为`data`。`model`就是我们在调用`load`方法传入的值。
@@ -1087,7 +1162,8 @@ int targetHeight = requestedHeight == Target.SIZE_ORIGINAL ? sourceHeight : requ
 
 ### 
 
-参考
+## 参考
 
 * [Glide中文文档](https://muyangmin.github.io/glide-docs-cn/)
+* [面试官：简历上最好不要写Glide，不是问源码那么简单](https://juejin.im/post/6844903986412126216)
 
