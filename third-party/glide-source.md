@@ -614,7 +614,7 @@ Glide会添加一个透明的Fragment，当Fragment执行生命周期方法时�
 
 ### LifecycleListener
 
-![](../.gitbook/assets/image%20%2859%29.png)
+![](../.gitbook/assets/image%20%2860%29.png)
 
 ### RequestManager
 
@@ -847,6 +847,8 @@ public <ResourceType> RequestBuilder<ResourceType> as(
 ![](../.gitbook/assets/image%20%2853%29.png)
 
 ![&#x6574;&#x4F53;&#x6D41;&#x7A0B;](../.gitbook/assets/image%20%2858%29.png)
+
+![&#x7B2C;&#x4E00;&#x6B21;&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#x7684;&#x7F16;&#x89E3;&#x7801;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2859%29.png)
 
 ### ModelLoader
 
