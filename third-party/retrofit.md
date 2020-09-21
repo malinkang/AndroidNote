@@ -1,5 +1,36 @@
 # Retrofit使用
 
+## 添加依赖
+
+```groovy
+implementation "com.squareup.retrofit2:retrofit:2.8.1"
+implementation "com.squareup.retrofit2:retrofit:2.8.1"
+implementation "com.squareup.retrofit2:converter-gson:2.8.1"
+implementation "com.squareup.retrofit2:adapter-rxjava2:2.8.1"
+implementation "com.squareup.okhttp3:okhttp:4.8.0"
+implementation "com.squareup.okhttp3:logging-interceptor:4.8.0"
+implementation "io.reactivex.rxjava2:rxjava:2.2.19"
+implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+```
+
+## 创建Retrofit
+
+```kotlin
+interface ApiService {
+    companion object{
+        val instance:ApiService  by lazy{
+            val okHttpClient = OkHttpClient.Builder()
+                .build()
+            val retrofit=Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl("")
+                .build()
+            retrofit.create(ApiService::class.java)
+        }
+    }
+}
+```
+
 ## 服务器错误统一处理
 
 ```java
