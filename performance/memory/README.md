@@ -11,4 +11,5 @@
 * [Probe：Android线上OOM问题定位组件](https://tech.meituan.com/2019/11/14/crash-oom-probe-practice.html)
 * [Android中的稀疏数组：SparseArray](https://www.liaohuqiu.net/cn/posts/sparse-array-in-android/)
 * [Fun with ArrayMaps \(Android Performance Patterns Season 3 ep1\)](https://www.youtube.com/watch?v=ORgucLTtTDI&list=PLOU2XLYxmsIKEOXh5TwZEv89aofHzNCiu&index=18)
+* [快手Android OOM治理实践与思考](https://www.infoq.cn/video/EDV9u2HZlwmycLiFJm5s)
 
