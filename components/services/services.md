@@ -463,7 +463,7 @@ public class ExampleService extends Service {
 
 **注意：**与 Activity 生命周期回调方法不同，您_不_需要调用这些回调方法的超类实现。
 
-![]((../../.gitbook/assets/service_lifecycle.png))
+![](../../.gitbook/assets/service_lifecycle.png)
 
 
 
