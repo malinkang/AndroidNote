@@ -190,28 +190,28 @@ public class MessengerService extends Service {
     ArrayList<Messenger> mClients = new ArrayList<Messenger>();
     /** Holds last value set by a client. */
     int mValue = 0;
-    
+
     /**
      * Command to the service to register a client, receiving callbacks
      * from the service.  The Message's replyTo field must be a Messenger of
      * the client where callbacks should be sent.
      */
     static final int MSG_REGISTER_CLIENT = 1;
-    
+
     /**
      * Command to the service to unregister a client, ot stop receiving callbacks
      * from the service.  The Message's replyTo field must be a Messenger of
      * the client as previously given with MSG_REGISTER_CLIENT.
      */
     static final int MSG_UNREGISTER_CLIENT = 2;
-    
+
     /**
      * Command to service to set a new value.  This can be sent to the
      * service to supply a new value, and will be sent by the service to
      * any registered clients with the new value.
      */
     static final int MSG_SET_VALUE = 3;
-    
+
     /**
      * Handler of incoming messages from clients.
      */
@@ -244,12 +244,12 @@ public class MessengerService extends Service {
             }
         }
     }
-    
+
     /**
      * Target we publish for clients to send messages to IncomingHandler.
      */
     final Messenger mMessenger = new Messenger(new IncomingHandler());
-    
+
     @Override
     public void onCreate() {
         mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
@@ -266,7 +266,7 @@ public class MessengerService extends Service {
         // Tell the user we stopped.
         Toast.makeText(this, R.string.remote_service_stopped, Toast.LENGTH_SHORT).show();
     }
-    
+
     /**
      * When binding to the service, we return an interface to our messenger
      * for sending messages to the service.
@@ -303,7 +303,6 @@ public class MessengerService extends Service {
     }
 }
 //END_INCLUDE(service)
-
 ```
 
 请注意，服务会在 [`Handler`](https://developer.android.com/reference/android/os/Handler?hl=zh-cn) 的 [`handleMessage()`](https://developer.android.com/reference/android/os/Handler?hl=zh-cn#handleMessage%28android.os.Message%29) 方法中接收传入的 [`Message`](https://developer.android.com/reference/android/os/Message?hl=zh-cn)，并根据 [`what`](https://developer.android.com/reference/android/os/Message?hl=zh-cn#what) 成员决定下一步操作。
@@ -395,7 +394,7 @@ public class ActivityMessenger extends Activity {
 
    您的实现必须重写两个回调方法：
 
-   *  [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29)系统会调用该方法，进而传递服务的 [`onBind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29) 方法所返回的 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn)。
+   * [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29)系统会调用该方法，进而传递服务的 [`onBind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29) 方法所返回的 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn)。
    * [`onServiceDisconnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceDisconnected%28android.content.ComponentName%29)当与服务的连接意外中断（例如服务崩溃或被终止）时，Android 系统会调用该方法。当客户端取消绑定时，系统_不会_调用该方法。
 
 2. 调用 [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29)，从而传递 [`ServiceConnection`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn) 实现。
@@ -404,7 +403,7 @@ public class ActivityMessenger extends Activity {
 
    当应用销毁客户端时，如果该客户端仍与服务保持绑定状态，则该销毁会导致客户端取消绑定。更好的做法是在客户端与服务交互完成后，立即取消与该客户端的绑定。这样可以关闭空闲服务。如需详细了解有关绑定和取消绑定的适当时机，请参阅[附加说明](https://developer.android.com/guide/components/bound-services?hl=zh-cn#Additional_Notes)。
 
-* [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 的第一个参数是一个 [`Intent`](https://developer.android.com/reference/android/content/Intent?hl=zh-cn)，用于显式命名要绑定的服务。
+5. [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 的第一个参数是一个 [`Intent`](https://developer.android.com/reference/android/content/Intent?hl=zh-cn)，用于显式命名要绑定的服务。
 
 {% hint style="info" %}
 **注意：**如果您使用 Intent 来绑定到 [`Service`](https://developer.android.com/reference/android/app/Service?hl=zh-cn)，请务必使用[显式](https://developer.android.com/guide/components/intents-filters?hl=zh-cn#Types) Intent 来确保应用的安全性。使用隐式 Intent 启动服务存在安全隐患，因为您无法确定哪些服务会响应该 Intent，并且用户无法看到哪些服务已启动。从 Android 5.0（API 级别 21）开始，如果使用隐式 Intent 调用 [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29)，则系统会抛出异常。
@@ -420,7 +419,6 @@ public class ActivityMessenger extends Activity {
 * 您应该始终捕获 [`DeadObjectException`](https://developer.android.com/reference/android/os/DeadObjectException?hl=zh-cn) 异常，系统会在连接中断时抛出此异常。这是远程方法抛出的唯一异常。
 * 对象是跨进程计数的引用。
 * 如以下示例所述，在匹配客户端生命周期的引入 \(bring-up\) 和退出 \(tear-down\) 时刻期间，您通常需配对绑定和取消绑定：
-
   * 如果您只需在 Activity 可见时与服务交互，则应在 [`onStart()`](https://developer.android.com/reference/android/app/Activity?hl=zh-cn#onStart%28%29) 期间进行绑定，在 [`onStop()`](https://developer.android.com/reference/android/app/Activity?hl=zh-cn#onStop%28%29) 期间取消绑定。
   * 当 Activity 在后台处于停止运行状态时，若您仍希望其能接收响应，则可在 [`onCreate()`](https://developer.android.com/reference/android/app/Activity?hl=zh-cn#onCreate%28android.os.Bundle%29) 期间进行绑定，在 [`onDestroy()`](https://developer.android.com/reference/android/app/Activity?hl=zh-cn#onDestroy%28%29) 期间取消绑定。请注意，这意味着您的 Activity 在整个运行过程中（甚至包括后台运行期间）均需使用服务，因此如果服务位于其他进程内，则当您提高该进程的权重时，系统便更有可能会将其终止。
 
@@ -434,18 +432,7 @@ public class ActivityMessenger extends Activity {
 
 不过，如果您选择实现 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29) 回调方法，则您必须显式停止服务，因为系统现已将其视为_已启动_状态。在此情况下，服务将一直运行，直到其通过 [`stopSelf()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#stopSelf%28%29) 自行停止，或其他组件调用 [`stopService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#stopService%28android.content.Intent%29)（与该服务是否绑定到任何客户端无关）。
 
-此外，如果您的服务已启动并接受绑定，则当系统调用您的 [`onUnbind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onUnbind%28android.content.Intent%29) 方法时，如果您想在客户端下一次绑定到服务时接收 [`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 调用，则可选择返回 `true`。[`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 返回空值，但客户端仍在其 [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29) 回调中接收 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn)。下图说明这种生命周期的逻辑。  
-
+此外，如果您的服务已启动并接受绑定，则当系统调用您的 [`onUnbind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onUnbind%28android.content.Intent%29) 方法时，如果您想在客户端下一次绑定到服务时接收 [`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 调用，则可选择返回 `true`。[`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 返回空值，但客户端仍在其 [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29) 回调中接收 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn)。下图说明这种生命周期的逻辑。
 
 ![&#x5DF2;&#x542F;&#x52A8;&#x4E14;&#x5141;&#x8BB8;&#x7ED1;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;](../../.gitbook/assets/service_binding_tree_lifecycle.png)
-
-
-
-  
-
-
-  
-
-
-
 

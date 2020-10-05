@@ -4,8 +4,6 @@
 
 {% embed url="https://github.com/Moosphan/Android-Daily-Interview" %}
 
-
-
 ## Android技术博客
 
 {% embed url="http://gityuan.com/" %}
