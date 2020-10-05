@@ -18,8 +18,7 @@
 
 **绑定**
 
-当应用组件通过调用 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 \(IPC\) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。  
-
+当应用组件通过调用 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 \(IPC\) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。
 
 虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：[`onStartCommand()`](https://developer.android.com/reference/android/app/Service#onStartCommand%28android.content.Intent,%20int,%20int%29)（让组件启动服务）和 [`onBind()`](https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29)（实现服务绑定）。
 
@@ -36,8 +35,6 @@
 如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 [`onCreate()`](https://developer.android.com/reference/android/app/Activity#onCreate%28android.os.Bundle%29) 中创建线程，在 [`onStart()`](https://developer.android.com/reference/android/app/Activity#onStart%28%29) 中启动线程运行，然后在 [`onStop()`](https://developer.android.com/reference/android/app/Activity#onStop%28%29) 中停止线程。您还可考虑使用 [`AsyncTask`](https://developer.android.com/reference/android/os/AsyncTask) 或 [`HandlerThread`](https://developer.android.com/reference/android/os/HandlerThread)，而非传统的 [`Thread`](https://developer.android.com/reference/java/lang/Thread) 类。如需了解有关线程的详细信息，请参阅[进程和线程](https://developer.android.com/guide/components/processes-and-threads#Threads)文档。
 
 请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。
-
-
 
 ## 基础知识
 
@@ -92,8 +89,6 @@
 {% hint style="info" %}
 **注意**：用户可以查看其设备上正在运行的服务。如果他们发现自己无法识别或信任的服务，则可以停止该服务。为避免用户意外停止您的服务，您需要在应用清单的 [`<service>`](https://developer.android.com/guide/topics/manifest/service-element) 元素中添加 [`android:description`](https://developer.android.com/guide/topics/manifest/service-element#desc)。请在描述中用一个短句解释服务的作用及其提供的好处。
 {% endhint %}
-
-
 
 ## 创建启动服务
 
@@ -468,8 +463,6 @@ public class ExampleService extends Service {
 
 **注意：**与 Activity 生命周期回调方法不同，您_不_需要调用这些回调方法的超类实现。
 
-![&#x56FE; 2. &#x670D;&#x52A1;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;&#x5DE6;&#x56FE;&#x663E;&#x793A;&#x4F7F;&#x7528; startService\(\) &#x521B;&#x5EFA;&#x7684;&#x670D;&#x52A1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x53F3;&#x56FE;&#x663E;&#x793A;&#x4F7F;&#x7528; bindService\(\) &#x521B;&#x5EFA;&#x7684;&#x670D;&#x52A1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;](../.gitbook/assets/image%20%2844%29.png)
-
 
 
 图 2 展示服务的典型回调方法。尽管该图分开介绍通过 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29) 创建的服务和通过 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 创建的服务，但请记住，无论启动方式如何，任何服务均有可能允许客户端与其绑定。因此，最初使用 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service#onStartCommand%28android.content.Intent,%20int,%20int%29)（通过客户端调用 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29)）启动的服务仍可接收对 [`onBind()`](https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29) 的调用（当客户端调用 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 时）。
@@ -489,7 +482,4 @@ public class ExampleService extends Service {
 {% hint style="info" %}
 **注意：**尽管您需通过调用 [`stopSelf()`](https://developer.android.com/reference/android/app/Service#stopSelf%28%29) 或 [`stopService()`](https://developer.android.com/reference/android/content/Context#stopService%28android.content.Intent%29) 来停止绑定服务，但该服务并没有相应的回调（没有 `onStop()` 回调）。除非服务绑定到客户端，否则在服务停止时，系统会将其销毁（[`onDestroy()`](https://developer.android.com/reference/android/app/Service#onDestroy%28%29) 是接收到的唯一回调）。
 {% endhint %}
-
-
-
 
