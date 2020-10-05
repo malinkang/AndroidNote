@@ -1,4 +1,6 @@
-# AIDL
+
+# Android 接口定义语言 (AIDL)
+
 
 Android 接口定义语言 \(AIDL\) 与您可能使用过的其他接口语言 \(IDL\) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 \(IPC\) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。
 
@@ -6,13 +8,17 @@ Android 接口定义语言 \(AIDL\) 与您可能使用过的其他接口语言 \
 **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过[实现 Binder](https://developer.android.com/guide/components/bound-services#Binder) 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请[使用 Messenger ](https://developer.android.com/guide/components/bound-services#Messenger)来实现接口。无论如何，在实现 AIDL 之前，请您务必理解[绑定服务](https://developer.android.com/guide/components/bound-services)。
 {% endhint %}
 
+
+
 在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言：
 
 * 来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过[实现 Binder 类](https://developer.android.com/guide/components/bound-services#Binder)来创建接口）。
 * 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将**依次**抵达接收器端。
 * `oneway` 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 [`Binder`](https://developer.android.com/reference/android/os/Binder) 线程池的常规调用（普通的远程调用）。如果 `oneway` 用于本地调用，则不会有任何影响，且调用仍为同步调用。
 
-## 定义 AIDL 接口 <a id="Defining"></a>
+### 定义 AIDL 接口 <a id="Defining"></a>
+
+
 
 您必须在 `.aidl` 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 `src/` 目录中）内，这类应用会托管服务或与服务进行绑定。
 
@@ -36,7 +42,9 @@ Android 接口定义语言 \(AIDL\) 与您可能使用过的其他接口语言 \
 **注意：**如果您在首次发布 AIDL 接口后对其进行更改，则每次更改必须保持向后兼容性，以免中断其他应用使用您的服务。换言之，由于只有在将您的 `.aidl` 文件复制到其他应用后，才能使其访问服务接口，因而您必须保留对原始接口的支持。
 {% endhint %}
 
-### 1. 创建 .aidl 文件 <a id="Create"></a>
+
+
+#### 1. 创建 .aidl 文件 <a id="Create"></a>
 
 AIDL 使用一种简单语法，允许您通过一个或多个方法（可接收参数和返回值）来声明接口。参数和返回值可为任意类型，甚至是 AIDL 生成的其他接口。
 
@@ -65,7 +73,7 @@ AIDL 使用一种简单语法，允许您通过一个或多个方法（可接收
   原语默认为 `in`，不能是其他方向。
 
 {% hint style="info" %}
-**注意：**您应将方向限定为真正需要的方向，因为编组参数的开销较大。
+* **注意：**您应将方向限定为真正需要的方向，因为编组参数的开销较大。
 {% endhint %}
 
 * 生成的 [`IBinder`](https://developer.android.com/reference/android/os/IBinder) 接口内包含 `.aidl` 文件中的所有代码注释（import 和 package 语句之前的注释除外）。
@@ -76,22 +84,20 @@ AIDL 使用一种简单语法，允许您通过一个或多个方法（可接收
 以下是 `.aidl` 文件示例：
 
 ```java
-/**
- * Example of defining an interface for calling on to a remote service
- * (running in another process).
- */
-interface IRemoteService {
-    /**
-     * Often you want to allow a service to call back to its clients.
-     * This shows how to do so, by registering a callback interface with
-     * the service.
+// IRemoteService.aidl
+package com.example.android
+
+// Declare any non-default types here with import statements
+/** Example service interface */
+internal interface IRemoteService {
+    /** Request the process ID of this service, to do evil things with it. */
+    val pid:Int
+
+    /** Demonstrates some basic types that you can use as parameters
+     * and return values in AIDL.
      */
-    void registerCallback(IRemoteServiceCallback cb);
-    
-    /**
-     * Remove a previously registered callback interface.
-     */
-    void unregisterCallback(IRemoteServiceCallback cb);
+    fun basicTypes(anInt:Int, aLong:Long, aBoolean:Boolean, aFloat:Float,
+                 aDouble:Double, aString:String)
 }
 ```
 
@@ -99,234 +105,27 @@ interface IRemoteService {
 
 如果您使用 Android Studio，增量构建几乎会立即生成 Binder 类。如果您不使用 Android Studio，则 Gradle 工具会在您下一次开发应用时生成 Binder 类。因此，在编写完 `.aidl` 文件后，您应立即使用 `gradle assembleDebug`（或 `gradle assembleRelease`）构建项目，以便您的代码能够链接到生成的类。
 
-### 2. 实现接口 <a id="Implement"></a>
+#### 2. 实现接口 <a id="Implement"></a>
 
 当您构建应用时，Android SDK 工具会生成以 `.aidl` 文件命名的 `.java` 接口文件。生成的接口包含一个名为 `Stub` 的子类（例如，`YourInterface.Stub`），该子类是其父接口的抽象实现，并且会声明 `.aidl` 文件中的所有方法。
 
-```java
-public interface IRemoteService extends android.os.IInterface
-{
-  /** Default implementation for IRemoteService. */
-  public static class Default implements cn.malinkang.servicesamples.IRemoteService
-  {
-    /**
-         * Often you want to allow a service to call back to its clients.
-         * This shows how to do so, by registering a callback interface with
-         * the service.
-         */
-    @Override public void registerCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException
-    {
-    }
-    /**
-         * Remove a previously registered callback interface.
-         */
-    @Override public void unregisterCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException
-    {
-    }
-    @Override
-    public android.os.IBinder asBinder() {
-      return null;
-    }
-  }
-  /** Local-side IPC implementation stub class. */
-  public static abstract class Stub extends android.os.Binder implements cn.malinkang.servicesamples.IRemoteService
-  {
-    private static final java.lang.String DESCRIPTOR = "cn.malinkang.servicesamples.IRemoteService";
-    /** Construct the stub at attach it to the interface. */
-    public Stub()
-    {
-      this.attachInterface(this, DESCRIPTOR);
-    }
-    /**
-     * Cast an IBinder object into an cn.malinkang.servicesamples.IRemoteService interface,
-     * generating a proxy if needed.
-     */
-     //onServiceConnected调用 传入onServiceConnected返回的Binder
-    public static cn.malinkang.servicesamples.IRemoteService asInterface(android.os.IBinder obj)
-    {
-      if ((obj==null)) {
-        return null;
-      }
-      //查询
-      android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-      //同一个进程
-      if (((iin!=null)&&(iin instanceof cn.malinkang.servicesamples.IRemoteService))) {
-        return ((cn.malinkang.servicesamples.IRemoteService)iin);
-      }
-      //不同进程
-      return new cn.malinkang.servicesamples.IRemoteService.Stub.Proxy(obj);
-    }
-    //返回当前对象
-    @Override public android.os.IBinder asBinder()
-    {
-      return this;
-    }
-    @Override public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException
-    {
-      java.lang.String descriptor = DESCRIPTOR;
-      switch (code)
-      {
-        case INTERFACE_TRANSACTION:
-        {
-          reply.writeString(descriptor);
-          return true;
-        }
-        case TRANSACTION_registerCallback:
-        {
-          data.enforceInterface(descriptor);
-          cn.malinkang.servicesamples.IRemoteServiceCallback _arg0;
-          _arg0 = cn.malinkang.servicesamples.IRemoteServiceCallback.Stub.asInterface(data.readStrongBinder());
-          this.registerCallback(_arg0);
-          reply.writeNoException();
-          return true;
-        }
-        case TRANSACTION_unregisterCallback:
-        {
-          data.enforceInterface(descriptor);
-          cn.malinkang.servicesamples.IRemoteServiceCallback _arg0;
-          _arg0 = cn.malinkang.servicesamples.IRemoteServiceCallback.Stub.asInterface(data.readStrongBinder());
-          this.unregisterCallback(_arg0);
-          reply.writeNoException();
-          return true;
-        }
-        default:
-        {
-          return super.onTransact(code, data, reply, flags);
-        }
-      }
-    }
-    private static class Proxy implements cn.malinkang.servicesamples.IRemoteService
-    {
-      private android.os.IBinder mRemote;
-      Proxy(android.os.IBinder remote)
-      {
-        mRemote = remote;
-      }
-      @Override public android.os.IBinder asBinder()
-      {
-        return mRemote;
-      }
-      public java.lang.String getInterfaceDescriptor()
-      {
-        return DESCRIPTOR;
-      }
-      /**
-           * Often you want to allow a service to call back to its clients.
-           * This shows how to do so, by registering a callback interface with
-           * the service.
-           */
-      @Override public void registerCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          _data.writeStrongBinder((((cb!=null))?(cb.asBinder()):(null)));
-          boolean _status = mRemote.transact(Stub.TRANSACTION_registerCallback, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            getDefaultImpl().registerCallback(cb);
-            return;
-          }
-          _reply.readException();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-      }
-      /**
-           * Remove a previously registered callback interface.
-           */
-      @Override public void unregisterCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          _data.writeStrongBinder((((cb!=null))?(cb.asBinder()):(null)));
-          boolean _status = mRemote.transact(Stub.TRANSACTION_unregisterCallback, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            getDefaultImpl().unregisterCallback(cb);
-            return;
-          }
-          _reply.readException();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-      }
-      public static cn.malinkang.servicesamples.IRemoteService sDefaultImpl;
-    }
-    static final int TRANSACTION_registerCallback = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-    static final int TRANSACTION_unregisterCallback = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
-    public static boolean setDefaultImpl(cn.malinkang.servicesamples.IRemoteService impl) {
-      // Only one user of this interface can use this function
-      // at a time. This is a heuristic to detect if two different
-      // users in the same process use this function.
-      if (Stub.Proxy.sDefaultImpl != null) {
-        throw new IllegalStateException("setDefaultImpl() called twice");
-      }
-      if (impl != null) {
-        Stub.Proxy.sDefaultImpl = impl;
-        return true;
-      }
-      return false;
-    }
-    public static cn.malinkang.servicesamples.IRemoteService getDefaultImpl() {
-      return Stub.Proxy.sDefaultImpl;
-    }
-  }
-  /**
-       * Often you want to allow a service to call back to its clients.
-       * This shows how to do so, by registering a callback interface with
-       * the service.
-       */
-  public void registerCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException;
-  /**
-       * Remove a previously registered callback interface.
-       */
-  public void unregisterCallback(cn.malinkang.servicesamples.IRemoteServiceCallback cb) throws android.os.RemoteException;
-}
-```
-
-#### DESCRIPTOR
-
-Binder的唯一标识，一般用当前Binder的类名表示，比如本例中的`cn.malinkang.servicesamples.IRemoteService`。  
-
-
-#### asInterface
-
-asInterface\(android.os.IBinder obj\)用于将服务端的Binder对象转换成客户端所需的AIDL接口类型的对象，这种转换过程是区分进程的，如果客户端和服务端位于同一进程，那么此方法返回的就是服务端的Stub对象本身，否则返回的是系统封装后的Stub.proxy对象。
-
-#### asBinder
-
-asBinder此方法用于返回当前Binder对象。
-
-#### onTransact
-
-onTransact这个方法运行在服务端中的Binder线程池中，当客户端发起跨进程请求时，远程请求会通过系统底层封装后交由此方法来处理。服务端通过code可以确定客户端所请求的目标方法是什么，接着从data中取出目标方法所需的参数（如果目标方法有参数的话），然后执行目标方法。当目标方法执行完毕后，就向reply中写入返回值（如果目标方法有返回值的话）,onTransact方法的执行过程就是这样的。需要注意的是，如果此方法返回false，那么客户端的请求会失败，因此我们可以利用这个特性来做权限验证，毕竟我们也不希望随便一个进程都能远程调用我们的服务。
-
-#### registerCallback
-
-这个方法运行在客户端，当客户端远程调用此方法时，它的内部实现是这样的：首先创建该方法所需要的输入型Parcel对象\_data、输出型Parcel对象\_reply；然后把该方法的参数信息写入\_data中（如果有参数的话）；接着调用transact方法来发起RPC（远程过程调用）请求，同时当前线程挂起；然后服务端的onTransact方法会被调用，直到RPC过程返回后，当前线程继续执行，并从\_reply中取出RPC过程的返回结果；最后返回\_reply中的数据。
-
-\*\*\*\*
+{% hint style="info" %}
+**注意：**`Stub` 还会定义几个辅助方法，其中最值得注意的是 `asInterface()`，该方法会接收 [`IBinder`](https://developer.android.com/reference/android/os/IBinder)（通常是传递给客户端 [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29) 回调方法的参数），并返回 Stub 接口的实例。如需了解如何进行此转换的更多详情，请参阅[调用 IPC 方法](https://developer.android.com/guide/components/aidl#Calling)部分。
+{% endhint %}
 
 如要实现 `.aidl` 生成的接口，请扩展生成的 [`Binder`](https://developer.android.com/reference/android/os/Binder) 接口（例如，`YourInterface.Stub`），并实现继承自 `.aidl` 文件的方法。
 
-以下示例展示使用匿名实例实现 `IRemoteService` 接口（由以上 `IRemoteService.aidl` 示例定义）的过程：
+以下示例展示使用匿名实例实现 `IRemoteService` 接口（由以上 `IRemoteService.aidl` 示例定义）的过程：  
+
 
 ```java
-/**
- * The IRemoteInterface is defined through IDL
- */
-private final IRemoteService.Stub mBinder = new IRemoteService.Stub() {
-    public void registerCallback(IRemoteServiceCallback cb) {
-        if (cb != null) mCallbacks.register(cb);
+private final IRemoteService.Stub binder = new IRemoteService.Stub() {
+    public int getPid(){
+        return Process.myPid();
     }
-    public void unregisterCallback(IRemoteServiceCallback cb) {
-        if (cb != null) mCallbacks.unregister(cb);
+    public void basicTypes(int anInt, long aLong, boolean aBoolean,
+        float aFloat, double aDouble, String aString) {
+        // Does nothing
     }
 };
 ```
@@ -339,7 +138,7 @@ private final IRemoteService.Stub mBinder = new IRemoteService.Stub() {
 * 默认情况下，RPC 调用是同步调用。如果您知道服务完成请求的时间不止几毫秒，则不应从 Activity 的主线程调用该服务，因为这可能会使应用挂起（Android 可能会显示“Application is Not Responding”对话框）— 通常，您应从客户端内的单独线程调用服务。
 * 您引发的任何异常都不会回传给调用方。
 
-### 3. 向客户端公开接口 <a id="Expose"></a>
+#### 3. 向客户端公开接口 <a id="Expose"></a>
 
 在为服务实现接口后，您需要向客户端公开该接口，以便客户端进行绑定。如要为您的服务公开该接口，请扩展 [`Service`](https://developer.android.com/reference/android/app/Service) 并实现 [`onBind()`](https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29)，从而返回实现生成的 `Stub` 的类实例（如前文所述）。以下是向客户端公开 `IRemoteService` 示例接口的服务示例。
 
@@ -394,7 +193,7 @@ private ServiceConnection mConnection = new ServiceConnection() {
 
 如需查看更多示例代码，请参阅 [ApiDemos](https://android.googlesource.com/platform/development/+/master/samples/ApiDemos) 中的 [`RemoteService.java`](https://android.googlesource.com/platform/development/+/master/samples/ApiDemos/src/com/example/android/apis/app/RemoteService.java) 类。
 
-## 通过 IPC 传递对象
+### 通过 IPC 传递对象
 
 您可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。不过，您必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持 [`Parcelable`](https://developer.android.com/reference/android/os/Parcelable) 接口。支持 [`Parcelable`](https://developer.android.com/reference/android/os/Parcelable) 接口很重要，因为 Android 系统能通过该接口将对象分解成可编组至各进程的原语。
 
@@ -468,13 +267,14 @@ public final class Rect implements Parcelable {
 }
 ```
 
-`Rect` 类中的编组相当简单。请查看 [`Parcel`](https://developer.android.com/reference/android/os/Parcel) 的其他相关方法，了解您可以向 Parcel 写入哪些其他类型的值。
+`Rect` 类中的编组相当简单。请查看 [`Parcel`](https://developer.android.com/reference/android/os/Parcel) 的其他相关方法，了解您可以向 Parcel 写入哪些其他类型的值。  
+
 
 {% hint style="info" %}
 **警告：**请勿忘记从其他进程中接收数据的安全问题。在本例中，`Rect` 从 [`Parcel`](https://developer.android.com/reference/android/os/Parcel) 读取四个数字，但您需确保：无论调用方目的为何，这些数字均在可接受的值范围内。如需详细了解如何防止应用受到恶意软件侵害、保证应用安全，请参阅[安全与权限](https://developer.android.com/guide/topics/security/security)。
 {% endhint %}
 
-## 带软件包参数（包含 Parcelable 类型）的方法 <a id="Bundles"></a>
+### 带软件包参数（包含 Parcelable 类型）的方法 <a id="Bundles"></a>
 
 如果您的 AIDL 接口包含接收软件包作为参数（预计包含 Parcelable 类型）的方法，则在尝试从软件包读取之前，请务必通过调用 [`Bundle.setClassLoader(ClassLoader)`](https://developer.android.com/reference/android/os/Bundle?hl=en#setClassLoader%28java.lang.ClassLoader%29) 设置软件包的类加载器。否则，即使您在应用中正确定义 Parcelable 类型，也会遇到 [`ClassNotFoundException`](https://developer.android.com/reference/java/lang/ClassNotFoundException)。例如，
 
@@ -491,7 +291,8 @@ interface IRectInsideBundle {
 }
 ```
 
-如下方实现所示，在读取 `Rect` 之前，`ClassLoader` 已在 `Bundle` 中完成显式设置
+如下方实现所示，在读取 `Rect` 之前，`ClassLoader` 已在 `Bundle` 中完成显式设置  
+
 
 ```java
 private final IRectInsideBundle.Stub binder = new IRectInsideBundle.Stub() {
@@ -503,7 +304,7 @@ private final IRectInsideBundle.Stub binder = new IRectInsideBundle.Stub() {
 };
 ```
 
-## 调用 IPC 方法 <a id="Calling"></a>
+### 调用 IPC 方法 <a id="Calling"></a>
 
 如要调用通过 AIDL 定义的远程接口，调用类必须执行以下步骤：
 
@@ -522,11 +323,220 @@ private final IRectInsideBundle.Stub binder = new IRectInsideBundle.Stub() {
 
 如需了解有关绑定服务的详细信息，请阅读[绑定服务](https://developer.android.com/guide/components/bound-services#Binding)文档。
 
+以下示例代码摘自 ApiDemos 项目的远程服务示例，展示如何调用 AIDL 创建的服务。
 
+```java
+public static class Binding extends Activity {
+    /** The primary interface we will be calling on the service. */
+    IRemoteService mService = null;
+    /** Another interface we use on the service. */
+    ISecondary secondaryService = null;
 
+    Button killButton;
+    TextView callbackText;
 
+    private InternalHandler handler;
+    private boolean isBound;
 
-## 参考
+    /**
+     * Standard initialization of this activity.  Set up the UI, then wait
+     * for the user to poke it before doing anything.
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-* [Android 接口定义语言 \(AIDL\)](https://developer.android.com/guide/components/aidl)
+        setContentView(R.layout.remote_service_binding);
 
+        // Watch for button clicks.
+        Button button = (Button)findViewById(R.id.bind);
+        button.setOnClickListener(mBindListener);
+        button = (Button)findViewById(R.id.unbind);
+        button.setOnClickListener(unbindListener);
+        killButton = (Button)findViewById(R.id.kill);
+        killButton.setOnClickListener(killListener);
+        killButton.setEnabled(false);
+
+        callbackText = (TextView)findViewById(R.id.callback);
+        callbackText.setText("Not attached.");
+        handler = new InternalHandler(callbackText);
+    }
+
+    /**
+     * Class for interacting with the main interface of the service.
+     */
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className,
+                IBinder service) {
+            // This is called when the connection with the service has been
+            // established, giving us the service object we can use to
+            // interact with the service.  We are communicating with our
+            // service through an IDL interface, so get a client-side
+            // representation of that from the raw service object.
+            mService = IRemoteService.Stub.asInterface(service);
+            killButton.setEnabled(true);
+            callbackText.setText("Attached.");
+
+            // We want to monitor the service for as long as we are
+            // connected to it.
+            try {
+                mService.registerCallback(mCallback);
+            } catch (RemoteException e) {
+                // In this case the service has crashed before we could even
+                // do anything with it; we can count on soon being
+                // disconnected (and then reconnected if it can be restarted)
+                // so there is no need to do anything here.
+            }
+
+            // As part of the sample, tell the user what happened.
+            Toast.makeText(Binding.this, R.string.remote_service_connected,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            // This is called when the connection with the service has been
+            // unexpectedly disconnected -- that is, its process crashed.
+            mService = null;
+            killButton.setEnabled(false);
+            callbackText.setText("Disconnected.");
+
+            // As part of the sample, tell the user what happened.
+            Toast.makeText(Binding.this, R.string.remote_service_disconnected,
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    /**
+     * Class for interacting with the secondary interface of the service.
+     */
+    private ServiceConnection secondaryConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className,
+                IBinder service) {
+            // Connecting to a secondary interface is the same as any
+            // other interface.
+            secondaryService = ISecondary.Stub.asInterface(service);
+            killButton.setEnabled(true);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            secondaryService = null;
+            killButton.setEnabled(false);
+        }
+    };
+
+    private OnClickListener mBindListener = new OnClickListener() {
+        public void onClick(View v) {
+            // Establish a couple connections with the service, binding
+            // by interface names.  This allows other applications to be
+            // installed that replace the remote service by implementing
+            // the same interface.
+            Intent intent = new Intent(Binding.this, RemoteService.class);
+            intent.setAction(IRemoteService.class.getName());
+            bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+            intent.setAction(ISecondary.class.getName());
+            bindService(intent, secondaryConnection, Context.BIND_AUTO_CREATE);
+            isBound = true;
+            callbackText.setText("Binding.");
+        }
+    };
+
+    private OnClickListener unbindListener = new OnClickListener() {
+        public void onClick(View v) {
+            if (isBound) {
+                // If we have received the service, and hence registered with
+                // it, then now is the time to unregister.
+                if (mService != null) {
+                    try {
+                        mService.unregisterCallback(mCallback);
+                    } catch (RemoteException e) {
+                        // There is nothing special we need to do if the service
+                        // has crashed.
+                    }
+                }
+
+                // Detach our existing connection.
+                unbindService(mConnection);
+                unbindService(secondaryConnection);
+                killButton.setEnabled(false);
+                isBound = false;
+                callbackText.setText("Unbinding.");
+            }
+        }
+    };
+
+    private OnClickListener killListener = new OnClickListener() {
+        public void onClick(View v) {
+            // To kill the process hosting our service, we need to know its
+            // PID.  Conveniently our service has a call that will return
+            // to us that information.
+            if (secondaryService != null) {
+                try {
+                    int pid = secondaryService.getPid();
+                    // Note that, though this API allows us to request to
+                    // kill any process based on its PID, the kernel will
+                    // still impose standard restrictions on which PIDs you
+                    // are actually able to kill.  Typically this means only
+                    // the process running your application and any additional
+                    // processes created by that app as shown here; packages
+                    // sharing a common UID will also be able to kill each
+                    // other's processes.
+                    Process.killProcess(pid);
+                    callbackText.setText("Killed service process.");
+                } catch (RemoteException ex) {
+                    // Recover gracefully from the process hosting the
+                    // server dying.
+                    // Just for purposes of the sample, put up a notification.
+                    Toast.makeText(Binding.this,
+                            R.string.remote_call_failed,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    };
+
+    // ----------------------------------------------------------------------
+    // Code showing how to deal with callbacks.
+    // ----------------------------------------------------------------------
+
+    /**
+     * This implementation is used to receive callbacks from the remote
+     * service.
+     */
+    private IRemoteServiceCallback mCallback = new IRemoteServiceCallback.Stub() {
+        /**
+         * This is called by the remote service regularly to tell us about
+         * new values.  Note that IPC calls are dispatched through a thread
+         * pool running in each process, so the code executing here will
+         * NOT be running in our main thread like most other things -- so,
+         * to update the UI, we need to use a Handler to hop over there.
+         */
+        public void valueChanged(int value) {
+            handler.sendMessage(handler.obtainMessage(BUMP_MSG, value, 0));
+        }
+    };
+
+    private static final int BUMP_MSG = 1;
+
+    private static class InternalHandler extends Handler {
+        private final WeakReference<TextView> weakTextView;
+
+        InternalHandler(TextView textView) {
+            weakTextView = new WeakReference<>(textView);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case BUMP_MSG:
+                    TextView textView = weakTextView.get();
+                    if (textView != null) {
+                        textView.setText("Received from service: " + msg.arg1);
+                    }
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    }
+}
+```
