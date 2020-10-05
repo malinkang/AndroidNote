@@ -28,6 +28,7 @@
     * [服务](components/services/services.md)
     * [绑定服务](components/services/bound-services.md)
     * [AIDL](components/services/aidl.md)
+    * [Binder原理](components/services/binder.md)
   * [Broadcasts](components/broadcasts.md)
   * [Fragment](components/fragment.md)
   * [ContentProvider](components/contentprovider.md)
