@@ -25,6 +25,7 @@
   * [Activity](components/activity.md)
   * [Intent](components/intent.md)
   * [服务](components/service.md)
+  * [绑定服务](components/bind-service.md)
   * [Broadcasts](components/broadcasts.md)
   * [Fragment](components/fragment.md)
   * [ContentProvider](components/contentprovider.md)
