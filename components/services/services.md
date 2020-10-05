@@ -38,29 +38,31 @@
 
 ## 基础知识
 
-要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您需要重写一些回调方法，以处理服务生命周期的某些关键方面并提供一种机制将组件绑定到服务（如适用）。 应重写的最重要的回调方法包括：
+如要创建服务，您必须创建 [`Service`](https://developer.android.com/reference/android/app/Service?hl=zh-cn) 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：
 
-* onStartCommand\(\)
+[`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29)
 
-  当另一个组件（如 Activity）通过调用 `startService()` 请求启动服务时，系统将调用此方法。一旦执行此方法，服务即会启动并可在后台无限期运行。 如果您实现此方法，则在服务工作完成后，需要由您通过调用 stopSelf\(\) 或 stopService\(\) 来停止服务。（如果您只想提供绑定，则无需实现此方法。）
+当另一个组件（如 Activity）请求启动服务时，系统会通过调用 [`startService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#startService%28android.content.Intent%29) 来调用此方法。执行此方法时，服务即会启动并可在后台无限期运行。如果您实现此方法，则在服务工作完成后，您需负责通过调用 [`stopSelf()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#stopSelf%28%29) 或 [`stopService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#stopService%28android.content.Intent%29) 来停止服务。（如果您只想提供绑定，则无需实现此方法。）
 
-* onBind\(\)
+[`onBind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29)
 
-  当另一个组件想通过调用 bindService\(\) 与服务绑定（例如执行 RPC）时，系统将调用此方法。在此方法的实现中，您必须通过返回 IBinder 提供一个接口，供客户端用来与服务进行通信。请务必实现此方法，但如果您并不希望允许绑定，则应返回 null。
+当另一个组件想要与服务绑定（例如执行 RPC）时，系统会通过调用 [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 来调用此方法。在此方法的实现中，您必须通过返回 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn) 提供一个接口，以供客户端用来与服务进行通信。请务必实现此方法；但是，如果您并不希望允许绑定，则应返回 null。
 
-* onCreate\(\)
+[`onCreate()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onCreate%28%29)
 
-  首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用 onStartCommand\(\) 或 onBind\(\) 之前）。
+首次创建服务时，系统会（在调用 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29) 或 [`onBind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29) 之前）调用此方法来执行一次性设置程序。如果服务已在运行，则不会调用此方法。
 
-* onDestroy\(\)
+[`onDestroy()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onDestroy%28%29)
 
-  当不再使用服务且准备将其销毁时，系统会调用此方法。服务应通过实现此方法来清理任何资源，如线程、注册的侦听器、接收器等。这是服务接收的最后一个调用。
+当不再使用服务且准备将其销毁时，系统会调用此方法。服务应通过实现此方法来清理任何资源，如线程、注册的侦听器、接收器等。这是服务接收的最后一个调用。
 
-如果组件通过调用 `startService()`启动服务（这会导致对 `onStartCommand()` 的调用），则服务将一直运行，直到服务使用 `stopSelf()` 自行停止运行，或由其他组件通过调用 `stopService()` 停止它为止。
+如果组件通过调用 [`startService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#startService%28android.content.Intent%29) 启动服务（这会引起对 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29) 的调用），则服务会一直运行，直到其使用 [`stopSelf()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#stopSelf%28%29) 自行停止运行，或由其他组件通过调用 [`stopService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#stopService%28android.content.Intent%29) 将其停止为止。
 
-如果组件是通过调用 bindService\(\) 来创建服务（且未调用 onStartCommand\(\)，则服务只会在该组件与其绑定时运行。一旦该服务与所有客户端之间的绑定全部取消，系统便会销毁它。
+如果组件通过调用 [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 来创建服务，且_未_调用 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29)，则服务只会在该组件与其绑定时运行。当该服务与其所有组件取消绑定后，系统便会将其销毁。
 
-仅当内存过低且必须回收系统资源以供具有用户焦点的 Activity 使用时，Android 系统才会强制停止服务。如果将服务绑定到具有用户焦点的 Activity，则它不太可能会终止；如果将服务声明为在前台运行，则它几乎永远不会终止。或者，如果服务已启动并要长时间运行，则系统会随着时间的推移降低服务在后台任务列表中的位置，而服务也将随之变得非常容易被终止；如果服务是启动服务，则您必须将其设计为能够妥善处理系统对它的重启。 如果系统终止服务，那么一旦资源变得再次可用，系统便会重启服务（不过这还取决于从 onStartCommand\(\) 返回的值，本文稍后会对此加以讨论）。
+只有在内存过低且必须回收系统资源以供拥有用户焦点的 Activity 使用时，Android 系统才会停止服务。如果将服务绑定到拥有用户焦点的 Activity，则它其不太可能会终止；如果将服务声明为[在前台运行](https://developer.android.com/guide/components/services?hl=zh-cn#Foreground)，则其几乎永远不会终止。如果服务已启动并长时间运行，则系统逐渐降低其在后台任务列表中的位置，而服务被终止的概率也会大幅提升—如果服务是启动服务，则您必须将其设计为能够妥善处理系统执行的重启。如果系统终止服务，则其会在资源可用时立即重启服务，但这还取决于您从 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29) 返回的值。如需了解有关系统会在何时销毁服务的详细信息，请参阅[进程和线程](https://developer.android.com/guide/components/processes-and-threads?hl=zh-cn)文档。
+
+下文将介绍如何创建 [`startService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#startService%28android.content.Intent%29) 和 [`bindService()`](https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 服务方法，以及如何通过其他应用组件使用这些方法。
 
 ## 使用清单文件声明服务
 
@@ -464,8 +466,6 @@ public class ExampleService extends Service {
 **注意：**与 Activity 生命周期回调方法不同，您_不_需要调用这些回调方法的超类实现。
 
 ![](../../.gitbook/assets/service_lifecycle.png)
-
-
 
 图 2 展示服务的典型回调方法。尽管该图分开介绍通过 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29) 创建的服务和通过 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 创建的服务，但请记住，无论启动方式如何，任何服务均有可能允许客户端与其绑定。因此，最初使用 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service#onStartCommand%28android.content.Intent,%20int,%20int%29)（通过客户端调用 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29)）启动的服务仍可接收对 [`onBind()`](https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29) 的调用（当客户端调用 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 时）。
 
