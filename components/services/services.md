@@ -463,6 +463,8 @@ public class ExampleService extends Service {
 
 **注意：**与 Activity 生命周期回调方法不同，您_不_需要调用这些回调方法的超类实现。
 
+![]((../../.gitbook/assets/service_lifecycle.png))
+
 
 
 图 2 展示服务的典型回调方法。尽管该图分开介绍通过 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29) 创建的服务和通过 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 创建的服务，但请记住，无论启动方式如何，任何服务均有可能允许客户端与其绑定。因此，最初使用 [`onStartCommand()`](https://developer.android.com/reference/android/app/Service#onStartCommand%28android.content.Intent,%20int,%20int%29)（通过客户端调用 [`startService()`](https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29)）启动的服务仍可接收对 [`onBind()`](https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29) 的调用（当客户端调用 [`bindService()`](https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29) 时）。

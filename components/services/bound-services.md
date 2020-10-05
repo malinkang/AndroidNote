@@ -437,7 +437,7 @@ public class ActivityMessenger extends Activity {
 此外，如果您的服务已启动并接受绑定，则当系统调用您的 [`onUnbind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onUnbind%28android.content.Intent%29) 方法时，如果您想在客户端下一次绑定到服务时接收 [`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 调用，则可选择返回 `true`。[`onRebind()`](https://developer.android.com/reference/android/app/Service?hl=zh-cn#onRebind%28android.content.Intent%29) 返回空值，但客户端仍在其 [`onServiceConnected()`](https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29) 回调中接收 [`IBinder`](https://developer.android.com/reference/android/os/IBinder?hl=zh-cn)。下图说明这种生命周期的逻辑。  
 
 
-![&#x5DF2;&#x542F;&#x52A8;&#x4E14;&#x5141;&#x8BB8;&#x7ED1;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;](../../.gitbook/assets/image%20%2862%29.png)
+![&#x5DF2;&#x542F;&#x52A8;&#x4E14;&#x5141;&#x8BB8;&#x7ED1;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;](../../.gitbook/assets/service_binding_tree_lifecycle.png)
 
 
 
