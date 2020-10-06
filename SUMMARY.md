@@ -23,6 +23,7 @@
     * [Matrix使用](ui/zi-ding-yi-view/pathmeasure-1.md)
 * [组件](components/README.md)
   * [Activity](components/activity.md)
+  * [Activity启动流程分析](components/activity-qi-dong-liu-cheng-fen-xi.md)
   * [Intent](components/intent.md)
   * [服务](components/services/README.md)
     * [服务](components/services/services.md)
