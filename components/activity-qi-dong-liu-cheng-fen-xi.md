@@ -4,7 +4,7 @@ Activity的启动过程分为两种，一种是根Activity的启动过程，另�
 
 Activity的启动过程比较复杂，因此这里分为3个部分来讲，分别是
 
-1. Launcher请求AMS过程、
+1. Launcher请求AMS过程
 2. AMS到ApplicationThread的调用过程
 3. ActivityThread启动Activity。
 
@@ -12,7 +12,7 @@ Activity的启动过程比较复杂，因此这里分为3个部分来讲，分�
 
 Launcher请求AMS的时序图如图所示
 
-![](../.gitbook/assets/image%20%2864%29.png)
+![](../.gitbook/assets/image%20%2866%29.png)
 
 当我们点击应用程序的快捷图标时，就会调用Launcher的startActivitySafely方法，如下所示：
 
@@ -186,7 +186,7 @@ private static final Singleton<IActivityTaskManager> IActivityTaskManagerSinglet
 
 Launcher请求ActivityTaskManagerService后，代码逻辑已经进入ActivityTaskManagerService中，接着是AMS到ApplicationThread的调用流程，时序图如图所示
 
-![](../.gitbook/assets/image%20%2863%29.png)
+![](../.gitbook/assets/image%20%2864%29.png)
 
 ### startActivity\(\)
 
@@ -674,4 +674,415 @@ public void schedule() throws RemoteException {
 ```
 
 ## ActivityThread启动Activity的过程
+
+ActivityThread启动Activity过程的时序图
+
+```java
+@Override
+public void scheduleTransaction(ClientTransaction transaction) throws RemoteException {
+    ActivityThread.this.scheduleTransaction(transaction);
+}
+```
+
+### scheduleTransaction\(\)
+
+```java
+//ClientTransactionHandler.java
+void scheduleTransaction(ClientTransaction transaction) {
+    transaction.preExecute(this);
+    sendMessage(ActivityThread.H.EXECUTE_TRANSACTION, transaction);
+}
+```
+
+### sendMessage\(\)
+
+```java
+private void sendMessage(int what, Object obj, int arg1, int arg2, boolean async) {
+    if (DEBUG_MESSAGES) {
+        Slog.v(TAG,
+                "SCHEDULE " + what + " " + mH.codeToString(what) + ": " + arg1 + " / " + obj);
+    }
+    Message msg = Message.obtain();
+    msg.what = what;
+    msg.obj = obj;
+    msg.arg1 = arg1;
+    msg.arg2 = arg2;
+    if (async) {
+        msg.setAsynchronous(true);
+    }
+    mH.sendMessage(msg);
+}
+```
+
+这里mH指的是H，它是ActivityThread的内部类并继承自Handler，是应用程序进程中主线程的消息管理类。因为ApplicationThread是一个Binder，它的调用逻辑运行在Binder线程池中，所以这里需要用H将代码的逻辑切换到主线程中。
+
+### H
+
+```java
+class H extends Handler {
+    public void handleMessage(Message msg) {
+        if (DEBUG_MESSAGES) Slog.v(TAG, ">>> handling: " + codeToString(msg.what));
+        switch (msg.what) {
+            case EXECUTE_TRANSACTION:
+                final ClientTransaction transaction = (ClientTransaction) msg.obj;
+                mTransactionExecutor.execute(transaction);
+                if (isSystem()) {
+                    // Client transactions inside system process are recycled on the client side
+                    // instead of ClientLifecycleManager to avoid being cleared before this
+                    // message is handled.
+                    transaction.recycle();
+                }
+                // TODO(lifecycler): Recycle locally scheduled transactions.
+                break;
+        }
+        Object obj = msg.obj;
+        if (obj instanceof SomeArgs) {
+            ((SomeArgs) obj).recycle();
+        }
+        if (DEBUG_MESSAGES) Slog.v(TAG, "<<< done: " + codeToString(msg.what));
+    }
+}
+```
+
+### execute\(\)
+
+```java
+//TransactionExecutor.java
+public void execute(ClientTransaction transaction) {
+    if (DEBUG_RESOLVER) Slog.d(TAG, tId(transaction) + "Start resolving transaction");
+    final IBinder token = transaction.getActivityToken();
+    if (token != null) {
+        final Map<IBinder, ClientTransactionItem> activitiesToBeDestroyed =
+                mTransactionHandler.getActivitiesToBeDestroyed();
+        final ClientTransactionItem destroyItem = activitiesToBeDestroyed.get(token);
+        if (destroyItem != null) {
+            if (transaction.getLifecycleStateRequest() == destroyItem) {
+                // It is going to execute the transaction that will destroy activity with the
+                // token, so the corresponding to-be-destroyed record can be removed.
+                activitiesToBeDestroyed.remove(token);
+            }
+            if (mTransactionHandler.getActivityClient(token) == null) {
+                // The activity has not been created but has been requested to destroy, so all
+                // transactions for the token are just like being cancelled.
+                Slog.w(TAG, tId(transaction) + "Skip pre-destroyed transaction:\n"
+                        + transactionToString(transaction, mTransactionHandler));
+                return;
+            }
+        }
+    }
+    if (DEBUG_RESOLVER) Slog.d(TAG, transactionToString(transaction, mTransactionHandler));
+    executeCallbacks(transaction);
+    executeLifecycleState(transaction);
+    mPendingActions.clear();
+    if (DEBUG_RESOLVER) Slog.d(TAG, tId(transaction) + "End resolving transaction");
+}
+```
+
+### executeCallbacks\(\)
+
+```java
+/** Cycle through all states requested by callbacks and execute them at proper times. */
+@VisibleForTesting
+public void executeCallbacks(ClientTransaction transaction) {
+    final List<ClientTransactionItem> callbacks = transaction.getCallbacks();
+    if (callbacks == null || callbacks.isEmpty()) {
+        // No callbacks to execute, return early.
+        return;
+    }
+    if (DEBUG_RESOLVER) Slog.d(TAG, tId(transaction) + "Resolving callbacks in transaction");
+    final IBinder token = transaction.getActivityToken();
+    ActivityClientRecord r = mTransactionHandler.getActivityClient(token);
+    // In case when post-execution state of the last callback matches the final state requested
+    // for the activity in this transaction, we won't do the last transition here and do it when
+    // moving to final state instead (because it may contain additional parameters from server).
+    final ActivityLifecycleItem finalStateRequest = transaction.getLifecycleStateRequest();
+    final int finalState = finalStateRequest != null ? finalStateRequest.getTargetState()
+            : UNDEFINED;
+    // Index of the last callback that requests some post-execution state.
+    final int lastCallbackRequestingState = lastCallbackRequestingState(transaction);
+    final int size = callbacks.size();
+    for (int i = 0; i < size; ++i) {
+        //获取item
+        final ClientTransactionItem item = callbacks.get(i);
+        if (DEBUG_RESOLVER) Slog.d(TAG, tId(transaction) + "Resolving callback: " + item);
+        final int postExecutionState = item.getPostExecutionState();
+        final int closestPreExecutionState = mHelper.getClosestPreExecutionState(r,
+                item.getPostExecutionState());
+        if (closestPreExecutionState != UNDEFINED) {
+            cycleToPath(r, closestPreExecutionState, transaction);
+        }
+        //执行execute
+        item.execute(mTransactionHandler, token, mPendingActions);
+        item.postExecute(mTransactionHandler, token, mPendingActions);
+        if (r == null) {
+            // Launch activity request will create an activity record.
+            r = mTransactionHandler.getActivityClient(token);
+        }
+        if (postExecutionState != UNDEFINED && r != null) {
+            // Skip the very last transition and perform it by explicit state request instead.
+            final boolean shouldExcludeLastTransition =
+                    i == lastCallbackRequestingState && finalState == postExecutionState;
+            cycleToPath(r, postExecutionState, shouldExcludeLastTransition, transaction);
+        }
+    }
+}
+```
+
+### execute\(\)
+
+```java
+ @Override
+ public void execute(ClientTransactionHandler client, IBinder token,
+         PendingTransactionActions pendingActions) {
+     Trace.traceBegin(TRACE_TAG_ACTIVITY_MANAGER, "activityStart");
+     ActivityClientRecord r = new ActivityClientRecord(token, mIntent, mIdent, mInfo,
+             mOverrideConfig, mCompatInfo, mReferrer, mVoiceInteractor, mState, mPersistentState,
+             mPendingResults, mPendingNewIntents, mIsForward,
+             mProfilerInfo, client, mAssistToken);
+     client.handleLaunchActivity(r, pendingActions, null /* customIntent */);
+     Trace.traceEnd(TRACE_TAG_ACTIVITY_MANAGER);
+ }
+
+```
+
+### handleLaunchActivity\(\)
+
+```java
+/**
+    * Extended implementation of activity launch. Used when server requests a launch or relaunch.
+    */
+@Override
+public Activity handleLaunchActivity(ActivityClientRecord r,
+        PendingTransactionActions pendingActions, Intent customIntent) {
+    // If we are getting ready to gc after going to the background, well
+    // we are back active so skip it.
+    unscheduleGcIdler();
+    mSomeActivitiesChanged = true;
+
+    if (r.profilerInfo != null) {
+        mProfiler.setProfiler(r.profilerInfo);
+        mProfiler.startProfiling();
+    }
+
+    // Make sure we are running with the most recent config.
+    handleConfigurationChanged(null, null);
+
+    if (localLOGV) Slog.v(
+        TAG, "Handling launch of " + r);
+
+    // Initialize before creating the activity
+    if (!ThreadedRenderer.sRendererDisabled
+            && (r.activityInfo.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0) {
+        HardwareRenderer.preload();
+    }
+    WindowManagerGlobal.initialize();
+
+    // Hint the GraphicsEnvironment that an activity is launching on the process.
+    GraphicsEnvironment.hintActivityLaunch();
+
+    final Activity a = performLaunchActivity(r, customIntent);
+
+    if (a != null) {
+        r.createdConfig = new Configuration(mConfiguration);
+        reportSizeConfigurations(r);
+        if (!r.activity.mFinished && pendingActions != null) {
+            pendingActions.setOldState(r.state);
+            pendingActions.setRestoreInstanceState(true);
+            pendingActions.setCallOnPostCreate(true);
+        }
+    } else {
+        // If there was an error, for any reason, tell the activity manager to stop us.
+        try {
+            ActivityTaskManager.getService()
+                    .finishActivity(r.token, Activity.RESULT_CANCELED, null,
+                            Activity.DONT_FINISH_TASK_WITH_ACTIVITY);
+        } catch (RemoteException ex) {
+            throw ex.rethrowFromSystemServer();
+        }
+    }
+
+    return a;
+}
+```
+
+### performLaunchActivity\(\)
+
+```java
+private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
+    //获取ActivityInfo
+    ActivityInfo aInfo = r.activityInfo;
+    if (r.packageInfo == null) {
+        //获取Apk文件的描述类LoadedApk
+        r.packageInfo = getPackageInfo(aInfo.applicationInfo, r.compatInfo,
+                Context.CONTEXT_INCLUDE_CODE);
+    }
+
+    ComponentName component = r.intent.getComponent();
+    if (component == null) {
+        component = r.intent.resolveActivity(
+            mInitialApplication.getPackageManager());
+        r.intent.setComponent(component);
+    }
+
+    if (r.activityInfo.targetActivity != null) {
+        component = new ComponentName(r.activityInfo.packageName,
+                r.activityInfo.targetActivity);
+    }
+    //创建要启动Activity的上下文环境
+    ContextImpl appContext = createBaseContextForActivity(r);
+    Activity activity = null;
+    try {
+        //获取类加载器
+        java.lang.ClassLoader cl = appContext.getClassLoader();
+        //用类加载器创建该Activity的实例
+        activity = mInstrumentation.newActivity(
+                cl, component.getClassName(), r.intent);
+        StrictMode.incrementExpectedActivityCount(activity.getClass());
+        r.intent.setExtrasClassLoader(cl);
+        r.intent.prepareToEnterProcess();
+        if (r.state != null) {
+            r.state.setClassLoader(cl);
+        }
+    } catch (Exception e) {
+    //...
+    }
+
+    try {
+       //创建Application
+        Application app = r.packageInfo.makeApplication(false, mInstrumentation);
+
+        if (localLOGV) Slog.v(TAG, "Performing launch of " + r);
+        if (localLOGV) Slog.v(
+                TAG, r + ": app=" + app
+                + ", appName=" + app.getPackageName()
+                + ", pkg=" + r.packageInfo.getPackageName()
+                + ", comp=" + r.intent.getComponent().toShortString()
+                + ", dir=" + r.packageInfo.getAppDir());
+
+        if (activity != null) {
+            CharSequence title = r.activityInfo.loadLabel(appContext.getPackageManager());
+            Configuration config = new Configuration(mCompatConfiguration);
+            if (r.overrideConfig != null) {
+                config.updateFrom(r.overrideConfig);
+            }
+            if (DEBUG_CONFIGURATION) Slog.v(TAG, "Launching activity "
+                    + r.activityInfo.name + " with config " + config);
+            Window window = null;
+            if (r.mPendingRemoveWindow != null && r.mPreserveWindow) {
+                window = r.mPendingRemoveWindow;
+                r.mPendingRemoveWindow = null;
+                r.mPendingRemoveWindowManager = null;
+            }
+            appContext.setOuterContext(activity);
+            //初始化Activity
+            activity.attach(appContext, this, getInstrumentation(), r.token,
+                    r.ident, app, r.intent, r.activityInfo, title, r.parent,
+                    r.embeddedID, r.lastNonConfigurationInstances, config,
+                    r.referrer, r.voiceInteractor, window, r.configCallback,
+                    r.assistToken);
+
+            if (customIntent != null) {
+                activity.mIntent = customIntent;
+            }
+            r.lastNonConfigurationInstances = null;
+            checkAndBlockForNetworkAccess();
+            activity.mStartedActivity = false;
+            int theme = r.activityInfo.getThemeResource();
+            if (theme != 0) {
+                activity.setTheme(theme);
+            }
+
+            activity.mCalled = false;
+            if (r.isPersistable()) {
+                //启动Activity
+                mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);
+            } else {
+                mInstrumentation.callActivityOnCreate(activity, r.state);
+            }
+            if (!activity.mCalled) {
+                throw new SuperNotCalledException(
+                    "Activity " + r.intent.getComponent().toShortString() +
+                    " did not call through to super.onCreate()");
+            }
+            r.activity = activity;
+        }
+        r.setState(ON_CREATE);
+
+        // updatePendingActivityConfiguration() reads from mActivities to update
+        // ActivityClientRecord which runs in a different thread. Protect modifications to
+        // mActivities to avoid race.
+        synchronized (mResourcesManager) {
+            mActivities.put(r.token, r);
+        }
+
+    } catch (SuperNotCalledException e) {
+        throw e;
+
+    } catch (Exception e) {
+        if (!mInstrumentation.onException(activity, e)) {
+            throw new RuntimeException(
+                "Unable to start activity " + component
+                + ": " + e.toString(), e);
+        }
+    }
+
+    return activity;
+}
+```
+
+
+
+```java
+public void callActivityOnCreate(Activity activity, Bundle icicle,
+        PersistableBundle persistentState) {
+    prePerformCreate(activity);
+    activity.performCreate(icicle, persistentState);
+    postPerformCreate(activity);
+}
+```
+
+```java
+final void performCreate(Bundle icicle) {
+    performCreate(icicle, null);
+}
+```
+
+```java
+final void performCreate(Bundle icicle, PersistableBundle persistentState) {
+    dispatchActivityPreCreated(icicle);
+    mCanEnterPictureInPicture = true;
+    restoreHasCurrentPermissionRequest(icicle);
+    if (persistentState != null) {
+        onCreate(icicle, persistentState);
+    } else {
+        onCreate(icicle);
+    }
+    writeEventLog(LOG_AM_ON_CREATE_CALLED, "performCreate");
+    mActivityTransitionState.readState(icicle);
+    mVisibleFromClient = !mWindow.getWindowStyle().getBoolean(
+            com.android.internal.R.styleable.Window_windowNoDisplay, false);
+    mFragments.dispatchActivityCreated();
+    mActivityTransitionState.setEnterActivityOptions(this, getActivityOptions());
+    dispatchActivityPostCreated(icicle);
+}
+```
+
+## 根Activity启动过程中涉及的进程
+
+根Activity启动过程中会涉及4个进程，分别是Zygote进程、Launcher进程、AMS所在进程（SystemServer进程）、应用程序进程。它们之间的关系如图所示。
+
+![](../.gitbook/assets/image%20%2863%29.png)
+
+首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。  
+
+
+![](../.gitbook/assets/image%20%2865%29.png)
+
+如果是普通Activity启动过程会涉及几个进程呢？答案是两个，AMS所在进程和应用程序进程。实际上理解了根Activity的启动过程（根Activity的onCreate过程）。
+
+
+
+
+
+
 
