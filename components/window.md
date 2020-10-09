@@ -1,8 +1,125 @@
 # Window
 
-Window表示一个窗口的概念，在日常开发中直接接触Window的机会并不多，但是在某些特殊时候我们需要在桌面上显示一个类似悬浮窗的东西，那么这种效果就需要用到Window来实现。Window是一个抽象类，它的具体实现是PhoneWindow。创建一个Window是很简单的事，只需要通过WindowManager即可完成。WindowManager是外界访问Window的入口，Window的具体实现位于WindowManagerService中，WindowManager和WindowManagerService的交互是一个IPC过程。Android中所有的视图都是通过Window来呈现的，不管是Activity、Dialog还是Toast，它们的视图实际上都是附加在Window上的，因此Window实际是View的直接管理者。从第4章中所讲述的View的事件分发机制也可以知道，单击事件由Window传递给DecorView，然后再由DecorView传递给我们的View，就连Activity的设置视图的方法setContentView在底层也是通过Window来完成的。
+Window表示一个窗口的概念，在日常开发中直接接触Window的机会并不多，但是在某些特殊时候我们需要在桌面上显示一个类似悬浮窗的东西，那么这种效果就需要用到Window来实现。Window是一个抽象类，它的具体实现是PhoneWindow。创建一个Window是很简单的事，只需要通过WindowManager即可完成。WindowManager是外界访问Window的入口，Window的具体实现位于WindowManagerService中，WindowManager和WindowManagerService的交互是一个IPC过程。Android中所有的视图都是通过Window来呈现的，不管是Activity、Dialog还是Toast，它们的视图实际上都是附加在Window上的，因此Window实际是View的直接管理者。
 
-## Window和WindowManager
+## Window
+
+Window是一个抽象类，它的具体实现类为PhoneWindow，PhoneWindow是何时创建的呢？在Activity 启动过程中会调用ActivityThread的performLaunchActivity方法，performLaunchActivity方法中又会调用Activity的attach方法，PhoneWindow就是在Activity的attach方法中创建的，如下所示：
+
+```java
+final void attach(Context context, ActivityThread aThread,
+        Instrumentation instr, IBinder token, int ident,
+        Application application, Intent intent, ActivityInfo info,
+        CharSequence title, Activity parent, String id,
+        NonConfigurationInstances lastNonConfigurationInstances,
+        Configuration config, String referrer, IVoiceInteractor voiceInteractor,
+        Window window, ActivityConfigCallback activityConfigCallback, IBinder assistToken) {
+    attachBaseContext(context);
+
+    mFragments.attachHost(null /*parent*/);
+    //创建Window
+    mWindow = new PhoneWindow(this, window, activityConfigCallback);
+    mWindow.setWindowControllerCallback(this);
+    mWindow.setCallback(this);
+    mWindow.setOnWindowDismissedCallback(this);
+    mWindow.getLayoutInflater().setPrivateFactory(this);
+    //...
+    //设置WindowManager
+    mWindow.setWindowManager(
+            (WindowManager)context.getSystemService(Context.WINDOW_SERVICE),
+            mToken, mComponent.flattenToString(),
+            (info.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0);
+    if (mParent != null) {
+        mWindow.setContainer(mParent.getWindow());
+    }
+    mWindowManager = mWindow.getWindowManager();
+    mCurrentConfig = config;
+
+    mWindow.setColorMode(info.colorMode);
+
+    setAutofillOptions(application.getAutofillOptions());
+    setContentCaptureOptions(application.getContentCaptureOptions());
+}
+```
+
+```java
+public void setWindowManager(WindowManager wm, IBinder appToken, String appName,
+        boolean hardwareAccelerated) {
+    mAppToken = appToken;
+    mAppName = appName;
+    mHardwareAccelerated = hardwareAccelerated;
+    if (wm == null) {
+        wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
+    }
+    mWindowManager = ((WindowManagerImpl)wm).createLocalWindowManager(this);
+}
+```
+
+如果传入的WindowManager为null，就会调用Context的getSystemService方法，并传入服务的名称Context.WINDOW\_SERVICE（值为window），具体在ContextImpl中实现，如下所示
+
+```java
+//ContextImpl
+@Override
+public Object getSystemService(String name) {
+    return SystemServiceRegistry.getSystemService(this, name);
+}
+```
+
+```java
+//SystemServiceRegistry.java
+public static Object getSystemService(ContextImpl ctx, String name) {
+    //SYSTEM_SERVICE_FETCHERS是ArrayMap
+    ServiceFetcher<?> fetcher = SYSTEM_SERVICE_FETCHERS.get(name);
+    return fetcher != null ? fetcher.getService(ctx) : null;
+}
+```
+
+SYSTEM\_SERVICE\_NAMES是一个ArrayMap类型的数据，它用来存储服务的名称，那么传入的Context.WINDOW\_SERVICE到底对应着什么？我们接着往下看：
+
+```java
+//SystemServiceRegistry.java
+static{
+    registerService(Context.WINDOW_SERVICE, WindowManager.class,
+        new CachedServiceFetcher<WindowManager>() {
+    @Override
+    public WindowManager createService(ContextImpl ctx) {
+        return new WindowManagerImpl(ctx);//1
+    }});
+}
+```
+
+在SystemServiceRegistry 的静态代码块中会调用多个registerService方法，这里只列举了和本节有关的一个。registerService 方法内部会将传入的服务的名称存入到SYSTEM\_SERVICE\_NAMES中。从注释1处可以看出，传入的Context.WINDOW\_SERVICE对应的就是WindowManagerImpl实例，因此得出结论，Context的getSystemService方法得到的是WindowManagerImpl实例。我们再回到Window的setWindowManager方法，在注释1处得到WindowManagerImpl实例后转为WindowManager 类型。
+
+```java
+private final Window mParentWindow;
+private WindowManagerImpl(Context context, Window parentWindow) {
+    mContext = context;
+    mParentWindow = parentWindow;
+}
+public WindowManagerImpl createLocalWindowManager(Window parentWindow) {
+    return new WindowManagerImpl(mContext, parentWindow);
+}
+```
+
+createLocalWindowManager方法同样也是创建WindowManagerImpl，不同的是这次创建WindowManagerImpl 时将创建它的Window 作为参数传了进来，这样WindowManagerImpl就持有了Window的引用，可以对Window进行操作，比如在Window中添加View，会调用WindowManagerImpl的addView方法，如下所示：
+
+```java
+@Override
+public void addView(@NonNull View view, @NonNull ViewGroup.LayoutParams params) {
+    applyDefaultToken(params);
+    mGlobal.addView(view, params, mContext.getDisplay(), mParentWindow);
+}
+```
+
+在注释1处调用了WindowManagerGlobal的addView方法，其中最后一个参数mParentWindow就是上面提到的Window，可以看出WindowManagerImpl虽然是WindowManager的实现类，但是没有实现什么功能，而是将功能实现委托给了WindowManagerGlobal，这里用到的是桥接模式。
+
+```java
+private final WindowManagerGlobal mGlobal = WindowManagerGlobal.getInstance();
+```
+
+![](../.gitbook/assets/image%20%2867%29.png)
+
+## WindowManager
 
 为了分析Window的工作机制，我们需要先了解如何使用WindowManager添加一个Window。下面的代码演示了通过WindowManager添加Window的过程，是不是很简单呢？
 
@@ -42,8 +159,6 @@ Type参数表示Window的类型，Window有三种类型。
 * 应用Window：应用类Window对应着一个Activity。
 * 子Window：子Window不能单独存在，它需要附属在特定的父Window之中，比如常见的一些Dialog就是一个子Window。
 * 系统Window：系统Window是需要声明权限才能创建的Window，比如Toast和系统状态栏这些都是系统Window。
-
-
 
 Window是分层的，每个Window都有对应的z-ordered，层级大的会覆盖在层级小的Window的上面，这和HTML中的z-index的概念是完全一致的。在三类Window中，应用Window的层级范围是1～99，子Window的层级范围是1000～1999，系统Window的层级范围是2000～2999，这些层级范围对应着WindowManager.LayoutParams的type参数。如果想要Window位于所有Window的最顶层，那么采用较大的层级即可。很显然系统Window的层级是最大的，而且系统层级有很多值，一般我们可以选用TYPE\_SYSTEM\_OVERLAY或者TYPE\_SYSTEM\_ERROR，如果采用TYPE\_SYSTEM\_ERROR，只需要为type参数指定这个层级即可：mLayoutParams.type =LayoutParams.TYPE\_SYSTEM\_ERROR；同时声明权限：
 
@@ -233,7 +348,7 @@ public void requestLayout() {
 }
 ```
 
-接着会通过WindowSession最终来完成Window的添加过程。在下面的代码中，mWindowSession的类型是IWindowSession，它是一个Binder对象，真正的实现类是Session，也就是Window的添加过程是一次IPC调用。
+接着会通过WindowSession最终来完成Window的添加过程。在下面的代码中，mWindowSession的类型是IWindowSession，它是**一个**Binder对象，真正的实现类是Session，也就是Window的添加过程是一次IPC调用。
 
 ```java
  //ViewRootImpl setView方法
@@ -263,6 +378,56 @@ try {
 }
 ```
 
+mWindowSession是IWindowSession类型的，它是一个Binder对象，用于进行进程间通信，IWindowSession是Client端的代理，它的Server端的实现为Session，此前的代码逻辑都是运行在本地进程的，而Session的addToDisplay方法则运行在WMS所在的进程（SystemServer进程）中。
+
+```java
+ public ViewRootImpl(Context context, Display display) {
+     mContext = context;
+     mWindowSession = WindowManagerGlobal.getWindowSession();
+ }
+```
+
+```java
+//WindowManagerGlobal.java
+@UnsupportedAppUsage
+public static IWindowSession getWindowSession() {
+    synchronized (WindowManagerGlobal.class) {
+        if (sWindowSession == null) {
+            try {
+                // Emulate the legacy behavior.  The global instance of InputMethodManager
+                // was instantiated here.
+                // TODO(b/116157766): Remove this hack after cleaning up @UnsupportedAppUsage
+                InputMethodManager.ensureDefaultInstanceForDefaultDisplayIfNecessary();
+                IWindowManager windowManager = getWindowManagerService();
+                //获取WindowManagerService
+                //调用WindowManagerService的openSession方法
+                sWindowSession = windowManager.openSession(
+                        new IWindowSessionCallback.Stub() {
+                            @Override
+                            public void onAnimatorScaleChanged(float scale) {
+                                ValueAnimator.setDurationScale(scale);
+                            }
+                        });
+            } catch (RemoteException e) {
+                throw e.rethrowFromSystemServer();
+            }
+        }
+        return sWindowSession;
+    }
+}
+```
+
+```java
+//WindowManagerService.java 
+@Override
+public IWindowSession openSession(IWindowSessionCallback callback) {
+    return new Session(this, callback);
+}
+```
+
+![](../.gitbook/assets/image%20%2868%29.png)
+
+  
 在Session内部会通过WindowManagerService来实现Window的添加，代码如下所示。
 
 ```java
@@ -279,7 +444,7 @@ public int addToDisplay(IWindow window, int seq, WindowManager.LayoutParams attr
 }
 ```
 
-如此一来，Window的添加请求就交给WindowManagerService去处理了，在Window-ManagerService内部会为每一个应用保留一个单独的Session。具体Window在Window-ManagerService内部是怎么添加的，本章不对其进行进一步的分析，这是因为到此为止我们对Window的添加这一流程已经清楚了。
+在addToDisplay方法中调用了WMS的addWindow方法，并将自身也就是Session作为参数传了进去，每个应用程序进程都会对应一个Session，WMS会用ArrayList来保存这些Session，这样剩下的工作就交给WMS来处理，在WMS中会为这个添加的窗口分配Surface，并确定窗口显示次序，可见负责显示界面的是画布Surface，而不是窗口本身。WMS会将它所管理的Surface 交由SurfaceFlinger处理，SurfaceFlinger会将这些Surface混合并绘制到屏幕上。
 
 ### Window的删除过程
 
@@ -384,7 +549,7 @@ public void updateViewLayout(View view, ViewGroup.LayoutParams params) {
 
 updateViewLayout方法做的事情就比较简单了，首先它需要更新View的LayoutParams并替换掉老的LayoutParams，接着再更新ViewRootImpl中的LayoutParams，这一步是通过ViewRootImpl的setLayoutParams方法来实现的。在ViewRootImpl中会通过scheduleTraversals方法来对View重新布局，包括测量、布局、重绘这三个过程。除了View本身的重绘以外，ViewRootImpl还会通过WindowSession来更新Window的视图，这个过程最终是由WindowManagerService的relayoutWindow\(\)来具体实现的，它同样是一个IPC过程。
 
-## Window的创建过程
+
 
 
 

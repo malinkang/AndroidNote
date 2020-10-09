@@ -24,6 +24,7 @@
 * [组件](components/README.md)
   * [Activity](components/activity.md)
   * [Window](components/window.md)
+  * [WMS](components/wms.md)
   * [Activity启动流程分析](components/activity-qi-dong-liu-cheng-fen-xi.md)
   * [Intent](components/intent.md)
   * [服务](components/services/README.md)
