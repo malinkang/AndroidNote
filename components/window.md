@@ -4,6 +4,14 @@ Window表示一个窗口的概念，在日常开发中直接接触Window的机�
 
 ## Window
 
+> Abstract base class for a top-level window look and behavior policy. An instance of this class should be used as the top-level view added to the window manager. It provides standard UI policies such as a background, title area, default key processing, etc.
+
+顶层窗口外观和行为策略的抽象基类。 该类的一个实例应被用作添加到窗口管理器的顶层视图。它提供了标准的UI策略，如背景、标题区域、默认键处理等。
+
+> The only existing implementation of this abstract class is android.view.PhoneWindow, which you should instantiate when needing a Window.
+
+这个抽象类的唯一现有实现是 android.view.PhoneWindow，当你需要一个Window时，你应该实例化它。
+
 Window是一个抽象类，它的具体实现类为PhoneWindow，PhoneWindow是何时创建的呢？在Activity 启动过程中会调用ActivityThread的performLaunchActivity方法，performLaunchActivity方法中又会调用Activity的attach方法，PhoneWindow就是在Activity的attach方法中创建的，如下所示：
 
 ```java
@@ -118,6 +126,14 @@ private final WindowManagerGlobal mGlobal = WindowManagerGlobal.getInstance();
 ```
 
 ![](../.gitbook/assets/image%20%2867%29.png)
+
+## ViewRootImpl
+
+> The top of a view hierarchy, implementing the needed protocol between View and the WindowManager. This is for the most part an internal implementation detail of WindowManagerGlobal.
+
+视图层次结构的顶端，实现View和WindowManager之间所需的协议。这在大多数情况下是WindowManagerGlobal的内部实现细节。
+
+
 
 ## WindowManager
 
