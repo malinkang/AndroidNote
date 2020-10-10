@@ -1,9 +1,5 @@
 # Android学习资料
 
-## Android面试题
-
-{% embed url="https://github.com/Moosphan/Android-Daily-Interview" %}
-
 ## Android技术博客
 
 {% embed url="http://gityuan.com/" %}

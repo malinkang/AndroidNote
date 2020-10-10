@@ -2,7 +2,7 @@
 
 * [Android学习资料](README.md)
 * [Android面试题整理](interview-questions.md)
-* [UI](ui/README.md)
+* [界面](ui/README.md)
   * [TextView](ui/textview.md)
   * [EditText](ui/edittext.md)
   * [菜单](ui/menu.md)
