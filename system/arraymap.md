@@ -1,8 +1,22 @@
 # ArrayMap
 
-转载自[深度解读ArrayMap优势与缺陷](http://gityuan.com/2019/01/13/arraymap/)
+
 
 ## 一、引言
+
+
+
+> ArrayMap is a generic key-&gt;value mapping data structure that is designed to be more memory efficient than a traditional HashMap. It keeps its mappings in an array data structure -- an integer array of hash codes for each item, and an Object array of the key/value pairs. This allows it to avoid having to create an extra object for every entry put in to the `map`, and it also tries to control the growth of the size of these arrays more aggressively \(since growing them only requires copying the entries in the array, not rebuilding a hash map\).
+
+ArrayMap是一个通用的键-&gt;值映射数据结构，它被设计成比传统的HashMap更节省内存。 它将其映射保存在一个数组数据结构中--一个包含每个项目的哈希码的整数数组和一个包含键/值对的对象数组。 这使得它可以避免为每一个输入到`map`的条目创建一个额外的对象，而且它还试图更积极地控制这些数组大小的增长（因为增长它们只需要复制数组中的条目，而不是重建一个哈希图）。
+
+> Note that this implementation is not intended to be appropriate for data structures that may contain large numbers of items. It is generally slower than a traditional HashMap, since lookups require a binary search and adds and removes require inserting and deleting entries in the array. For containers holding up to hundreds of items,the performance difference is not significant, less than 50%.
+
+请注意，这个实现并不适合可能包含大量项的数据结构。 它通常比传统的HashMap慢，因为查找需要二进制搜索，添加和删除需要插入 和删除数组中的条目。 对于容纳数百个项目的容器，性能差异不大，小于50%。
+
+> Because this container is intended to better balance memory use, unlike most other standard Java containers it will shrink its array as items are removed from it. Currently you have no control over this shrinking -- if you set a capacity and then remove an item, it may reduce the capacity to better match the current size. In the future an explicit call to set the capacity should turn off this aggressive shrinking behavior.
+
+因为这个容器的目的是为了更好地平衡内存的使用，与大多数其他标准Java容器不同的是，它将在从其中移除项目时收缩其数组。 目前你无法控制这种收缩 -- 如果你设置了一个容量，然后删除了一个项目，它可能会减少容量以更好地匹配当前的大小。 在未来，显式调用设置容量应该会关闭这种激进的缩减行为。
 
 在移动设备端内存资源很珍贵，HashMap为实现快速查询带来了很大内存的浪费。为此，2013年5月20日Google工程师Dianne Hackborn在Android系统源码中新增ArrayMap类，从Android源码中发现有不少提交专门把之前使用HashMap的地方改用ArrayMap，不仅如此，大量的应用开发者中广为使用。
 
@@ -17,7 +31,7 @@
 ### 2.1 基本成员变量
 
 ```java
-public class SimpleArrayMap<K, V> {
+public final class ArrayMap<K, V> implements Map<K, V> {
     private static final boolean DEBUG = false;
     private static final String TAG = "ArrayMap";
 
@@ -45,21 +59,34 @@ public class SimpleArrayMap<K, V> {
     private static final int CACHE_SIZE = 10;
 
     /**
+     * Special hash array value that indicates the container is immutable.
+     */
+    static final int[] EMPTY_IMMUTABLE_INTS = new int[0];
+
+    /**
+     * @hide Special immutable empty ArrayMap.
+     */
+    public static final ArrayMap EMPTY = new ArrayMap<>(-1);
+
+    /**
      * Caches of small array objects to avoid spamming garbage.  The cache
      * Object[] variable is a pointer to a linked list of array objects.
      * The first entry in the array is a pointer to the next array in the
      * list; the second entry is a pointer to the int[] hash code array for it.
      */
-    static @Nullable Object[] mBaseCache;
+    static Object[] mBaseCache;
     static int mBaseCacheSize;
-    static @Nullable Object[] mTwiceBaseCache;
+    static Object[] mTwiceBaseCache;
     static int mTwiceBaseCacheSize;
 
-    int[] mHashes; //由key的hashcode所组成的数组
-    Object[] mArray;//由key-value对所组成的数组，是mHashes大小的2倍
+    final boolean mIdentityHashCode;=
+    int[] mHashes;
+    Object[] mArray;
     int mSize;
 }
 ```
+
+
 
 1）ArrayMap对象的数据储存格式如图所示：
 
@@ -68,7 +95,7 @@ public class SimpleArrayMap<K, V> {
 
 ![](../.gitbook/assets/image%20%2822%29.png)
 
-其中mSize记录着该ArrayMap对象中有多少对数据，执行put\(\)或者append\(\)操作，则mSize会加1，执行remove\(\)，则mSize会减1。mSize往往小于mHashes.length，如果mSize大于或等于mHashes.length，则说明mHashes和mArray需要扩容。
+其中`mSize`记录着该`ArrayMap`对象中有多少对数据，执行`put()`或者`append()`操作，则mSize会加1，执行`remove()`，则mSize会减1。mSize往往小于mHashes.length，如果mSize大于或等于mHashes.length，则说明mHashes和mArray需要扩容。
 
 2）`ArrayMap`类有两个非常重要的静态成员变量`mBaseCache`和`mTwiceBaseCacheSize`，用于`ArrayMap`所在进程的全局缓存功能：
 
@@ -86,7 +113,7 @@ ArrayMap是专为Android优化而设计的Map对象，使用场景比较高频�
 
 ```java
 private static void freeArrays(final int[] hashes, final Object[] array, final int size) {
-    if (hashes.length == (BASE_SIZE*2)) {  //当释放的是大小为8的对象
+    if (hashes.length == (BASE_SIZE*2)) {  //当释放的是ArrayMap大小为8的对象
         synchronized (ArrayMap.class) {
             // 当大小为8的缓存池的数量小于10个，则将其放入缓存池
             if (mTwiceBaseCacheSize < CACHE_SIZE) { 
@@ -900,7 +927,7 @@ private void allocArrays(final int size) {
   * ArrayMap和SparseArray采用的都是两个数组，Android专门针对内存优化而设计的
   * HashMap采用的是数据+链表+红黑树
 * 内存优化
-  * ArrayMap比HashMap更节省内存，综合性能方面在数据量不大的情况下，推荐使用ArrayMap；
+  * ArrayMap比HashMap更节省内存因为不必创建额外的Entry对象，而且有内存收紧机制，综合性能方面在数据量不大的情况下，推荐使用ArrayMap；
   * Hash需要创建一个额外对象来保存每一个放入map的entry，且容量的利用率比ArrayMap低，整体更消耗内存
   * SparseArray比ArrayMap节省1/3的内存，但SparseArray只能用于key为int类型的Map，所以int类型的Map数据推荐使用SparseArray；
 * 性能方面：
