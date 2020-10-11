@@ -14,7 +14,7 @@
 
 `RequestBody`主要通过`writeTo`方法将请求内容写入到`BufferedSink`。`RequestBody`提供了3个`create`静态方法来创建`RequestBody`，此外`RequestBody`还包含两个子类。
 
-![RequestBody](https://github.com/malinkang/AndroidNote/tree/d1597593e5ee17033c5f2c57144388148a98c9f3/network/images/RequestBody.png)
+![](../../.gitbook/assets/RequestBody.png)
 
 `FormBody`用于表单提交，`MultipartBody`用于多内容提交。
 
@@ -232,8 +232,6 @@ void executeOn(ExecutorService executorService) {
 ## 拦截器
 
 `RealInterceptorChain`的proceed主要负责创建下一个`InterceptorChain`，并传递给下一个拦截器Interceptor，可以简单的看做 遍历所有的Interceptor，InterceptorChain主要做一个next的操作。`Interceptor`的`proceed`负责主要的功能。
-
-![image-20191113201353264](https://github.com/malinkang/AndroidNote/tree/d1597593e5ee17033c5f2c57144388148a98c9f3/network/images/interceptor.png)
 
 ```java
 Response getResponseWithInterceptorChain() throws IOException {
