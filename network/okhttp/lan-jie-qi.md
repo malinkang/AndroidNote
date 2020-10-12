@@ -1,4 +1,4 @@
-# 拦截器
+# OkHttp拦截器
 
 拦截器是一个强大的机制，可以监控、重写和重试调用。这里有一个简单的拦截器，可以记录发出的请求和收到的响应。
 
@@ -121,17 +121,26 @@ Connection: keep-alive
 * 不需要担心重定向和重试等中间响应。 
 * 总是被调用一次，即使HTTP响应是从缓存中提供的。
 * 观察应用程序的原意。不关心OkHttp注入的头信息，如If-None-Match。
-* 允许短路，不调用Chain.proceed\(\)。
-* 允许重试和多次调用Chain.proceed\(\)。 
-* 可以使用withConnectTimeout、withReadTimeout、withWriteTimeout调整Call超时。
+* 允许短路，不调用`Chain.proceed()`。
+* 允许重试和多次调用`Chain.proceed()`。 
+* 可以使用`withConnectTimeout`、`withReadTimeout`、`withWriteTimeout`调整Call超时。
+
+### 网络拦截器
+
+* 能够对重定向和重试等中间响应进行操作。 
+* 不调用对网络短路的缓存响应。 
+* 在数据将在网络上传输时就观察数据。 
+* 访问承载请求的连接。
+
+
 
 
 
 ![](../../.gitbook/assets/image%20%2872%29.png)
 
-`CallServerInterceptor`不会执行chain的proceed。所以CallServerInterceptor必须放最后一个。
+`CallServerInterceptor`不会执行chain的proceed。所以`CallServerInterceptor`必须放最后一个。
 
-### 参考
+## 参考
 
 * [Interceptors](https://square.github.io/okhttp/interceptors/)
 
