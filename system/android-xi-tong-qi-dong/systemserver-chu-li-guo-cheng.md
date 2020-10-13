@@ -1,0 +1,4 @@
+# SystemServer处理过程
+
+SystemServer进程主要用于创建系统服务，我们熟知的AMS、WMS和PMS都是由它来创建的，因此掌握SystemServer进程是如何启动的，它在启动时做了哪些工作是十分必要的。
+

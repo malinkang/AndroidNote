@@ -924,7 +924,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
         r.intent.setComponent(component);
     }
 
-    if (r.activityInfo.targetActivity != null) {
+    if (r.activityInfo.targetActivity ! null) {
         component = new ComponentName(r.activityInfo.packageName,
                 r.activityInfo.targetActivity);
     }
