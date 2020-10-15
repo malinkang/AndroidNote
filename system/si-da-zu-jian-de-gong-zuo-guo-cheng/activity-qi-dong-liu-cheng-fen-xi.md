@@ -12,7 +12,7 @@ Activity的启动过程比较复杂，因此这里分为3个部分来讲，分�
 
 Launcher请求AMS的时序图如图所示
 
-![](../.gitbook/assets/image%20%2866%29.png)
+![](../../.gitbook/assets/image%20%2866%29.png)
 
 当我们点击应用程序的快捷图标时，就会调用Launcher的startActivitySafely方法，如下所示：
 
@@ -186,7 +186,7 @@ private static final Singleton<IActivityTaskManager> IActivityTaskManagerSinglet
 
 Launcher请求ActivityTaskManagerService后，代码逻辑已经进入ActivityTaskManagerService中，接着是AMS到ApplicationThread的调用流程，时序图如图所示
 
-![](../.gitbook/assets/image%20%2864%29.png)
+![](../../.gitbook/assets/image%20%2864%29.png)
 
 ### startActivity\(\)
 
@@ -1071,12 +1071,12 @@ final void performCreate(Bundle icicle, PersistableBundle persistentState) {
 
 根Activity启动过程中会涉及4个进程，分别是Zygote进程、Launcher进程、AMS所在进程（SystemServer进程）、应用程序进程。它们之间的关系如图所示。
 
-![](../.gitbook/assets/image%20%2863%29.png)
+![](../../.gitbook/assets/image%20%2863%29.png)
 
 首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。  
 
 
-![](../.gitbook/assets/image%20%2865%29.png)
+![](../../.gitbook/assets/image%20%2865%29.png)
 
 如果是普通Activity启动过程会涉及几个进程呢？答案是两个，AMS所在进程和应用程序进程。实际上理解了根Activity的启动过程（根Activity的onCreate过程）。
 
