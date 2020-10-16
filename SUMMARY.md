@@ -97,7 +97,6 @@
   * [Android图形系统概述](system/android-tu-xing-xi-tong-gai-shu.md)
   * [Choreographer原理](system/choreographer-yuan-li.md)
   * [RecyclerView](system/recyclerview.md)
-  * [HashMap](system/hashmap.md)
   * [Handler使用](system/handler-shi-yong.md)
   * [Handler源码分析](system/handler.md)
 
