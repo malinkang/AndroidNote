@@ -98,7 +98,6 @@
   * [Choreographer原理](system/choreographer-yuan-li.md)
   * [RecyclerView](system/recyclerview.md)
   * [HashMap](system/hashmap.md)
-  * [ArrayMap](system/arraymap.md)
   * [Handler使用](system/handler-shi-yong.md)
   * [Handler源码分析](system/handler.md)
 
