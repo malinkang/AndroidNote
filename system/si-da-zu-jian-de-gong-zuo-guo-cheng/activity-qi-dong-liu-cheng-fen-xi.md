@@ -156,7 +156,7 @@ public ActivityResult execStartActivity(
 }
 ```
 
-首先调用ActivityTaskManager的getService方法来获取IActivityTaskManager的代理对象，接着调用它的startActivity方法。
+首先调用`ActivityTaskManager`的`getService`方法来获取`IActivityTaskManager`的代理对象，接着调用它的`startActivity`方法。
 
 ### getService\(\)
 
@@ -1027,6 +1027,29 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
     }
 
     return activity;
+}
+```
+
+### Instrumentation\#newActivity\(\)
+
+```java
+public Activity newActivity(ClassLoader cl, String className,
+        Intent intent)
+        throws InstantiationException, IllegalAccessException,
+        ClassNotFoundException {
+    String pkg = intent != null && intent.getComponent() != null
+            ? intent.getComponent().getPackageName() : null;
+    //调用AppComponentFactory的instantiateActivity方法
+    return getFactory(pkg).instantiateActivity(cl, className, intent);
+}
+```
+
+```java
+//frameworks/base/core/java/android/app/AppComponentFactory.java
+public @NonNull Activity instantiateActivity(@NonNull ClassLoader cl, @NonNull String className,
+        @Nullable Intent intent)
+        throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+    return (Activity) cl.loadClass(className).newInstance();
 }
 ```
 
