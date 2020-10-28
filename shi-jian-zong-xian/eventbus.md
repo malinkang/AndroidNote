@@ -1,10 +1,10 @@
-# EventBus
+# EventBus源码分析
 
 ## EventBus创建
 
 ### getDefault\(\)
 
-在`getDefault()`中使用了双重校验并加锁的单例模式来创建EventBus实例。
+在`getDefault()`中使用了双重校验并加锁的单例模式来创建`EventBus`实例。
 
 ```java
     /** Convenience singleton for apps using a process-wide EventBus instance. */
