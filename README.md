@@ -2,6 +2,8 @@
 
 ## Android技术博客
 
+{% embed url="https://medium.com/androiddevelopers" %}
+
 {% embed url="http://gityuan.com/" %}
 
 {% embed url="https://androidperformance.com/" %}
