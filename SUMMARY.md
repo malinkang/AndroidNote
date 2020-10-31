@@ -64,7 +64,7 @@
   * [EventBus源码分析](shi-jian-zong-xian/eventbus.md)
   * [Untitled](shi-jian-zong-xian/untitled.md)
 * [架构](jia-gou.md)
-* [JetPack](jetpacket/README.md)
+* [Jetpack](jetpacket/README.md)
   * [Lifecycle源码分析](jetpacket/lifecycle-yuan-ma-fen-xi.md)
   * [ViewModel 概览](jetpacket/viewmodel-gai-lan.md)
   * [ViewModel源码分析](jetpacket/viewmodel-yuan-ma-fen-xi.md)

@@ -1,2 +1,2 @@
-# JetPack
+# Jetpack
 
