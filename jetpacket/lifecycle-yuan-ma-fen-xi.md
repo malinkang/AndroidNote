@@ -113,10 +113,6 @@ public enum State {
 }
 ```
 
-### 
-
-
-
 ## LifecycleOwner
 
 `LifecycleOwner`即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。
