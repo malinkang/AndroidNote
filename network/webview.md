@@ -144,6 +144,7 @@ public void addPossiblyUnsafeJavascriptInterface(Object object, String name,
 ## 更多阅读
 
 * [https://tech.meituan.com/2017/06/09/webviewperf.html](https://tech.meituan.com/2017/06/09/webviewperf.html)
+* [https://mp.weixin.qq.com/s/Xqr6rQBbx7XPoBESEFuXJw](https://mp.weixin.qq.com/s/Xqr6rQBbx7XPoBESEFuXJw)
 * [WebView Api](http://developer.android.com/reference/android/webkit/WebView.html)
 * [Building Web Apps in WebView](http://developer.android.com/guide/webapps/webview.html)
 * [WebView乱码解决](http://stackoverflow.com/questions/3961589/android-webview-and-loaddata)
