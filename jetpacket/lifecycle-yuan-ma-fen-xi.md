@@ -289,6 +289,29 @@ static void dispatch(@NonNull Activity activity, @NonNull Lifecycle.Event event)
 }
 ```
 
+## 
+
+```java
+protected Entry<K, V> put(@NonNull K key, @NonNull V v) {
+    //创建Entry
+    Entry<K, V> newEntry = new Entry<>(key, v);
+    //size递增
+    mSize++;
+    //如果mEnd == null说明链表为空
+    if (mEnd == null) {
+        //mStart和mEnd赋值
+        mStart = newEntry;
+        mEnd = mStart;
+        return newEntry;
+    }
+    //添加到末尾
+    mEnd.mNext = newEntry;
+    newEntry.mPrevious = mEnd;
+    mEnd = newEntry;
+    return newEntry;
+}
+```
+
 ## LifecycleRegistry
 
 `LifecycleRegistry`是`Lifecycle`的子类，实现了具体的添加、删除`LifecycleObserver`和处理`Event`的操作。`ComponentActivity`就是直接调用`LifecycleRegistry`的构造函数创建`Lifecycle`实例。
@@ -334,7 +357,7 @@ public void addObserver(@NonNull LifecycleObserver observer) {
         // it is null we should be destroyed. Fallback quickly
         return;
     }
-    //正在添加Observer或者
+    //正在添加Observer或者正在处理事件
     boolean isReentrance = mAddingObserverCounter != 0 || mHandlingEvent;
     State targetState = calculateTargetState(observer);
     mAddingObserverCounter++;
@@ -377,6 +400,7 @@ static class ObserverWithState {
 
 ```java
 public void handleLifecycleEvent(@NonNull Lifecycle.Event event) {
+    //获取Event对应的State
     State next = getStateAfter(event);
     moveToState(next);
 }
