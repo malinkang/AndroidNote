@@ -113,6 +113,8 @@ public enum State {
 }
 ```
 
+![](../.gitbook/assets/image%20%28107%29.png)
+
 ## LifecycleOwner
 
 `LifecycleOwner`即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。
@@ -125,8 +127,6 @@ public interface LifecycleOwner {
 ```
 
 ![](../.gitbook/assets/image%20%2895%29.png)
-
-
 
 ## LifecycleObserver
 
@@ -289,26 +289,143 @@ static void dispatch(@NonNull Activity activity, @NonNull Lifecycle.Event event)
 }
 ```
 
-## 
+## SafeIterableMap
+
+![](../.gitbook/assets/image%20%28103%29.png)
+
+`Lifecycle`中的所有`Observer`通过`SafeIterableMap`来管理的。`SafeIterableMap`的内部类`Entry`是一个双向链表。
 
 ```java
-protected Entry<K, V> put(@NonNull K key, @NonNull V v) {
-    //创建Entry
-    Entry<K, V> newEntry = new Entry<>(key, v);
-    //size递增
-    mSize++;
-    //如果mEnd == null说明链表为空
-    if (mEnd == null) {
-        //mStart和mEnd赋值
-        mStart = newEntry;
-        mEnd = mStart;
-        return newEntry;
+static class Entry<K, V> implements Map.Entry<K, V> {
+    @NonNull
+    final K mKey;
+    @NonNull
+    final V mValue;
+    Entry<K, V> mNext; //指向下一个
+    Entry<K, V> mPrevious; //指向后一个
+    private WeakHashMap<SupportRemove<K, V>, Boolean> mIterators = new WeakHashMap<>();
+}
+```
+
+`SafeIterableMap`内部定义的几个迭代器。
+
+![](../.gitbook/assets/image%20%28101%29.png)
+
+`ListIterator`是一个抽象类，它的next方法会调用抽象方法`forward`。有两个子类`AscendingIterator`和`DescendingIterator`，分别实现正序遍历和逆序遍历。
+
+```java
+private abstract static class ListIterator<K, V> implements Iterator<Map.Entry<K, V>>,SupportRemove<K, V> {
+    Entry<K, V> mExpectedEnd;
+    Entry<K, V> mNext;
+    ListIterator(Entry<K, V> start, Entry<K, V> expectedEnd) {
+        this.mExpectedEnd = expectedEnd; //结束点
+        this.mNext = start; //起始点
     }
-    //添加到末尾
-    mEnd.mNext = newEntry;
-    newEntry.mPrevious = mEnd;
-    mEnd = newEntry;
-    return newEntry;
+    @Override
+    public boolean hasNext() {
+        return mNext != null;
+    }
+    @SuppressWarnings("ReferenceEquality")
+    private Entry<K, V> nextNode() {
+        if (mNext == mExpectedEnd || mExpectedEnd == null) {
+            return null;
+        }
+        //调用forward方法
+        return forward(mNext);
+    }
+    @Override
+    public Map.Entry<K, V> next() {
+        Map.Entry<K, V> result = mNext;
+        mNext = nextNode();
+        return result;
+    }   
+}
+```
+
+`AscendingIterator`起始点指向头部，不断向后遍历，`DescendingIterator`起始点指向尾部，不断向前遍历。
+
+![](../.gitbook/assets/image%20%28102%29.png)
+
+```java
+static class AscendingIterator<K, V> extends ListIterator<K, V> {
+    AscendingIterator(Entry<K, V> start, Entry<K, V> expectedEnd) {
+        super(start, expectedEnd);
+    }
+    @Override
+    Entry<K, V> forward(Entry<K, V> entry) {
+        return entry.mNext; //向后遍历
+    }
+    @Override
+    Entry<K, V> backward(Entry<K, V> entry) {
+        return entry.mPrevious;
+    }
+}
+```
+
+```java
+private static class DescendingIterator<K, V> extends ListIterator<K, V> {
+    DescendingIterator(Entry<K, V> start, Entry<K, V> expectedEnd) {
+        super(start, expectedEnd);
+    }
+    @Override
+    Entry<K, V> forward(Entry<K, V> entry) {
+        return entry.mPrevious; //向前遍历
+    }
+    @Override
+    Entry<K, V> backward(Entry<K, V> entry) {
+        return entry.mNext;
+    }
+}
+```
+
+```java
+public Iterator<Map.Entry<K, V>> descendingIterator() {
+    //mEnd作为起始点
+    DescendingIterator<K, V> iterator = new DescendingIterator<>(mEnd, mStart);
+    mIterators.put(iterator, false);
+    return iterator;
+}
+public Iterator<Map.Entry<K, V>> iterator() {
+    //mStart作为起始点
+    ListIterator<K, V> iterator = new AscendingIterator<>(mStart, mEnd);
+    mIterators.put(iterator, false);
+    return iterator;
+}
+```
+
+```java
+private class IteratorWithAdditions implements Iterator<Map.Entry<K, V>>, SupportRemove<K, V> {
+    private Entry<K, V> mCurrent; //当前值
+    private boolean mBeforeStart = true;
+    IteratorWithAdditions() {
+    }
+    @SuppressWarnings("ReferenceEquality")
+    @Override
+    public void supportRemove(@NonNull Entry<K, V> entry) {
+        if (entry == mCurrent) {
+            mCurrent = mCurrent.mPrevious;
+            mBeforeStart = mCurrent == null;
+        }
+    }
+    @Override
+    public boolean hasNext() {
+        if (mBeforeStart) {
+            return mStart != null;
+        }
+        return mCurrent != null && mCurrent.mNext != null;
+    }
+    @Override
+    public Map.Entry<K, V> next() {
+        //mBeforeStart默认是true 
+        if (mBeforeStart) {
+            //第一次调用next 
+            mBeforeStart = false;
+            mCurrent = mStart;
+        } else {
+            mCurrent = mCurrent != null ? mCurrent.mNext : null;
+        }
+        return mCurrent;
+    }
 }
 ```
 
@@ -330,6 +447,9 @@ public Lifecycle getLifecycle() {
 //持有LifecycleOwner的一个弱引用避免内存泄露
 private State mState;
 private final WeakReference<LifecycleOwner> mLifecycleOwner;
+//创建FastSafeIterableMap对象存储
+private FastSafeIterableMap<LifecycleObserver, ObserverWithState> mObserverMap =
+            new FastSafeIterableMap<>();
 public LifecycleRegistry(@NonNull LifecycleOwner provider) {
     mLifecycleOwner = new WeakReference<>(provider);
     mState = INITIALIZED; //当前状态为初始化
@@ -337,6 +457,8 @@ public LifecycleRegistry(@NonNull LifecycleOwner provider) {
 ```
 
 ### addObserver\(\)
+
+`addObserver`方法中会把传入的`Observer`对象包装成一个`ObserverWithState`对象，并存入到`mObserverMap`中。并且获取当前的状态`targetState`与`Observer`的状态进行比较，如果`Observer`的状态小于目标状态则会循环分发事件，直到`Observer`的状态和`targetState`一致。比如`targetState`是`STARTED`类，`Observer`会依次分发`ON_CREATE`、`ON_START`和`ON_RESUME`事件。
 
 ```java
 @Override
@@ -359,11 +481,15 @@ public void addObserver(@NonNull LifecycleObserver observer) {
     }
     //正在添加Observer或者正在处理事件
     boolean isReentrance = mAddingObserverCounter != 0 || mHandlingEvent;
+    //计算目标状态
     State targetState = calculateTargetState(observer);
+    //正在添加的Observer数量
     mAddingObserverCounter++;
+    //如果Observer的状态小于目标状态
     while ((statefulObserver.mState.compareTo(targetState) < 0
             && mObserverMap.contains(observer))) {
         pushParentState(statefulObserver.mState);
+        //分发事件
         statefulObserver.dispatchEvent(lifecycleOwner, upEvent(statefulObserver.mState));
         popParentState();
         // mState / subling may have been changed recalculate
@@ -376,6 +502,23 @@ public void addObserver(@NonNull LifecycleObserver observer) {
     mAddingObserverCounter--;
 }
 ```
+
+```java
+private State calculateTargetState(LifecycleObserver observer) {
+    //获取前一个Entry
+    Entry<LifecycleObserver, ObserverWithState> previous = mObserverMap.ceil(observer);
+    //如果前一个Entry不为空，返回前一个Entry的状态
+    State siblingState = previous != null ? previous.getValue().mState : null;
+    //获取parentState
+    State parentState = !mParentStates.isEmpty() ? mParentStates.get(mParentStates.size() - 1)
+            : null;
+    return min(min(mState, siblingState), parentState);
+}
+```
+
+### ObserverWithState
+
+`ObserverWithState`是`LifecycleRegistry`的内部类。通过调用`Lifecycling`的`lifecycleEventObserver`方法，将传入的`Observer`对象转换为`LifecycleEventObserver`对象。并且添加了一个`mState`字段来保存`Observer`的状态。
 
 ```java
 //ObserverWithState是LifecycleRegistry的静态内部类
@@ -396,7 +539,9 @@ static class ObserverWithState {
 }
 ```
 
-### handleLifecycleEvent
+### handleLifecycleEvent\(\)
+
+`ReportFragment`的dispatch方法会调用LifecycleRegistry的handleLifecycleEvent方法来处理Event。
 
 ```java
 public void handleLifecycleEvent(@NonNull Lifecycle.Event event) {
@@ -423,6 +568,8 @@ private void moveToState(State next) {
 }
 ```
 
+`handleLifecycleEvent`方法最终会调用sync方法来同步所有`Observer`的状态。在sync中，如果当前`State`小于链表中第一`Observer`的`State`，会调用backwardPass方法后向前同步所有`Observer`的`Sate`。如果当前状态大于最后一个`Observer`的`State`，调用`forwardPass`从前向后遍历`Observer`同步`State`。
+
 ```java
 private void sync() {
     LifecycleOwner lifecycleOwner = mLifecycleOwner.get();
@@ -433,10 +580,15 @@ private void sync() {
     while (!isSynced()) {
         mNewEventOccurred = false;
         // no need to check eldest for nullability, because isSynced does it for us.
+        //如果当前State小于链表中第一Observer的State 
+        //调用backwardPass方法后向前同步所有Observer的Sate
         if (mState.compareTo(mObserverMap.eldest().getValue().mState) < 0) {
             backwardPass(lifecycleOwner);
         }
+        //获取链表中最后一个Entry
         Entry<LifecycleObserver, ObserverWithState> newest = mObserverMap.newest();
+        //如果当前状态大于最后一个Observer的State
+        //调用forwardPass从前向后遍历Observer同步State
         if (!mNewEventOccurred && newest != null
                 && mState.compareTo(newest.getValue().mState) > 0) {
             forwardPass(lifecycleOwner);
@@ -446,13 +598,15 @@ private void sync() {
 }
 ```
 
+### backwardPass\(\)
+
 ```java
 private void backwardPass(LifecycleOwner lifecycleOwner) {
     Iterator<Entry<LifecycleObserver, ObserverWithState>> descendingIterator =
             mObserverMap.descendingIterator();
     while (descendingIterator.hasNext() && !mNewEventOccurred) {
         Entry<LifecycleObserver, ObserverWithState> entry = descendingIterator.next();
-        //获取对应的obser对象
+        //获取对应的observer对象
         ObserverWithState observer = entry.getValue();
         while ((observer.mState.compareTo(mState) > 0 && !mNewEventOccurred
                 && mObserverMap.contains(entry.getKey()))) {
@@ -466,9 +620,29 @@ private void backwardPass(LifecycleOwner lifecycleOwner) {
 }
 ```
 
+```java
+private static Event downEvent(State state) {
+    switch (state) {
+        case INITIALIZED:
+            throw new IllegalArgumentException();
+        case CREATED:
+            return ON_DESTROY;
+        case STARTED:
+            return ON_STOP;
+        case RESUMED:
+            return ON_PAUSE;
+        case DESTROYED:
+            throw new IllegalArgumentException();
+    }
+    throw new IllegalArgumentException("Unexpected state value " + state);
+}
+```
+
 ## Lifecycling
 
 ### lifecycleEventObserver\(\)
+
+`lifecycleEventObserver`方法负责通过传入`LifecycleObserver`对象构建一个`LifecycleEventObserver`对象。
 
 ```java
 //方法参数为什么不定义为LifecycleObserver？？
@@ -478,33 +652,41 @@ static LifecycleEventObserver lifecycleEventObserver(Object object) {
     boolean isLifecycleEventObserver = object instanceof LifecycleEventObserver;
     boolean isFullLifecycleObserver = object instanceof FullLifecycleObserver;
     //如果实现了LifecycleEventObserver和FullLifecycleObserver两个接口
+    //创建FullLifecycleObserverAdapter
     if (isLifecycleEventObserver && isFullLifecycleObserver) {
         return new FullLifecycleObserverAdapter((FullLifecycleObserver) object,
                 (LifecycleEventObserver) object);
     }
-    
+    //如果只实现了LifecycleEventObserver创建FullLifecycleObserverAdapter
+    //传入的LifecycleEventObserver为null
     if (isFullLifecycleObserver) {
         return new FullLifecycleObserverAdapter((FullLifecycleObserver) object, null);
     }
+    //如果只实现了FullLifecycleObserver 直接强转返回
     if (isLifecycleEventObserver) {
         return (LifecycleEventObserver) object;
     }
     final Class<?> klass = object.getClass();
+    //获取类型
     int type = getObserverConstructorType(klass);
     if (type == GENERATED_CALLBACK) {
+        //从Map中获取构造函数
         List<Constructor<? extends GeneratedAdapter>> constructors =
                 sClassToAdapters.get(klass);
+        //如果只有一个构造函数 直接返回SingleGeneratedAdapterObserver
         if (constructors.size() == 1) {
             GeneratedAdapter generatedAdapter = createGeneratedAdapter(
                     constructors.get(0), object);
             return new SingleGeneratedAdapterObserver(generatedAdapter);
         }
+        //如果有多个构造函数 则创建CompositeGeneratedAdaptersObserver
         GeneratedAdapter[] adapters = new GeneratedAdapter[constructors.size()];
         for (int i = 0; i < constructors.size(); i++) {
             adapters[i] = createGeneratedAdapter(constructors.get(i), object);
         }
         return new CompositeGeneratedAdaptersObserver(adapters);
     }
+    //否则返回ReflectiveGenericLifecycleObserver
     return new ReflectiveGenericLifecycleObserver(object);
 }
 ```
@@ -574,6 +756,8 @@ private static int resolveObserverCallbackType(Class<?> klass) {
 ```
 
 ### generatedConstructor\(\)
+
+`generatedConstructor`方法获取生成的`GeneratedAdapter`的构造函数。
 
 ```java
 @Nullable
