@@ -1,0 +1,15 @@
+@startuml
+abstract class Lifecycle{
+    void addObserver(LifecycleObserver observer);
+    void removeObserver(LifecycleObserver observer);
+    State getCurrentState();
+}
+
+
+LifecycleOwner *-- Lifecycle
+
+
+Lifecycle <|-- LifecycleRegistry
+
+
+@enduml

@@ -1,5 +1,7 @@
 # LiveData源码分析
 
+
+
 ```java
 //LiveData.kt
 //LiveData扩展函数
@@ -140,3 +142,12 @@ private static Handler createAsync(@NonNull Looper looper) {
 }
 ```
 
+
+
+## 参考
+
+* [LiveData with Coroutines and Flow — Part I: Reactive UIs](https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-i-reactive-uis-b20f676d25d7)
+* [LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components](https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-ii-launching-coroutines-with-architecture-components-337909f37ae7)
+* [LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns](https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-iii-livedata-and-coroutines-patterns-592485a4a85a)
+
+* [理解协程、LiveData 和 Flow](https://juejin.cn/post/6844904158466670599)

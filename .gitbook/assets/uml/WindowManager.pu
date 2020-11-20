@@ -1,0 +1,26 @@
+@startuml
+
+interface ViewManager{
+    addView();
+    updateViewLayout();
+    removeView();
+}
+
+interface WindowManager{
+
+}
+class WindowManagerImpl{
+}
+abstract class Window{
+}
+class PhoneWindow{
+}
+class WindowManagerGlobal{
+
+}
+ViewManager <|-- WindowManager
+WindowManager <|.. WindowManagerImpl
+WindowManagerImpl *-- Window
+Window <|--  PhoneWindow
+WindowManagerImpl *-- WindowManagerGlobal
+@enduml

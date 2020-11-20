@@ -1,0 +1,20 @@
+@startuml
+interface LifecycleObserver{
+
+}
+interface LifecycleEventObserver{
+
+}
+interface FullLifecycleObserver{
+
+}
+LifecycleObserver <|-- LifecycleEventObserver
+LifecycleObserver <|-- FullLifecycleObserver
+LifecycleEventObserver <|-- CompositeGeneratedAdaptersObserver
+LifecycleEventObserver <|-- ReflectiveGenericLifecycleObserver
+LifecycleEventObserver <|-- SingleGeneratedAdapterObserver
+LifecycleEventObserver <|-- FullLifecycleObserverAdapter
+
+
+
+@enduml

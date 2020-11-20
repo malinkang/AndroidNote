@@ -4,7 +4,7 @@
 
 `Lifecycle`代表生命周期，是一个抽象类，我们经常使用它的子类`LifecycleRegistry`。
 
-![](../.gitbook/assets/image%20%2891%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/Lifecycle.png)
 
 `Lifecycle`提供了三个抽象方法用来添加、删除`LifecycleObserver`和获取当前`Lifecycle`状态。
 
@@ -126,13 +126,13 @@ public interface LifecycleOwner {
 }
 ```
 
-![](../.gitbook/assets/image%20%2895%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/LifecycleOwner.png)
 
 ## LifecycleObserver
 
 `LifecycleObserver`即生命周期的观察者，是一个空接口，里面没有任何方法。
 
-![](../.gitbook/assets/image%20%2894%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/LifecycleObserver.png)
 
 ### LifecycleEventObserver
 
@@ -291,7 +291,7 @@ static void dispatch(@NonNull Activity activity, @NonNull Lifecycle.Event event)
 
 ## SafeIterableMap
 
-![](../.gitbook/assets/image%20%28103%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/SafeIterableMap.png)
 
 `Lifecycle`中的所有`Observer`通过`SafeIterableMap`来管理的。`SafeIterableMap`的内部类`Entry`是一个双向链表。
 
@@ -309,7 +309,7 @@ static class Entry<K, V> implements Map.Entry<K, V> {
 
 `SafeIterableMap`内部定义的几个迭代器。
 
-![](../.gitbook/assets/image%20%28101%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/SafeIterableMap-Iterator.png)
 
 `ListIterator`是一个抽象类，它的next方法会调用抽象方法`forward`。有两个子类`AscendingIterator`和`DescendingIterator`，分别实现正序遍历和逆序遍历。
 
@@ -344,7 +344,7 @@ private abstract static class ListIterator<K, V> implements Iterator<Map.Entry<K
 
 `AscendingIterator`起始点指向头部，不断向后遍历，`DescendingIterator`起始点指向尾部，不断向前遍历。
 
-![](../.gitbook/assets/image%20%28102%29.png)
+![](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/ListIterator.png)
 
 ```java
 static class AscendingIterator<K, V> extends ListIterator<K, V> {
@@ -792,5 +792,6 @@ private static Constructor<? extends GeneratedAdapter> generatedConstructor(Clas
 
 ## 参考
 
+* 
 * [从源码看 Jetpack（1） -Lifecycle源码解析](https://juejin.im/post/6847902220755992589)
 
