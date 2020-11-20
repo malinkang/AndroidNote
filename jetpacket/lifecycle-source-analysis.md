@@ -792,6 +792,5 @@ private static Constructor<? extends GeneratedAdapter> generatedConstructor(Clas
 
 ## 参考
 
-* 
 * [从源码看 Jetpack（1） -Lifecycle源码解析](https://juejin.im/post/6847902220755992589)
 
