@@ -93,6 +93,7 @@ quit\(\) 和 quitSafely\(\) 的本质就是让消息队列的 next\(\) 返回 nu
 ```java
 //Looper的构造函数是私有的所以不能直接调用Looper的构造函数
 private Looper(boolean quitAllowed) {
+    //在Looper的构造函数中创建了MessageQueue，所以每个线程也只有1个MessageQueue
     mQueue = new MessageQueue(quitAllowed);
     mThread = Thread.currentThread();
 }
@@ -879,12 +880,6 @@ public class HandlerActionQueue {
 }
 ```
 
-
-
-
-
-## 面试题
-
 ## 扩展阅读
 
 * [Android 消息处理机制（Looper、Handler、MessageQueue,Message）](https://www.jianshu.com/p/02962454adf7)
@@ -893,4 +888,5 @@ public class HandlerActionQueue {
 * [How to Leak a Context: Handlers & Inner Classes](http://www.androiddesignpatterns.com/2013/01/inner-class-handler-memory-leak.html)
 * [Android中为什么主线程不会因为Looper.loop\(\)里的死循环卡死？](https://www.zhihu.com/question/34652589)
 * [Android 高级面试-1：Handler 相关](https://juejin.im/post/6844903778844409863)
+* [Handler 10问，你顶的住吗？](https://mp.weixin.qq.com/s/V1xI2M8AibgB2whHSOTQGQ)
 
