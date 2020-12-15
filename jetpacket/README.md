@@ -50,6 +50,7 @@
 * [实战 \| 在 Room 中使用 Flow](https://mp.weixin.qq.com/s/fwvhfpjW3sWwUdsCjJzt0Q)
 * [Room 中的数据库关系](https://mp.weixin.qq.com/s/5--TmnUAnWtI8Ug97WbohA)
 * [Android Jetpack: Room \| 中文教学视频](https://mp.weixin.qq.com/s/JH3XG39qhfuCKDX98To3zA)
+* [Android Room with a View - Kotlin](https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0)
 
 ## WorkManager
 
