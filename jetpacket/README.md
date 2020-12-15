@@ -14,7 +14,7 @@
 
 ### Lifecycle
 
-## LiveData
+### LiveData
 
 * [Android Jetpack: LiveData 和 Lifecycle 介绍 \| 中文教学视频](https://mp.weixin.qq.com/s/lH1GxtkWnxhr0Fy6LkMP4Q)
 * [架构组件之 ViewModel \| 中文教学视频](https://mp.weixin.qq.com/s/RcupMal5d-N36rq42Xb0WQ)
@@ -31,7 +31,7 @@
 
 ### Jetpack Compose <a id="activity-name"></a>
 
-## ViewModel
+### ViewModel
 
 * [Compose 学习计划](https://developer.android.google.cn/courses/pathways/compose)
 * [现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！](https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg)
@@ -41,41 +41,41 @@
 * [知识点 \| ViewModel 四种集成方式](https://mp.weixin.qq.com/s/Hl8Yuf2bkDlVlgdB4M-wrw)
 * [Android Jetpack: ViewModel \| 中文教学视频](https://mp.weixin.qq.com/s/uGWH1os8Kq3Pp6_x5hXI8Q)
 
-## Paging
+### Paging
 
 * [Android Jetpack: 分页库 \(Paging Library\) \| 中文教学视频](https://mp.weixin.qq.com/s/s-o3p0fzwrWEXorTXKbUKA)
 
-## Room
+### Room
 
 * [实战 \| 在 Room 中使用 Flow](https://mp.weixin.qq.com/s/fwvhfpjW3sWwUdsCjJzt0Q)
 * [Room 中的数据库关系](https://mp.weixin.qq.com/s/5--TmnUAnWtI8Ug97WbohA)
 * [Android Jetpack: Room \| 中文教学视频](https://mp.weixin.qq.com/s/JH3XG39qhfuCKDX98To3zA)
 * [Android Room with a View - Kotlin](https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0)
 
-## WorkManager
+### WorkManager
 
 * [自定义 WorkManager —— 基础概念](https://mp.weixin.qq.com/s/blwtOS3VAIKj2fqQAV6qhQ)
 * [WorkManager: 周期性任务](https://mp.weixin.qq.com/s/wE2Cf9akWQVesC3cuQpucw)
 * [使用 Dagger 自定义 WorkManager](https://mp.weixin.qq.com/s/bgMg5jCzkcgHjV-moi7NNw)
 * [Android Jetpack WorkManager \| Android 中文教学视频](https://mp.weixin.qq.com/s/3YsXrGu2yolFdFuooTr5Fw)
 
-## Compose
+### Compose
 
 * [What's New in Jetpack Compose \(Android Dev Summit '19\)](https://www.youtube.com/watch?v=dtm2h-_sNDQ&list=PLWz5rJ2EKKc_xXXubDti2eRnIKU0p7wHd&index=8&t=0s)
 * [深入详解 Jetpack Compose \| 实现原理](https://mp.weixin.qq.com/s/cFLDF0CDmRropKLfzNKUiw)
 * [深入详解 Jetpack Compose \| 优化 UI 构建](https://mp.weixin.qq.com/s/pRurO-7upTk4sRgJbJyUFw)
 * [现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！](https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg)
 
-## CameraX
+### CameraX
 
 * [Android Jetpack CameraX 库 Beta 版正式发布！](https://mp.weixin.qq.com/s/dkMZ88NqPCtXyqCsjBpsfA)
 
-## Jetpack Security
+### Jetpack Security
 
 * [使用 Jetpack Security 在 Android 上进行数据加密](https://mp.weixin.qq.com/s/ZP9vHHWdWRUnoz1odu32mA)
 * [使用 PreviewView 来展示相机预览](https://mp.weixin.qq.com/s/hbls80hCCftnFLkO8U5Kbw)
 
-## App Startup
+### App Startup
 
 * [Android Jetpack组件之App Startup](https://mp.weixin.qq.com/s/gl_mHEEXi0q4k4wuQ5m_Ww)
 
