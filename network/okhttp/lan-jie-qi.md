@@ -136,7 +136,7 @@ Connection: keep-alive
 
 
 
-![](../../.gitbook/assets/image%20%2872%29.png)
+![](../../.gitbook/assets/image%20%2872%29%20%281%29.png)
 
 `CallServerInterceptor`不会执行chain的proceed。所以`CallServerInterceptor`必须放最后一个。
 

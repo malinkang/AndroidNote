@@ -591,7 +591,7 @@ private static Event downEvent(State state) {
 //方法参数为什么不定义为LifecycleObserver？？
 @NonNull
 static LifecycleEventObserver lifecycleEventObserver(Object object) {
-    
+
     boolean isLifecycleEventObserver = object instanceof LifecycleEventObserver;
     boolean isFullLifecycleObserver = object instanceof FullLifecycleObserver;
     //如果实现了LifecycleEventObserver和FullLifecycleObserver两个接口
