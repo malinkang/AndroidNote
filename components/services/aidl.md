@@ -522,10 +522,6 @@ private final IRectInsideBundle.Stub binder = new IRectInsideBundle.Stub() {
 
 如需了解有关绑定服务的详细信息，请阅读[绑定服务](https://developer.android.com/guide/components/bound-services#Binding)文档。
 
-
-
-
-
 ## 参考
 
 * [Android 接口定义语言 \(AIDL\)](https://developer.android.com/guide/components/aidl)
