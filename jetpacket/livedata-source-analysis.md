@@ -55,7 +55,7 @@ public abstract class LiveData<T>{
 
 ### observe()
 
-`observe()`会首先判断是否在主线程中，不在主线程会直接抛异常。然后判断当前`LifecycleOwner`如果处于`DESTORYED`状态直接返回。如果以上两个条件都通过的话，传入的`Observer`会被包装成一个`LifecycleBoundObserver`对象，这个对象我们后面再进行介绍。然后以传入的`Observer`为`key`,创建的``LifecycleBoundObserver`为`value`存入到`mObservers`中，如果相同的`Observer`已经存在，则抛出异常。因此，不允许在不同的声明周期中添加相同的`Observer`。
+`observe()`会首先判断是否在主线程中，不在主线程会直接抛异常。然后判断当前`LifecycleOwner`如果处于`DESTORYED`状态直接返回。如果以上两个条件都通过的话，传入的`Observer`会被包装成一个`LifecycleBoundObserver`对象，这个对象我们后面再进行介绍。然后以传入的`Observer`为`key`,创建的``LifecycleBoundObserver`为`value`存入到`mObservers`中，如果相同的`Observer`已经存在，则抛出异常。因此，不允许在不同的生命周期中添加相同的`Observer`。
 
 ```java
 public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
@@ -85,9 +85,9 @@ public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> 
 
 ### ObserverWrapper
 
-ObserverWrapper是LiveData的内部抽象类。有两个子类`LifecycleBoundObserver`和`AlwaysActiveObserver`。
+`ObserverWrapper`是`LiveData`的内部抽象类。有两个子类`LifecycleBoundObserver`和`AlwaysActiveObserver`。
 
-![image-20201120172611267](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/ObserverWrapper.png)
+![ObserverWrapper类图](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/ObserverWrapper.png)
 
 
 
@@ -226,6 +226,8 @@ private class AlwaysActiveObserver extends ObserverWrapper {
 
 ### setValue()
 
+在`setValue()`中会将新的值赋值给mData，如果当前`Observer`不活跃，多次调用`setValue()`，当`Observer`切换为活跃状态，只会收到最后一次的值。
+
 ```java
 @MainThread
 protected void setValue(T value) {
@@ -257,7 +259,7 @@ void dispatchingValue(@Nullable ObserverWrapper initiator) {
             for (Iterator<Map.Entry<Observer<? super T>, ObserverWrapper>> iterator =
                     mObservers.iteratorWithAdditions(); iterator.hasNext(); ) {
                 considerNotify(iterator.next().getValue());
-                //中断遍历
+                //中断遍历 所以如果有新值来，遍历还没有完成，则只有部分Observer会收到值
                 if (mDispatchInvalidated) {
                     break;
                 }
@@ -270,6 +272,7 @@ void dispatchingValue(@Nullable ObserverWrapper initiator) {
 
 ```java
 private void considerNotify(ObserverWrapper observer) {
+  	//如果Observer不是活跃的return
     if (!observer.mActive) {
         return;
     }
@@ -282,6 +285,7 @@ private void considerNotify(ObserverWrapper observer) {
         observer.activeStateChanged(false);
         return;
     }
+  	//如果mLastVersion大于等于mVersion直接返回
     if (observer.mLastVersion >= mVersion) {
         return;
     }
@@ -291,8 +295,6 @@ private void considerNotify(ObserverWrapper observer) {
     observer.mObserver.onChanged((T) mData);
 }
 ```
-
-
 
 ### postValue()
 
@@ -417,4 +419,5 @@ private static Handler createAsync(@NonNull Looper looper) {
 ## 参考
 
 * [从源码看 Jetpack（3）-LiveData 源码解析](https://juejin.cn/post/6847902222345633806)
+* [Android消息总线的演进之路：用LiveDataBus替代RxBus、EventBus](https://tech.meituan.com/2018/07/26/android-livedatabus.html)
 

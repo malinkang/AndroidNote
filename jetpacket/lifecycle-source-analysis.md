@@ -27,33 +27,12 @@ public abstract State getCurrentState();
 ```java
 @SuppressWarnings("WeakerAccess")
 public enum Event {
-    /**
-     * Constant for onCreate event of the {@link LifecycleOwner}.
-     */
     ON_CREATE, //onCreate发送该事件
-    /**
-     * Constant for onStart event of the {@link LifecycleOwner}.
-     */
     ON_START,
-    /**
-     * Constant for onResume event of the {@link LifecycleOwner}.
-     */
     ON_RESUME,
-    /**
-     * Constant for onPause event of the {@link LifecycleOwner}.
-     */
     ON_PAUSE,
-    /**
-     * Constant for onStop event of the {@link LifecycleOwner}.
-     */
     ON_STOP,
-    /**
-     * Constant for onDestroy event of the {@link LifecycleOwner}.
-     */
     ON_DESTROY,
-    /**
-     * An {@link Event Event} constant that can be used to match all events.
-     */
     ON_ANY
 }
 ```
@@ -64,48 +43,12 @@ public enum Event {
 
 ```java
 public enum State {
-    /**
-     * Destroyed state for a LifecycleOwner. After this event, this Lifecycle will not dispatch
-     * any more events. For instance, for an {@link android.app.Activity}, this state is reached
-     * <b>right before</b> Activity's {@link android.app.Activity#onDestroy() onDestroy} call.
-     */
      //处于Destoryed状态，Lifecycle将不会发送任何事件
     DESTROYED,
-    /**
-     * Initialized state for a LifecycleOwner. For an {@link android.app.Activity}, this is
-     * the state when it is constructed but has not received
-     * {@link android.app.Activity#onCreate(android.os.Bundle) onCreate} yet.
-     */
     INITIALIZED,
-    /**
-     * Created state for a LifecycleOwner. For an {@link android.app.Activity}, this state
-     * is reached in two cases:
-     * <ul>
-     *     <li>after {@link android.app.Activity#onCreate(android.os.Bundle) onCreate} call;
-     *     <li><b>right before</b> {@link android.app.Activity#onStop() onStop} call.
-     * </ul>
-     */
     CREATED,
-    /**
-     * Started state for a LifecycleOwner. For an {@link android.app.Activity}, this state
-     * is reached in two cases:
-     * <ul>
-     *     <li>after {@link android.app.Activity#onStart() onStart} call;
-     *     <li><b>right before</b> {@link android.app.Activity#onPause() onPause} call.
-     * </ul>
-     */
     STARTED,
-    /**
-     * Resumed state for a LifecycleOwner. For an {@link android.app.Activity}, this state
-     * is reached after {@link android.app.Activity#onResume() onResume} is called.
-     */
     RESUMED;
-    /**
-     * Compares if this State is greater or equal to the given {@code state}.
-     *
-     * @param state State to compare with
-     * @return true if this State is greater or equal to the given {@code state}
-     */
      //比较当前状态大于或等于给定状态
     public boolean isAtLeast(@NonNull State state) {
         return compareTo(state) >= 0;
