@@ -12,3 +12,4 @@ private void startOtherServices(){
   ServiceManager.addService(Context.WINDOW_SERVICE, wm);//添加到ServiceManager
 }
 ```
+

@@ -34,15 +34,15 @@ mTablayout.setupWithViewPager(mViewpager);
 
 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。:
 
-![](../.gitbook/assets/tablayout-1%20%281%29.gif)
+![](../.gitbook/assets/tablayout-1.gif)
 
 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。
 
-![](../.gitbook/assets/tablayout-2%20%281%29%20%281%29.gif)
+![](../.gitbook/assets/tablayout-2%20%281%29%20%281%29%20%281%29.gif)
 
 当设置为fill时将会占满所有的位置。
 
-![](../.gitbook/assets/tablayout-3%20%281%29%20%281%29.gif)
+![](../.gitbook/assets/tablayout-3%20%281%29%20%281%29%20%281%29.gif)
 
 tabIndicatorColor：设置指示器颜色。
 

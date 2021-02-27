@@ -20,6 +20,7 @@
   * [ViewPager](ui/viewpager.md)
   * [BottomSheet](ui/bottomsheet.md)
   * [通知](ui/notifications.md)
+  * [CalendarView](ui/calendarview.md)
   * [LayoutInfalter](ui/layoutinfalter.md)
   * [屏幕适配](ui/screen-adaptation.md)
 * [组件](components/README.md)

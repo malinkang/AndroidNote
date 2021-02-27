@@ -19,7 +19,7 @@ mPaint.setStyle(Paint.Style.FILL);
 canvas.drawCircle(192,192,128,mPaint);//绘制实心圆
 ```
 
-![](../../../.gitbook/assets/paint-stroke-width%20%282%29.jpeg)
+![](../../../.gitbook/assets/paint-stroke-width%20%281%29.jpeg)
 
 ## MaskFilter
 
@@ -37,7 +37,7 @@ public PorterDuffXfermode(PorterDuff.Mode mode)
 
 PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC\_OVER、DST\_OVER、SRC\_IN、DST\_IN、SRC\_OUT、DST\_OUT、SRC\_ATOP、DST\_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
 
-![&#x9EC4;&#x8272;&#x7684;&#x5706;&#x5148;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;&#xFF0C;&#x84DD;&#x8272;&#x7684;&#x77E9;&#x5F62;&#x540E;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;](../../../.gitbook/assets/porterduffxfermode.jpg)
+![&#x9EC4;&#x8272;&#x7684;&#x5706;&#x5148;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;&#xFF0C;&#x84DD;&#x8272;&#x7684;&#x77E9;&#x5F62;&#x540E;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;](../../../.gitbook/assets/porterduffxfermode%20%282%29.jpg)
 
 ## PathEffect
 
@@ -101,7 +101,7 @@ x轴和y轴设置都为MIRROR：
 mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.MIRROR, Shader.TileMode.MIRROR));
 ```
 
-![](../../../.gitbook/assets/bitmapshader-mirror%20%281%29%20%282%29.jpeg)
+![](../../../.gitbook/assets/bitmapshader-mirror%20%281%29%20%281%29%20%282%29.jpeg)
 
 x轴和y轴设置都为CLAMP：
 
@@ -193,7 +193,7 @@ mPaint.setShader(new RadialGradient(400, 400,400, new int[] {
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](../../../.gitbook/assets/RadialGradient%20%281%29.jpeg)
+![](../../../.gitbook/assets/RadialGradient.jpeg)
 
 ### SweepGradient
 
@@ -236,7 +236,7 @@ public ComposeShader(Shader shaderA, Shader shaderB, PorterDuff.Mode mode)
 
 BitmapShader使用的图片为下图：
 
-![](../../../.gitbook/assets/android%20%282%29.png)
+![](../../../.gitbook/assets/android%20%281%29.png)
 
 ```java
 mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.android);

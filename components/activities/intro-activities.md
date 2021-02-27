@@ -137,7 +137,7 @@ Activity 和任务的默认行为总结如下：
 * 如果用户按**返回**按钮，当前 Activity 将从堆栈中退出并销毁。堆栈中的上一个 Activity 将恢复。Activity 被销毁后，系统不会保留该 Activity 的状态。
 * Activity 可以多次实例化，甚至是从其他任务对其进行实例化。
 
-![](../../.gitbook/assets/image%20%2847%29.png)
+![](../../.gitbook/assets/image%20%2847%29%20%281%29.png)
 
 {% hint style="info" %}
 **导航设计**
