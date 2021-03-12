@@ -550,7 +550,7 @@ public final class InternalCacheDiskCacheFactory extends DiskLruCacheFactory {
 
 Glide会添加一个透明的Fragment，当Fragment执行生命周期方法时，回调`Lifecycle`注册的`LifecycleListener`。
 
-![](../.gitbook/assets/image%20%2857%29.png)
+![](../.gitbook/assets/image%20%2857%29%20%281%29.png)
 
 ```java
 @Deprecated

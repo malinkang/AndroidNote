@@ -32,7 +32,7 @@ Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了�
 
   大多数应用都应该至少为每个片段实现这三个方法，但您还应该使用几种其他回调方法来处理片段生命周期的各个阶段。 处理片段生命周期部分对所有生命周期回调方法做了更详尽的阐述。
 
-![&#x56FE; 2. &#x7247;&#x6BB5;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x5176; Activity &#x8FD0;&#x884C;&#x65F6;&#xFF09;&#x3002;](../.gitbook/assets/fragment_lifecycle%20%281%29.png)
+![&#x56FE; 2. &#x7247;&#x6BB5;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x5176; Activity &#x8FD0;&#x884C;&#x65F6;&#xFF09;&#x3002;](../.gitbook/assets/fragment_lifecycle.png)
 
 您可能还想扩展几个子类，而不是 Fragment 基类：
 

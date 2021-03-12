@@ -6,5 +6,3 @@
 * [Android组件化方案及组件消息总线modular-event实战](https://tech.meituan.com/2018/12/20/modular-event.html)
 * [百度App组件化之路](https://mp.weixin.qq.com/s/P-vREnrw4xGyhiugpzB-1Q)
 
-
-

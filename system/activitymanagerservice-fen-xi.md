@@ -180,7 +180,7 @@ public boolean onTransact(int code, Parcel data, Parcel reply, int flags)
 }
 ```
 
-![](../.gitbook/assets/image%20%2885%29.png)
+![](../.gitbook/assets/image%20%2879%29%20%282%29%20%282%29.png)
 
 ![](../.gitbook/assets/image%20%2876%29.png)
 
@@ -736,7 +736,7 @@ private int startActivityUnchecked(final ActivityRecord r, ActivityRecord source
 * taskAffinity与FLAG\_ACTIVITY\_NEW\_TASK或者singleTask配合。如果新启动Activity的taskAffinity和栈的taskAffinity相同则加入到该栈中；如果不同，就会创建新栈。
 * taskAffinity与allowTaskReparenting配合。如果allowTaskReparenting为true，说明Activity 具有转移的能力。拿此前的邮件为例（图6-5），当社交应用启动了发送邮件的Activity，此时发送邮件的Activity是和社交应用处于同一个栈中的，并且这个栈位于前台。如果发送邮件的Activity的allowTaskReparenting设置为true，此后E-mail应用所在的栈位于前台时，发送邮件的Activity 就会由社交应用的栈中转移到与它更亲近的邮件应用（taskAffinity相同）所在的栈中，如图所示。
 
-![](../.gitbook/assets/image%20%2884%29.png)
+![](../.gitbook/assets/image%20%2884%29%20%281%29%20%281%29.png)
 
 接着通过系统源码来查看taskAffinity的应用。ActivityStackSupervisor的findTaskLocked方法用于找到Activity最匹配的栈，最终会调用ActivityStack的findTaskLocked方法：
 

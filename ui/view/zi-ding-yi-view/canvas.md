@@ -75,7 +75,7 @@ canvas.drawLines(new float[] {               // 绘制一组线 每四数字(两
 }, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-line%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-line%20%281%29%20%281%29%20%282%29.jpeg)
 
 ### 绘制矩形
 
@@ -97,7 +97,7 @@ RectF rectF = new RectF(0,0,400,400);
 canvas.drawRect(rectF,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rect%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-rect%20%281%29%20%281%29%20%281%29.jpeg)
 
 ### 绘制圆角矩形
 
@@ -114,7 +114,7 @@ RectF rectF = new RectF(100,100,500,500);
 canvas.drawRoundRect(rectF,20,20,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-roundrect%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-roundrect%20%281%29%20%282%29.jpeg)
 
 当rx或者ry的值大于矩形的一半时，按照一半进行处理：
 
@@ -126,7 +126,7 @@ RectF rectF = new RectF(100,100,500,500);
 canvas.drawRoundRect(rectF,250,250,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-roundrect2%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-roundrect2.jpeg)
 
 ### 绘制椭圆
 
@@ -138,7 +138,7 @@ RectF rectF = new RectF(100,100,800,400);
 canvas.drawOval(rectF,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-oval%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-oval.jpeg)
 
 ### 绘制圆
 
@@ -146,7 +146,7 @@ canvas.drawOval(rectF,mPaint);
 canvas.drawCircle(500,500,400,mPaint);  // 绘制一个圆心坐标在(500,500)，半径为400 的圆。
 ```
 
-![](../../../.gitbook/assets/canvas-circle%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-circle%20%282%29%20%282%29%20%281%29.jpg)
 
 ### 绘制圆弧
 
@@ -174,7 +174,7 @@ canvas.drawArc(rectF,0,90,true,mPaint);
 canvas.drawArc(rectF2,0,90,false,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-arc%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-arc%20%281%29%20%281%29%20%282%29.jpeg)
 
 ## 画布操作
 
@@ -188,7 +188,7 @@ canvas.translate(200,0);
 canvas.drawCircle(0,0,100,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-translate%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-translate%20%282%29%20%282%29.jpg)
 
 ### 缩放（scale）
 
@@ -221,7 +221,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale1%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-scale1%20%282%29%20%282%29%20%282%29.jpg)
 
 设置缩放中心位置
 
@@ -234,7 +234,7 @@ canvas.drawRect(rect,mPaint);   // 绘制蓝色矩形
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale2%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-scale2%20%282%29%20%282%29%20%282%29.jpg)
 
 前面两个示例缩放的数值都是正数，按照表格中的说明，**当缩放比例为负数的时候会根据缩放中心轴进行翻转**，下面我们就来实验一下：
 
@@ -246,7 +246,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale3%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-scale3%20%281%29%20%281%29.jpeg)
 
 本次缩放可以看做是先根据缩放中心\(坐标原点\)缩放到原来的0.5倍，然后分别按照x轴和y轴进行翻转。
 
@@ -270,7 +270,7 @@ canvas.rotate(45);
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rotate1%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-rotate1.jpeg)
 
 ```java
 canvas.translate(200,200);
@@ -281,7 +281,7 @@ canvas.rotate(45,100,100);
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rotate2%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-rotate2%20%281%29.jpeg)
 
 ### 错切（skew）
 
@@ -304,7 +304,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-skew%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-skew%20%281%29%20%281%29.jpeg)
 
 ## 绘制图片
 
@@ -328,7 +328,7 @@ Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
 canvas.drawBitmap(bitmap, new Matrix(), mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-bitmap1%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-bitmap1%20%282%29%20%281%29.jpeg)
 
 绘制部分区域
 
@@ -341,7 +341,7 @@ Rect dst = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
 canvas.drawBitmap(bitmap, src,dst, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-bitmap2%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-bitmap2%20%281%29%20%281%29%20%281%29.jpeg)
 
 ## 绘制文字
 
@@ -367,7 +367,7 @@ mPaint.setTextSize(50);              // 设置字体大小
 canvas.drawText(str,2,5,200,500,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-text%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-text%20%281%29%20%281%29%20%282%29.jpeg)
 
 为每个字符指定位置
 
@@ -384,7 +384,7 @@ canvas.drawPosText(str, new float[] {
 }, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-text2%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-text2%20%281%29.jpeg)
 
 ## 参考
 

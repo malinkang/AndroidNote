@@ -26,7 +26,7 @@ path.lineTo(200, 0);                         // 添加(200,0)到(400,400)之间�
 canvas.drawPath(path, mPaint);              // 绘制Path
 ```
 
-![](../../../.gitbook/assets/path-1%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-1.jpeg)
 
 ```java
 Path path = new Path();                     // 创建Path
@@ -37,7 +37,7 @@ path.close();                               // close
 canvas.drawPath(path, mPaint);              // 绘制Path
 ```
 
-![](../../../.gitbook/assets/path-2%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-2%20%281%29%20%282%29.jpeg)
 
 ## 添加基本图形
 
@@ -86,7 +86,7 @@ path.addCircle(500,500,300,Path.Direction.CW);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-3%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-3%20%281%29%20%281%29.jpeg)
 
 但是得到的是一个实心圆。我们要给一个图形内部填充颜色，首先需要分清哪一部分是外部，哪一部分是内部，机器不像我们人那么聪明，机器是如何判断内外呢？
 
@@ -115,9 +115,9 @@ path.setFillType(Path.FillType.EVEN_ODD);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-4%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-4%20%281%29%20%281%29%20%281%29.jpeg)
 
-![a&#x70B9;&#x7A7F;&#x8FC7;path&#x8FB9;&#x7684;&#x6570;&#x76EE;&#x662F;3&#xFF0C;&#x6240;&#x4EE5;&#x5C5E;&#x4E8E;&#x5185;&#x90E8;&#xFF0C;b&#x70B9;&#x6B21;&#x6570;&#x4E3A;2&#x662F;&#x5916;&#x90E8;&#xFF0C;c&#x70B9;&#x6B21;&#x6570;&#x4E3A;1&#x662F;&#x5185;&#x90E8;](../../../.gitbook/assets/even-odd-winding%20%282%29.png)
+![a&#x70B9;&#x7A7F;&#x8FC7;path&#x8FB9;&#x7684;&#x6570;&#x76EE;&#x662F;3&#xFF0C;&#x6240;&#x4EE5;&#x5C5E;&#x4E8E;&#x5185;&#x90E8;&#xFF0C;b&#x70B9;&#x6B21;&#x6570;&#x4E3A;2&#x662F;&#x5916;&#x90E8;&#xFF0C;c&#x70B9;&#x6B21;&#x6570;&#x4E3A;1&#x662F;&#x5185;&#x90E8;](../../../.gitbook/assets/even-odd-winding%20%282%29%20%282%29%20%282%29.png)
 
 INVERSE\_EVEN\_ODD遵从反奇偶规则。与奇偶规则相反。
 
@@ -135,7 +135,7 @@ canvas.drawPath(path,mPaint);
 
 WINDING遵从非零环绕数规则，即首先使图形的边变为矢量（具有方向）。将环绕数初始化为零。再从任意位置p作一条射线。当从p点沿射线方向移动时，对在每个方向上穿过射线的边计数，每当图形的边从右到左穿过射线时，环绕数加1，从左到右时，环绕数减1。处理完图形的所有相关边之后，若环绕数为非零，则p为内部点，否则，p是外部点。
 
-![](../../../.gitbook/assets/non-zero-winding-1%20%282%29.png)
+![](../../../.gitbook/assets/non-zero-winding-1%20%282%29%20%282%29%20%282%29.png)
 
 A点：首先，内圆从右向左穿过射线，环绕数加一（1）;然后内圆从左到右穿过射线，环绕数减一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -149,11 +149,11 @@ path.setFillType(Path.FillType.WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/non-zero-winding-3%20%282%29.jpeg)
+![](../../../.gitbook/assets/non-zero-winding-3.jpeg)
 
 改变内圈的方向
 
-![](../../../.gitbook/assets/non-zero-winding-2%20%282%29.png)
+![](../../../.gitbook/assets/non-zero-winding-2%20%282%29%20%282%29.png)
 
 A点：首先，内圆从左向右穿过射线，环绕数加一（-1）;然后内圆从右到左穿过射线，环绕数加一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -179,7 +179,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/inverse_winding-1%20%282%29.jpeg)
+![](../../../.gitbook/assets/inverse_winding-1%20%281%29%20%281%29.jpeg)
 
 ```java
 Path path = new Path();
@@ -189,7 +189,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/inverse_winding-2%20%282%29.jpeg)
+![](../../../.gitbook/assets/inverse_winding-2%20%281%29%20%281%29.jpeg)
 
 ### 其他与填充模式相关的方法
 
@@ -266,7 +266,7 @@ canvas.drawText("XOR", 240,0,mPaint);
 canvas.drawPath(pathOpResult,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-op%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-op%20%281%29%20%281%29%20%282%29.jpeg)
 
 ## 计算边界
 
