@@ -192,6 +192,7 @@ Launcher请求ActivityTaskManagerService后，代码逻辑已经进入ActivityTa
 
 ```java
 //继承IActivityTaskManager.Stub 实现startActivity方法
+//frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java
 public class ActivityTaskManagerService extends IActivityTaskManager.Stub{
     @Override
     public final int startActivity(IApplicationThread caller, String callingPackage,
@@ -232,6 +233,8 @@ int startActivityAsUser(IApplicationThread caller, String callingPackage,
             Binder.getCallingPid(), Binder.getCallingUid(), "startActivityAsUser");
     // TODO: Switch to user app stacks here.
     //先获取ActivityStartController对象。然后调用obtainStarter方法获取ActivityStarter对象
+    //frameworks/base/services/core/java/com/android/server/wm/ActivityStartController.java
+  // 
     return getActivityStartController().obtainStarter(intent, "startActivityAsUser")
             .setCaller(caller)
             .setCallingPackage(callingPackage)
@@ -253,6 +256,7 @@ int startActivityAsUser(IApplicationThread caller, String callingPackage,
 ### execute\(\)
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/ActivityStarter.java
 int execute() {
     try {
         // TODO(b/64750076): Look into passing request directly to these methods to allow
@@ -464,12 +468,14 @@ startActivityUnchecked 方法主要处理与栈管理相关的逻辑。在标注
 ### resumeFocusedStacksTopActivities\(\)
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/RootWindowContainer.java
 boolean resumeFocusedStacksTopActivities() {
     return resumeFocusedStacksTopActivities(null, null, null);
 }
 ```
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/RootWindowContainer.java
 boolean resumeFocusedStacksTopActivities(
         ActivityStack targetStack, ActivityRecord target, ActivityOptions targetOptions) {
 
@@ -528,6 +534,7 @@ boolean resumeFocusedStacksTopActivities(
 ### resumeTopActivityUncheckedLocked\(\)
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/ActivityStack.java
 boolean resumeTopActivityUncheckedLocked(ActivityRecord prev, ActivityOptions options) {
     if (mInResumeTopActivity) {
         // Don't even start recursing.
@@ -559,20 +566,21 @@ boolean resumeTopActivityUncheckedLocked(ActivityRecord prev, ActivityOptions op
 ### resumeTopActivityInnerLocked\(\)
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/ActivityStack.java
 @GuardedBy("mService")
 private boolean resumeTopActivityInnerLocked(ActivityRecord prev, ActivityOptions options) {
     //...
-    mStackSupervisor.startSpecificActivityLocked(next, true, true);
+    mStackSupervisor.startSpecificActivity(next, true, true);
     //...
     return true;
 }
 ```
 
-### startSpecificActivityLocked\(\)
+### startSpecificActivity(\)
 
 ```java
-//ActivityStackSupervisor.java
-void startSpecificActivityLocked(ActivityRecord r, boolean andResume, boolean checkConfig) {
+//frameworks/base/services/core/java/com/android/server/wm/ActivityStackSupervisor.java
+void startSpecificActivity(ActivityRecord r, boolean andResume, boolean checkConfig) {
     // Is this activity's application already running?
     //获取即将启动的Activity的所在的应用程序进程
     //①
@@ -604,20 +612,25 @@ void startSpecificActivityLocked(ActivityRecord r, boolean andResume, boolean ch
     }
 
     final boolean isTop = andResume && r.isTopRunningActivity();
+    //创建进程
     mService.startProcessAsync(r, knownToBeDead, isTop, isTop ? "top-activity" : "activity");
 }
 ```
 
-在注释1处获取即将启动的Activity所在的应用程序进程，在注释2处判断要启动的Activity所在的应用程序进程如果已经运行的话，就会调用注释3处的realStartActivityLocked方法。  
+* ①获取即将启动的`Activity`所在的应用程序进程，
+* ②判断要启动的`Activity`所在的应用程序进程是否已经运行
+* 如果所在的进程已经运行，就会调用③处的`realStartActivityLocked`方法。  
 
 
 ### realStartActivityLocked\(\)
 
 ```java
+//frameworks/base/services/core/java/com/android/server/wm/ActivityStackSupervisor.java
 boolean realStartActivityLocked(ActivityRecord r, WindowProcessController proc,
         boolean andResume, boolean checkConfig) throws RemoteException {
     // Create activity launch transaction.
     //创建ClientTransaction 传入WindowProcessController的IApplicationThread
+    //frameworks/base/core/java/android/app/servertransaction/ClientTransaction.java
     final ClientTransaction clientTransaction = ClientTransaction.obtain(
             proc.getThread(), r.appToken);
 
@@ -634,6 +647,8 @@ boolean realStartActivityLocked(ActivityRecord r, WindowProcessController proc,
                     r.assistToken));
 
     // Set desired final state.
+  //创建ActivityLifecycleItem
+  //frameworks/base/core/java/android/app/servertransaction/ActivityLifecycleItem.java
     final ActivityLifecycleItem lifecycleItem;
     if (andResume) {
         lifecycleItem = ResumeActivityItem.obtain(dc.isNextTransitionForward());

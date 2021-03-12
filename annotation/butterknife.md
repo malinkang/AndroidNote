@@ -159,8 +159,7 @@ ImageView photo = ButterKnife.findById(view, R.id.photo);
 
 ```
 
-
-##扩展阅读
+## 扩展阅读
 [Butterknife](http://jakewharton.github.io/butterknife/)
 
 
