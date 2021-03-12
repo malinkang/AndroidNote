@@ -178,11 +178,7 @@ private static final Singleton<IActivityTaskManager> IActivityTaskManagerSinglet
         };
 ```
 
-
-
 ## ActivityTaskManagerService 到ApplicationThread的调用过程
-
-
 
 Launcher请求ActivityTaskManagerService后，代码逻辑已经进入ActivityTaskManagerService中，接着是AMS到ApplicationThread的调用流程，时序图如图所示
 
@@ -250,8 +246,7 @@ int startActivityAsUser(IApplicationThread caller, String callingPackage,
 }
 ```
 
-在注释1处判断调用者进程是否被隔离，如果被隔离则抛出SecurityException异常，在注释2处检查调用者是否有权限，如果没有权限也会抛出SecurityException异常。最后调用了ActivityStarter的execute 方法。  
-
+在注释1处判断调用者进程是否被隔离，如果被隔离则抛出SecurityException异常，在注释2处检查调用者是否有权限，如果没有权限也会抛出SecurityException异常。最后调用了ActivityStarter的execute 方法。
 
 ### execute\(\)
 
@@ -576,7 +571,7 @@ private boolean resumeTopActivityInnerLocked(ActivityRecord prev, ActivityOption
 }
 ```
 
-### startSpecificActivity(\)
+### startSpecificActivity\(\)
 
 ```java
 //frameworks/base/services/core/java/com/android/server/wm/ActivityStackSupervisor.java
@@ -621,7 +616,6 @@ void startSpecificActivity(ActivityRecord r, boolean andResume, boolean checkCon
 * ②判断要启动的`Activity`所在的应用程序进程是否已经运行
 * 如果所在的进程已经运行，就会调用③处的`realStartActivityLocked`方法。  
 
-
 ### realStartActivityLocked\(\)
 
 ```java
@@ -659,7 +653,7 @@ boolean realStartActivityLocked(ActivityRecord r, WindowProcessController proc,
 
     // Schedule transaction.
     mService.getLifecycleManager().scheduleTransaction(clientTransaction);
-            
+
     return true;
 }
 ```
@@ -857,7 +851,6 @@ public void executeCallbacks(ClientTransaction transaction) {
      client.handleLaunchActivity(r, pendingActions, null /* customIntent */);
      Trace.traceEnd(TRACE_TAG_ACTIVITY_MANAGER);
  }
-
 ```
 
 ### handleLaunchActivity\(\)
@@ -1068,8 +1061,6 @@ public @NonNull Activity instantiateActivity(@NonNull ClassLoader cl, @NonNull S
 }
 ```
 
-
-
 ```java
 public void callActivityOnCreate(Activity activity, Bundle icicle,
         PersistableBundle persistentState) {
@@ -1111,16 +1102,9 @@ final void performCreate(Bundle icicle, PersistableBundle persistentState) {
 
 ![](../../.gitbook/assets/image%20%2863%29.png)
 
-首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。  
-
+首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。
 
 ![](../../.gitbook/assets/image%20%2865%29.png)
 
 如果是普通Activity启动过程会涉及几个进程呢？答案是两个，AMS所在进程和应用程序进程。实际上理解了根Activity的启动过程（根Activity的onCreate过程）。
-
-
-
-
-
-
 

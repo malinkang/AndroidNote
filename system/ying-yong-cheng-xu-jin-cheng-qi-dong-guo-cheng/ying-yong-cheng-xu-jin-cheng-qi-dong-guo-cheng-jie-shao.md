@@ -126,8 +126,8 @@ boolean startProcessLocked(HostingRecord hostingRecord, String entryPoint, Proce
             int mountExternal, String seInfo, String requiredAbi, String instructionSet,
             String invokeWith, long startTime) {
         try {
-           
-  
+
+
             // If it's an isolated process, it should not even mount its own app data directories,
             // since it has no access to them anyway.
             if (app.isolated) {
@@ -409,8 +409,4 @@ static ZygoteState connect(@NonNull LocalSocketAddress zygoteSocketAddress,
                            getAbiList(zygoteOutputWriter, zygoteInputStream));
 }
 ```
-
-
-
-
 

@@ -16,6 +16,7 @@ public ViewRootImpl(Context context, Display display) {
 ### getInstance\(\)
 
 ```java
+    //frameworks/base/core/java/android/view/Choreographer.java
     public static Choreographer getInstance() {
         return sThreadInstance.get();
     }
@@ -87,6 +88,25 @@ public ViewRootImpl(Context context, Display display) {
         }
     }
 ```
+
+```java
+    public void postCallback(int callbackType, Runnable action, Object token) {
+        postCallbackDelayed(callbackType, action, token, 0);
+    }
+    public void postCallbackDelayed(int callbackType,
+            Runnable action, Object token, long delayMillis) {
+        if (action == null) {
+            throw new IllegalArgumentException("action must not be null");
+        }
+        if (callbackType < 0 || callbackType > CALLBACK_LAST) {
+            throw new IllegalArgumentException("callbackType is invalid");
+        }
+
+        postCallbackDelayedInternal(callbackType, action, token, delayMillis);
+    }
+```
+
+### 
 
 ### 创建FrameDisplayEventReceiver
 
@@ -561,4 +581,8 @@ private static final class CallbackRecord {
 
 
 ## 动画显示过程
+
+
+
+[https://juejin.cn/post/6890407553457963022\#heading-3](https://juejin.cn/post/6890407553457963022#heading-3)
 
