@@ -6,6 +6,7 @@
 * [界面](ui/README.md)
   * [ViewPager2](ui/viewpager2.md)
   * [View](ui/view/README.md)
+    * [View.post\(\)分析](ui/view/view.post-fen-xi.md)
     * [自定义View](ui/view/zi-ding-yi-view/README.md)
       * [Canvas使用](ui/view/zi-ding-yi-view/canvas.md)
       * [Paint使用](ui/view/zi-ding-yi-view/paint.md)

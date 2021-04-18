@@ -12,6 +12,12 @@
 
 ### Activity
 
+### Service
+
+## View
+
+* **View.post\(\) 为什么能够获取到 View 的宽高 ？**
+
 
 
 * [说说 compileSdkVersion、minSdkVersion、targetSdkVersion 的区别和作用？](https://mp.weixin.qq.com/s/-nzIPfH0o2Aj7W7Cz-ECjA)

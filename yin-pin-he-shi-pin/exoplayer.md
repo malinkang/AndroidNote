@@ -122,7 +122,7 @@ player.prepare(videoSource);
 
 按照上面的步骤，我们可以实现一个视频播放的功能。
 
-![](../.gitbook/assets/exoplayer-1%20%282%29%20%282%29.png)
+![](../.gitbook/assets/exoplayer-1%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29.png)
 
 ## 扩展阅读
 

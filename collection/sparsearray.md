@@ -115,19 +115,9 @@ public static <T> T[] insert(T[] array, int currentSize, int index, T element) {
 }
 ```
 
-
-
 ```java
 public static int growSize(int currentSize) {
     return currentSize <= 4 ? 8 : currentSize * 2;
 }
 ```
-
-
-
-
-
-
-
-
 

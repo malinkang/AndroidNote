@@ -1,9 +1,5 @@
 # BottomSheet
 
-
-
-
-
 * [Bottom设置圆角](https://stackoverflow.com/questions/43852562/round-corner-for-bottomsheetdialogfragment)
 
 ## 参考

@@ -101,7 +101,7 @@ x轴和y轴设置都为MIRROR：
 mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.MIRROR, Shader.TileMode.MIRROR));
 ```
 
-![](../../../.gitbook/assets/bitmapshader-mirror%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](../../../.gitbook/assets/bitmapshader-mirror%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
 
 x轴和y轴设置都为CLAMP：
 

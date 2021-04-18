@@ -26,7 +26,7 @@ Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满�
 
 要声明 Activity，请打开清单文件，并添加 [&lt;activity&gt;](https://developer.android.com/guide/topics/manifest/activity-element) 元素作为 [&lt;application&gt;](https://developer.android.com/guide/topics/manifest/application-element) 元素的子元素。例如：
 
-```xml
+```markup
 <manifest ... >
   <application ... >
       <activity android:name=".ExampleActivity" />
@@ -38,10 +38,7 @@ Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满�
 
 此元素唯一的必要属性是 [android:name](https://developer.android.com/guide/topics/manifest/activity-element#nm)，该属性用于指定 Activity 的类名称。您也可以添加用于定义标签、图标或界面主题等 Activity 特征的属性。如需详细了解上述及其他属性，请参阅 [&lt;activity&gt;](https://developer.android.com/guide/topics/manifest/activity-element) 元素参考文档。
 
-
-
 > **注意**：发布应用后，就不应再更改 Activity 名称，否则可能会破坏某些功能，例如应用快捷方式。如需详细了解发布后应避免的更改，请参阅[不可更改的内容](http://android-developers.blogspot.com/2011/06/things-that-cannot-change.html)。
->
 
 ### 声明 intent 过滤器
 
@@ -97,37 +94,29 @@ Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满�
 
 如需详细了解权限和安全性，请参阅[安全性和权限](https://developer.android.com/guide/topics/security/security)。
 
-## 
-
 ## 了解任务和返回堆栈
 
 任务是用户在执行某项工作时与之互动的一系列 `Activity` 的集合。这些 Activity 按照每个 Activity 打开的顺序排列在一个返回堆栈中。例如，电子邮件应用可能有一个 `Activity` 来显示新邮件列表。当用户选择一封邮件时，系统会打开一个新的 `Activity` 来显示该邮件。这个新的 `Activity` 会添加到返回堆栈中。如果用户按**返回**按钮，这个新的 `Activity` 即会完成并从堆栈中退出。通过以下视频可以大致了解返回堆栈的工作原理。
 
-{% embed url="https://youtu.be/MvIlVsXxXmY" %}
-
-
+{% embed url="https://youtu.be/MvIlVsXxXmY" caption="" %}
 
 Android 7.0（API 级别 24）及更高版本支持[多窗口环境](https://developer.android.com/guide/topics/ui/multi-window)，当应用在这种环境中同时运行时，系统会单独管理每个窗口的任务；而每个窗口可能包含多项任务。[在 Chromebook 上运行的 Android 应用](https://developer.android.com/topic/arc)也是如此：系统按窗口管理任务或任务组。
 
 大多数任务都从设备主屏幕上启动。当用户轻触应用启动器中的图标（或主屏幕上的快捷方式）时，该应用的任务就会转到前台运行。如果该应用没有任务存在（应用最近没有使用过），则会创建一个新的任务，并且该应用的“主”Activity 将会作为堆栈的根 Activity 打开。
 
-在当前 Activity 启动另一个 Activity 时，新的 Activity 将被推送到堆栈顶部并获得焦点。上一个 Activity 仍保留在堆栈中，但会停止。当 Activity 停止时，系统会保留其界面的当前状态。当用户按**返回**按钮时，当前 Activity 会从堆栈顶部退出（该 Activity 销毁），上一个 Activity 会恢复（界面会恢复到上一个状态）。堆栈中的 Activity 永远不会重新排列，只会被送入和退出，在当前 Activity 启动时被送入堆栈，在用户使用**返回**按钮离开时从堆栈中退出。因此，返回堆栈按照“后进先出”的对象结构运作。图 1 借助一个时间轴直观地显示了这种行为。该时间轴显示了 Activity 之间的进展以及每个时间点的当前返回堆栈。  
-
+在当前 Activity 启动另一个 Activity 时，新的 Activity 将被推送到堆栈顶部并获得焦点。上一个 Activity 仍保留在堆栈中，但会停止。当 Activity 停止时，系统会保留其界面的当前状态。当用户按**返回**按钮时，当前 Activity 会从堆栈顶部退出（该 Activity 销毁），上一个 Activity 会恢复（界面会恢复到上一个状态）。堆栈中的 Activity 永远不会重新排列，只会被送入和退出，在当前 Activity 启动时被送入堆栈，在用户使用**返回**按钮离开时从堆栈中退出。因此，返回堆栈按照“后进先出”的对象结构运作。图 1 借助一个时间轴直观地显示了这种行为。该时间轴显示了 Activity 之间的进展以及每个时间点的当前返回堆栈。
 
 ![](../../.gitbook/assets/image%20%2848%29.png)
 
 如果用户继续按**返回**，则堆栈中的 Activity 会逐个退出，以显示前一个 Activity，直到用户返回到主屏幕（或任务开始时运行的 Activity）。移除堆栈中的所有 Activity 后，该任务将不复存在。
 
-任务是一个整体单元，当用户开始一个新任务或通过主屏幕按钮进入主屏幕时，任务可移至“后台”。在后台时，任务中的所有 Activity 都会停止，但任务的返回堆栈会保持不变，当其他任务启动时，当前任务只是失去了焦点，如图 2 所示。这样一来，任务就可以返回到“前台”，以便用户可以从他们离开的地方继续操作。举例来说，假设当前任务（任务 A）的堆栈中有 3 个 Activity，当前 Activity 下有 2 个 Activity。用户按主屏幕按钮，然后从应用启动器中启动新应用。主屏幕出现后，任务 A 转到后台。当新应用启动时，系统会启动该应用的任务（任务 B），该任务具有自己的 Activity 堆栈。与该应用互动后，用户再次返回到主屏幕并选择最初启动任务 A 的应用。现在，任务 A 进入前台，其堆栈中的所有三个 Activity 都完好如初，堆栈顶部的 Activity 恢复运行。此时，用户仍可通过以下方式切换到任务 B：转到主屏幕并选择启动该任务的应用图标（或者从[**最近使用的应用**屏幕中](https://developer.android.com/guide/components/recents)选择该应用的任务）。这就是在 Android 上进行多任务处理的一个例子。  
-
+任务是一个整体单元，当用户开始一个新任务或通过主屏幕按钮进入主屏幕时，任务可移至“后台”。在后台时，任务中的所有 Activity 都会停止，但任务的返回堆栈会保持不变，当其他任务启动时，当前任务只是失去了焦点，如图 2 所示。这样一来，任务就可以返回到“前台”，以便用户可以从他们离开的地方继续操作。举例来说，假设当前任务（任务 A）的堆栈中有 3 个 Activity，当前 Activity 下有 2 个 Activity。用户按主屏幕按钮，然后从应用启动器中启动新应用。主屏幕出现后，任务 A 转到后台。当新应用启动时，系统会启动该应用的任务（任务 B），该任务具有自己的 Activity 堆栈。与该应用互动后，用户再次返回到主屏幕并选择最初启动任务 A 的应用。现在，任务 A 进入前台，其堆栈中的所有三个 Activity 都完好如初，堆栈顶部的 Activity 恢复运行。此时，用户仍可通过以下方式切换到任务 B：转到主屏幕并选择启动该任务的应用图标（或者从[**最近使用的应用**屏幕中](https://developer.android.com/guide/components/recents)选择该应用的任务）。这就是在 Android 上进行多任务处理的一个例子。
 
 ![](../../.gitbook/assets/image%20%2845%29.png)
 
 {% hint style="info" %}
 **注意**：多个任务可以同时在后台进行。但是，如果用户同时运行很多后台任务，系统可能会为了恢复内存而开始销毁后台 Activity，导致 Activity 状态丢失。
 {% endhint %}
-
-
 
 由于返回堆栈中的 Activity 不会被重新排列，如果您的应用允许用户从多个 Activity 启动特定的 Activity，系统便会创建该 Activity 的新实例并将其推送到堆栈中（而不是将该 Activity 的某个先前的实例移至堆栈顶部）。这样一来，应用中的一个 Activity 就可能被多次实例化（甚至是从其他任务对其进行实例化），如图 3 所示。因此，如果用户使用**返回**按钮向后导航，Activity 的每个实例将按照它们被打开的顺序显示出来（每个实例都有自己的界面状态）。不过，如果您不希望某个 Activity 被实例化多次，可以修改此行为。有关如何实现此操作，将在后面的[管理任务](https://developer.android.com/guide/components/activities/tasks-and-back-stack#ManagingTasks)部分中讨论。
 
@@ -234,10 +223,7 @@ Activity 和任务的默认行为总结如下：
 
 启动 Activity 时，您可以在传送给 [`startActivity()`](https://developer.android.com/reference/android/app/Activity#startActivity%28android.content.Intent%29) 的 intent 中添加相应的标记来修改 Activity 与其任务的默认关联。您可以使用以下标记来修改默认行为：
 
-
 [`FLAG_ACTIVITY_NEW_TASK`](https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK)在新任务中启动 Activity。如果您现在启动的 Activity 已经有任务在运行，则系统会将该任务转到前台并恢复其最后的状态，而 Activity 将在 [`onNewIntent()`](https://developer.android.com/reference/android/app/Activity#onNewIntent%28android.content.Intent%29) 中收到新的 intent。这与上一节中介绍的 `"singleTask"` [`launchMode`](https://developer.android.com/guide/topics/manifest/activity-element#lmode) 值产生的行为相同。
-
-
 
 [`FLAG_ACTIVITY_SINGLE_TOP`](https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_SINGLE_TOP)如果要启动的 Activity 是当前 Activity（即位于返回堆栈顶部的 Activity），则现有实例会收到对 [`onNewIntent()`](https://developer.android.com/reference/android/app/Activity#onNewIntent%28android.content.Intent%29) 的调用，而不会创建 Activity 的新实例。这与上一节中介绍的 `"singleTop"` [`launchMode`](https://developer.android.com/guide/topics/manifest/activity-element#lmode) 值产生的行为相同。
 
@@ -308,10 +294,6 @@ Activity 和任务的默认行为总结如下：
 对于那些您不希望用户能够返回到 Activity 的情况，请将 [`<activity>`](https://developer.android.com/guide/topics/manifest/activity-element) 元素的 [`finishOnTaskLaunch`](https://developer.android.com/guide/topics/manifest/activity-element#finish) 设置为 `"true"`（请参阅[清除返回堆栈](https://developer.android.com/guide/components/activities/tasks-and-back-stack#Clearing)）。
 
 如需详细了解如何在**概览**屏幕中显示和管理任务及 Activity，请参阅[“最近使用的应用”屏幕](https://developer.android.com/guide/components/activities/recents)。
-
-
-
-
 
 ## 参考
 
