@@ -266,7 +266,7 @@ canvas.drawText("XOR", 240,0,mPaint);
 canvas.drawPath(pathOpResult,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-op%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](../../../.gitbook/assets/path-op%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
 
 ## 计算边界
 
