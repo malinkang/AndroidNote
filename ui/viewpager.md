@@ -38,7 +38,7 @@ mTablayout.setupWithViewPager(mViewpager);
 
 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。
 
-![](../.gitbook/assets/tablayout-2%20%281%29%20%281%29%20%281%29%20%281%29.gif)
+![](../.gitbook/assets/tablayout-2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.gif)
 
 当设置为fill时将会占满所有的位置。
 

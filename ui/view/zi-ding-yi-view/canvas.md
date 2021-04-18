@@ -146,7 +146,7 @@ canvas.drawOval(rectF,mPaint);
 canvas.drawCircle(500,500,400,mPaint);  // 绘制一个圆心坐标在(500,500)，半径为400 的圆。
 ```
 
-![](../../../.gitbook/assets/canvas-circle%20%282%29%20%282%29%20%282%29%20%281%29.jpg)
+![](../../../.gitbook/assets/canvas-circle%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.jpg)
 
 ### 绘制圆弧
 
@@ -174,7 +174,7 @@ canvas.drawArc(rectF,0,90,true,mPaint);
 canvas.drawArc(rectF2,0,90,false,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-arc%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-arc%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
 
 ## 画布操作
 
@@ -188,7 +188,7 @@ canvas.translate(200,0);
 canvas.drawCircle(0,0,100,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-translate%20%282%29%20%282%29%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-translate%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
 
 ### 缩放（scale）
 
@@ -221,7 +221,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale1%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-scale1%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
 
 设置缩放中心位置
 
@@ -234,7 +234,7 @@ canvas.drawRect(rect,mPaint);   // 绘制蓝色矩形
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale2%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
+![](../../../.gitbook/assets/canvas-scale2%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
 
 前面两个示例缩放的数值都是正数，按照表格中的说明，**当缩放比例为负数的时候会根据缩放中心轴进行翻转**，下面我们就来实验一下：
 
@@ -341,7 +341,7 @@ Rect dst = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
 canvas.drawBitmap(bitmap, src,dst, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-bitmap2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](../../../.gitbook/assets/canvas-bitmap2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
 
 ## 绘制文字
 
@@ -367,7 +367,7 @@ mPaint.setTextSize(50);              // 设置字体大小
 canvas.drawText(str,2,5,200,500,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-text%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](../../../.gitbook/assets/canvas-text%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
 
 为每个字符指定位置
 

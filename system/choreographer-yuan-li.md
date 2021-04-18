@@ -582,7 +582,9 @@ private static final class CallbackRecord {
 
 ## 动画显示过程
 
+## 参考
+
+* [面试官：如何监测应用的 FPS ？](https://juejin.cn/post/6890407553457963022)
 
 
-[https://juejin.cn/post/6890407553457963022\#heading-3](https://juejin.cn/post/6890407553457963022#heading-3)
 

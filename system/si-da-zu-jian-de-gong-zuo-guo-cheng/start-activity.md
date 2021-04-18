@@ -1,51 +1,36 @@
 ---
-title: startActivity流程分析
-date: 2020-02-27T16:07:48+08:00
-lastmod: 2020-02-27T16:07:48+08:00
-draft: false
-keywords: []
-description: ""
-tags: []
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: true
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
 mathjaxEnableSingleDollar: false
-mathjaxEnableAutoNumber: false
-
-# You unlisted posts you might want not want the header or footer to show
+sequenceDiagrams:
+  enable: false
+  options: ''
+draft: false
+hiddenFromHomePage: false
 hideHeaderAndFooter: false
-
-# You can enable or disable out-of-date content warning for individual post.
-# Comment this out to use the global config.
-#enableOutdatedInfoWarning: false
-
+postMetaInFooter: false
+toc: true
+keywords: []
+author: ''
+lastmod: '2020-02-27T08:07:48.000Z'
+autoCollapseToc: false
+contentCopyright: false
+date: '2020-02-27T08:07:48.000Z'
+reward: false
 flowchartDiagrams:
   enable: false
-  options: ""
-
-sequenceDiagrams: 
-  enable: false
-  options: ""
-
+  options: ''
+mathjaxEnableAutoNumber: false
+title: startActivity流程分析
+tags: []
+mathjax: false
+categories: []
+description: ''
+comment: false
 ---
 
-
+# Activity启动流程
 
 `Activity`的启动过程分为两种，一种是根Activity的启动过程，另一种是普通Activity的启动过程。根Activity指的是应用程序启动的第一个Activity，因此根Activity的启动过程一般情况下也可以理解为应用程序的启动过程。普通Activity指的是除应用程序启动的第一个Activity之外的其他Activity。
 
-
-<!--more-->
 Activity的启动过程比较复杂，因此这里分为3个部分来讲，分别是
 
 1. Launcher请求AMS过程
@@ -140,7 +125,7 @@ public boolean startActivitySafely(View v, Intent intent, @Nullable ItemInfo ite
 
 在①处将Flag设置为Intent.FLAG\_ACTIVITY\_NEW\_TASK，这样根Activity会在新的任务栈中启动。在②处会调用startActivity方法。
 
-### Activity#startActivity
+### Activity\#startActivity
 
 ```java
 @Override
@@ -157,7 +142,7 @@ public void startActivity(Intent intent, @Nullable Bundle options) {
 
 在startActivity 方法中会调用startActivityForResult 方法，它的第二个参数为-1，表示Launcher不需要知道Activity启动的结果。
 
-### Activity#startActivityForResult
+### Activity\#startActivityForResult
 
 ```java
 Activity mParent;
@@ -178,7 +163,7 @@ public void startActivityForResult(@RequiresPermission Intent intent, int reques
 
 mParent是Activity类型的，表示当前Activity的父类。因为目前根Activity还没有创建出来，因此，mParent==null成立。接着调用`Instrumentation`的`execStartActivity`方法，Instrumentation 主要用来监控应用程序和系统的交互。
 
-### Instrumentation#execStartActivity
+### Instrumentation\#execStartActivity
 
 ```java
 //frameworks/base/core/java/android/app/Instrumentation.java
@@ -204,7 +189,7 @@ public ActivityResult execStartActivity(
 
 首先调用`ActivityTaskManager`的`getService`方法来获取`IActivityTaskManager`的代理对象，接着调用它的`startActivity`方法。
 
-### Instrumentation#checkStartActivityResult
+### Instrumentation\#checkStartActivityResult
 
 ```java
 public static void checkStartActivityResult(int res, Object intent) {
@@ -256,10 +241,6 @@ public static void checkStartActivityResult(int res, Object intent) {
 }
 ```
 
-
-
-
-
 ### getService\(\)
 
 ```java
@@ -280,11 +261,7 @@ private static final Singleton<IActivityTaskManager> IActivityTaskManagerSinglet
         };
 ```
 
-
-
 ## ATMS到AT的调用过程
-
-
 
 Launcher请求ActivityTaskManagerService后，代码逻辑已经进入ATMS中，接着是AMS到ApplicationThread的调用流程，时序图如图所示
 
@@ -352,8 +329,7 @@ int startActivityAsUser(IApplicationThread caller, String callingPackage,
 }
 ```
 
-在注释1处判断调用者进程是否被隔离，如果被隔离则抛出SecurityException异常，在注释2处检查调用者是否有权限，如果没有权限也会抛出SecurityException异常。最后调用了ActivityStarter的execute 方法。  
-
+在注释1处判断调用者进程是否被隔离，如果被隔离则抛出SecurityException异常，在注释2处检查调用者是否有权限，如果没有权限也会抛出SecurityException异常。最后调用了ActivityStarter的execute 方法。
 
 ### execute\(\)
 
@@ -385,7 +361,7 @@ int execute() {
 
 ActivityStarter是Android 7.0中新加入的类，它是加载Activity的控制类，会收集所有的逻辑来决定如何将Intent和Flags转换为Activity，并将Activity和Task以及Stack相关联。
 
-### ActivityStarter#startActivity
+### ActivityStarter\#startActivity
 
 ```java
 private int startActivityMayWait(IApplicationThread caller, int callingUid,
@@ -672,7 +648,7 @@ private boolean resumeTopActivityInnerLocked(ActivityRecord prev, ActivityOption
 }
 ```
 
-### startSpecificActivity(\)
+### startSpecificActivity\(\)
 
 ```java
 //frameworks/base/services/core/java/com/android/server/wm/ActivityStackSupervisor.java
@@ -717,7 +693,6 @@ void startSpecificActivity(ActivityRecord r, boolean andResume, boolean checkCon
 * ②判断要启动的`Activity`所在的应用程序进程是否已经运行
 * 如果所在的进程已经运行，就会调用③处的`realStartActivityLocked`方法。  
 
-
 ### realStartActivityLocked\(\)
 
 ```java
@@ -755,7 +730,7 @@ boolean realStartActivityLocked(ActivityRecord r, WindowProcessController proc,
 
     // Schedule transaction.
     mService.getLifecycleManager().scheduleTransaction(clientTransaction);
-            
+
     return true;
 }
 ```
@@ -953,7 +928,6 @@ public void executeCallbacks(ClientTransaction transaction) {
      client.handleLaunchActivity(r, pendingActions, null /* customIntent */);
      Trace.traceEnd(TRACE_TAG_ACTIVITY_MANAGER);
  }
-
 ```
 
 ### handleLaunchActivity\(\)
@@ -1164,8 +1138,6 @@ public @NonNull Activity instantiateActivity(@NonNull ClassLoader cl, @NonNull S
 }
 ```
 
-
-
 ```java
 public void callActivityOnCreate(Activity activity, Bundle icicle,
         PersistableBundle persistentState) {
@@ -1207,16 +1179,9 @@ final void performCreate(Bundle icicle, PersistableBundle persistentState) {
 
 ![](../../.gitbook/assets/image%20%2863%29.png)
 
-首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。  
-
+首先Launcher进程向AMS请求创建根Activity，AMS会判断根Activity所需的应用程序进程是否存在并启动，如果不存在就会请求Zygote进程创建应用程序进程。应用程序进程启动后，AMS 会请求创建应用程序进程并启动根Activity。图中步骤2采用的是Socket通信，步骤1和步骤4采用的是Binder通信。上图可能并不是很直观，为了更好理解，下面给出这4个进程调用的时序图，如下图所示。
 
 ![](../../.gitbook/assets/image%20%2865%29.png)
 
 如果是普通Activity启动过程会涉及几个进程呢？答案是两个，AMS所在进程和应用程序进程。实际上理解了根Activity的启动过程（根Activity的onCreate过程）。
-
-
-
-
-
-
 

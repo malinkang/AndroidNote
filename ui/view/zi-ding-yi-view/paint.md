@@ -37,7 +37,7 @@ public PorterDuffXfermode(PorterDuff.Mode mode)
 
 PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC\_OVER、DST\_OVER、SRC\_IN、DST\_IN、SRC\_OUT、DST\_OUT、SRC\_ATOP、DST\_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
 
-![&#x9EC4;&#x8272;&#x7684;&#x5706;&#x5148;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;&#xFF0C;&#x84DD;&#x8272;&#x7684;&#x77E9;&#x5F62;&#x540E;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;](../../../.gitbook/assets/porterduffxfermode%20%282%29%20%282%29.jpg)
+![&#x9EC4;&#x8272;&#x7684;&#x5706;&#x5148;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;&#xFF0C;&#x84DD;&#x8272;&#x7684;&#x77E9;&#x5F62;&#x540E;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;](../../../.gitbook/assets/porterduffxfermode%20%282%29%20%282%29%20%282%29.jpg)
 
 ## PathEffect
 

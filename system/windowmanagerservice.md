@@ -1,18 +1,19 @@
 ---
 title: WindowManagerService分析
-date: 2020-02-23 17:19:13
-tags: ["源码分析"]
+date: '2020-02-23T17:19:13.000Z'
+tags:
+  - 源码分析
 ---
+
+# WindowManagerService
 
 ## Window
 
 `Window`字面意思为窗口，是一个抽象类，负责管理`View`，它的唯一子类为`PhoneWindow`。它的官方定义如下：
 
-> Abstract base class for a top-level window look and behavior policy.  An instance of this class should be used as the top-level view added to the window manager. It provides standard UI policies such as a background, title area, default key processing, etc.
+> Abstract base class for a top-level window look and behavior policy. An instance of this class should be used as the top-level view added to the window manager. It provides standard UI policies such as a background, title area, default key processing, etc.
 >
 > The only existing implementation of this abstract class is android.view.PhoneWindow, which you should instantiate when needing a Window.
-
-<!--more-->
 
 顶层窗口外观和行为策略的抽象基类。 该类的一个实例应被用作添加到窗口管理器的顶层视图。它提供了标准的UI策略，如背景、标题区域、默认键处理等。
 
@@ -72,7 +73,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 }
 ```
 
-### Activity#attach
+### Activity\#attach
 
 `Activity`的`attach`方法会创建`PhoneWindow`对象，并创建一个`WindowManager`对象。
 
@@ -86,8 +87,8 @@ final void attach(Context context, ActivityThread aThread,
         NonConfigurationInstances lastNonConfigurationInstances,
         Configuration config, String referrer, IVoiceInteractor voiceInteractor,
         Window window, ActivityConfigCallback activityConfigCallback, IBinder assistToken) {
-  	//...
-  	//创建PhoneWindow
+      //...
+      //创建PhoneWindow
     mWindow = new PhoneWindow(this, window, activityConfigCallback);
     //...
     //设置WindowManager 
@@ -95,14 +96,14 @@ final void attach(Context context, ActivityThread aThread,
             (WindowManager)context.getSystemService(Context.WINDOW_SERVICE), //调用ContextImpl的getSystemService方法
             mToken, mComponent.flattenToString(),
             (info.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0);
-  	//...
+      //...
     //赋值
     mWindowManager = mWindow.getWindowManager();
     //...
 }
 ```
 
-### Activity#setContentView
+### Activity\#setContentView
 
 `Activity`的`setContentView`方法，实际上是调用的`PhoneWindow`的`setContentView`方法。
 
@@ -264,7 +265,7 @@ protected ViewGroup generateLayout(DecorView decor) {
 
 `setContentView`方法通过`PhoneWindow`创建`DecorView`，并通过`findViewById`获取到`DecorView`的子View`mContentParent`，并把传入的`View`添加到`mContentParent`中。
 
-### AT#handleResumeActivity
+### AT\#handleResumeActivity
 
 在`ActivityThread`的`handleResumeActivity`方法中，会调用`WindowManager`的`addView`方法添加`DecorView`。
 
@@ -335,7 +336,7 @@ public interface ViewManager
 //frameworks/base/core/java/android/app/ContextImpl.java
 public Object getSystemService(String name) {
     //...
-  	//调用SystemServiceRegistry的getSystemService方法
+      //调用SystemServiceRegistry的getSystemService方法
     return SystemServiceRegistry.getSystemService(this, name);
 }
 ```
@@ -371,7 +372,6 @@ private static final Map<String, ServiceFetcher<?>> SYSTEM_SERVICE_FETCHERS =
 `SystemServiceRegistry`的静态代码块中，注册了多个服务。
 
 ```java
-
 static{
     //...
     //调用registerService注册WindManager
@@ -595,7 +595,7 @@ private void startOtherServices(@NonNull TimingsTraceAndSlog t) {
     //添加服务
 ServiceManager.addService(Context.WINDOW_SERVICE, wm, /* allowIsolated= */ false,
     DUMP_FLAG_PRIORITY_CRITICAL | DUMP_FLAG_PROTO);
-  
+
 }
 ```
 
@@ -615,7 +615,7 @@ public static WindowManagerService main(final Context context, final InputManage
         ActivityTaskManagerService atm, Supplier<SurfaceControl.Transaction> transactionFactory,
         Supplier<Surface> surfaceFactory,
         Function<SurfaceSession, SurfaceControl.Builder> surfaceControlFactory) {
-   
+
     DisplayThread.getHandler().runWithScissors(() ->
             //创建WindowManagerService
             sInstance = new WindowManagerService(context, im, showBootMsgs, onlyCore, policy,
@@ -623,8 +623,6 @@ public static WindowManagerService main(final Context context, final InputManage
     return sInstance;
 }
 ```
-
-
 
 ```java
 public IWindowSession openSession(IWindowSessionCallback callback) {
@@ -647,18 +645,5 @@ public int addToDisplayAsUser(IWindow window, int seq, WindowManager.LayoutParam
             outContentInsets, outStableInsets, outDisplayCutout, outInputChannel,
             outInsetsState, outActiveControls, userId);
 }
-
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,8 +1,11 @@
 ---
 title: 启动ServiceManager
-date: 2020-02-01 22:07:20
-tags: ["源码分析"]
+date: '2020-02-01T22:07:20.000Z'
+tags:
+  - 源码分析
 ---
+
+# 启动ServiceManager
 
 `ServiceManager`在`init.rc`中启动的。
 
@@ -20,8 +23,6 @@ service servicemanager /system/bin/servicemanager
     onrestart restart drm
 ```
 
-<!--more-->
-
 servicemanager是用`C/C++`编写，源码路径在工程的`frameworks/native/cmds/servicemanager`目录中，先看看它的make文件。
 
 ```java
@@ -34,7 +35,7 @@ LOCAL_MODULE := servicemanager //生成可执行文件的文件名
 include $(BUILD_EXECUTABLE)
 ```
 
-## service_manager.c
+## service\_manager.c
 
 ### main
 
@@ -82,7 +83,7 @@ int main(int argc, char **argv)
 }
 ```
 
-### svcmgr_handler
+### svcmgr\_handler
 
 ```c
 int svcmgr_handler(struct binder_state *bs,
@@ -182,7 +183,7 @@ int svcmgr_handler(struct binder_state *bs,
 }
 ```
 
-### do_add_service
+### do\_add\_service
 
 ```c
 int do_add_service(struct binder_state *bs,
@@ -238,7 +239,7 @@ int do_add_service(struct binder_state *bs,
 
 ## binder.c
 
-### binder_open
+### binder\_open
 
 ```c
 //frameworks/native/cmds/servicemanager/binder.c
@@ -286,7 +287,7 @@ fail_open:
 }
 ```
 
-### binder_become_context_manager
+### binder\_become\_context\_manager
 
 ```c
 int binder_become_context_manager(struct binder_state *bs)
@@ -295,7 +296,7 @@ int binder_become_context_manager(struct binder_state *bs)
 }
 ```
 
-### binder_loop
+### binder\_loop
 
 ```c
 void binder_loop(struct binder_state *bs, binder_handler func)
@@ -336,7 +337,7 @@ void binder_loop(struct binder_state *bs, binder_handler func)
 }
 ```
 
-### binder_parse
+### binder\_parse
 
 ```c
 int binder_parse(struct binder_state *bs, struct binder_io *bio,
@@ -426,7 +427,7 @@ int binder_parse(struct binder_state *bs, struct binder_io *bio,
 }
 ```
 
-### binder_send_reply
+### binder\_send\_reply
 
 ```c
 void binder_send_reply(struct binder_state *bs,
@@ -464,7 +465,7 @@ void binder_send_reply(struct binder_state *bs,
 }
 ```
 
-### binder_write
+### binder\_write
 
 ```c
 int binder_write(struct binder_state *bs, void *data, size_t len)
@@ -490,3 +491,4 @@ int binder_write(struct binder_state *bs, void *data, size_t len)
 ## 参考
 
 * [Binder系列3—启动ServiceManager](http://gityuan.com/2015/11/07/binder-start-sm/)
+

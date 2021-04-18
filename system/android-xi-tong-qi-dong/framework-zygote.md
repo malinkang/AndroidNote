@@ -1,16 +1,15 @@
 ---
 title: Zygote进程启动流程
-date: 2020-01-11 15:01:48
-tags: ["源码分析"]
+date: '2020-01-11T15:01:48.000Z'
+tags:
+  - 源码分析
 ---
 
+# Zygote进程启动流程
 
 在Android系统中，应用程序进程以及运行系统的关键服务的`SystemServer`进程都是由`Zygote`进程来创建的，我们也将它称为孵化器。它通过`fork`（复制进程）的形式来创建应用程序进程和`SystemServer`进程。
 
-<!--more-->
-
-Zygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app_process，将其名称换成了“zygote”。
-
+Zygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app\_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app\_process，将其名称换成了“zygote”。
 
 ## Zygote启动脚本分析
 
@@ -28,10 +27,9 @@ import /init.${ro.zygote}.rc//导入zygote.rc
 从`Android 5.0`开始，Android开始支持64位程序，Zygote也就有了32位和64位的区别，所以在这里用`ro.zygote`属性来控制使用不同的`Zygote`启动脚本，从而也就启动了不同版本的`Zygote`进程，`ro.zygote`属性的取值有以下4种：
 
 * init.zygote32.rc
-* init.zygote32_64.rc
+* init.zygote32\_64.rc
 * init.zygote64.rc
-* init.zygote64_32.rc
-
+* init.zygote64\_32.rc
 
 ```java
 //system/core/rootdir/init.zygote64.rc
@@ -74,7 +72,7 @@ LOCAL_MODULE_STEM_32 := app_process32 //32位
 LOCAL_MODULE_STEM_64 := app_process64//64位
 ```
 
-## app_main
+## app\_main
 
 ### main
 
@@ -138,8 +136,7 @@ int main(int argc, char* const argv[])
 
 ### start
 
-`AndroidRuntime`的`start`方法负责启动虚拟机，并根据传进来的类名，获取到对应的类，并执行该类的`main`方法。在`app_main.cpp`的`main`方法中，我们传进来的是`ZygoteInit`类，
-所以执行的就是`ZygoteInit`的`main`方法。
+`AndroidRuntime`的`start`方法负责启动虚拟机，并根据传进来的类名，获取到对应的类，并执行该类的`main`方法。在`app_main.cpp`的`main`方法中，我们传进来的是`ZygoteInit`类， 所以执行的就是`ZygoteInit`的`main`方法。
 
 ```cpp
 //frameworks/base/core/jni/AndroidRuntime.cpp
@@ -188,6 +185,7 @@ void AndroidRuntime::start(const char* className, const Vector<String8>& options
 ### main
 
 在`ZygoteInit`的`main`方法中，主要做了四件事情：
+
 * 注册一个Socket
 * 预加载各种资源
 * 启动SystemServer
@@ -220,7 +218,7 @@ public static void main(String argv[]) {
         closeServerSocket();
         throw ex;
     }
-} 
+}
 ```
 
 ### registerZygoteSocket
@@ -352,8 +350,6 @@ private static void runSelectLoop(String abiList) throws MethodAndArgsCaller {
 
 ### acceptCommandPeer
 
-
-
 ```java
 private static ZygoteConnection acceptCommandPeer(String abiList) {
   try {
@@ -473,8 +469,6 @@ boolean runOnce() throws ZygoteInit.MethodAndArgsCaller {
 
 ### readArgumentList
 
-
-
 ```java
 private String[] readArgumentList()
         throws IOException {
@@ -521,8 +515,6 @@ private String[] readArgumentList()
 }
 ```
 
-
-
 ## Zygote
 
 ### forkAndSpecialize
@@ -547,7 +539,6 @@ public static int forkAndSpecialize(int uid, int gid, int[] gids, int debugFlags
     VM_HOOKS.postForkCommon();
     return pid;
 }
-
 ```
 
 ```cpp
@@ -921,7 +912,6 @@ private static void handleSystemServerProcess(
 
     /* should never reach here */
 }
-
 ```
 
 ```java
@@ -1011,20 +1001,3 @@ private static void invokeStaticMain(String className, String[] argv, ClassLoade
 }
 ```
 
-{% plantuml %}
-
-class ZygoteInit{
-
-
-
-}
-
-class ZygoteConnection{
-
-}
-
-class Zygote{
-
-}
-
-{% endplantuml %}

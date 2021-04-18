@@ -1,51 +1,15 @@
 ---
 title: 获取ServiceManager
-date: 2020-02-08 09:44:44
-tags: ["源码分析"]
+date: '2020-02-08T09:44:44.000Z'
+tags:
+  - 源码分析
 ---
+
+# 获取ServiceManager
 
 `ServiceManager`的`addService`和`getService`方法都会首先调用`getIServiceManager`来获取`ServiceManager`。
 
-<!--more-->
-
 ## 类图
-
-{% plantuml %}
-
-interface IBinder{
-
-}
-
-class Binder{
-    
-}
-
-class BinderProxy{
-
-}
-
-class ServiceManager{
-
-}
-
-interface IServiceManager{
-
-}
-abstract class ServiceManagerNative{
-
-}
-
-IBinder <|.. Binder 
-
-Binder <|-- ServiceManagerNative 
-
-IServiceManager <|.. ServiceManagerNative
-
-IServiceManager <|.. ServiceManagerProxy
-
-IBinder <|.. BinderProxy
-
-{% endplantuml %}
 
 ## ServiceManager
 
@@ -101,10 +65,10 @@ private static IServiceManager getIServiceManager() {
 ```java
 //frameworks/base/core/java/com/android/internal/os/BinderInternal.java
 //获取IBinder
-public static final native IBinder getContextObject(); 
+public static final native IBinder getContextObject();
 ```
 
-## android_util_Binder
+## android\_util\_Binder
 
 ### getContextObject
 
@@ -230,13 +194,13 @@ ProcessState::ProcessState()
 }
 ```
 
-### open_driver
+### open\_driver
 
 `open_driver`的函数实现如下所示。在这个函数中完成了三个工作：
 
-- 首先通过`open`系统调用打开了`dev/binder`设备
-- 然后通过ioctl获取Binder实现的版本号，并检查是否匹配
-- 最后通过ioctl设置进程支持的最大线程数量
+* 首先通过`open`系统调用打开了`dev/binder`设备
+* 然后通过ioctl获取Binder实现的版本号，并检查是否匹配
+* 最后通过ioctl设置进程支持的最大线程数量
 
 ```cpp
 static int open_driver()
@@ -338,7 +302,7 @@ sp<IBinder> ProcessState::getStrongProxyForHandle(int32_t handle)
 }
 ```
 
-当handle值所对应的IBinder不存在或弱引用无效时会创建BpBinder，否则直接获取。 针对handle==0的特殊情况，通过PING_TRANSACTION来判断是否准备就绪。如果在context manager还未生效前，一个BpBinder的本地引用就已经被创建，那么驱动将无法提供context manager的引用。
+当handle值所对应的IBinder不存在或弱引用无效时会创建BpBinder，否则直接获取。 针对handle==0的特殊情况，通过PING\_TRANSACTION来判断是否准备就绪。如果在context manager还未生效前，一个BpBinder的本地引用就已经被创建，那么驱动将无法提供context manager的引用。
 
 ### lookupHandleLocked
 
@@ -357,8 +321,9 @@ ProcessState::handle_entry* ProcessState::lookupHandleLocked(int32_t handle)
 }
 ```
 
-根据handle值来查找对应的`handle_entry`,`handle_entry`是一个结构体，里面记录IBinder和weakref_type两个指针。当handle大于mHandleToObject的Vector长度时，则向该Vector中添加(handle+1-N)个handle_entry结构体。
+根据handle值来查找对应的`handle_entry`,`handle_entry`是一个结构体，里面记录IBinder和weakref\_type两个指针。当handle大于mHandleToObject的Vector长度时，则向该Vector中添加\(handle+1-N\)个handle\_entry结构体。
 
 ## 参考
 
 * [Binder系列4—获取ServiceManager](http://gityuan.com/2015/11/08/binder-get-sm/)
+
