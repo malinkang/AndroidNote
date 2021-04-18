@@ -83,7 +83,6 @@
   * [ArrayMap](collection/arraymap.md)
 * [架构](jia-gou.md)
 * [Jetpack](jetpacket/README.md)
-  * [databinding坑](jetpacket/databinding-keng.md)
   * [databinding源码分析](jetpacket/databinding-yuan-ma-fen-xi.md)
   * [Android Data Binding: Let’s Flip This Thing](jetpacket/android-data-binding-lets-flip-this-thing.md)
   * [Untitled](jetpacket/untitled.md)
