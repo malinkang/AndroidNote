@@ -11,7 +11,10 @@ getDialog().getWindow().setAttributes(layoutParams);
 
 #### 参考
 
+* https://developer.android.com/guide/fragments/dialogs
 * [Using-DialogFragment](https://guides.codepath.com/android/Using-DialogFragment)
+* https://stackoverflow.com/questions/10795078/dialog-with-transparent-background-in-android
+* https://stackoverflow.com/questions/7189948/full-screen-dialogfragment-in-android
 
 
 

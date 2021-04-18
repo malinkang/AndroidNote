@@ -1,6 +1,6 @@
 # Activity简介
 
-[`Activity`](https://developer.android.com/reference/android/app/Activity) 类是 `Android` 应用的关键组件，而 Activity 的启动和组合方式则是该平台应用模型的基本组成部分。在编程范式中，应用是通过 `main()` 方法启动的，而 Android 系统与此不同，它会调用与其生命周期特定阶段相对应的特定回调方法来启动 [`Activity`](https://developer.android.com/reference/android/app/Activity) 实例中的代码。
+[`Activity`](https://developer.android.com/reference/android/app/Activity) 类是 `Android` 应用的关键组件，而`Activity`的启动和组合方式则是该平台应用模型的基本组成部分。在编程范式中，应用是通过 `main()` 方法启动的，而 Android 系统与此不同，它会调用与其生命周期特定阶段相对应的特定回调方法来启动 [`Activity`](https://developer.android.com/reference/android/app/Activity) 实例中的代码。
 
 本文介绍了 `Activity` 的概念，并提供了有关如何使用 `Activity` 的简要说明。要详细了解有关设计应用架构的最佳做法，请参阅[应用架构指南](https://developer.android.com/topic/libraries/architecture/guide)。
 
@@ -26,21 +26,22 @@ Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满�
 
 要声明 Activity，请打开清单文件，并添加 [&lt;activity&gt;](https://developer.android.com/guide/topics/manifest/activity-element) 元素作为 [&lt;application&gt;](https://developer.android.com/guide/topics/manifest/application-element) 元素的子元素。例如：
 
-```markup
-    <manifest ... >
-      <application ... >
-          <activity android:name=".ExampleActivity" />
-          ...
-      </application ... >
+```xml
+<manifest ... >
+  <application ... >
+      <activity android:name=".ExampleActivity" />
       ...
-    </manifest >
+  </application ... >
+  ...
+</manifest >
 ```
 
 此元素唯一的必要属性是 [android:name](https://developer.android.com/guide/topics/manifest/activity-element#nm)，该属性用于指定 Activity 的类名称。您也可以添加用于定义标签、图标或界面主题等 Activity 特征的属性。如需详细了解上述及其他属性，请参阅 [&lt;activity&gt;](https://developer.android.com/guide/topics/manifest/activity-element) 元素参考文档。
 
-{% hint style="info" %}
-**注意**：发布应用后，就不应再更改 Activity 名称，否则可能会破坏某些功能，例如应用快捷方式。如需详细了解发布后应避免的更改，请参阅[不可更改的内容](http://android-developers.blogspot.com/2011/06/things-that-cannot-change.html)。
-{% endhint %}
+
+
+> **注意**：发布应用后，就不应再更改 Activity 名称，否则可能会破坏某些功能，例如应用快捷方式。如需详细了解发布后应避免的更改，请参阅[不可更改的内容](http://android-developers.blogspot.com/2011/06/things-that-cannot-change.html)。
+>
 
 ### 声明 intent 过滤器
 
@@ -49,13 +50,13 @@ Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满�
 要使用此功能，您需要在 [&lt;activity&gt;](https://developer.android.com/guide/topics/manifest/activity-element) 元素中声明 [&lt;intent-filter&gt;](https://developer.android.com/guide/topics/manifest/intent-filter-element) 属性。此元素的定义包括 [&lt;action&gt;](https://developer.android.com/guide/topics/manifest/action-element) 元素，以及可选的 [&lt;category&gt;](https://developer.android.com/guide/topics/manifest/category-element) 元素和/或 [&lt;data&gt;](https://developer.android.com/guide/topics/manifest/data-element) 元素。这些元素组合在一起，可以指定 Activity 能够响应的 intent 类型。例如，以下代码段展示了如何配置一个发送文本数据并接收其他 Activity 的文本数据发送请求的 Activity：
 
 ```markup
-    <activity android:name=".ExampleActivity" android:icon="@drawable/app_icon">
-        <intent-filter>
-            <action android:name="android.intent.action.SEND" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <data android:mimeType="text/plain" />
-        </intent-filter>
-    </activity>
+<activity android:name=".ExampleActivity" android:icon="@drawable/app_icon">
+    <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+    </intent-filter>
+</activity>
 ```
 
 在此示例中，[&lt;action&gt;](https://developer.android.com/guide/topics/manifest/action-element) 元素指定该 Activity 会发送数据。将 [&lt;category&gt;](https://developer.android.com/guide/topics/manifest/category-element) 元素声明为 `DEFAULT` 可使 Activity 能够接收启动请求。[&lt;data&gt;](https://developer.android.com/guide/topics/manifest/data-element) 元素指定此 Activity 可以发送的数据类型。以下代码段展示了如何调用上述 Activity：
@@ -233,7 +234,7 @@ Activity 和任务的默认行为总结如下：
 
 启动 Activity 时，您可以在传送给 [`startActivity()`](https://developer.android.com/reference/android/app/Activity#startActivity%28android.content.Intent%29) 的 intent 中添加相应的标记来修改 Activity 与其任务的默认关联。您可以使用以下标记来修改默认行为：
 
-  
+
 [`FLAG_ACTIVITY_NEW_TASK`](https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NEW_TASK)在新任务中启动 Activity。如果您现在启动的 Activity 已经有任务在运行，则系统会将该任务转到前台并恢复其最后的状态，而 Activity 将在 [`onNewIntent()`](https://developer.android.com/reference/android/app/Activity#onNewIntent%28android.content.Intent%29) 中收到新的 intent。这与上一节中介绍的 `"singleTask"` [`launchMode`](https://developer.android.com/guide/topics/manifest/activity-element#lmode) 值产生的行为相同。
 
 

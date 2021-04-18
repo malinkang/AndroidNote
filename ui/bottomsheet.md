@@ -1,5 +1,11 @@
 # BottomSheet
 
+
+
+
+
+* [Bottom设置圆角](https://stackoverflow.com/questions/43852562/round-corner-for-bottomsheetdialogfragment)
+
 ## 参考
 
 * [Android: Bottom sheet](https://medium.com/@emrullahluleci/android-bottom-sheet-30284293f066)

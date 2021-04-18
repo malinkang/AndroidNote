@@ -23,18 +23,111 @@
 ### 构造函数
 
 ```java
+private int[] mKeys; 
+private Object[] mValues;
+private int mSize;
 public SparseArray() {
     this(10);
 }
-    public SparseArray(int initialCapacity) {
-        if (initialCapacity == 0) {
-            mKeys = EmptyArray.INT;
-            mValues = EmptyArray.OBJECT;
-        } else {
-            mValues = ArrayUtils.newUnpaddedObjectArray(initialCapacity);
-            mKeys = new int[mValues.length];
-        }
-        mSize = 0;
+public SparseArray(int initialCapacity) {
+    if (initialCapacity == 0) {
+        mKeys = EmptyArray.INT;
+        mValues = EmptyArray.OBJECT;
+    } else {
+        mValues = ArrayUtils.newUnpaddedObjectArray(initialCapacity);
+        mKeys = new int[mValues.length];
     }
+    mSize = 0;
+}
 ```
+
+### get
+
+```java
+public E get(int key) {
+    return get(key, null);
+}
+```
+
+```java
+public E get(int key, E valueIfKeyNotFound) {
+    //二分查找从mKeys获取索引
+    int i = ContainerHelpers.binarySearch(mKeys, mSize, key);
+    if (i < 0 || mValues[i] == DELETED) {
+        return valueIfKeyNotFound;
+    } else {
+        return (E) mValues[i];
+    }
+}
+```
+
+### put
+
+```java
+public void put(int key, E value) {
+    //二分查找
+    int i = ContainerHelpers.binarySearch(mKeys, mSize, key);
+
+    if (i >= 0) {
+        //说明存在值 直接覆盖
+        mValues[i] = value;
+    } else {
+        i = ~i;
+        //
+        if (i < mSize && mValues[i] == DELETED) {
+            mKeys[i] = key;
+            mValues[i] = value;
+            return;
+        }
+
+        if (mGarbage && mSize >= mKeys.length) {
+            gc();
+
+            // Search again because indices may have changed.
+            i = ~ContainerHelpers.binarySearch(mKeys, mSize, key);
+        }
+        mKeys = GrowingArrayUtils.insert(mKeys, mSize, i, key);
+        mValues = GrowingArrayUtils.insert(mValues, mSize, i, value);
+        mSize++;
+    }
+}
+```
+
+```java
+//frameworks/base/core/java/com/android/internal/util/GrowingArrayUtils.java
+public static <T> T[] insert(T[] array, int currentSize, int index, T element) {
+    assert currentSize <= array.length;
+
+    if (currentSize + 1 <= array.length) {
+        //移动
+        System.arraycopy(array, index, array, index + 1, currentSize - index);
+        array[index] = element;
+        return array;
+    }
+
+    @SuppressWarnings("unchecked")
+    T[] newArray = ArrayUtils.newUnpaddedArray((Class<T>)array.getClass().getComponentType(),
+            growSize(currentSize));
+    System.arraycopy(array, 0, newArray, 0, index);
+    newArray[index] = element;
+    System.arraycopy(array, index, newArray, index + 1, array.length - index);
+    return newArray;
+}
+```
+
+
+
+```java
+public static int growSize(int currentSize) {
+    return currentSize <= 4 ? 8 : currentSize * 2;
+}
+```
+
+
+
+
+
+
+
+
 
