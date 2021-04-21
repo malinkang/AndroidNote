@@ -89,6 +89,8 @@ public ViewRootImpl(Context context, Display display) {
     }
 ```
 
+### postCallback
+
 ```java
     public void postCallback(int callbackType, Runnable action, Object token) {
         postCallbackDelayed(callbackType, action, token, 0);
@@ -106,7 +108,89 @@ public ViewRootImpl(Context context, Display display) {
     }
 ```
 
-### 
+### postCallbackDelayedInternal
+
+```java
+   private void postCallbackDelayedInternal(int callbackType,
+            Object action, Object token, long delayMillis) {
+        if (DEBUG_FRAMES) {
+            Log.d(TAG, "PostCallback: type=" + callbackType
+                    + ", action=" + action + ", token=" + token
+                    + ", delayMillis=" + delayMillis);
+        }
+
+        synchronized (mLock) {
+            final long now = SystemClock.uptimeMillis();
+            final long dueTime = now + delayMillis;
+            // 1. 将 mTraversalRunnable 塞入队列
+            mCallbackQueues[callbackType].addCallbackLocked(dueTime, action, token);
+
+            if (dueTime <= now) {// 立即执行
+            // 2. 由于 delayMillis 是 0，所以会执行到这里
+                scheduleFrameLocked(now);
+            } else {// 延迟执行
+                Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_CALLBACK, action);
+                msg.arg1 = callbackType;
+                msg.setAsynchronous(true);
+                mHandler.sendMessageAtTime(msg, dueTime);
+            }
+        }
+    }
+```
+
+```java
+   private void scheduleFrameLocked(long now) {
+        if (!mFrameScheduled) {
+            mFrameScheduled = true;
+            if (USE_VSYNC) {
+                // Android 4.1 之后 USE_VSYNCUSE_VSYNC 默认为 true
+                if (DEBUG_FRAMES) {
+                    Log.d(TAG, "Scheduling next frame on vsync.");
+                }
+
+                // If running on the Looper thread, then schedule the vsync immediately,
+                // otherwise post a message to schedule the vsync from the UI thread
+                // as soon as possible.
+                //如果是当前线程，直接申请 vsync，否则通过 handler 通信
+                if (isRunningOnLooperThreadLocked()) {
+                    scheduleVsyncLocked();
+                } else {
+                    Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_VSYNC);
+                    msg.setAsynchronous(true);
+                    mHandler.sendMessageAtFrontOfQueue(msg);
+                }
+            } else {
+                final long nextFrameTime = Math.max(
+                        mLastFrameTimeNanos / TimeUtils.NANOS_PER_MS + sFrameDelay, now);
+                if (DEBUG_FRAMES) {
+                    Log.d(TAG, "Scheduling next frame in " + (nextFrameTime - now) + " ms.");
+                }
+                Message msg = mHandler.obtainMessage(MSG_DO_FRAME);
+                msg.setAsynchronous(true);
+                mHandler.sendMessageAtTime(msg, nextFrameTime);
+            }
+        }
+    }
+```
+
+```java
+   private void scheduleVsyncLocked() {
+        mDisplayEventReceiver.scheduleVsync();
+    }
+```
+
+```java
+   @UnsupportedAppUsage
+    public void scheduleVsync() {
+        if (mReceiverPtr == 0) {
+            Log.w(TAG, "Attempted to schedule a vertical sync pulse but the display event "
+                    + "receiver has already been disposed.");
+        } else {
+          // 注册监听 vsync 信号，会回调 dispatchVsync() 方法
+            nativeScheduleVsync(mReceiverPtr);
+        }
+    }
+```
 
 ### 创建FrameDisplayEventReceiver
 

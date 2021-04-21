@@ -553,7 +553,7 @@ public static IWindowManager getWindowManagerService() {
 }
 ```
 
-### setView方法
+### setView\(\)
 
 ```java
 public void setView(View view, WindowManager.LayoutParams attrs, View panelParentView,
@@ -561,9 +561,12 @@ public void setView(View view, WindowManager.LayoutParams attrs, View panelParen
     synchronized (this) {
         if (mView == null) {
             mView = view;
+            //...
+            //1. 发起首次绘制
+            requestLayout();
             try {
                 //...
-                //调用WindowSession的addToDisplayAsUser方法
+                //2.调用WindowSession的addToDisplayAsUser方法
                 res = mWindowSession.addToDisplayAsUser(mWindow, mSeq, mWindowAttributes,
                         getHostVisibility(), mDisplay.getDisplayId(), userId, mTmpFrame,
                         mAttachInfo.mContentInsets, mAttachInfo.mStableInsets,
@@ -575,10 +578,77 @@ public void setView(View view, WindowManager.LayoutParams attrs, View panelParen
             } finally {
                 //...
             }
-
+            //3.指定View的parent
+            view.assignParent(this);
         }
     }
 }
+```
+
+### invalidateChildInParent\(\)
+
+```java
+@Override
+    public ViewParent invalidateChildInParent(int[] location, Rect dirty) {
+        //1. 检查线程
+        checkThread();
+        if (DEBUG_DRAW) Log.v(mTag, "Invalidate child: " + dirty);
+
+        if (dirty == null) {
+        //2. 调用 scheduleTraversals()
+            invalidate();
+            return null;
+        } else if (dirty.isEmpty() && !mIsAnimating) {
+            return null;
+        }
+
+        if (mCurScrollY != 0 || mTranslator != null) {
+            mTempRect.set(dirty);
+            dirty = mTempRect;
+            if (mCurScrollY != 0) {
+                dirty.offset(0, -mCurScrollY);
+            }
+            if (mTranslator != null) {
+                mTranslator.translateRectInAppWindowToScreen(dirty);
+            }
+            if (mAttachInfo.mScalingRequired) {
+                dirty.inset(-1, -1);
+            }
+        }
+        //3.调用 scheduleTraversals()
+        invalidateRectOnScreen(dirty);
+
+        return null;
+    }
+```
+
+### scheduleTraversals
+
+```java
+   void scheduleTraversals() {
+         //防止重复调用
+        if (!mTraversalScheduled) {
+            mTraversalScheduled = true;
+            //发送同步消息屏障，保证优先处理异步消息
+            mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();
+            //调用mChoreographer的postCallback方法
+            mChoreographer.postCallback(
+                    Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, null);
+            notifyRendererOfFramePending();
+            pokeDrawLockIfNeeded();
+        }
+    }
+```
+
+```java
+    final TraversalRunnable mTraversalRunnable = new TraversalRunnable();
+    final class TraversalRunnable implements Runnable {
+        @Override
+        public void run() {
+            //调用doTraversal方法
+            doTraversal();
+        }
+    }
 ```
 
 ## WindowManagerService
