@@ -1,16 +1,19 @@
-# Android面试题
-
-## Java
-
-* **String、StringBuffer和StringBuilder的区别**
-
-## View
-
-
+# Android知识点梳理
 
 ## 四大组件
 
 ### Activity
+
+#### 生命周期
+
+1. 打开一个新Activity，前一个Activity的onStop一定会执行吗？
+2. A启动B，A和B的生命周期
+
+#### 启动模式
+
+
+
+
 
 ### Service
 

@@ -49,7 +49,8 @@ int main(int argc, char **argv)
         ALOGE("failed to open binder driver\n");
         return -1;
     }
-   //将自己设置为Binder大管家，整个Android系统只允许一个ServiceManager存在，因而后面还有人调用这个函数就会失败
+   //将自己设置为Binder大管家，整个Android系统只允许一个ServiceManager存在，
+   //因而后面还有人调用这个函数就会失败
     if (binder_become_context_manager(bs)) {
         ALOGE("cannot become context manager (%s)\n", strerror(errno));
         return -1;

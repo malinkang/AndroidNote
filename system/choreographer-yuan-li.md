@@ -276,8 +276,7 @@ NativeDisplayEventReceiver::NativeDisplayEventReceiver(JNIEnv* env,
 
 #### **initialize**
 
-`DisplayEventDispatcher`继承`LooperCallback`  
-
+`DisplayEventDispatcher`继承`LooperCallback`
 
 ```cpp
 //androidfw/DisplayEventDispatcher.h
@@ -303,7 +302,7 @@ status_t DisplayEventDispatcher::initialize() {
 }
 ```
 
- 监听mReceiver的所获取的文件句柄，一旦有数据到来，则回调this\(此处NativeDisplayEventReceiver\)中所复写LooperCallback对象的 handleEvent。
+监听mReceiver的所获取的文件句柄，一旦有数据到来，则回调this\(此处NativeDisplayEventReceiver\)中所复写LooperCallback对象的 handleEvent。
 
 ```cpp
 //Looper.cpp
@@ -614,7 +613,7 @@ void doCallbacks(int callbackType, long frameTimeNanos) {
         }
     } finally {
         synchronized (mLock) {
-            
+
             mCallbacksRunning = false;
             //回收callbacks，加入对象池mCallbackPool
             do {
@@ -627,8 +626,6 @@ void doCallbacks(int callbackType, long frameTimeNanos) {
     }
 }
 ```
-
-
 
 该方法主要功能：
 
@@ -661,14 +658,11 @@ private static final class CallbackRecord {
 * 当token的数据类型为FRAME\_CALLBACK\_TOKEN，则执行该对象的doFrame\(\)方法;
 * 当token为其他类型，则执行该对象的run\(\)方法。
 
-那么需要的场景便是由WMS调用scheduleAnimationLocked\(\)方法来设置mFrameScheduled=true来触发动画， 接下来说说动画控制的过程。  
-
+那么需要的场景便是由WMS调用scheduleAnimationLocked\(\)方法来设置mFrameScheduled=true来触发动画， 接下来说说动画控制的过程。
 
 ## 动画显示过程
 
 ## 参考
 
 * [面试官：如何监测应用的 FPS ？](https://juejin.cn/post/6890407553457963022)
-
-
 
