@@ -1,32 +1,3 @@
----
-mathjaxEnableSingleDollar: false
-sequenceDiagrams:
-  enable: false
-  options: ''
-draft: false
-hiddenFromHomePage: false
-hideHeaderAndFooter: false
-postMetaInFooter: false
-toc: true
-keywords: []
-author: ''
-lastmod: '2020-02-27T08:07:48.000Z'
-autoCollapseToc: false
-contentCopyright: false
-date: '2020-02-27T08:07:48.000Z'
-reward: false
-flowchartDiagrams:
-  enable: false
-  options: ''
-mathjaxEnableAutoNumber: false
-title: startActivity流程分析
-tags: []
-mathjax: false
-categories: []
-description: ''
-comment: false
----
-
 # Activity启动流程
 
 `Activity`的启动过程分为两种，一种是根Activity的启动过程，另一种是普通Activity的启动过程。根Activity指的是应用程序启动的第一个Activity，因此根Activity的启动过程一般情况下也可以理解为应用程序的启动过程。普通Activity指的是除应用程序启动的第一个Activity之外的其他Activity。

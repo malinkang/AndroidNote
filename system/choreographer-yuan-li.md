@@ -16,216 +16,216 @@ public ViewRootImpl(Context context, Display display) {
 ### getInstance\(\)
 
 ```java
-    //frameworks/base/core/java/android/view/Choreographer.java
-    public static Choreographer getInstance() {
-        return sThreadInstance.get();
-    }
-        // Thread local storage for the choreographer.
-    private static final ThreadLocal<Choreographer> sThreadInstance =
-            new ThreadLocal<Choreographer>() {
-        @Override
-        protected Choreographer initialValue() {
-            //获取当前线程Looper
-            Looper looper = Looper.myLooper();
-            if (looper == null) {
-                throw new IllegalStateException("The current thread must have a looper!");
-            }
-            Choreographer choreographer = new Choreographer(looper, VSYNC_SOURCE_APP);
-            if (looper == Looper.getMainLooper()) {
-                mMainInstance = choreographer;
-            }
-            return choreographer;
+//frameworks/base/core/java/android/view/Choreographer.java
+public static Choreographer getInstance() {
+    return sThreadInstance.get();
+}
+    // Thread local storage for the choreographer.
+private static final ThreadLocal<Choreographer> sThreadInstance =
+        new ThreadLocal<Choreographer>() {
+    @Override
+    protected Choreographer initialValue() {
+        //获取当前线程Looper
+        Looper looper = Looper.myLooper();
+        if (looper == null) {
+            throw new IllegalStateException("The current thread must have a looper!");
         }
-    };
+        Choreographer choreographer = new Choreographer(looper, VSYNC_SOURCE_APP);
+        if (looper == Looper.getMainLooper()) {
+            mMainInstance = choreographer;
+        }
+        return choreographer;
+    }
+};
 ```
 
 ### 创建Choreographer
 
 ```java
-    private Choreographer(Looper looper, int vsyncSource) {
-        mLooper = looper;
-        //创建Handler
-        mHandler = new FrameHandler(looper);
-        //创建用于接收Vsync的对象
-        mDisplayEventReceiver = USE_VSYNC
-                ? new FrameDisplayEventReceiver(looper, vsyncSource)
-                : null;
-        //上一次帧绘制时间点        
-        mLastFrameTimeNanos = Long.MIN_VALUE;
-        //帧间时长
-        mFrameIntervalNanos = (long)(1000000000 / getRefreshRate());
-        //创建回调对象
-        mCallbackQueues = new CallbackQueue[CALLBACK_LAST + 1];
-        for (int i = 0; i <= CALLBACK_LAST; i++) {
-            mCallbackQueues[i] = new CallbackQueue();
-        }
-        // b/68769804: For low FPS experiments.
-        setFPSDivisor(SystemProperties.getInt(ThreadedRenderer.DEBUG_FPS_DIVISOR, 1));
+private Choreographer(Looper looper, int vsyncSource) {
+    mLooper = looper;
+    //创建Handler
+    mHandler = new FrameHandler(looper);
+    //创建用于接收Vsync的对象
+    mDisplayEventReceiver = USE_VSYNC
+            ? new FrameDisplayEventReceiver(looper, vsyncSource)
+            : null;
+    //上一次帧绘制时间点        
+    mLastFrameTimeNanos = Long.MIN_VALUE;
+    //帧间时长
+    mFrameIntervalNanos = (long)(1000000000 / getRefreshRate());
+    //创建回调对象
+    mCallbackQueues = new CallbackQueue[CALLBACK_LAST + 1];
+    for (int i = 0; i <= CALLBACK_LAST; i++) {
+        mCallbackQueues[i] = new CallbackQueue();
     }
+    // b/68769804: For low FPS experiments.
+    setFPSDivisor(SystemProperties.getInt(ThreadedRenderer.DEBUG_FPS_DIVISOR, 1));
+}
 ```
 
 ### 创建FrameHandler
 
 ```java
-   private final class FrameHandler extends Handler {
-        public FrameHandler(Looper looper) {
-            super(looper);
-        }
+private final class FrameHandler extends Handler {
+    public FrameHandler(Looper looper) {
+        super(looper);
+    }
 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MSG_DO_FRAME:
-                    doFrame(System.nanoTime(), 0);
-                    break;
-                case MSG_DO_SCHEDULE_VSYNC:
-                    doScheduleVsync();
-                    break;
-                case MSG_DO_SCHEDULE_CALLBACK:
-                    doScheduleCallback(msg.arg1);
-                    break;
-            }
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_DO_FRAME:
+                doFrame(System.nanoTime(), 0);
+                break;
+            case MSG_DO_SCHEDULE_VSYNC:
+                doScheduleVsync();
+                break;
+            case MSG_DO_SCHEDULE_CALLBACK:
+                doScheduleCallback(msg.arg1);
+                break;
         }
     }
+}
 ```
 
 ### postCallback
 
 ```java
-    public void postCallback(int callbackType, Runnable action, Object token) {
-        postCallbackDelayed(callbackType, action, token, 0);
+public void postCallback(int callbackType, Runnable action, Object token) {
+    postCallbackDelayed(callbackType, action, token, 0);
+}
+public void postCallbackDelayed(int callbackType,
+        Runnable action, Object token, long delayMillis) {
+    if (action == null) {
+        throw new IllegalArgumentException("action must not be null");
     }
-    public void postCallbackDelayed(int callbackType,
-            Runnable action, Object token, long delayMillis) {
-        if (action == null) {
-            throw new IllegalArgumentException("action must not be null");
-        }
-        if (callbackType < 0 || callbackType > CALLBACK_LAST) {
-            throw new IllegalArgumentException("callbackType is invalid");
-        }
+    if (callbackType < 0 || callbackType > CALLBACK_LAST) {
+        throw new IllegalArgumentException("callbackType is invalid");
+    }
 
-        postCallbackDelayedInternal(callbackType, action, token, delayMillis);
-    }
+    postCallbackDelayedInternal(callbackType, action, token, delayMillis);
+}
 ```
 
 ### postCallbackDelayedInternal
 
 ```java
-   private void postCallbackDelayedInternal(int callbackType,
-            Object action, Object token, long delayMillis) {
-        if (DEBUG_FRAMES) {
-            Log.d(TAG, "PostCallback: type=" + callbackType
-                    + ", action=" + action + ", token=" + token
-                    + ", delayMillis=" + delayMillis);
-        }
+private void postCallbackDelayedInternal(int callbackType,
+        Object action, Object token, long delayMillis) {
+    if (DEBUG_FRAMES) {
+        Log.d(TAG, "PostCallback: type=" + callbackType
+                + ", action=" + action + ", token=" + token
+                + ", delayMillis=" + delayMillis);
+    }
 
-        synchronized (mLock) {
-            final long now = SystemClock.uptimeMillis();
-            final long dueTime = now + delayMillis;
-            // 1. 将 mTraversalRunnable 塞入队列
-            mCallbackQueues[callbackType].addCallbackLocked(dueTime, action, token);
+    synchronized (mLock) {
+        final long now = SystemClock.uptimeMillis();
+        final long dueTime = now + delayMillis;
+        // 1. 将 mTraversalRunnable 塞入队列
+        mCallbackQueues[callbackType].addCallbackLocked(dueTime, action, token);
 
-            if (dueTime <= now) {// 立即执行
-            // 2. 由于 delayMillis 是 0，所以会执行到这里
-                scheduleFrameLocked(now);
-            } else {// 延迟执行
-                Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_CALLBACK, action);
-                msg.arg1 = callbackType;
-                msg.setAsynchronous(true);
-                mHandler.sendMessageAtTime(msg, dueTime);
-            }
+        if (dueTime <= now) {// 立即执行
+        // 2. 由于 delayMillis 是 0，所以会执行到这里
+            scheduleFrameLocked(now);
+        } else {// 延迟执行
+            Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_CALLBACK, action);
+            msg.arg1 = callbackType;
+            msg.setAsynchronous(true);
+            mHandler.sendMessageAtTime(msg, dueTime);
         }
     }
+}
 ```
 
 ```java
-   private void scheduleFrameLocked(long now) {
-        if (!mFrameScheduled) {
-            mFrameScheduled = true;
-            if (USE_VSYNC) {
-                // Android 4.1 之后 USE_VSYNCUSE_VSYNC 默认为 true
-                if (DEBUG_FRAMES) {
-                    Log.d(TAG, "Scheduling next frame on vsync.");
-                }
+private void scheduleFrameLocked(long now) {
+    if (!mFrameScheduled) {
+        mFrameScheduled = true;
+        if (USE_VSYNC) {
+            // Android 4.1 之后 USE_VSYNCUSE_VSYNC 默认为 true
+            if (DEBUG_FRAMES) {
+                Log.d(TAG, "Scheduling next frame on vsync.");
+            }
 
-                // If running on the Looper thread, then schedule the vsync immediately,
-                // otherwise post a message to schedule the vsync from the UI thread
-                // as soon as possible.
-                //如果是当前线程，直接申请 vsync，否则通过 handler 通信
-                if (isRunningOnLooperThreadLocked()) {
-                    scheduleVsyncLocked();
-                } else {
-                    Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_VSYNC);
-                    msg.setAsynchronous(true);
-                    mHandler.sendMessageAtFrontOfQueue(msg);
-                }
+            // If running on the Looper thread, then schedule the vsync immediately,
+            // otherwise post a message to schedule the vsync from the UI thread
+            // as soon as possible.
+            //如果是当前线程，直接申请 vsync，否则通过 handler 通信
+            if (isRunningOnLooperThreadLocked()) {
+                scheduleVsyncLocked();
             } else {
-                final long nextFrameTime = Math.max(
-                        mLastFrameTimeNanos / TimeUtils.NANOS_PER_MS + sFrameDelay, now);
-                if (DEBUG_FRAMES) {
-                    Log.d(TAG, "Scheduling next frame in " + (nextFrameTime - now) + " ms.");
-                }
-                Message msg = mHandler.obtainMessage(MSG_DO_FRAME);
+                Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_VSYNC);
                 msg.setAsynchronous(true);
-                mHandler.sendMessageAtTime(msg, nextFrameTime);
+                mHandler.sendMessageAtFrontOfQueue(msg);
             }
-        }
-    }
-```
-
-```java
-   private void scheduleVsyncLocked() {
-        mDisplayEventReceiver.scheduleVsync();
-    }
-```
-
-```java
-   @UnsupportedAppUsage
-    public void scheduleVsync() {
-        if (mReceiverPtr == 0) {
-            Log.w(TAG, "Attempted to schedule a vertical sync pulse but the display event "
-                    + "receiver has already been disposed.");
         } else {
-          // 注册监听 vsync 信号，会回调 dispatchVsync() 方法
-            nativeScheduleVsync(mReceiverPtr);
+            final long nextFrameTime = Math.max(
+                    mLastFrameTimeNanos / TimeUtils.NANOS_PER_MS + sFrameDelay, now);
+            if (DEBUG_FRAMES) {
+                Log.d(TAG, "Scheduling next frame in " + (nextFrameTime - now) + " ms.");
+            }
+            Message msg = mHandler.obtainMessage(MSG_DO_FRAME);
+            msg.setAsynchronous(true);
+            mHandler.sendMessageAtTime(msg, nextFrameTime);
         }
     }
+}
+```
+
+```java
+private void scheduleVsyncLocked() {
+    mDisplayEventReceiver.scheduleVsync();
+}
+```
+
+```java
+@UnsupportedAppUsage
+public void scheduleVsync() {
+    if (mReceiverPtr == 0) {
+        Log.w(TAG, "Attempted to schedule a vertical sync pulse but the display event "
+                + "receiver has already been disposed.");
+    } else {
+      // 注册监听 vsync 信号，会回调 dispatchVsync() 方法
+        nativeScheduleVsync(mReceiverPtr);
+    }
+}
 ```
 
 ### 创建FrameDisplayEventReceiver
 
 ```java
-    private final class FrameDisplayEventReceiver extends DisplayEventReceiver
-            implements Runnable {
-        private boolean mHavePendingVsync;
-        private long mTimestampNanos;
-        private int mFrame;
+private final class FrameDisplayEventReceiver extends DisplayEventReceiver
+        implements Runnable {
+    private boolean mHavePendingVsync;
+    private long mTimestampNanos;
+    private int mFrame;
 
-        public FrameDisplayEventReceiver(Looper looper, int vsyncSource) {
-            super(looper, vsyncSource, CONFIG_CHANGED_EVENT_SUPPRESS);
-        }
+    public FrameDisplayEventReceiver(Looper looper, int vsyncSource) {
+        super(looper, vsyncSource, CONFIG_CHANGED_EVENT_SUPPRESS);
     }
+}
 ```
 
 #### DisplayEventReceiver
 
 ```java
-    @UnsupportedAppUsage
-    public DisplayEventReceiver(Looper looper) {
-        this(looper, VSYNC_SOURCE_APP, CONFIG_CHANGED_EVENT_SUPPRESS);
+@UnsupportedAppUsage
+public DisplayEventReceiver(Looper looper) {
+    this(looper, VSYNC_SOURCE_APP, CONFIG_CHANGED_EVENT_SUPPRESS);
+}
+public DisplayEventReceiver(Looper looper, int vsyncSource, int configChanged) {
+    if (looper == null) {
+        throw new IllegalArgumentException("looper must not be null");
     }
-    public DisplayEventReceiver(Looper looper, int vsyncSource, int configChanged) {
-        if (looper == null) {
-            throw new IllegalArgumentException("looper must not be null");
-        }
-        //获取主线程消息队列
-        mMessageQueue = looper.getQueue();
-        //调用Native方法
-        mReceiverPtr = nativeInit(new WeakReference<DisplayEventReceiver>(this), mMessageQueue,
-                vsyncSource, configChanged);
+    //获取主线程消息队列
+    mMessageQueue = looper.getQueue();
+    //调用Native方法
+    mReceiverPtr = nativeInit(new WeakReference<DisplayEventReceiver>(this), mMessageQueue,
+            vsyncSource, configChanged);
 
-        mCloseGuard.open("dispose");
-    }
+    mCloseGuard.open("dispose");
+}
 ```
 
 #### **nativeInit**
