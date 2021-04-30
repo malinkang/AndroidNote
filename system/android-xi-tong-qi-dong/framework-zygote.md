@@ -7,7 +7,7 @@ tags:
 
 # Zygote进程启动流程
 
-在Android系统中，应用程序进程以及运行系统的关键服务的`SystemServer`进程都是由`Zygote`进程来创建的，我们也将它称为孵化器。它通过`fork`（复制进程）的形式来创建应用程序进程和`SystemServer`进程。
+在`Android`系统中，应用程序进程以及运行系统的关键服务的`SystemServer`进程都是由`Zygote`进程来创建的，我们也将它称为孵化器。它通过`fork`（复制进程）的形式来创建应用程序进程和`SystemServer`进程。
 
 Zygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app\_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app\_process，将其名称换成了“zygote”。
 
@@ -24,7 +24,7 @@ import /init.${ro.zygote}.rc//导入zygote.rc
 
 可以看出`init.rc`不会直接引入一个固定的文件，而是根据属性ro.zygote的内容来引入不同的文件。
 
-从`Android 5.0`开始，Android开始支持64位程序，Zygote也就有了32位和64位的区别，所以在这里用`ro.zygote`属性来控制使用不同的`Zygote`启动脚本，从而也就启动了不同版本的`Zygote`进程，`ro.zygote`属性的取值有以下4种：
+从`Android 5.0`开始，`Android`开始支持64位程序，`Zygote`也就有了32位和64位的区别，所以在这里用`ro.zygote`属性来控制使用不同的`Zygote`启动脚本，从而也就启动了不同版本的`Zygote`进程，`ro.zygote`属性的取值有以下4种：
 
 * init.zygote32.rc
 * init.zygote32\_64.rc

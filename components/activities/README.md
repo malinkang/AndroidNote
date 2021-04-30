@@ -8,7 +8,7 @@
 
 > 普通Dialog显示不会调用onPause，除非是Activity创建的Dialog
 
-* [面试官：为什么 Activity.finish() 之后 10s 才 onDestroy ？](https://juejin.cn/post/6898588053451833351)
+* [面试官：为什么 Activity.finish\(\) 之后 10s 才 onDestroy ？](https://juejin.cn/post/6898588053451833351)
 
 ## 启动模式
 
@@ -36,7 +36,6 @@
 
 * [深入讲解Android中Activity launchMode](https://droidyue.com/blog/2015/08/16/dive-into-android-activity-launchmode/)
 * [Understand Android Activity's launchMode: standard, singleTop, singleTask and singleInstance](https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en)
-
 * [Activity的四种launchMode](http://blog.csdn.net/liuhe688/article/details/6754323)
 * [Activity的task相关](http://blog.csdn.net/liuhe688/article/details/6761337)
 

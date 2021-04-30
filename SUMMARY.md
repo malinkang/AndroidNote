@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Android学习资料](README.md)
-* [Android面试题](interview-questions.md)
+* [Android知识点梳理](interview-questions.md)
 * [调试工具](tiao-shi-gong-ju.md)
 * [界面](ui/README.md)
   * [ViewPager2](ui/viewpager2.md)
@@ -42,8 +42,8 @@
   * [ContentProvider](components/contentprovider.md)
 * [数据存储](data-storage/README.md)
   * [数据和文件存储](data-storage/shu-ju-he-wen-jian-cun-chu.md)
-  * [将文件保存到外部存储中](data-storage/external.md)
-  * [将文件保存在内部存储中](data-storage/internal.md)
+  * [将文件保存到外部存储中](data-storage/jiang-wen-jian-bao-cun-dao-wai-bu-cun-chu-zhong.md)
+  * [将文件保存在内部存储中](data-storage/jiang-wen-jian-bao-cun-zai-nei-bu-cun-chu-zhong.md)
   * [Android 存储用例和最佳做法](data-storage/use-cases.md)
   * [保存键值对数据](data-storage/shared-preferences.md)
 * [编译时注解](annotation/README.md)
