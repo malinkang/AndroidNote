@@ -55,10 +55,25 @@ private static IServiceManager getIServiceManager() {
     }
 
     // Find the service manager
+    //调用BinderInternal获取IBinder
     sServiceManager = ServiceManagerNative.asInterface(BinderInternal.getContextObject());
     return sServiceManager;
 }
 ```
+
+```java
+//frameworks/base/core/java/android/os/ServiceManagerNative.java
+public static IServiceManager asInterface(IBinder obj) {
+    if (obj == null) {
+        return null;
+    }
+
+    // ServiceManager is never local
+    return new ServiceManagerProxy(obj);
+}
+```
+
+
 
 ### getContextObject
 
@@ -136,7 +151,6 @@ jobject javaObjectForIBinder(JNIEnv* env, const sp<IBinder>& val)
         android_atomic_inc(&gNumProxyRefs);
         incRefsCreated(env);
     }
-
     return object;
 }
 ```

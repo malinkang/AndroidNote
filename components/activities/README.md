@@ -12,6 +12,28 @@
 
 ## 启动模式
 
+
+
+> 官方文档关于singleTask描述错误，可以看深入讲解Android中Activity launchMode
+>
+> singleTask：
+>
+> A和C都为standard
+>
+> B为singleTask 
+>
+> A->B->C  A、B、C在同一个栈内
+>
+> B设置不同的taskAffinity
+>
+> A->B->C  A在一个栈内 B、C在同一个栈内
+>
+> C设置为singleTask、taskAffinity与A一致
+>
+> A->B->C  A、C在一个栈内 B在同一个栈内
+
+* [了解任务和返回堆栈](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
+
 * [深入讲解Android中Activity launchMode](https://droidyue.com/blog/2015/08/16/dive-into-android-activity-launchmode/)
 * [Understand Android Activity's launchMode: standard, singleTop, singleTask and singleInstance](https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en)
 

@@ -188,7 +188,7 @@ void AndroidRuntime::start(const char* className, const Vector<String8>& options
 
 * 注册一个Socket
 * 预加载各种资源
-* 启动SystemServer
+* 启动`SystemServer`
 * 进入循环，等待AMS请求创建新的进程
 
 ```java

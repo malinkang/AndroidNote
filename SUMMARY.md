@@ -32,8 +32,6 @@
   * [屏幕适配](ui/screen-adaptation.md)
 * [组件](components/README.md)
   * [Activity](components/activities/README.md)
-    * [Activity简介](components/activities/intro-activities.md)
-    * [了解 Activity 生命周期](components/activities/le-jie-activity-sheng-ming-zhou-qi.md)
   * [Intent](components/intent.md)
   * [服务](components/services/README.md)
     * [服务](components/services/services.md)
