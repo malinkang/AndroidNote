@@ -73,8 +73,6 @@ public static IServiceManager asInterface(IBinder obj) {
 }
 ```
 
-
-
 ### getContextObject
 
 ```java

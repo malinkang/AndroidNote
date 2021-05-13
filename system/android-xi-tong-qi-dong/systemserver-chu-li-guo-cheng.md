@@ -25,8 +25,6 @@ private void run() {
 }
 ```
 
-
-
 ```java
 //frameworks/base/services/java/com/android/server/SystemServer.java
 private void startOtherServices(){

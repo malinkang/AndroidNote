@@ -2,12 +2,12 @@
 
 ## 基本流程
 
-1. 创建RequestBody
-2. 创建Request
-3. 创建OkhttpClient
-4. 调用newCall创建Call对象
+1. 创建`RequestBody`
+2. 创建`Request`
+3. 创建`OkhttpClient`
+4. 调用`newCall`创建Call对象
 5. 执行异步或同步操作。
-6. 创建Socket连接
+6. 创建`Socket`连接
 7. 发送请求并处理返回结果
 
 ## 创建RequestBody
@@ -30,9 +30,9 @@ final @Nullable RequestBody body; //请求体
 final Map<Class<?>, Object> tags; //tags
 ```
 
-## 创建OkhttpClient
+## 创建OkHttpClient
 
-`OkhttpClient`可配置的信息包括如下：
+`OkHttpClient`可配置的信息包括如下：
 
 ```java
 final Dispatcher dispatcher; //调度器主要负责异步请求
@@ -92,7 +92,7 @@ static RealCall newRealCall(OkHttpClient client, Request originalRequest, boolea
 }
 ```
 
-创建RealCall的时候会创建一个Transmitter对象。Transmitter是应用层和网络层之间的桥接类。
+创建RealCall的时候会创建一个`Transmitter`对象。Transmitter是应用层和网络层之间的桥接类。
 
 ## 执行网络请求
 
