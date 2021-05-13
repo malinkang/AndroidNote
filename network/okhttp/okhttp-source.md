@@ -121,7 +121,10 @@ void enqueue(AsyncCall call) {
     // Mutate the AsyncCall so that it shares the AtomicInteger of an existing running call to
     // the same host.
     if (!call.get().forWebSocket) {
+      //寻找相同主机的Call
       AsyncCall existingCall = findExistingCallWithHost(call.host());
+      //复用已经存在call的callsPerHost
+      //也就是主机数相同的Call公用一个callsPerHost对象
       if (existingCall != null) call.reuseCallsPerHostFrom(existingCall);
     }
   }
@@ -231,7 +234,9 @@ void executeOn(ExecutorService executorService) {
 
 ## 拦截器
 
-`RealInterceptorChain`的proceed主要负责创建下一个`InterceptorChain`，并传递给下一个拦截器Interceptor，可以简单的看做 遍历所有的Interceptor，InterceptorChain主要做一个next的操作。`Interceptor`的`proceed`负责主要的功能。
+`RealInterceptorChain`的`proceed`会创建一个`InterceptorChain`，并调用拦截器的`intercept`方法。除了`CallServerInterceptor`外，所有拦截器的`intercept`都会调用创建的`InterceptorChain`的`proceed`方法。
+
+![](../../.gitbook/assets/image%20%2823%29.png)
 
 ```java
 Response getResponseWithInterceptorChain() throws IOException {
@@ -320,46 +325,114 @@ public Response proceed(Request request, Transmitter transmitter, @Nullable Exch
 
 ## 建立连接
 
-Transmitter
+`OkHttp`通过`ConnectInterceptor`建立连接。在`ConnectInterceptor`的`intercept`方法中，通过调用`RealCall`的`initExchange`方法初始化一个`Exchange`对象。`Exchange`对象负责交换数据。
 
-```java
-public void prepareToConnect(Request request) {
-  if (this.request != null) {
-    if (sameConnection(this.request.url(), request.url()) && exchangeFinder.hasRouteToTry()) {
-      return; // Already ready.
-    }
-    if (exchange != null) throw new IllegalStateException();
-
-    if (exchangeFinder != null) {
-      maybeReleaseConnection(null, true);
-      exchangeFinder = null;
-    }
+```kotlin
+object ConnectInterceptor : Interceptor {
+  @Throws(IOException::class)
+  override fun intercept(chain: Interceptor.Chain): Response {
+    val realChain = chain as RealInterceptorChain
+    //调用RealCall的initExchange初始化Exchange
+    val exchange = realChain.call.initExchange(chain)
+    //创建一个新的Chain
+    val connectedChain = realChain.copy(exchange = exchange)
+    return connectedChain.proceed(realChain.request)
   }
-
-  this.request = request;
-  //创建ExchangeFinder
-  this.exchangeFinder = new ExchangeFinder(this, connectionPool, createAddress(request.url()),
-      call, eventListener);
 }
 ```
 
-```java
-public final class ConnectInterceptor implements Interceptor {
-  public final OkHttpClient client;
+### initExchange\(\)
 
-  public ConnectInterceptor(OkHttpClient client) {
-    this.client = client;
+```java
+/** Finds a new or pooled connection to carry a forthcoming request and response. */
+internal fun initExchange(chain: RealInterceptorChain): Exchange {
+  synchronized(this) {
+    check(expectMoreExchanges) { "released" }
+    check(!responseBodyOpen)
+    check(!requestBodyOpen)
+  }
+  //ExchangeFinder
+  val exchangeFinder = this.exchangeFinder!!
+  //ExchangeFinder调用find方法获取ExchangeCodec
+  val codec = exchangeFinder.find(client, chain)
+  //创建Exchange
+  val result = Exchange(this, eventListener, exchangeFinder, codec)
+  this.interceptorScopedExchange = result
+  this.exchange = result
+  synchronized(this) {
+    this.requestBodyOpen = true
+    this.responseBodyOpen = true
   }
 
-  @Override public Response intercept(Chain chain) throws IOException {
-    RealInterceptorChain realChain = (RealInterceptorChain) chain;
-    Request request = realChain.request();
-    Transmitter transmitter = realChain.transmitter();
-    // We need the network to satisfy this request. Possibly for validating a conditional GET.
-    boolean doExtensiveHealthChecks = !request.method().equals("GET");
-    Exchange exchange = transmitter.newExchange(chain, doExtensiveHealthChecks);
+  if (canceled) throw IOException("Canceled")
+  return result
+}
+```
 
-    return realChain.proceed(request, transmitter, exchange);
+#### find\(\)
+
+```kotlin
+fun find(
+  client: OkHttpClient,
+  chain: RealInterceptorChain
+): ExchangeCodec {
+  try {
+  //调用findHealthyConnection获取连接
+    val resultConnection = findHealthyConnection(
+        connectTimeout = chain.connectTimeoutMillis,
+        readTimeout = chain.readTimeoutMillis,
+        writeTimeout = chain.writeTimeoutMillis,
+        pingIntervalMillis = client.pingIntervalMillis,
+        connectionRetryEnabled = client.retryOnConnectionFailure,
+        doExtensiveHealthChecks = chain.request.method != "GET"
+    )
+    //调用RealConnection的newCodec获取ExchangeCodec
+    return resultConnection.newCodec(client, chain)
+  } catch (e: RouteException) {
+    trackFailure(e.lastConnectException)
+    throw e
+  } catch (e: IOException) {
+    trackFailure(e)
+    throw RouteException(e)
+  }
+}
+```
+
+### findHealthyConnection\(\)
+
+```kotlin
+@Throws(IOException::class)
+private fun findHealthyConnection(
+  connectTimeout: Int,
+  readTimeout: Int,
+  writeTimeout: Int,
+  pingIntervalMillis: Int,
+  connectionRetryEnabled: Boolean,
+  doExtensiveHealthChecks: Boolean
+): RealConnection {
+  while (true) {
+    //调用findConnection方法获取RealConnection
+    val candidate = findConnection(
+        connectTimeout = connectTimeout,
+        readTimeout = readTimeout,
+        writeTimeout = writeTimeout,
+        pingIntervalMillis = pingIntervalMillis,
+        connectionRetryEnabled = connectionRetryEnabled
+    )
+    // Confirm that the connection is good.
+    if (candidate.isHealthy(doExtensiveHealthChecks)) {
+      return candidate
+    }
+    // If it isn't, take it out of the pool.
+    candidate.noNewExchanges()
+    // Make sure we have some routes left to try. One example where we may exhaust all the routes
+    // would happen if we made a new connection and it immediately is detected as unhealthy.
+    if (nextRouteToTry != null) continue
+    val routesLeft = routeSelection?.hasNext() ?: true
+    if (routesLeft) continue
+    val routesSelectionLeft = routeSelector?.hasNext() ?: true
+    if (routesSelectionLeft) continue
+    throw IOException("exhausted all routes")
   }
 }
 ```
