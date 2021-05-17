@@ -21,8 +21,14 @@
 
 * **View.post\(\) 为什么能够获取到 View 的宽高 ？**
 
+## 网络
 
+### OkHttp
 
+* OkHttp如何实现连接复用的
+* OkHttp如何实现缓存的
+* OkHttp网络拦截器和应用拦截器区别
+* 如何
 * [说说 compileSdkVersion、minSdkVersion、targetSdkVersion 的区别和作用？](https://mp.weixin.qq.com/s/-nzIPfH0o2Aj7W7Cz-ECjA)
 
 ## 参考

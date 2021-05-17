@@ -114,6 +114,8 @@ Connection: keep-alive
 
 ## 在应用程序和网络拦截器之间进行选择
 
+> Each interceptor chain has relative merits.
+
 每个拦截链都有相对的优点。
 
 ### 应用拦截器
