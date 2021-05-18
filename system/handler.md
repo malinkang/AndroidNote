@@ -889,4 +889,9 @@ public class HandlerActionQueue {
 * [Android中为什么主线程不会因为Looper.loop\(\)里的死循环卡死？](https://www.zhihu.com/question/34652589)
 * [Android 高级面试-1：Handler 相关](https://juejin.im/post/6844903778844409863)
 * [Handler 10问，你顶的住吗？](https://mp.weixin.qq.com/s/V1xI2M8AibgB2whHSOTQGQ)
+* [Handler的初级、中级、高级问法，你都掌握了吗？](https://juejin.cn/post/6893791473121280013)
+
+
+
+
 
