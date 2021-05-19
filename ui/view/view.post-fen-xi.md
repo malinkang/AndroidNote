@@ -1,7 +1,5 @@
 # View.post\(\)分析
 
-## 
-
 ## 参考
 
 * [面试官：View.post\(\) 为什么能够获取到 View 的宽高 ？](https://juejin.cn/post/6895735092438630407)

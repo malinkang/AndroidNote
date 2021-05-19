@@ -16,7 +16,6 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 ```
 
 ```java
-
 public Application makeApplication(boolean forceDefaultAppClass,
         Instrumentation instrumentation) {
     //判断是否为null
@@ -42,7 +41,7 @@ public Application makeApplication(boolean forceDefaultAppClass,
             initializeJavaContextClassLoader();
             Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
         }
-        //调用ContextImpl静态方法createAppContext创建Application
+        //调用ContextImpl静态方法createAppContext创建ContextImpl
         ContextImpl appContext = ContextImpl.createAppContext(mActivityThread, this);
         //创建Application
         app = mActivityThread.mInstrumentation.newApplication(

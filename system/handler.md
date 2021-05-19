@@ -747,7 +747,7 @@ public final void runOnUiThread(Runnable action) {
      }
      // Postpone the runnable until we know on which thread it needs to run.
      // Assume that the runnable will be successfully placed after attach.
-     //为空
+     //当在oncreate调用为空
      getRunQueue().post(action);
      return true;
  }
@@ -755,7 +755,6 @@ public final void runOnUiThread(Runnable action) {
 
 ```java
 //mAttachInfo赋值
-
 void dispatchAttachedToWindow(AttachInfo info, int visibility) {
     mAttachInfo = info;
     // Transfer all pending runnables.
