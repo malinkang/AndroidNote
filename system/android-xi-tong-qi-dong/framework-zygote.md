@@ -9,9 +9,9 @@ tags:
 
 在`Android`系统中，应用程序进程以及运行系统的关键服务的`SystemServer`进程都是由`Zygote`进程来创建的，我们也将它称为孵化器。它通过`fork`（复制进程）的形式来创建应用程序进程和`SystemServer`进程。
 
-Zygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app\_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app\_process，将其名称换成了“zygote”。
+## Zygote启动过程
 
-## Zygote启动脚本分析
+`Zygote`进程是在`init`进程启动时创建的，起初`Zygote`进程的名称并不是叫`“zygote”`，而是叫`“app_process”`，这个名称是在`Android.mk`中定义的，Zygote进程启动后，`Linux`系统下的`pctrl`系统会调用`app_process`，将其名称换成了`“zygote”`。
 
 在`init.rc`文件中采用了`import`引入`Zygote`启动脚本。
 
@@ -22,14 +22,16 @@ import /init.usb.configfs.rc
 import /init.${ro.zygote}.rc//导入zygote.rc
 ```
 
-可以看出`init.rc`不会直接引入一个固定的文件，而是根据属性ro.zygote的内容来引入不同的文件。
+可以看出`init.rc`不会直接引入一个固定的文件，而是根据属性`ro.zygote`的内容来引入不同的文件。
 
 从`Android 5.0`开始，`Android`开始支持64位程序，`Zygote`也就有了32位和64位的区别，所以在这里用`ro.zygote`属性来控制使用不同的`Zygote`启动脚本，从而也就启动了不同版本的`Zygote`进程，`ro.zygote`属性的取值有以下4种：
 
-* init.zygote32.rc
-* init.zygote32\_64.rc
-* init.zygote64.rc
-* init.zygote64\_32.rc
+```text
+init.zygote32.rc
+init.zygote32_64.rc
+init.zygote64.rc
+init.zygote64_32.rc
+```
 
 ```java
 //system/core/rootdir/init.zygote64.rc
@@ -72,9 +74,7 @@ LOCAL_MODULE_STEM_32 := app_process32 //32位
 LOCAL_MODULE_STEM_64 := app_process64//64位
 ```
 
-## app\_main
-
-### main
+### main\(\)
 
 `app_main.cpp`的`main`方法会接收传进的来参数，并根据传进来的参数调用`AndroidRuntime`的`start`方法。
 
@@ -132,9 +132,7 @@ int main(int argc, char* const argv[])
 }
 ```
 
-## AndroidRuntime
-
-### start
+### start\(\)
 
 `AndroidRuntime`的`start`方法负责启动虚拟机，并根据传进来的类名，获取到对应的类，并执行该类的`main`方法。在`app_main.cpp`的`main`方法中，我们传进来的是`ZygoteInit`类， 所以执行的就是`ZygoteInit`的`main`方法。
 
@@ -186,7 +184,7 @@ void AndroidRuntime::start(const char* className, const Vector<String8>& options
 
 在`ZygoteInit`的`main`方法中，主要做了四件事情：
 
-* 注册一个Socket
+* 注册一个`Socket`
 * 预加载各种资源
 * 启动`SystemServer`
 * 进入循环，等待AMS请求创建新的进程
@@ -226,6 +224,7 @@ public static void main(String argv[]) {
 `registerZygoteSocket`方法主要负责注册一个`Socket`。
 
 ```java
+//frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
 private static void registerZygoteSocket(String socketName) {
     if (sServerSocket == null) {
         int fileDesc;

@@ -74,7 +74,7 @@
 * [插件化](cha-jian-hua/README.md)
   * [插件化框架](cha-jian-hua/cha-jian-hua-kuang-jia.md)
   * [VirtualAPK分析](cha-jian-hua/virtualapk-fen-xi.md)
-* [依赖注入](yi-lai-zhu-ru.md)
+* [依赖注入](dependency-injection.md)
 * [事件总线](shi-jian-zong-xian/README.md)
   * [EventBus源码分析](shi-jian-zong-xian/eventbus.md)
 * [集合](collection/README.md)
