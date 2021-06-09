@@ -3,6 +3,7 @@
 * [Android学习资料](README.md)
 * [Android知识点梳理](interview-questions.md)
 * [调试工具](tiao-shi-gong-ju.md)
+* [aop](aop.md)
 * [界面](ui/README.md)
   * [ViewPager2](ui/viewpager2.md)
   * [View](ui/view/README.md)
