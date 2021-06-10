@@ -11,6 +11,8 @@
 
 [Dagger 2 subcomponents vs component dependencies - Stack Overflow](https://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies)
 
+[https://github.com/square/anvil](https://github.com/square/anvil)
+
 dependencies  可以看做是组合关系和subcomponent是继承关系
 
 学习难点：文档写的不够细，很多语法都没有写，也没有完整的项目实例。目前有的就是Plaid，缺点是没有使用 Android Dagger的语法。其次就是GithubBrowserSample。所以需要把这些东西逐个分解。
