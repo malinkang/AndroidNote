@@ -26,10 +26,10 @@ val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this)
 sharedPreferences3.edit().putInt("value3",3).apply()
 ```
 
-![](../.gitbook/assets/image%20%2850%29.png)
+![](<../.gitbook/assets/image (50).png>)
 
 {% hint style="info" %}
-**注意**：自 API 级别 17 起，[`MODE_WORLD_READABLE`](https://developer.android.com/reference/android/content/Context#MODE_WORLD_READABLE) 和 [`MODE_WORLD_WRITEABLE`](https://developer.android.com/reference/android/content/Context#MODE_WORLD_WRITEABLE) 模式已被弃用。 从 Android 7.0（API 级别 24）开始，如果您使用这些模式，Android 会抛出 [`SecurityException`](https://developer.android.com/reference/java/lang/SecurityException)。如果您的应用需要与其他应用共享私有文件，可以通过 [`FLAG_GRANT_READ_URI_PERMISSION`](https://developer.android.com/reference/android/content/Intent#FLAG_GRANT_READ_URI_PERMISSION) 使用 [`FileProvider`](https://developer.android.com/reference/androidx/core/content/FileProvider)。如需了解详情，另请参阅[共享文件](https://developer.android.com/training/secure-file-sharing)。
+**注意**：自 API 级别 17 起，[`MODE_WORLD_READABLE`](https://developer.android.com/reference/android/content/Context#MODE\_WORLD\_READABLE) 和 [`MODE_WORLD_WRITEABLE`](https://developer.android.com/reference/android/content/Context#MODE\_WORLD\_WRITEABLE) 模式已被弃用。 从 Android 7.0（API 级别 24）开始，如果您使用这些模式，Android 会抛出 [`SecurityException`](https://developer.android.com/reference/java/lang/SecurityException)。如果您的应用需要与其他应用共享私有文件，可以通过 [`FLAG_GRANT_READ_URI_PERMISSION`](https://developer.android.com/reference/android/content/Intent#FLAG\_GRANT\_READ\_URI\_PERMISSION) 使用 [`FileProvider`](https://developer.android.com/reference/androidx/core/content/FileProvider)。如需了解详情，另请参阅[共享文件](https://developer.android.com/training/secure-file-sharing)。
 {% endhint %}
 
 ## 写入共享偏好设置
@@ -63,7 +63,7 @@ int highScore = sharedPref.getInt(getString(R.string.saved_high_score_key), defa
 
 ## 获取SharedPreferences源码分析
 
-### getSharedPreferences\(String name, int mode\)
+### getSharedPreferences(String name, int mode)
 
 ```java
 //Activity的getPreferences方法，以当前类名为文件名
@@ -80,7 +80,6 @@ public static String getDefaultSharedPreferencesName(Context context) {
     return context.getPackageName() + "_preferences";
 }
 //以上两个方法本质上都是调用的Context的getSharedPreferences方法
-
 
 ```
 
@@ -203,7 +202,7 @@ private static File ensurePrivateDirExists(File file, int mode, int gid, String 
 }
 ```
 
-### getSharedPreferences\(File file, int mode\)
+### getSharedPreferences(File file, int mode)
 
 ```java
 @Override
@@ -472,7 +471,7 @@ public final class EditorImpl implements Editor {
 }
 ```
 
-### commit\(\)
+### commit()
 
 ```java
 @Override
@@ -797,7 +796,7 @@ private void writeToFile(MemoryCommitResult mcr, boolean isFromSyncCommit) {
     }
 ```
 
-### apply\(\)
+### apply()
 
 ```java
 @Override
@@ -858,16 +857,11 @@ public void apply() {
 虽然 `SharedPreferences` 使用非常简便，但也是我们诟病比较多的存储方法。它的性能问题比较多，我可以轻松地说出它的“七宗罪”。
 
 * 跨进程不安全。由于没有使用跨进程的锁，就算使用MODE\_MULTI\_PROCESS，SharedPreferences 在跨进程频繁读写有可能导致数据全部丢失。根据线上统计，SP 大约会有万分之一的损坏率。
-* 加载缓慢。`SharedPreferences` 文件的加载使用了异步线程，而且加载线程并没有设置线程优先级，如果这个时候主线程读取数据就需要等待文件加载线程的结束。这就导致出现主线程等待低优先级线程锁的问题，比如一个 100KB 的 SP 文件读取等待时间大约需要 50~100ms，我建议提前用异步线程预加载启动过程用到的 SP 文件。
-* 全量写入。无论是调用 commit\(\) 还是 apply\(\)，即使我们只改动其中的一个条目，都会把整个内容全部写到文件。而且即使我们多次写入同一个文件，SP 也没有将多次修改合并为一次，这也是性能差的重要原因之一。
+* 加载缓慢。`SharedPreferences` 文件的加载使用了异步线程，而且加载线程并没有设置线程优先级，如果这个时候主线程读取数据就需要等待文件加载线程的结束。这就导致出现主线程等待低优先级线程锁的问题，比如一个 100KB 的 SP 文件读取等待时间大约需要 50\~100ms，我建议提前用异步线程预加载启动过程用到的 SP 文件。
+* 全量写入。无论是调用 commit() 还是 apply()，即使我们只改动其中的一个条目，都会把整个内容全部写到文件。而且即使我们多次写入同一个文件，SP 也没有将多次修改合并为一次，这也是性能差的重要原因之一。
 * 卡顿。由于提供了异步落盘的 apply 机制，在崩溃或者其他一些异常情况可能会导致数据丢失。所以当应用收到系统广播，或者被调用 onPause 等一些时机，系统会强制把所有的 SharedPreferences 对象数据落地到磁盘。如果没有落地完成，这时候主线程会被一直阻塞。这样非常容易造成卡顿，甚至是 ANR，从线上数据来看 SP 卡顿占比一般会超过 5%。
-
-
-
-
 
 ## 参考
 
 * \*\*\*\*[**保存键值对数据**](https://developer.android.com/training/data-storage/shared-preferences)\*\*\*\*
 * [全面剖析SharedPreferences](http://gityuan.com/2017/06/18/SharedPreferences/)
-
