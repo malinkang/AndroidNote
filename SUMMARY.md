@@ -74,7 +74,7 @@
   * [VirtualAPK分析](cha-jian-hua/virtualapk-fen-xi.md)
 * [依赖注入](dependency-injection.md)
 * [开源库](shi-jian-zong-xian/README.md)
-  * [EventBus源码分析](shi-jian-zong-xian/eventbus.md)
+  * [EventBus源码分析](thirdparty/eventbus.md)
   * [Okhttp基本流程分析](network/okhttp-source-analysis/okhttp-source.md)
   * [OkHttp连接复用](network/okhttp-source-analysis/okhttp-lian-jie-fu-yong.md)
   * [OKHttp缓存](network/okhttp-source-analysis/okhttp-huan-cun-fen-xi.md)

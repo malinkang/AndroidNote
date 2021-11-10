@@ -1,0 +1,100 @@
+{
+  "main": {
+    "id": "b1dc3945ca2c6974",
+    "type": "split",
+    "children": [
+      {
+        "id": "28a8f897855fa170",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "network/okhttp/lan-jie-qi.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5fb5e62275baeb82",
+    "type": "split",
+    "children": [
+      {
+        "id": "964d78054c40b410",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "457821bf7a9d4f88",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "78fae20552b3e0de",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9d15a64e5af6c480",
+    "type": "split",
+    "children": [
+      {
+        "id": "938b06bddc83a16f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4503fe3237496153",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "network/okhttp/lan-jie-qi.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "28a8f897855fa170",
+  "lastOpenFiles": [
+    "network/okhttp/lan-jie-qi.md",
+    "gong-ju-shi-yong/README.md",
+    "gong-ju-shi-yong/ming-ling-hang-gong-ju/README.md",
+    "gong-ju-shi-yong/ming-ling-hang-gong-ju/logcat.md",
+    "gong-ju-shi-yong/ming-ling-hang-gong-ju/dumpsys.md",
+    "gong-ju-shi-yong/ming-ling-hang-gong-ju/adb.md",
+    "gong-ju-shi-yong/androidstudio/ying-yong-fa-bu.md",
+    "gong-ju-shi-yong/androidstudio/README.md"
+  ]
+}

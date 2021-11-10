@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
 ### 1.3 ToolBar常用属性
 
+![toolbar-1](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/toolbar-1.png)
+
 ```markup
 <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
 `app:theme="@style/ToolBarTheme"`用于指定ToolBar的主题。
 
+
+
 ```markup
 <style name="ToolBarTheme">
     <item name="android:textColorPrimary">@android:color/holo_orange_dark</item>
@@ -102,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 </style>
 ```
 
+![toolbar-2](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/toolbar-2.png)
+
 `app:popupTheme="@style/AppTheme.PopupOverlay"`用于设置弹出列表菜单的样式。
 
 ```markup
@@ -109,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
     <item name="android:textColorPrimary">@android:color/holo_red_light</item>
 </style>
 ```
+
+![toolbar-3](https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/toolbar-3.png)
 
 ## 2.添加Action Buttons
 
