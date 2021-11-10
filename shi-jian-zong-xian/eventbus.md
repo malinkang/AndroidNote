@@ -1,8 +1,12 @@
 # EventBus源码分析
 
+[源码](https://github.com/greenrobot/EventBus)
+
 ## EventBus创建
 
-### getDefault\(\)
+
+
+### getDefault()
 
 在`getDefault()`中使用了双重校验并加锁的单例模式来创建`EventBus`实例。
 
@@ -52,7 +56,7 @@
     }
 ```
 
-## register\(\)
+## register()
 
 ```java
     public void register(Object subscriber) {
@@ -105,7 +109,7 @@ public class SubscriberMethod {
 }
 ```
 
-### findSubscriberMethods\(\)
+### findSubscriberMethods()
 
 ```java
     //查找订阅方法
@@ -131,7 +135,7 @@ public class SubscriberMethod {
     }
 ```
 
-### findUsingInfo\(\)
+### findUsingInfo()
 
 ```java
     private List<SubscriberMethod> findUsingInfo(Class<?> subscriberClass) {
@@ -155,7 +159,7 @@ public class SubscriberMethod {
     }
 ```
 
-### findUsingReflectionInSingleClass\(\)
+### findUsingReflectionInSingleClass()
 
 ```java
 private void findUsingReflectionInSingleClass(FindState findState) {
@@ -208,7 +212,7 @@ private void findUsingReflectionInSingleClass(FindState findState) {
     }
 ```
 
-### getMethodsAndRelease\(\)
+### getMethodsAndRelease()
 
 ```java
     private List<SubscriberMethod> getMethodsAndRelease(FindState findState) {
@@ -226,7 +230,7 @@ private void findUsingReflectionInSingleClass(FindState findState) {
     }
 ```
 
-### subscribe\(\)
+### subscribe()
 
 ```java
 private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
@@ -281,7 +285,7 @@ private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
     }
 ```
 
-## post\(\)
+## post()
 
 ```java
     public void post(Object event) {
@@ -307,7 +311,7 @@ private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
     }
 ```
 
-### postSingleEvent\(\)
+### postSingleEvent()
 
 ```java
     private void postSingleEvent(Object event, PostingThreadState postingState) throws Error {
@@ -335,7 +339,7 @@ private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
     }
 ```
 
-### lookupAllEventTypes\(\)
+### lookupAllEventTypes()
 
 `lookupAllEventTypes`方法会找到当前事件类型的父类和接口，并且存放到`eventTypesCache`中，发送当前事件，订阅他的父类的方法也会收消息。
 
@@ -384,7 +388,7 @@ public class MessageEvent implements IMessageEvent {
     }
 ```
 
-### postSingleEventForEventType\(\)
+### postSingleEventForEventType()
 
 ```java
     private boolean postSingleEventForEventType(Object event, PostingThreadState postingState, Class<?> eventClass) {
@@ -415,7 +419,7 @@ public class MessageEvent implements IMessageEvent {
     }
 ```
 
-### postToSubscription\(\)
+### postToSubscription()
 
 ```java
     private void postToSubscription(Subscription subscription, Object event, boolean isMainThread) {
@@ -528,7 +532,7 @@ public class HandlerPoster extends Handler implements Poster {
 }
 ```
 
-## unregister\(\)
+## unregister()
 
 ```java
     public synchronized void unregister(Object subscriber) {
@@ -566,4 +570,3 @@ public class HandlerPoster extends Handler implements Poster {
 
 * [Android 面试题：EventBus 发送的消息，如何做到线程切换？](https://juejin.im/post/6844903944561377293)
 * [用LiveDataBus替代RxBus、EventBus——Android消息总线的演进之路](https://juejin.im/post/6844903647554306056)
-
