@@ -4,19 +4,19 @@
 
 > OkHttp implements an optional, off by default, Cache. OkHttp aims for RFC correct and pragmatic caching behaviour, following common real-world browser like Firefox/Chrome and server behaviour when ambiguous.
 
-  
+
 OkHttp实现了一个可选的、默认关闭的缓存。OkHttp的目标是RFC正确和务实的缓存行为，遵循现实世界中常见的浏览器，如Firefox/Chrome和服务器行为，当不明确时。
 
 ### 基本使用
 
 ```java
-  private val client: OkHttpClient = OkHttpClient.Builder()
-      .cache(Cache(
-          directory = File(application.cacheDir, "http_cache"),
-          // $0.05 worth of phone storage in 2020
-          maxSize = 50L * 1024L * 1024L // 50 MiB
-      ))
-      .build()
+private val client: OkHttpClient = OkHttpClient.Builder()
+  .cache(Cache(
+    directory = File(application.cacheDir, "http_cache"),
+    // $0.05 worth of phone storage in 2020
+    maxSize = 50L * 1024L * 1024L // 50 MiB
+  ))
+  .build()
 ```
 
 > Cache Events are exposed via the EventListener API. Typical scenarios are below.

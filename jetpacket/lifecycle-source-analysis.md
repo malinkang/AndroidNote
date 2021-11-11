@@ -56,7 +56,7 @@ public enum State {
 }
 ```
 
-![](../.gitbook/assets/image%20%28107%29%20%281%29%20%281%29%20%281%29%20%281%29.png)
+![](https://malinkang.cn/images/jvm/202111111724779.png)
 
 ## LifecycleOwner
 
