@@ -1,4 +1,4 @@
-  ???+ 原文  
+???+ 原文  
     
     We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for.
 
@@ -18,8 +18,10 @@
 
 使用FileSystem.source(Path)打开一个源流以读取文件。返回的Source接口非常小，用途有限。相反，我们用一个缓冲区来包装源。这有两个好处。
 
-> - **It makes the API more powerful.** Instead of the basic methods offered by `Source`, `BufferedSource` has dozens of methods to address most common problems concisely.
-> - **It makes your program run faster.** Buffering allows Okio to get more done with fewer I/O operations.
+???+ 原文
+
+    - **It makes the API more powerful.** Instead of the basic methods offered by `Source`, `BufferedSource` has dozens of methods to address most common problems concisely.
+    - **It makes your program run faster.** Buffering allows Okio to get more done with fewer I/O operations.
 
 * **它使API更加强大**。与Source提供的基本方法不同，BufferedSource有几十种方法可以简洁地解决大多数常见问题。
 
