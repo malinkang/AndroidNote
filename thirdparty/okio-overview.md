@@ -30,13 +30,13 @@ Okio是围绕两种类型建立的，在一个简单的API中包含了大量的�
 
     Internally, ByteString and Buffer do some clever things to save CPU and memory. If you encode a UTF-8 string as a ByteString, it caches a reference to that string so that if you decode it later, there’s no work to do.
 
-在内部，ByteString和Buffer做了一些聪明的事情来节省CPU和内存。如果你把一个UTF-8的字符串编码为ByteString，它就会缓存一个对该字符串的引用，这样如果你以后解码，就不需要做什么了。
+在内部，`ByteString`和`Buffer`做了一些聪明的事情来节省`CPU`和内存。如果你把一个`UTF-8`的字符串编码为`ByteString`，它就会缓存一个对该字符串的引用，这样如果你以后解码，就不需要做什么了。
 
 ???+ 原文
 
     `Buffer` is implemented as a linked list of segments. When you move data from one buffer to another, it *reassigns ownership* of the segments rather than copying the data across. This approach is particularly helpful for multithreaded programs: a thread that talks to the network can exchange data with a worker thread without any copying or ceremony.
 
-缓冲区被实现为一个段的链接列表。当你把数据从一个缓冲区移到另一个缓冲区时，它重新分配段的所有权，而不是把数据复制过去。这种方法对多线程程序特别有帮助：一个与网络对话的线程可以与一个工作线程交换数据，而无需任何复制或仪式。
+缓冲区由一个`segment`链表实现。当你把数据从一个缓冲区移到另一个缓冲区时，它重新分配`segment`的所有权，而不是把数据复制过去。这种方法对多线程程序特别有帮助：一个与网络对话的线程可以与一个工作线程交换数据，而无需任何复制或仪式。
 
 ## Sources and Sinks
 
@@ -44,7 +44,7 @@ Okio是围绕两种类型建立的，在一个简单的API中包含了大量的�
 
     An elegant part of the `java.io` design is how streams can be layered for transformations like encryption and compression. Okio includes its own stream types called [`Source`](https://square.github.io/okio/2.x/okio/okio/-source/index.html) and [`Sink`](https://square.github.io/okio/2.x/okio/okio/-sink/index.html) that work like `InputStream` and `OutputStream`, but with some key differences:
 
-java.io设计的一个优雅部分是流可以分层进行转换，如加密和压缩。Okio包括它自己的流类型，叫做Source和Sink，其工作方式类似于InputStream和OutputStream，但有一些关键的区别。
+`java.io`设计的一个优雅部分是流可以分层进行转换，如加密和压缩。`Okio`包括它自己的流类型，叫做`Source`和`Sink`，其工作方式类似于`InputStream`和`OutputStream`，但有一些关键的区别。
 
 
 ???+ 原文
@@ -67,7 +67,7 @@ java.io设计的一个优雅部分是流可以分层进行转换，如加密和�
 
 
 
-超时。流提供了对底层I/O机制的超时的访问。与java.io套接字流不同的是，read()和write()的调用都遵守超时。 易于实现。Source声明了三个方法：read(), close(), 和timeout()。没有像available()或单字节读取这样的危险，导致正确性和性能的意外。 易于使用。尽管Source和Sink的实现只有三个方法可以写，但调用者可以通过BufferedSource和BufferedSink接口获得丰富的API。这些接口在一个地方给你提供了你所需要的一切。
+`Source`声明了三个方法：`read()`, `close()`, 和`timeout()`。没有像`available()`或单字节读取这样的危险，导致正确性和性能的意外。 易于使用。尽管`Source`和`Sink`的实现只有三个方法可以写，但调用者可以通过`BufferedSource`和`BufferedSink`接口获得丰富的API。这些接口在一个地方给你提供了你所需要的一切。
 
 ## Presentations
 

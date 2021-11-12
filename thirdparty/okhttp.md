@@ -14,7 +14,7 @@
 
 `RequestBody`主要通过`writeTo`方法将请求内容写入到`BufferedSink`。`RequestBody`提供了3个`create`静态方法来创建`RequestBody`，此外`RequestBody`还包含两个子类。
 
-![](../../.gitbook/assets/RequestBody.png)
+![](https://malinkang.cn/images/jvm/202111121831543.png)
 
 `FormBody`用于表单提交，`MultipartBody`用于多内容提交。
 
@@ -75,159 +75,140 @@ interface Factory {
 }
 ```
 
-`OkHttpClient`的`newCall`方法调用`RealCall`的`newRealCall`创建Call对象
+`OkHttpClient`的`newCall`方法调用
 
 ```java
-@Override public Call newCall(Request request) {
-  return RealCall.newRealCall(this, request, false /* for web socket */);
-}
+override fun newCall(request: Request): Call = RealCall(this, request, forWebSocket = false)
 ```
-
-```java
-static RealCall newRealCall(OkHttpClient client, Request originalRequest, boolean forWebSocket) {
-  // Safely publish the Call instance to the EventListener.
-  RealCall call = new RealCall(client, originalRequest, forWebSocket);
-  call.transmitter = new Transmitter(client, call);  //创建Transmitter
-  return call;
-}
-```
-
-创建RealCall的时候会创建一个`Transmitter`对象。Transmitter是应用层和网络层之间的桥接类。
 
 ## 执行网络请求
 
 Call支持执行网络请求的方法`enqueue`和`execute()`。`enqueue`执行异步请求，`execute()`执行同步请求。
 
 ```java
-@Override public void enqueue(Callback responseCallback) {
-  synchronized (this) {
-    if (executed) throw new IllegalStateException("Already Executed");
-    executed = true;
-  }
-  transmitter.callStart();
-  //调用Dispatcher的enqueue方法
- // AsyncCall继承自Runnable
-  client.dispatcher().enqueue(new AsyncCall(responseCallback));
+override fun enqueue(responseCallback: Callback) {
+  check(executed.compareAndSet(false, true)) { "Already Executed" }
+  callStart()
+  client.dispatcher.enqueue(AsyncCall(responseCallback))
 }
 ```
 
 `Dispatcher`类
 
 ```java
-void enqueue(AsyncCall call) {
-  synchronized (this) {
-    readyAsyncCalls.add(call); //添加到准备请求的队列中
-
+internal fun enqueue(call: AsyncCall) {
+  synchronized(this) {
+    //添加到准备请求的队列中
+    readyAsyncCalls.add(call)
     // Mutate the AsyncCall so that it shares the AtomicInteger of an existing running call to
     // the same host.
-    if (!call.get().forWebSocket) {
+    if (!call.call.forWebSocket) {
       //寻找相同主机的Call
-      AsyncCall existingCall = findExistingCallWithHost(call.host());
-      //复用已经存在call的callsPerHost
-      //也就是主机数相同的Call公用一个callsPerHost对象
-      if (existingCall != null) call.reuseCallsPerHostFrom(existingCall);
+      val existingCall = findExistingCallWithHost(call.host)
+      //所有的AsyncCall公用一个对象
+      if (existingCall != null) call.reuseCallsPerHostFrom(existingCall)
     }
   }
-  promoteAndExecute();
+  promoteAndExecute()
 }
 ```
 
 ```java
-  /**
-   * Promotes eligible calls from {@link #readyAsyncCalls} to {@link #runningAsyncCalls} and runs
-   * them on the executor service. Must not be called with synchronization because executing calls
-   * can call into user code.
-   *
-   * @return true if the dispatcher is currently running calls.
-   */
-  private boolean promoteAndExecute() {
-    assert (!Thread.holdsLock(this));
-
-    List<AsyncCall> executableCalls = new ArrayList<>();
-    boolean isRunning;
-    synchronized (this) {
-      for (Iterator<AsyncCall> i = readyAsyncCalls.iterator(); i.hasNext(); ) {
-        AsyncCall asyncCall = i.next();
-        //如果正在运行的Call的数量大于64 
-        if (runningAsyncCalls.size() >= maxRequests) break; // Max capacity.
-        if (asyncCall.callsPerHost().get() >= maxRequestsPerHost) continue; // Host max capacity.
-
-        i.remove();
-        asyncCall.callsPerHost().incrementAndGet();
-        executableCalls.add(asyncCall);
-        runningAsyncCalls.add(asyncCall);
-      }
-      isRunning = runningCallsCount() > 0;
+private fun promoteAndExecute(): Boolean {
+  this.assertThreadDoesntHoldLock()
+  val executableCalls = mutableListOf<AsyncCall>()
+  val isRunning: Boolean
+  synchronized(this) {
+    val i = readyAsyncCalls.iterator()
+    while (i.hasNext()) {
+      val asyncCall = i.next()
+      //如果正在运行的Call的数量大于64
+      if (runningAsyncCalls.size >= this.maxRequests) break // Max capacity. 
+       //如果每个域名的请求数超过5
+      if (asyncCall.callsPerHost.get() >= this.maxRequestsPerHost) continue // Host max capacity.
+      //从准备数组中移除
+      i.remove()
+      //个数累加
+      asyncCall.callsPerHost.incrementAndGet()
+      executableCalls.add(asyncCall)
+      runningAsyncCalls.add(asyncCall)
     }
-
-    for (int i = 0, size = executableCalls.size(); i < size; i++) {
-      AsyncCall asyncCall = executableCalls.get(i);
-      asyncCall.executeOn(executorService());
-    }
-
-    return isRunning;
+    isRunning = runningCallsCount() > 0
   }
+  //
+  for (i in 0 until executableCalls.size) {
+    val asyncCall = executableCalls[i]
+      asyncCall.executeOn(executorService)
+  }
+
+  return isRunning
+}
 ```
 
 ```java
 //创建线程池
-public synchronized ExecutorService executorService() {
-  if (executorService == null) {
-    executorService = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60, TimeUnit.SECONDS,
-        new SynchronousQueue<>(), Util.threadFactory("OkHttp Dispatcher", false));
+@get:Synchronized
+@get:JvmName("executorService") val executorService: ExecutorService
+get() {
+  if (executorServiceOrNull == null) {
+    executorServiceOrNull = ThreadPoolExecutor(0, Int.MAX_VALUE, 60, TimeUnit.SECONDS,
+                                               SynchronousQueue(), threadFactory("$okHttpName Dispatcher", false))
   }
-  return executorService;
+  return executorServiceOrNull!!
 }
 ```
+
+### executeOn()
 
 `AsyncCall`的`executeOn`方法
 
 ```java
-void executeOn(ExecutorService executorService) {
-  assert (!Thread.holdsLock(client.dispatcher()));
-  boolean success = false;
+fun executeOn(executorService: ExecutorService) {
+  client.dispatcher.assertThreadDoesntHoldLock()
+  var success = false
   try {
-    executorService.execute(this);//执行runnable
-    success = true;
-  } catch (RejectedExecutionException e) {
-    InterruptedIOException ioException = new InterruptedIOException("executor rejected");
-    ioException.initCause(e);
-    transmitter.noMoreExchanges(ioException);
-    responseCallback.onFailure(RealCall.this, ioException);
+    executorService.execute(this)
+    success = true
+  } catch (e: RejectedExecutionException) {
+    val ioException = InterruptedIOException("executor rejected")
+    ioException.initCause(e)
+    noMoreExchanges(ioException)
+    responseCallback.onFailure(this@RealCall, ioException)
   } finally {
     if (!success) {
-      client.dispatcher().finished(this); // This call is no longer running!
+      client.dispatcher.finished(this) // This call is no longer running!
     }
   }
 }
 ```
 
 ```java
-@Override protected void execute() {
-  boolean signalledCallback = false;
-  transmitter.timeoutEnter();
-  try {
-    //责任链模式
-    Response response = getResponseWithInterceptorChain();
-    signalledCallback = true;
-    responseCallback.onResponse(RealCall.this, response);
-  } catch (IOException e) {
-    if (signalledCallback) {
-      // Do not signal the callback twice!
-      Platform.get().log(INFO, "Callback failure for " + toLoggableString(), e);
-    } else {
-      responseCallback.onFailure(RealCall.this, e);
-    }
-  } catch (Throwable t) {
-    cancel();
-    if (!signalledCallback) {
-      IOException canceledException = new IOException("canceled due to " + t);
-      canceledException.addSuppressed(t);
-      responseCallback.onFailure(RealCall.this, canceledException);
-    }
-    throw t;
-  } finally {
-    client.dispatcher().finished(this);
+override fun run() {
+  threadName("OkHttp ${redactedUrl()}") {
+    var signalledCallback = false
+      timeout.enter()
+      try {
+        val response = getResponseWithInterceptorChain()
+          signalledCallback = true
+          responseCallback.onResponse(this@RealCall, response)
+      } catch (e: IOException) {
+        if (signalledCallback) {
+          // Do not signal the callback twice!
+          Platform.get().log("Callback failure for ${toLoggableString()}", Platform.INFO, e)
+        } else {
+          responseCallback.onFailure(this@RealCall, e)
+        }
+      } catch (t: Throwable) {
+        cancel()
+          if (!signalledCallback) {
+            val canceledException = IOException("canceled due to $t")
+              canceledException.addSuppressed(t)
+              responseCallback.onFailure(this@RealCall, canceledException)
+          }
+        throw t
+      } finally {
+        client.dispatcher.finished(this)
+      }
   }
 }
 ```
@@ -236,7 +217,7 @@ void executeOn(ExecutorService executorService) {
 
 `RealInterceptorChain`的`proceed`会创建一个`InterceptorChain`，并调用拦截器的`intercept`方法。除了`CallServerInterceptor`外，所有拦截器的`intercept`都会调用创建的`InterceptorChain`的`proceed`方法。
 
-![](../../.gitbook/assets/image%20%2823%29.png)
+![](https://malinkang.cn/images/jvm/202111121831550.png)
 
 ```java
 Response getResponseWithInterceptorChain() throws IOException {
@@ -420,6 +401,7 @@ private fun findHealthyConnection(
         connectionRetryEnabled = connectionRetryEnabled
     )
     // Confirm that the connection is good.
+    //判断连接是否健康
     if (candidate.isHealthy(doExtensiveHealthChecks)) {
       return candidate
     }
@@ -437,184 +419,128 @@ private fun findHealthyConnection(
 }
 ```
 
-```java
-/** Returns a new exchange to carry a new request and response. */
-//Transmitter
-Exchange newExchange(Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
-  synchronized (connectionPool) {
-    if (noMoreExchanges) {
-      throw new IllegalStateException("released");
+### findConnection\(\)
+
+1. 如果call里面的connection不为空，则复用call里面的connection。
+2. 如果call中的connection为空，则从连接池中获取一个。
+3. 如果缓存池里也没有就
+
+```kotlin
+@Throws(IOException::class)
+private fun findConnection(
+  connectTimeout: Int,
+  readTimeout: Int,
+  writeTimeout: Int,
+  pingIntervalMillis: Int,
+  connectionRetryEnabled: Boolean
+): RealConnection {
+  //如果取消抛异常
+  if (call.isCanceled()) throw IOException("Canceled")
+  // Attempt to reuse the connection from the call.
+  //复用call里面的连接
+  val callConnection = call.connection // This may be mutated by releaseConnectionNoEvents()!
+  if (callConnection != null) {
+    var toClose: Socket? = null
+    synchronized(callConnection) {
+      if (callConnection.noNewExchanges || !sameHostAndPort(callConnection.route().address.url)) {
+        //释放连接
+        toClose = call.releaseConnectionNoEvents()
+      }
     }
-    if (exchange != null) {
-      throw new IllegalStateException("cannot make a new request because the previous response "
-          + "is still open: please call response.close()");
+    // If the call's connection wasn't released, reuse it. We don't call connectionAcquired() here
+    // because we already acquired it.
+    //如果call里面的connection不为空
+    if (call.connection != null) {
+      check(toClose == null)
+      return callConnection
     }
+    // The call's connection was released.
+    toClose?.closeQuietly()
+    eventListener.connectionReleased(call, callConnection)
   }
-  //获取ExchangeCodec
-  ExchangeCodec codec = exchangeFinder.find(client, chain, doExtensiveHealthChecks);
-  Exchange result = new Exchange(this, call, eventListener, exchangeFinder, codec);
-
-  synchronized (connectionPool) {
-    this.exchange = result;
-    this.exchangeRequestDone = false;
-    this.exchangeResponseDone = false;
-    return result;
+  // We need a new connection. Give it fresh stats.
+  refusedStreamCount = 0
+  connectionShutdownCount = 0
+  otherFailureCount = 0
+  // Attempt to get a connection from the pool.
+  //尝试从连接池中获取一个连接
+  if (connectionPool.callAcquirePooledConnection(address, call, null, false)) {
+    val result = call.connection!!
+    eventListener.connectionAcquired(call, result)
+    return result
   }
-}
-```
-
-```java
-public ExchangeCodec find(
-    OkHttpClient client, Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
-  int connectTimeout = chain.connectTimeoutMillis();
-  int readTimeout = chain.readTimeoutMillis();
-  int writeTimeout = chain.writeTimeoutMillis();
-  int pingIntervalMillis = client.pingIntervalMillis();
-  boolean connectionRetryEnabled = client.retryOnConnectionFailure();
-
+  // Nothing in the pool. Figure out what route we'll try next.
+  //没看懂这一块路由相关的逻辑
+  val routes: List<Route>?
+  val route: Route
+  if (nextRouteToTry != null) {
+    // Use a route from a preceding coalesced connection.
+    routes = null
+    route = nextRouteToTry!!
+    nextRouteToTry = null
+  } else if (routeSelection != null && routeSelection!!.hasNext()) {
+    // Use a route from an existing route selection.
+    routes = null
+    route = routeSelection!!.next()
+  } else {
+    // Compute a new route selection. This is a blocking operation!
+    var localRouteSelector = routeSelector
+    if (localRouteSelector == null) {
+      localRouteSelector = RouteSelector(address, call.client.routeDatabase, call, eventListener)
+      this.routeSelector = localRouteSelector
+    }
+    val localRouteSelection = localRouteSelector.next()
+    routeSelection = localRouteSelection
+    routes = localRouteSelection.routes
+    if (call.isCanceled()) throw IOException("Canceled")
+    // Now that we have a set of IP addresses, make another attempt at getting a connection from
+    // the pool. We have a better chance of matching thanks to connection coalescing.
+    //再次尝试从连接池中获取
+    if (connectionPool.callAcquirePooledConnection(address, call, routes, false)) {
+      val result = call.connection!!
+      eventListener.connectionAcquired(call, result)
+      return result
+    }
+    route = localRouteSelection.next()
+  }
+  // Connect. Tell the call about the connecting call so async cancels work.
+  //创建连接
+  val newConnection = RealConnection(connectionPool, route)
+  call.connectionToCancel = newConnection
   try {
-    //获取RealConnection对象
-    RealConnection resultConnection = findHealthyConnection(connectTimeout, readTimeout,
-        writeTimeout, pingIntervalMillis, connectionRetryEnabled, doExtensiveHealthChecks);
-    return resultConnection.newCodec(client, chain);
-  } catch (RouteException e) {
-    trackFailure();
-    throw e;
-  } catch (IOException e) {
-    trackFailure();
-    throw new RouteException(e);
+    //建立连接
+    newConnection.connect(
+        connectTimeout,
+        readTimeout,
+        writeTimeout,
+        pingIntervalMillis,
+        connectionRetryEnabled,
+        call,
+        eventListener
+    )
+  } finally {
+    call.connectionToCancel = null
   }
+  call.client.routeDatabase.connected(newConnection.route())
+  // If we raced another call connecting to this host, coalesce the connections. This makes for 3
+  // different lookups in the connection pool!
+  if (connectionPool.callAcquirePooledConnection(address, call, routes, true)) {
+    val result = call.connection!!
+    nextRouteToTry = route
+    newConnection.socket().closeQuietly()
+    eventListener.connectionAcquired(call, result)
+    return result
+  }
+  synchronized(newConnection) {
+    //存储到连接池中
+    connectionPool.put(newConnection)
+    //将connection赋值给call
+    call.acquireConnectionNoEvents(newConnection)
+  }
+  eventListener.connectionAcquired(call, newConnection)
+  return newConnection
 }
 ```
-
-```java
-/**
-   * Returns a connection to host a new stream. This prefers the existing connection if it exists,
-   * then the pool, finally building a new connection.
-   */
-  private RealConnection findConnection(int connectTimeout, int readTimeout, int writeTimeout,
-      int pingIntervalMillis, boolean connectionRetryEnabled) throws IOException {
-    boolean foundPooledConnection = false;
-    RealConnection result = null;
-    Route selectedRoute = null;
-    RealConnection releasedConnection;
-    Socket toClose;
-    synchronized (connectionPool) {
-      if (transmitter.isCanceled()) throw new IOException("Canceled");
-      hasStreamFailure = false; // This is a fresh attempt.
-
-      // Attempt to use an already-allocated connection. We need to be careful here because our
-      // already-allocated connection may have been restricted from creating new exchanges.
-      releasedConnection = transmitter.connection;
-      toClose = transmitter.connection != null && transmitter.connection.noNewExchanges
-          ? transmitter.releaseConnectionNoEvents()
-          : null;
-
-      if (transmitter.connection != null) {
-        // We had an already-allocated connection and it's good.
-        result = transmitter.connection;
-        releasedConnection = null;
-      }
-
-      if (result == null) {
-        // Attempt to get a connection from the pool.
-        if (connectionPool.transmitterAcquirePooledConnection(address, transmitter, null, false)) {
-          foundPooledConnection = true;
-          result = transmitter.connection;
-        } else if (nextRouteToTry != null) {
-          selectedRoute = nextRouteToTry;
-          nextRouteToTry = null;
-        } else if (retryCurrentRoute()) {
-          selectedRoute = transmitter.connection.route();
-        }
-      }
-    }
-    closeQuietly(toClose);
-
-    if (releasedConnection != null) {
-      eventListener.connectionReleased(call, releasedConnection);
-    }
-    if (foundPooledConnection) {
-      eventListener.connectionAcquired(call, result);
-    }
-    if (result != null) {
-      // If we found an already-allocated or pooled connection, we're done.
-      return result;
-    }
-
-    // If we need a route selection, make one. This is a blocking operation.
-    boolean newRouteSelection = false;
-    if (selectedRoute == null && (routeSelection == null || !routeSelection.hasNext())) {
-      newRouteSelection = true;
-      routeSelection = routeSelector.next();
-    }
-
-    List<Route> routes = null;
-    synchronized (connectionPool) {
-      if (transmitter.isCanceled()) throw new IOException("Canceled");
-
-      if (newRouteSelection) {
-        // Now that we have a set of IP addresses, make another attempt at getting a connection from
-        // the pool. This could match due to connection coalescing.
-        routes = routeSelection.getAll();
-        if (connectionPool.transmitterAcquirePooledConnection(
-            address, transmitter, routes, false)) {
-          foundPooledConnection = true;
-          result = transmitter.connection;
-        }
-      }
-
-      if (!foundPooledConnection) {
-        if (selectedRoute == null) {
-          selectedRoute = routeSelection.next();
-        }
-
-        // Create a connection and assign it to this allocation immediately. This makes it possible
-        // for an asynchronous cancel() to interrupt the handshake we're about to do.
-        result = new RealConnection(connectionPool, selectedRoute);
-        connectingConnection = result;
-      }
-    }
-
-    // If we found a pooled connection on the 2nd time around, we're done.
-    if (foundPooledConnection) {
-      eventListener.connectionAcquired(call, result);
-      return result;
-    }
-
-    // Do TCP + TLS handshakes. This is a blocking operation.
-    //RealConnection 连接socket
-    result.connect(connectTimeout, readTimeout, writeTimeout, pingIntervalMillis,
-        connectionRetryEnabled, call, eventListener);
-    connectionPool.routeDatabase.connected(result.route());
-
-    Socket socket = null;
-    synchronized (connectionPool) {
-      connectingConnection = null;
-      // Last attempt at connection coalescing, which only occurs if we attempted multiple
-      // concurrent connections to the same host.
-      if (connectionPool.transmitterAcquirePooledConnection(address, transmitter, routes, true)) {
-        // We lost the race! Close the connection we created and return the pooled connection.
-        result.noNewExchanges = true;
-        socket = result.socket();
-        result = transmitter.connection;
-
-        // It's possible for us to obtain a coalesced connection that is immediately unhealthy. In
-        // that case we will retry the route we just successfully connected with.
-        nextRouteToTry = selectedRoute;
-      } else {
-        connectionPool.put(result);
-        transmitter.acquireConnectionNoEvents(result);
-      }
-    }
-    closeQuietly(socket);
-
-    eventListener.connectionAcquired(call, result);
-    return result;
-  }
-```
-
-ExchangeCodec类负责处理网络请求和解码返回值。
 
 ## 执行网络请求
 
@@ -736,4 +662,9 @@ public final class CallServerInterceptor implements Interceptor {
   }
 }
 ```
+
+## 参考
+
+* [面试官：听说你熟悉OkHttp原理](https://juejin.cn/post/6844904087788453896)
+* [【知识点】OkHttp 原理 8 连问](https://juejin.cn/post/7020027832977850381 )
 
