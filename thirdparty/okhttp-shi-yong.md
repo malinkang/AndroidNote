@@ -20,24 +20,24 @@ OkHttp是一个默认高效的HTTP客户端：
 ## Get请求
 
 ```java
-  private final OkHttpClient client = new OkHttpClient();
+private final OkHttpClient client = new OkHttpClient();
 
-  public void run() throws Exception {
-    Request request = new Request.Builder()
-        .url("https://publicobject.com/helloworld.txt")
-        .build();
+public void run() throws Exception {
+  Request request = new Request.Builder()
+    .url("https://publicobject.com/helloworld.txt")
+    .build();
 
-    try (Response response = client.newCall(request).execute()) {
-      if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+  try (Response response = client.newCall(request).execute()) {
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-      Headers responseHeaders = response.headers();
-      for (int i = 0; i < responseHeaders.size(); i++) {
-        System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-      }
-
-      System.out.println(response.body().string());
+    Headers responseHeaders = response.headers();
+    for (int i = 0; i < responseHeaders.size(); i++) {
+      System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
     }
+
+    System.out.println(response.body().string());
   }
+}
 ```
 
 

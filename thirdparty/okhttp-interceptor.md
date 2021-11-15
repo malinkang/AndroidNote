@@ -134,12 +134,6 @@ Connection: keep-alive
 * 在数据将在网络上传输时就观察数据。 
 * 访问承载请求的连接。
 
-
-
-
-
-![](../../.gitbook/assets/image%20%2872%29%20%281%29.png)
-
 `CallServerInterceptor`不会执行chain的proceed。所以`CallServerInterceptor`必须放最后一个。
 
 ## 参考

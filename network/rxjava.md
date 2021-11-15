@@ -133,22 +133,22 @@ hello,world!
 ```
 
 ```java
-       Subscriber<Integer> mySubscriber2 = new Subscriber<Integer>() {
-            @Override
-            public void onCompleted() {
+Subscriber<Integer> mySubscriber2 = new Subscriber<Integer>() {
+  @Override
+  public void onCompleted() {
 
-            }
+  }
 
-            @Override
-            public void onError(Throwable e) {
+  @Override
+  public void onError(Throwable e) {
 
-            }
+  }
 
-            @Override
-            public void onNext(Integer integer) {
-                System.out.println(integer);
-            }
-        };
+  @Override
+  public void onNext(Integer integer) {
+    System.out.println(integer);
+  }
+};
 ```
 
 ## 3.错误处理 <a id="3.&#x9519;&#x8BEF;&#x5904;&#x7406;"></a>

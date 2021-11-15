@@ -1,4 +1,4 @@
-# Okhttp基本流程分析
+# Okhttp源码分析
 
 ## 基本流程
 
@@ -14,7 +14,7 @@
 
 `RequestBody`主要通过`writeTo`方法将请求内容写入到`BufferedSink`。`RequestBody`提供了3个`create`静态方法来创建`RequestBody`，此外`RequestBody`还包含两个子类。
 
-![](https://malinkang.cn/images/jvm/202111121831543.png)
+![image-20211114170629029](https://malinkang.cn/images/jvm/202111141706239.png)
 
 `FormBody`用于表单提交，`MultipartBody`用于多内容提交。
 
@@ -67,6 +67,8 @@ final int pingInterval;
 
 ## 调用newCall创建Call对象
 
+![image-20211114170500713](https://malinkang.cn/images/jvm/202111141705680.png)
+
 `OkHttpClient`继承`Call.Factory`。
 
 ```java
@@ -78,12 +80,15 @@ interface Factory {
 `OkHttpClient`的`newCall`方法调用
 
 ```java
+//每次调用一个newCall都会创建一个新的RealCall对象
 override fun newCall(request: Request): Call = RealCall(this, request, forWebSocket = false)
 ```
 
 ## 执行网络请求
 
-Call支持执行网络请求的方法`enqueue`和`execute()`。`enqueue`执行异步请求，`execute()`执行同步请求。
+![image-20211114173043097](https://malinkang.cn/images/jvm/202111141730335.png)
+
+`Call`支持执行网络请求的方法`enqueue`和`execute()`。`enqueue`执行异步请求，`execute()`执行同步请求。
 
 ```java
 override fun enqueue(responseCallback: Callback) {
@@ -92,6 +97,8 @@ override fun enqueue(responseCallback: Callback) {
   client.dispatcher.enqueue(AsyncCall(responseCallback))
 }
 ```
+
+### enqueue()
 
 `Dispatcher`类
 
@@ -112,6 +119,8 @@ internal fun enqueue(call: AsyncCall) {
   promoteAndExecute()
 }
 ```
+
+### promoteAndExecute()
 
 ```java
 private fun promoteAndExecute(): Boolean {
@@ -219,92 +228,285 @@ override fun run() {
 
 ![](https://malinkang.cn/images/jvm/202111121831550.png)
 
-```java
-Response getResponseWithInterceptorChain() throws IOException {
-  // Build a full stack of interceptors.
-  List<Interceptor> interceptors = new ArrayList<>();
-  interceptors.addAll(client.interceptors());
-  interceptors.add(new RetryAndFollowUpInterceptor(client));
-  interceptors.add(new BridgeInterceptor(client.cookieJar()));
-  interceptors.add(new CacheInterceptor(client.internalCache()));
-  interceptors.add(new ConnectInterceptor(client));
-  if (!forWebSocket) {
-    interceptors.addAll(client.networkInterceptors());
-  }
-  interceptors.add(new CallServerInterceptor(forWebSocket));
-  //创建chain并把所有的拦截器传递给chain
-  Interceptor.Chain chain = new RealInterceptorChain(interceptors, transmitter, null, 0,
-      originalRequest, this, client.connectTimeoutMillis(),
-      client.readTimeoutMillis(), client.writeTimeoutMillis());
+### getResponseWithInterceptorChain()
 
-  boolean calledNoMoreExchanges = false;
-  try {
-    //执行chain的proceed方法
-    Response response = chain.proceed(originalRequest);
-    if (transmitter.isCanceled()) {
-      closeQuietly(response);
-      throw new IOException("Canceled");
+```java
+@Throws(IOException::class)
+internal fun getResponseWithInterceptorChain(): Response {
+  // Build a full stack of interceptors.
+  val interceptors = mutableListOf<Interceptor>()
+  interceptors += client.interceptors
+  interceptors += RetryAndFollowUpInterceptor(client)
+  interceptors += BridgeInterceptor(client.cookieJar)
+  interceptors += CacheInterceptor(client.cache)
+  interceptors += ConnectInterceptor
+  if (!forWebSocket) {
+    interceptors += client.networkInterceptors
+  }
+  interceptors += CallServerInterceptor(forWebSocket)
+  //创建chain并把所有的拦截器传递给chain
+  val chain = RealInterceptorChain(
+      call = this,
+      interceptors = interceptors,
+      index = 0,
+      exchange = null,
+      request = originalRequest,
+      connectTimeoutMillis = client.connectTimeoutMillis,
+      readTimeoutMillis = client.readTimeoutMillis,
+      writeTimeoutMillis = client.writeTimeoutMillis
+  )
+  var calledNoMoreExchanges = false
+  try {//执行chain的proceed方法
+    val response = chain.proceed(originalRequest)
+    if (isCanceled()) {
+      response.closeQuietly()
+      throw IOException("Canceled")
     }
-    return response;
-  } catch (IOException e) {
-    calledNoMoreExchanges = true;
-    throw transmitter.noMoreExchanges(e);
+    return response
+  } catch (e: IOException) {
+    calledNoMoreExchanges = true
+    throw noMoreExchanges(e) as Throwable
   } finally {
     if (!calledNoMoreExchanges) {
-      transmitter.noMoreExchanges(null);
+      noMoreExchanges(null)
     }
   }
 }
 ```
 
+### proceed()
+
 ```java
-public Response proceed(Request request, Transmitter transmitter, @Nullable Exchange exchange)
-    throws IOException {
-  if (index >= interceptors.size()) throw new AssertionError();
-
-  calls++;
-
-  // If we already have a stream, confirm that the incoming request will use it.
-  if (this.exchange != null && !this.exchange.connection().supportsUrl(request.url())) {
-    throw new IllegalStateException("network interceptor " + interceptors.get(index - 1)
-        + " must retain the same host and port");
+@Throws(IOException::class)
+override fun proceed(request: Request): Response {
+  check(index < interceptors.size)
+  calls++
+  if (exchange != null) {
+    check(exchange.finder.sameHostAndPort(request.url)) {
+      "network interceptor ${interceptors[index - 1]} must retain the same host and port"
+    }
+    check(calls == 1) {
+      "network interceptor ${interceptors[index - 1]} must call proceed() exactly once"
+    }
   }
-
-  // If we already have a stream, confirm that this is the only call to chain.proceed().
-  if (this.exchange != null && calls > 1) {
-    throw new IllegalStateException("network interceptor " + interceptors.get(index - 1)
-        + " must call proceed() exactly once");
-  }
-
   // Call the next interceptor in the chain.
-  //创建下一个chain 并传递给拦截器
-  RealInterceptorChain next = new RealInterceptorChain(interceptors, transmitter, exchange,
-      index + 1, request, call, connectTimeout, readTimeout, writeTimeout);
-  Interceptor interceptor = interceptors.get(index);
+  //调用copy方法创建一个chain
+  val next = copy(index = index + 1, request = request)
+  //获取下一个拦截器
+  val interceptor = interceptors[index]
+  @Suppress("USELESS_ELVIS")
   //调用拦截器的intercept方法 在interceptor中会调用next的proceed执行下一个拦截器
-  Response response = interceptor.intercept(next);
-
-  // Confirm that the next interceptor made its required call to chain.proceed().
-  if (exchange != null && index + 1 < interceptors.size() && next.calls != 1) {
-    throw new IllegalStateException("network interceptor " + interceptor
-        + " must call proceed() exactly once");
+  val response = interceptor.intercept(next) ?: throw NullPointerException(
+      "interceptor $interceptor returned null")
+  if (exchange != null) {
+    check(index + 1 >= interceptors.size || next.calls == 1) {
+      "network interceptor $interceptor must call proceed() exactly once"
+    }
   }
-
-  // Confirm that the intercepted response isn't null.
-  if (response == null) {
-    throw new NullPointerException("interceptor " + interceptor + " returned null");
-  }
-
-  if (response.body() == null) {
-    throw new IllegalStateException(
-        "interceptor " + interceptor + " returned a response with no body");
-  }
-
-  return response;
+  check(response.body != null) { "interceptor $interceptor returned a response with no body" }
+  return response
 }
 ```
 
+## 缓存分析
+
+### Cache
+
+缓存核心类是`Cache`对象。
+
+`Cache`的构造函数。
+
+```java
+//缓存目录 和最大尺寸
+constructor(directory: File, maxSize: Long) : this(directory, maxSize, FileSystem.SYSTEM)
+```
+
+Cache提供了两个方法用于存储和获取缓存。
+
+`put`方法将缓存存储到磁盘上。
+
+```java
+//返回一个CacheRequest对象
+internal val cache = DiskLruCache(
+    fileSystem = fileSystem,
+    directory = directory,
+    appVersion = VERSION,
+    valueCount = ENTRY_COUNT,
+    maxSize = maxSize,
+    taskRunner = TaskRunner.INSTANCE
+)
+
+internal fun put(response: Response): CacheRequest? {
+  val requestMethod = response.request.method //获取请求方法
+  if (HttpMethod.invalidatesCache(response.request.method)) {
+    try {
+      remove(response.request)
+    } catch (_: IOException) {
+      // The cache cannot be written.
+    }
+    return null
+  }
+  //如果不是GET 请求直接返回null 
+  if (requestMethod != "GET") {
+    // Don't cache non-GET responses. We're technically allowed to cache HEAD requests and some
+    // POST requests, but the complexity of doing so is high and the benefit is low.
+    return null
+  }
+  //Vary头的值为*的情况
+  if (response.hasVaryAll()) {
+    return null
+  }
+  val entry = Entry(response) //创建Entry对象
+  var editor: DiskLruCache.Editor? = null
+  try {
+    //先调用key方法生成key
+    //调用DiskLruCache的edit方法获取Editor
+    editor = cache.edit(key(response.request.url)) ?: return null
+    entry.writeTo(editor) //写入本地
+    return RealCacheRequest(editor)
+  } catch (_: IOException) {
+    abortQuietly(editor)
+    return null
+  }
+}
+```
+
+`get`方法获取缓存
+
+```java
+internal fun get(request: Request): Response? {
+  val key = key(request.url)
+  val snapshot: DiskLruCache.Snapshot = try {
+    cache[key] ?: return null
+  } catch (_: IOException) {
+    return null // Give up because the cache cannot be read.
+  }
+  val entry: Entry = try {
+    Entry(snapshot.getSource(ENTRY_METADATA))
+  } catch (_: IOException) {
+    snapshot.closeQuietly()
+    return null
+  }
+  val response = entry.response(snapshot)
+  if (!entry.matches(request, response)) {
+    response.body?.closeQuietly()
+    return null
+  }
+  return response
+}
+```
+
+### CacheInterceptor
+
+Cache这两个方法都被CacheInterceptor对象调用。所以处理缓存的核心逻辑都在CacheInterceptor中。
+
+### **缓存逻辑**
+
+```kotlin
+if (cache != null) {
+    //有body 并且可以被缓存
+    if (response.promisesBody() && CacheStrategy.isCacheable(response, networkRequest)) {
+        // Offer this request to the cache.
+        val cacheRequest = cache.put(response)
+        return cacheWritingResponse(cacheRequest, response).also {
+          if (cacheResponse != null) {
+            // This will log a conditional cache miss only.
+            listener.cacheMiss(call)
+          }
+        }
+    }
+    if (HttpMethod.invalidatesCache(networkRequest.method)) {
+        try {
+          cache.remove(networkRequest)
+        } catch (_: IOException) {
+          // The cache cannot be written.
+        }
+    }
+}
+```
+
+`isCacheable`方法用来判断是否可以缓存。
+
+```kotlin
+fun isCacheable(response: Response, request: Request): Boolean {
+      // Always go to network for uncacheable response codes (RFC 7231 section 6.1), This
+      // implementation doesn't support caching partial content.
+    when (response.code) {
+        HTTP_OK,
+        HTTP_NOT_AUTHORITATIVE,
+        HTTP_NO_CONTENT,
+        HTTP_MULT_CHOICE,
+        HTTP_MOVED_PERM,
+        HTTP_NOT_FOUND,
+        HTTP_BAD_METHOD,
+        HTTP_GONE,
+        HTTP_REQ_TOO_LONG,
+        HTTP_NOT_IMPLEMENTED,
+        StatusLine.HTTP_PERM_REDIRECT -> {
+          // These codes can be cached unless headers forbid it.
+        }
+
+        HTTP_MOVED_TEMP,
+        StatusLine.HTTP_TEMP_REDIRECT -> {
+          // These codes can only be cached with the right response headers.
+          // http://tools.ietf.org/html/rfc7234#section-3
+          // s-maxage is not checked because OkHttp is a private cache that should ignore s-maxage.
+          if (response.header("Expires") == null &&
+              response.cacheControl.maxAgeSeconds == -1 &&
+              !response.cacheControl.isPublic &&
+              !response.cacheControl.isPrivate) {
+            return false
+          }
+        }
+
+        else -> {
+          // All other codes cannot be cached.
+          return false
+        }
+      }
+
+      // A 'no-store' directive on request or response prevents the response from being cached.
+    return !response.cacheControl.noStore && !request.cacheControl.noStore
+}
+```
+
+这里面加了一堆判断，这里需要先了解一下HTTP的缓存原理。才能搞清楚这些判断的逻辑。
+
+### Http缓存原理
+
+在HTTP 1.0时代，响应使用Expires头标识缓存的有效期，其值是一个绝对时间，比如Expires:Thu,31 Dec 2020 23:59:59 GMT。当客户端再次发出网络请求时可比较当前时间 和上次响应的expires时间进行比较，来决定是使用缓存还是发起新的请求。
+
+使用Expires头最大的问题是它依赖客户端的本地时间，如果用户自己修改了本地时间，就会导致无法准确的判断缓存是否过期。
+
+因此，从HTTP 1.1 开始使用`Cache-Control`头表示缓存状态，它的优先级高于Expires，常见的取值为下面的一个或多个。
+
+* private，默认值，标识那些私有的业务逻辑数据，比如根据用户行为下发的推荐数据。该模式下网络链路中的代理服务器等节点不应该缓存这部分数据，因为没有实际意义。
+* public 与private相反，public用于标识那些通用的业务数据，比如获取新闻列表，所有人看到的都是同一份数据，因此客户端、代理服务器都可以缓存。
+* no-cache 可进行缓存，但在客户端使用缓存前必须要去服务端进行缓存资源有效性的验证，即下文的对比缓存部分，我们稍后介绍。
+* max-age 表示缓存时长单位为秒，指一个时间段，比如一年，通常用于不经常变化的静态资源。
+* no-store 任何节点禁止使用缓存。
+
+#### 强制缓存
+
+在上述缓存头规约基础之上，强制缓存是指网络请求响应header标识了Expires或Cache-Control带了max-age信息，而此时客户端计算缓存并未过期，则可以直接使用本地缓存内容，而不用真正的发起一次网络请求。
+
+### 协商缓存
+
+强制缓存最大的问题是，一旦服务端资源有更新，直到缓存时间截止前，客户端无法获取到最新的资源（除非请求时手动添加no-store头），另外大部分情况下服务器的资源无法直接确定缓存失效时间，所以使用对比缓存更灵活一些。
+
+使用**Last-Modify** / **If-Modify-Since**头实现协商缓存，具体方法是服务端响应头添加Last-Modify头标识资源的最后修改时间，单位为秒，当客户端再次发起请求时添加If-Modify-Since头并赋值为上次请求拿到的Last-Modify头的值。
+
+服务端收到请求后自行判断缓存资源是否仍然有效，如果有效则返回状态码304同时body体为空，否则下发最新的资源数据。客户端如果发现状态码是304，则取出本地的缓存数据作为响应。
+
+使用这套方案有一个问题，那就是资源文件使用最后修改时间有一定的局限性：
+
+1. Last-Modify单位为秒，如果某些文件在一秒内被修改则并不能准确的标识修改时间。
+2. 资源修改时间并不能作为资源是否修改的唯一依据，比如资源文件是Daily Build的，每天都会生成新的，但是其实际内容可能并未改变。
+
+
 ## 建立连接
+
+![image-20211114174719516](https://malinkang.cn/images/jvm/202111141747580.png)
 
 `OkHttp`通过`ConnectInterceptor`建立连接。在`ConnectInterceptor`的`intercept`方法中，通过调用`RealCall`的`initExchange`方法初始化一个`Exchange`对象。`Exchange`对象负责交换数据。
 
@@ -350,7 +552,7 @@ internal fun initExchange(chain: RealInterceptorChain): Exchange {
 }
 ```
 
-#### find\(\)
+### find\(\)
 
 ```kotlin
 fun find(
@@ -423,7 +625,7 @@ private fun findHealthyConnection(
 
 1. 如果call里面的connection不为空，则复用call里面的connection。
 2. 如果call中的connection为空，则从连接池中获取一个。
-3. 如果缓存池里也没有就
+3. 如果缓存池里也没有就创建一个
 
 ```kotlin
 @Throws(IOException::class)
@@ -541,6 +743,48 @@ private fun findConnection(
   return newConnection
 }
 ```
+
+## OkHttp连接复用
+
+`OkHttp` 连接复用主要是通过 `RealConnectionPool` 来实现的，其内部定义了一个 `ConcurrentLinkedQueue` 来存储创建的 `RealConnection`。当获取连接时，优先判断 `Call` 中的`` Connection `是否为空，如果不为空则直接复用，为空则从连接池中获取，当从连接池中获取不到的时候才调用` RealConnection `构造函数创建一个新的连接并添加到 `RealConnectionPool` 中。`RealConnectionPool` 提供了两个可配置的参数：最大空闲连接数和存活时长，这两个参数默认是 5 个和 5 分钟，当然我们也可以在`OKHttpClient` 中自己配置。当向 `RealConnectionPool` 中添加连接和连接变成空闲时，内部都会遍历队列中所有的连接，如果最大空闲连接数或者存活时长都大于设定的则移除存空闲时长最长的连接，该方法会多次执行，直到最大空闲连接数和存活时长都小于设定的值。
+
+![image-20211115105736461](https://malinkang.cn/images/jvm/202111151057183.png)
+
+### ConnectionPool
+
+```kotlin
+class ConnectionPool internal constructor(
+  internal val delegate: RealConnectionPool
+) {
+  constructor(
+    maxIdleConnections: Int,
+    keepAliveDuration: Long,
+    timeUnit: TimeUnit
+  ) : this(RealConnectionPool(//创建RealConnectionPool
+      taskRunner = TaskRunner.INSTANCE, //获取TaskRunner
+      maxIdleConnections = maxIdleConnections,
+      keepAliveDuration = keepAliveDuration,
+      timeUnit = timeUnit
+  ))
+  //最大空闲连接数5 最长空闲时间5分钟
+  constructor() : this(5, 5, TimeUnit.MINUTES)
+
+  /** Returns the number of idle connections in the pool. */
+  fun idleConnectionCount(): Int = delegate.idleConnectionCount()
+
+  /** Returns total number of connections in the pool. */
+  fun connectionCount(): Int = delegate.connectionCount()
+
+  /** Close and remove all idle connections in the pool. */
+  fun evictAll() {
+    delegate.evictAll()
+  }
+}
+```
+
+## 清理连接
+
+![image-20211115114825724](https://malinkang.cn/images/jvm/202111151148121.png)
 
 ## 执行网络请求
 
