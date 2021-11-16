@@ -1,4 +1,5 @@
 `RequestManager`会调用`SingleRequest`的`begin`方法发起一个请求，一个请求会经历如下过程。
+
 1. 如果没有设置加载的图片的宽高，则会获取对应ImageView的宽高。
 2. 获取图片的流。
 3. 调用`Encoder`，将流转化为文件。
@@ -189,7 +190,9 @@ public synchronized void onSizeReady(int width, int height) {
 }
 ```
 
-## Engline
+## Engine
+
+![image-20211116162104540](https://malinkang.cn/images/jvm/Engine.png)
 
 `Engine`在`GlideBuilder`的`build`方法中创建。
 
@@ -405,6 +408,21 @@ private <R> LoadStatus waitForExistingOrStartNewJob(
 }
 ```
 
+### onEngineJobComplete()
+
+```java
+@Override
+public synchronized void onEngineJobComplete(
+    EngineJob<?> engineJob, Key key, EngineResource<?> resource) {
+  // A null resource indicates that the load failed, usually due to an exception.
+  if (resource != null && resource.isMemoryCacheable()) {
+    //缓存到activeResources
+    activeResources.activate(key, resource);
+  }
+  jobs.removeIfCurrent(key, engineJob);
+}
+```
+
 ## EngineJob
 
 ### EngineJob创建过程
@@ -446,7 +464,7 @@ static class EngineJobFactory {
   }
 }
 ```
-### start
+### start()
 
 `EngineJob`的`start`方法会调用`GlideExecutor`执行`DecodeJob`。
 ```java

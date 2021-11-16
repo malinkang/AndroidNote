@@ -18,7 +18,9 @@ GlideApp.with(this)
 2. 获取`RequestManagerRetriever`对象
 3. 获取`RequestManager`对象
 
+![初始化Glide](https://malinkang.cn/images/jvm/202111151644483.png)
 
+### with()
 
 ```java
 //Glide.java
@@ -44,7 +46,7 @@ private static RequestManagerRetriever getRetriever(@Nullable Context context) {
 }
 ```
 
-### get
+### get()
 
 `get`方法是一个双重检验锁来获取`Glide`的单例对象，如果对象为空则调用`getAnnotationGeneratedGlideModules`和`checkAndInitializeGlide`。
 ```java
@@ -64,7 +66,7 @@ public static Glide get(@NonNull Context context) {
 }
 ```
 
-### getAnnotationGeneratedGlideModules
+### getAnnotationGeneratedGlideModules()
 
 `getAnnotationGeneratedGlideModules`方法通过反射来获取`GeneratedAppGlideModule`的实现类`GeneratedAppGlideModuleImpl`的`Class`对象，并通过反射创建`GeneratedAppGlideModuleImpl`的实例。
 
@@ -163,7 +165,7 @@ final class GeneratedAppGlideModuleImpl extends GeneratedAppGlideModule {
 }
 ```
 
-### checkAndInitializeGlide
+### checkAndInitializeGlide()
 
 `checkAndInitializeGlide`方法先检查是否正在进行初始化，如果正在进行初始化则抛出异常，否则调用`initializeGlide`方法进行初始化。
 ```java
@@ -184,7 +186,7 @@ private static void checkAndInitializeGlide(
 ```
 
 
-### initializeGlide
+### initializeGlide()
 
 `initializeGlide`创建一个`GlideBuilder`对象，并传递给他的重载方法。
 
@@ -445,8 +447,9 @@ Glide(
 
 到这里`Glide`的初始化已经完成了，接着调用`Glide`的`getRequestManagerRetriever`方法来获取`RequestManagerRetriever`对象。`RequestManagerRetriever`对象负责创建一个新的`RequestManager`或者获取一个存在的`RequestManager`。
 
-
 ### RequestManagerRetriever#get
+
+![image-20211115201116032](https://malinkang.cn/images/jvm/202111152011893.png)
 
 `RequestManagerRetriever`有多个重载的`get`方法，根据`with`方法传入的不同参数，来调用不同的方法，这里我们以传入`Activity`为例。
 
@@ -520,6 +523,12 @@ private RequestManagerFragment getRequestManagerFragment(
 ```
 
 ### RequestManagerFragment
+
+
+
+![生命周期相关类](https://malinkang.cn/images/jvm/202111161126257.png)
+
+![生命周期相关类](https://malinkang.cn/images/jvm/202111161127277.png)
 
 `RequestManagerFragment`的构造函数会创建一个`ActivityFragmentLifecycle`对象。在`RequestManagerFragment`的生命周期方法`onStart`、`onStop`、`onDestroy`会调用`ActivityFragmentLifecycle`的相应方法。
 
@@ -595,6 +604,7 @@ public interface LifecycleListener {
 }
 ```
 
+### RequestManager
 
 `RequestManager`实现了`LifecycleListener`，当构建`RequestManager`对象时，会将`RequestManagerFragment`的`ActivityFragmentLifecycle`传递给`RequestManager`。在`RequestManager`的构造函数中，调用`Lifecycle`的`addListener`方法，将当前对象添加到`Lifecycle`中。当`RequestManagerFragment`执行相应的生命周期方法时，会调用`RequestManager`的相应方法，来管理请求。
 
@@ -669,6 +679,8 @@ public interface LifecycleListener {
 
 
 
+![image-20211116113224787](https://malinkang.cn/images/jvm/202111161132636.png)
+
 
 ## load\(\)
 
@@ -689,8 +701,6 @@ public <ResourceType> RequestBuilder<ResourceType> as(
   return new RequestBuilder<>(glide, this, resourceClass, context);
 }
 ```
-
-
 
 ## into\(\)
 
@@ -869,8 +879,6 @@ public void runRequest(@NonNull Request request) {
   }
 }
 ```
-
-
 
 
 
