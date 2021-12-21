@@ -1,9 +1,11 @@
 # ViewModel源码分析
 
-## 
+为什么要使用反射创建ViewModel？我觉得应该是为了保证只存在一个ViewModel的实例。所以通过Map存储。如果单独需要创建，并添加到map中。设计者可能是为了解耦这个过程。所以通过反射来创建。
 
-```java
-//ActivityViewModelLazyKt.class
+## 创建
+
+```kotlin
+//activity/activity-ktx/src/main/java/androidx/activity/ActivityViewModelLazy.kt
 @MainThread
 inline fun <reified VM : ViewModel> ComponentActivity.viewModels(
     noinline factoryProducer: (() -> Factory)? = null
@@ -20,6 +22,7 @@ inline fun <reified VM : ViewModel> ComponentActivity.viewModels(
 ```
 
 ```java
+//activity/activity/src/main/java/androidx/activity/ComponentActivity.java
 @NonNull
 @Override
 public ViewModelProvider.Factory getDefaultViewModelProviderFactory() {
@@ -38,7 +41,7 @@ public ViewModelProvider.Factory getDefaultViewModelProviderFactory() {
 ```
 
 ```java
-//ViewModelLazy.kt
+//lifecycle/lifecycle-viewmodel/src/main/java/androidx/lifecycle/ViewModelLazy.kt
 class ViewModelLazy<VM : ViewModel> (
     private val viewModelClass: KClass<VM>,
     private val storeProducer: () -> ViewModelStore,
@@ -62,6 +65,97 @@ class ViewModelLazy<VM : ViewModel> (
 
     override fun isInitialized() = cached != null
 }
+```
+
+### ViewModelProvider
+
+提供者，负责调用工厂创建ViewModel并存储到ViewStore中或者从ViewStore中读取ViewModel
+
+```kotlin
+//lifecycle/lifecycle-viewmodel/src/main/java/androidx/lifecycle/ViewModelProvider.kt
+public open operator fun <T : ViewModel> get(modelClass: Class<T>): T {
+    val canonicalName = modelClass.canonicalName
+        ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
+    return get("$DEFAULT_KEY:$canonicalName", modelClass)
+}
+
+```
+
+```kotlin
+//lifecycle/lifecycle-viewmodel/src/main/java/androidx/lifecycle/ViewModelProvider.kt
+public open operator fun <T : ViewModel> get(key: String, modelClass: Class<T>): T {
+//调用ViewModelStore的重载运算符判断是否有缓存
+    val viewModel = store[key]
+    if (modelClass.isInstance(viewModel)) {
+        (factory as? OnRequeryFactory)?.onRequery(viewModel)
+        return viewModel as T
+    } else {
+        @Suppress("ControlFlowWithEmptyBody")
+        if (viewModel != null) {
+            // TODO: log a warning.
+        }
+    }
+    val extras = MutableCreationExtras()
+    extras[VIEW_MODEL_KEY] = key
+    return factory.create(
+        modelClass,
+        CombinedCreationExtras(extras, defaultCreationExtras)
+    ).also { store.put(key, it) }
+}
+```
+
+```java
+//lifecycle/lifecycle-viewmodel-savedstate/src/main/java/androidx/lifecycle/SavedStateViewModelFactory.java
+public <T extends ViewModel> T create(@NonNull String key, @NonNull Class<T> modelClass) {
+    // empty constructor was called.
+    if (mLifecycle == null) {
+        throw new UnsupportedOperationException(
+                "SavedStateViewModelFactory constructed "
+                        + "with empty constructor supports only calls to "
+                        + "create(modelClass: Class<T>, extras: CreationExtras)."
+        );
+    }
+
+    boolean isAndroidViewModel = AndroidViewModel.class.isAssignableFrom(modelClass);
+    Constructor<T> constructor;
+    if (isAndroidViewModel && mApplication != null) {
+        constructor = findMatchingConstructor(modelClass, ANDROID_VIEWMODEL_SIGNATURE);
+    } else {
+        constructor = findMatchingConstructor(modelClass, VIEWMODEL_SIGNATURE);
+    }
+    // doesn't need SavedStateHandle
+    if (constructor == null) {
+        return mFactory.create(modelClass);
+    }
+
+    SavedStateHandleController controller = LegacySavedStateHandleController.create(
+            mSavedStateRegistry, mLifecycle, key, mDefaultArgs);
+    T viewmodel;
+    if (isAndroidViewModel && mApplication != null) {
+        viewmodel = newInstance(modelClass, constructor, mApplication, controller.getHandle());
+    } else {
+        viewmodel = newInstance(modelClass, constructor, controller.getHandle());
+    }
+    viewmodel.setTagIfAbsent(TAG_SAVED_STATE_HANDLE_CONTROLLER, controller);
+    return viewmodel;
+}
+```
+
+```kotlin
+private static <T extends ViewModel> T newInstance(@NonNull Class<T> modelClass,
+        Constructor<T> constructor, Object... params) {
+    try {
+        return constructor.newInstance(params);
+    } catch (IllegalAccessException e) {
+        throw new RuntimeException("Failed to access " + modelClass, e);
+    } catch (InstantiationException e) {
+        throw new RuntimeException("A " + modelClass + " cannot be instantiated.", e);
+    } catch (InvocationTargetException e) {
+        throw new RuntimeException("An exception happened in constructor of "
+                + modelClass, e.getCause());
+    }
+}
+
 ```
 
 ```java
@@ -114,154 +208,83 @@ public ViewModelStore getViewModelStore() {
 }
 ```
 
-## ViewModelProvider
+### ViewModelStore
 
 ```java
-//构造函数
-public ViewModelProvider(@NonNull ViewModelStore store, @NonNull Factory factory) {
-    mFactory = factory;
-    mViewModelStore = store;
-}
-```
+public class ViewModelStore {
 
-```java
-@NonNull
-@MainThread
-public <T extends ViewModel> T get(@NonNull Class<T> modelClass) {
-    String canonicalName = modelClass.getCanonicalName();
-    if (canonicalName == null) {
-        throw new IllegalArgumentException("Local and anonymous classes can not be ViewModels");
-    }
-    return get(DEFAULT_KEY + ":" + canonicalName, modelClass);
-}
-```
+    private final HashMap<String, ViewModel> mMap = new HashMap<>();
 
-```java
-@SuppressWarnings("unchecked")
-@NonNull
-@MainThread
-public <T extends ViewModel> T get(@NonNull String key, @NonNull Class<T> modelClass) {
-    ViewModel viewModel = mViewModelStore.get(key);//从ViewModelStore中获取
-    //判断是否是ViewModel类 
-    //第一次为null 返回false
-    if (modelClass.isInstance(viewModel)) {
-        if (mFactory instanceof OnRequeryFactory) {
-            ((OnRequeryFactory) mFactory).onRequery(viewModel);
-        }
-        return (T) viewModel;
-    } else {
-        //noinspection StatementWithEmptyBody
-        if (viewModel != null) {
-            // TODO: log a warning.
+    final void put(String key, ViewModel viewModel) {
+        ViewModel oldViewModel = mMap.put(key, viewModel);
+        if (oldViewModel != null) {
+            oldViewModel.onCleared();
         }
     }
-    
-    if (mFactory instanceof KeyedFactory) {
-        //调用Factory的create方法
-        viewModel = ((KeyedFactory) (mFactory)).create(key, modelClass);
-    } else {
-        viewModel = (mFactory).create(modelClass);
+
+    final ViewModel get(String key) {
+        return mMap.get(key);
     }
-    mViewModelStore.put(key, viewModel);
-    return (T) viewModel;
-}
-```
 
-## Factory
-
-![](../.gitbook/assets/image%20%2890%29.png)
-
-```java
-public SavedStateViewModelFactory(@NonNull Application application,
-        @NonNull SavedStateRegistryOwner owner,
-        @Nullable Bundle defaultArgs) {
-    mSavedStateRegistry = owner.getSavedStateRegistry();
-    mLifecycle = owner.getLifecycle();
-    mDefaultArgs = defaultArgs;
-    mApplication = application;
-    //创建AndroidViewModelFactory
-    mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-}
-```
-
-```java
-@NonNull
-@Override
-public <T extends ViewModel> T create(@NonNull String key, @NonNull Class<T> modelClass) {
-    //是否是AndroidModel类
-    boolean isAndroidViewModel = AndroidViewModel.class.isAssignableFrom(modelClass);
-    Constructor<T> constructor;
-    //获取构造函数
-    if (isAndroidViewModel) {
-        constructor = findMatchingConstructor(modelClass, ANDROID_VIEWMODEL_SIGNATURE);
-    } else {
-        constructor = findMatchingConstructor(modelClass, VIEWMODEL_SIGNATURE);
+    Set<String> keys() {
+        return new HashSet<>(mMap.keySet());
     }
-    // doesn't need SavedStateHandle
-    //如果构造函数为空
-    //调用AndroidViewModelFactory的create方法
-    if (constructor == null) {
-        return mFactory.create(modelClass);
-    }
-    SavedStateHandleController controller = SavedStateHandleController.create(
-            mSavedStateRegistry, mLifecycle, key, mDefaultArgs);
-    try {
-        T viewmodel;
-        if (isAndroidViewModel) {
-            viewmodel = constructor.newInstance(mApplication, controller.getHandle());
-        } else {
-            viewmodel = constructor.newInstance(controller.getHandle());
+
+    /**
+     *  Clears internal storage and notifies ViewModels that they are no longer used.
+     */
+    public final void clear() {
+        for (ViewModel vm : mMap.values()) {
+            vm.clear();
         }
-        viewmodel.setTagIfAbsent(TAG_SAVED_STATE_HANDLE_CONTROLLER, controller);
-        return viewmodel;
-    } catch (IllegalAccessException e) {
-        throw new RuntimeException("Failed to access " + modelClass, e);
-    } catch (InstantiationException e) {
-        throw new RuntimeException("A " + modelClass + " cannot be instantiated.", e);
-    } catch (InvocationTargetException e) {
-        throw new RuntimeException("An exception happened in constructor of "
-                + modelClass, e.getCause());
+        mMap.clear();
     }
 }
 ```
 
 ```java
-//AndroidViewModelFactory
-@NonNull
-@Override
-public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-    if (AndroidViewModel.class.isAssignableFrom(modelClass)) {
-        //noinspection TryWithIdenticalCatches
-        try {
-            return modelClass.getConstructor(Application.class).newInstance(mApplication);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
+//创建ViewModelStore 该方法有2处调用
+void ensureViewModelStore() {
+    if (mViewModelStore == null) {
+        NonConfigurationInstances nc =
+                (NonConfigurationInstances) getLastNonConfigurationInstance();
+        if (nc != null) {
+            // Restore the ViewModelStore from NonConfigurationInstances
+            mViewModelStore = nc.viewModelStore;
+        }
+        if (mViewModelStore == null) {
+            mViewModelStore = new ViewModelStore();
         }
     }
-    //调用NewInstanceFactory的create方法
-    return super.create(modelClass);
 }
 ```
 
 ```java
-public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-    //noinspection TryWithIdenticalCatches
-    try { //调用无参构造函数
-        return modelClass.newInstance();
-    } catch (InstantiationException e) {
-        throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-    } catch (IllegalAccessException e) {
-        throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-    }
+public ViewModelStore getViewModelStore() {
+        if (getApplication() == null) {
+            throw new IllegalStateException("Your activity is not yet attached to the "
+                    + "Application instance. You can't request ViewModel before onCreate call.");
+        }
+        ensureViewModelStore();
+        return mViewModelStore;
 }
 ```
 
-## 参考
+```java
+//生命周期发生改变时调用
+getLifecycle().addObserver(new LifecycleEventObserver() {
+            @Override
+            public void onStateChanged(@NonNull LifecycleOwner source,
+                    @NonNull Lifecycle.Event event) {
+                ensureViewModelStore();
+                getLifecycle().removeObserver(this);
+            }
+        });
+```
 
-* 
+### Factory
+
+工厂负责创建ViewModel
+
+![](<../.gitbook/assets/image (90).png>)
+
