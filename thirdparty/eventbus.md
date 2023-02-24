@@ -69,7 +69,7 @@ public class EventBusBuilder{
 2. 遍历所有的`SubscriberMethod`对象，调用`subscribe`方法，每一个方法对应创建一个`Subscription`对象。
 3. 将`Subscription`添加到`Map``subscriptionsByEventType`中，`key`是`EventType`的Class对象。`value`是订阅该事件的方法的集合。
 
-```
+```mermaid
 sequenceDiagram
 	EventBus->>SubscriberMethodFinder:findSubscriberMethodsfindUsingInfo
 	SubscriberMethodFinder->>SubscriberMethodFinder:findUsingInfo
@@ -83,7 +83,6 @@ sequenceDiagram
   Note right of EventBus:将Subscription添加到map中
 ```
 
-![](https://kroki.io/mermaid/svg/eNorTi0sTc1LTnXJTEwvSszl4nQtS80rcSot1rWzCy5NKk4uykxKLfJNLcnIT3HLzEtJLbJKA1LoUsUgwdDizLx0z7y0fC5O7Frxm0kN7UGpaTmpySWZ-XmeecFAfk6qc05icbECHiNBjOCSxJJUK6Aqv\_ySVIX8stQiBbiwDg47n81f-qxz34t1i17OaH2-cffzWS0Q6ac7tz3ZP\_fp2hlPOzbADUl5smMt6d5KTy2BBq9jXkpQak5qYnEqHlNgUWf1Yv-Up7Pn-WQWl9igK7bjUlBAeBKmA5cfXzb2Pu1rQ5d8saH5-ZQVxTBRoIlIiQbuCGR5sI1FmekZJQr5aXDVVk83wMwuAEXZs-27n3YtAAZbbmIBMLwAI4kQCg==)
 
 ```java
 public void register(Object subscriber) {
@@ -318,7 +317,7 @@ private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
 
 ## post()
 
-```
+```mermaid
 sequenceDiagram
 	EventBus->>EventBus: post()
 	EventBus->>EventBus: postSingleEvent()
@@ -331,8 +330,6 @@ sequenceDiagram
   HandlerPoster->>EventBus:invokeSubscriber
 	
 ```
-
-![](https://kroki.io/mermaid/svg/eNqNj8EKwjAQRM\_6FTnqwR\_ooaCoeBGE9gfSdqihcTdmm4J\_bwm2YMXqbXfnzTAruAdQib3Rtde35eLQgdpdkE2aDmOiHEu7Ws-ImaHaIt6-cpa5CW5rbTzlDwf5N\_PIfjTNenLOQiGlN641TBP0pKmy8Jeeg08UqH89xLw35YMUUHWGiK7xC73GbYCVmtJjW0MdN3iVLeCfXe2MeQ==)
 
 ```java
 public void post(Object event) {
@@ -536,17 +533,6 @@ private void postToSubscription(Subscription subscription, Object event, boolean
 ```
 
 ### HandlerPoster
-
-```
-classDiagram
-class Poster
-Poster :+ enqueue()
-Poster <|-- HandlerPoster
-Poster <|-- AsyncPoster
-Poster <|-- BackgroundPoster 
-```
-
-![](https://kroki.io/mermaid/svg/eNpLzkksLnbJTEwvSszlUlBIBnEVAvKLS1KLuKC0gpW2QmpeYWlqaaqGJlzQpkZXV8EjMS8lJ7UITT1YyrG4Mi8Zm4RTYnJ2elF-aV4KVBQAbHYsnA==)
 
 ```mermaid
 classDiagram
