@@ -1,6 +1,5 @@
 ---
 title: SystemServer启动流程
-date: 2020-01-18 14:04:10
 tags: ["源码分析"]
 ---
 
