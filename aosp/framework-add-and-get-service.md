@@ -4,7 +4,6 @@ tags:
   - 源码分析
 ---
 
-<!--more-->
 
 ## ServiceManager
 
