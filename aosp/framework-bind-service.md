@@ -1,9 +1,8 @@
 ---
-layout: posts
 title: bindService流程分析
-tags: ["源码分析"]
+tags: 
+  - 源码分析
 ---
-
 
 
 ## ContextWrapper

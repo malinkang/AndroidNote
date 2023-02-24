@@ -1,6 +1,7 @@
 ---
 title: SystemServer启动流程
-tags: ["源码分析"]
+tags: 
+  - 源码分析
 ---
 
 `SystemServer`进程主要用于创建系统服务，我们熟知的AMS、WMS和PMS都是由它来创建的。
