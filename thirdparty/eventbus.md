@@ -2,7 +2,7 @@
 
 ## EventBus创建
 
-### getDefault\(\)
+### getDefault()
 
 在`getDefault()`中使用了双重校验并加锁的单例模式来创建`EventBus`实例。
 
@@ -61,30 +61,29 @@ public class EventBusBuilder{
 }
 ```
 
-## register\(\)
+## register()
 
 `register`
 
 1. 查找订阅类，即通过`register`传入的对象里面所有使用`Subscribe`注释的方法，并将方法信息封装到`SubscriberMethod`对象中。
 2. 遍历所有的`SubscriberMethod`对象，调用`subscribe`方法，每一个方法对应创建一个`Subscription`对象。
-2. 将`Subscription`添加到`Map``subscriptionsByEventType`中，`key`是`EventType`的Class对象。`value`是订阅该事件的方法的集合。
+3. 将`Subscription`添加到`Map``subscriptionsByEventType`中，`key`是`EventType`的Class对象。`value`是订阅该事件的方法的集合。
 
- ```mermaid
- sequenceDiagram
- 	EventBus->>SubscriberMethodFinder:findSubscriberMethodsfindUsingInfo
- 	SubscriberMethodFinder->>SubscriberMethodFinder:findUsingInfo
- 	SubscriberMethodFinder->>SubscriberMethodFinder:findUsingReflectionInSingleClass 
- 	SubscriberMethodFinder->>FindState: 
- 	Note over FindState,SubscriberMethodFinder:查找订阅类的Method并保存到FindStated中
- 	SubscriberMethodFinder->>SubscriberMethodFinder:getMethodsAndRelease
- 	SubscriberMethodFinder->>EventBus:返回List<SubscriberMethod>
-   Note over EventBus,SubscriberMethodFinder:遍历SubscriberMethod调用subscribe
-   EventBus->>EventBus:subscribe
-   Note right of EventBus:将Subscription添加到map中
- 
- ```
+```
+sequenceDiagram
+	EventBus->>SubscriberMethodFinder:findSubscriberMethodsfindUsingInfo
+	SubscriberMethodFinder->>SubscriberMethodFinder:findUsingInfo
+	SubscriberMethodFinder->>SubscriberMethodFinder:findUsingReflectionInSingleClass 
+	SubscriberMethodFinder->>FindState: 
+	Note over FindState,SubscriberMethodFinder:查找订阅类的Method并保存到FindStated中
+	SubscriberMethodFinder->>SubscriberMethodFinder:getMethodsAndRelease
+	SubscriberMethodFinder->>EventBus:返回List<SubscriberMethod>
+  Note over EventBus,SubscriberMethodFinder:遍历SubscriberMethod调用subscribe
+  EventBus->>EventBus:subscribe
+  Note right of EventBus:将Subscription添加到map中
+```
 
-![](https://kroki.io/mermaid/svg/eNorTi0sTc1LTnXJTEwvSszl4nQtS80rcSot1rWzCy5NKk4uykxKLfJNLcnIT3HLzEtJLbJKA1LoUsUgwdDizLx0z7y0fC5O7Frxm0kN7UGpaTmpySWZ-XmeecFAfk6qc05icbECHiNBjOCSxJJUK6Aqv_ySVIX8stQiBbiwDg47n81f-qxz34t1i17OaH2-cffzWS0Q6ac7tz3ZP_fp2hlPOzbADUl5smMt6d5KTy2BBq9jXkpQak5qYnEqHlNgUWf1Yv-Up7Pn-WQWl9igK7bjUlBAeBKmA5cfXzb2Pu1rQ5d8saH5-ZQVxTBRoIlIiQbuCGR5sI1FmekZJQr5aXDVVk83wMwuAEXZs-27n3YtAAZbbmIBMLwAI4kQCg==)
+![](https://kroki.io/mermaid/svg/eNorTi0sTc1LTnXJTEwvSszl4nQtS80rcSot1rWzCy5NKk4uykxKLfJNLcnIT3HLzEtJLbJKA1LoUsUgwdDizLx0z7y0fC5O7Frxm0kN7UGpaTmpySWZ-XmeecFAfk6qc05icbECHiNBjOCSxJJUK6Aqv\_ySVIX8stQiBbiwDg47n81f-qxz34t1i17OaH2-cffzWS0Q6ac7tz3ZP\_fp2hlPOzbADUl5smMt6d5KTy2BBq9jXkpQak5qYnEqHlNgUWf1Yv-Up7Pn-WQWl9igK7bjUlBAeBKmA5cfXzb2Pu1rQ5d8saH5-ZQVxTBRoIlIiQbuCGR5sI1FmekZJQr5aXDVVk83wMwuAEXZs-27n3YtAAZbbmIBMLwAI4kQCg==)
 
 ```java
 public void register(Object subscriber) {
@@ -137,7 +136,7 @@ public class SubscriberMethod {
 }
 ```
 
-### findSubscriberMethods\(\)
+### findSubscriberMethods()
 
 ```java
 //查找订阅方法
@@ -163,7 +162,7 @@ List<SubscriberMethod> findSubscriberMethods(Class<?> subscriberClass) {
 }
 ```
 
-### findUsingInfo\(\)
+### findUsingInfo()
 
 ```java
 private List<SubscriberMethod> findUsingInfo(Class<?> subscriberClass) {
@@ -187,7 +186,7 @@ private List<SubscriberMethod> findUsingInfo(Class<?> subscriberClass) {
 }
 ```
 
-### findUsingReflectionInSingleClass\(\)
+### findUsingReflectionInSingleClass()
 
 ```java
 private void findUsingReflectionInSingleClass(FindState findState) {
@@ -243,7 +242,7 @@ private void findUsingReflectionInSingleClass(FindState findState) {
 }
 ```
 
-### getMethodsAndRelease\(\)
+### getMethodsAndRelease()
 
 ```java
 private List<SubscriberMethod> getMethodsAndRelease(FindState findState) {
@@ -261,7 +260,7 @@ private List<SubscriberMethod> getMethodsAndRelease(FindState findState) {
 }
 ```
 
-### subscribe\(\)
+### subscribe()
 
 ```java
 private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
@@ -317,9 +316,9 @@ private void subscribe(Object subscriber, SubscriberMethod subscriberMethod) {
 }
 ```
 
-## post\(\)
+## post()
 
-```mermaid
+```
 sequenceDiagram
 	EventBus->>EventBus: post()
 	EventBus->>EventBus: postSingleEvent()
@@ -333,7 +332,7 @@ sequenceDiagram
 	
 ```
 
-![](https://kroki.io/mermaid/svg/eNqNj8EKwjAQRM_6FTnqwR_ooaCoeBGE9gfSdqihcTdmm4J_bwm2YMXqbXfnzTAruAdQib3Rtde35eLQgdpdkE2aDmOiHEu7Ws-ImaHaIt6-cpa5CW5rbTzlDwf5N_PIfjTNenLOQiGlN641TBP0pKmy8Jeeg08UqH89xLw35YMUUHWGiK7xC73GbYCVmtJjW0MdN3iVLeCfXe2MeQ==)
+![](https://kroki.io/mermaid/svg/eNqNj8EKwjAQRM\_6FTnqwR\_ooaCoeBGE9gfSdqihcTdmm4J\_bwm2YMXqbXfnzTAruAdQib3Rtde35eLQgdpdkE2aDmOiHEu7Ws-ImaHaIt6-cpa5CW5rbTzlDwf5N\_PIfjTNenLOQiGlN641TBP0pKmy8Jeeg08UqH89xLw35YMUUHWGiK7xC73GbYCVmtJjW0MdN3iVLeCfXe2MeQ==)
 
 ```java
 public void post(Object event) {
@@ -359,7 +358,7 @@ public void post(Object event) {
 }
 ```
 
-### postSingleEvent\(\)
+### postSingleEvent()
 
 ```java
 private void postSingleEvent(Object event, PostingThreadState postingState) throws Error {
@@ -388,7 +387,7 @@ private void postSingleEvent(Object event, PostingThreadState postingState) thro
 }
 ```
 
-### lookupAllEventTypes\(\)
+### lookupAllEventTypes()
 
 `lookupAllEventTypes`方法会找到当前事件类型的父类和接口，并且存放到`eventTypesCache`中，发送当前事件，订阅他的父类的方法也会收消息。
 
@@ -436,7 +435,7 @@ private static List<Class<?>> lookupAllEventTypes(Class<?> eventClass) {
 }
 ```
 
-### postSingleEventForEventType\(\)
+### postSingleEventForEventType()
 
 ```java
 private boolean postSingleEventForEventType(Object event, PostingThreadState postingState, Class<?> eventClass) {
@@ -467,57 +466,31 @@ private boolean postSingleEventForEventType(Object event, PostingThreadState pos
 }
 ```
 
-### postToSubscription\(\)
-
-
+### postToSubscription()
 
 * MAIN
 
-> On Android, subscriber will be called in Android's main thread (UI thread). If the posting thread is
-> the main thread, subscriber methods will be called directly, blocking the posting thread. Otherwise the event
-> is queued for delivery (non-blocking). Subscribers using this mode must return quickly to avoid blocking the main thread.
-> If not on Android, behaves the same as {@link #POSTING}.
+> On Android, subscriber will be called in Android's main thread (UI thread). If the posting thread is the main thread, subscriber methods will be called directly, blocking the posting thread. Otherwise the event is queued for delivery (non-blocking). Subscribers using this mode must return quickly to avoid blocking the main thread. If not on Android, behaves the same as {@link #POSTING}.
 
-在Android上，订阅者将在Android的主线程（UI线程）中被调用。如果发布线程是
-主线程，订阅者方法将被直接调用，阻塞发布线程。否则，该事件
-被排队传递（非阻塞）。使用这种模式的订阅者必须快速返回以避免阻塞主线程。
-如果不在Android上，其行为与{@link #POSTING}相同。
+在Android上，订阅者将在Android的主线程（UI线程）中被调用。如果发布线程是 主线程，订阅者方法将被直接调用，阻塞发布线程。否则，该事件 被排队传递（非阻塞）。使用这种模式的订阅者必须快速返回以避免阻塞主线程。 如果不在Android上，其行为与{@link #POSTING}相同。
 
-* MAIN_ORDER
+* MAIN\_ORDER
 
-> On Android, subscriber will be called in Android's main thread (UI thread). Different from {@link #MAIN},
-> the event will always be queued for delivery. This ensures that the post call is non-blocking.
+> On Android, subscriber will be called in Android's main thread (UI thread). Different from {@link #MAIN}, the event will always be queued for delivery. This ensures that the post call is non-blocking.
 
-在Android上，订阅者将在Android的主线程（UI线程）中被调用。与{@link #MAIN}不同。
-事件将始终被排队传递。这确保了post的调用是无阻塞的。
-
-
+在Android上，订阅者将在Android的主线程（UI线程）中被调用。与{@link #MAIN}不同。 事件将始终被排队传递。这确保了post的调用是无阻塞的。
 
 * BACKGROUND
 
-> On Android, subscriber will be called in a background thread. If posting thread is not the main thread, subscriber methods
-> will be called directly in the posting thread. If the posting thread is the main thread, EventBus uses a single
-> background thread, that will deliver all its events sequentially. Subscribers using this mode should try to
-> return quickly to avoid blocking the background thread. If not on Android, always uses a background thread.
+> On Android, subscriber will be called in a background thread. If posting thread is not the main thread, subscriber methods will be called directly in the posting thread. If the posting thread is the main thread, EventBus uses a single background thread, that will deliver all its events sequentially. Subscribers using this mode should try to return quickly to avoid blocking the background thread. If not on Android, always uses a background thread.
 
-在Android上，订阅者将在一个后台线程中被调用。如果发布线程不是主线程，订阅者方法
-将直接在发布线程中被调用。如果发布线程是主线程，EventBus使用一个单一的
-后台线程，它将按顺序传递所有事件。使用这种模式的订阅者应尽量
-迅速返回以避免阻塞后台线程。如果不在安卓系统上，则始终使用一个后台线程。
+在Android上，订阅者将在一个后台线程中被调用。如果发布线程不是主线程，订阅者方法 将直接在发布线程中被调用。如果发布线程是主线程，EventBus使用一个单一的 后台线程，它将按顺序传递所有事件。使用这种模式的订阅者应尽量 迅速返回以避免阻塞后台线程。如果不在安卓系统上，则始终使用一个后台线程。
 
 * ASYNC
 
-> Subscriber will be called in a separate thread. This is always independent from the posting thread and the
-> main thread. Posting events never wait for subscriber methods using this mode. Subscriber methods should
-> use this mode if their execution might take some time, e.g. for network access. Avoid triggering a large number
-> of long running asynchronous subscriber methods at the same time to limit the number of concurrent threads. EventBus
-> uses a thread pool to efficiently reuse threads from completed asynchronous subscriber notifications.
+> Subscriber will be called in a separate thread. This is always independent from the posting thread and the main thread. Posting events never wait for subscriber methods using this mode. Subscriber methods should use this mode if their execution might take some time, e.g. for network access. Avoid triggering a large number of long running asynchronous subscriber methods at the same time to limit the number of concurrent threads. EventBus uses a thread pool to efficiently reuse threads from completed asynchronous subscriber notifications.
 
-订阅者将在一个单独的线程中被调用。这总是独立于发布线程和
-主线程。使用这种模式，发布事件永远不会等待订阅者方法。订阅者方法应该
-如果它们的执行可能需要一些时间，例如网络访问，就应该使用这种模式。避免触发大量的
-长时间运行的异步订阅者方法，以限制并发线程的数量。EventBus
-使用一个线程池来有效地重用来自已完成的异步订阅者通知的线程。
+订阅者将在一个单独的线程中被调用。这总是独立于发布线程和 主线程。使用这种模式，发布事件永远不会等待订阅者方法。订阅者方法应该 如果它们的执行可能需要一些时间，例如网络访问，就应该使用这种模式。避免触发大量的 长时间运行的异步订阅者方法，以限制并发线程的数量。EventBus 使用一个线程池来有效地重用来自已完成的异步订阅者通知的线程。
 
 ```java
 private void postToSubscription(Subscription subscription, Object event, boolean isMainThread) {
@@ -562,11 +535,9 @@ private void postToSubscription(Subscription subscription, Object event, boolean
 }
 ```
 
-
-
 ### HandlerPoster
 
-```mermaid
+```
 classDiagram
 class Poster
 Poster :+ enqueue()
@@ -576,6 +547,15 @@ Poster <|-- BackgroundPoster
 ```
 
 ![](https://kroki.io/mermaid/svg/eNpLzkksLnbJTEwvSszlUlBIBnEVAvKLS1KLuKC0gpW2QmpeYWlqaaqGJlzQpkZXV8EjMS8lJ7UITT1YyrG4Mi8Zm4RTYnJ2elF-aV4KVBQAbHYsnA==)
+
+```mermaid
+classDiagram
+class Poster
+Poster :+ enqueue()
+Poster <|-- HandlerPoster
+Poster <|-- AsyncPoster
+Poster <|-- BackgroundPoster 
+```
 
 ```java
 public class HandlerPoster extends Handler implements Poster {
@@ -655,9 +635,7 @@ public void postSticky(Object event) {
 }
 ```
 
-
-
-## unregister\(\)
+## unregister()
 
 ```java
 public synchronized void unregister(Object subscriber) {
@@ -691,10 +669,7 @@ private void unsubscribeByEventType(Object subscriber, Class<?> eventType) {
 }
 ```
 
-
-
 ## 参考
 
 * [Android 面试题：EventBus 发送的消息，如何做到线程切换？](https://juejin.im/post/6844903944561377293)
 * [用LiveDataBus替代RxBus、EventBus——Android消息总线的演进之路](https://juejin.im/post/6844903647554306056)
-
