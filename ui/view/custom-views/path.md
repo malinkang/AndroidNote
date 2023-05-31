@@ -26,7 +26,7 @@ path.lineTo(200, 0);                         // 添加(200,0)到(400,400)之间�
 canvas.drawPath(path, mPaint);              // 绘制Path
 ```
 
-![](<../../../.gitbook/assets/path-1 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/path-1 (1).jpeg>)
 
 ```java
 Path path = new Path();                     // 创建Path
@@ -86,7 +86,7 @@ path.addCircle(500,500,300,Path.Direction.CW);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/path-3 (1) (2) (1).jpeg>)
+![](<../../../.gitbook/assets/path-3 (1) (2).jpeg>)
 
 但是得到的是一个实心圆。我们要给一个图形内部填充颜色，首先需要分清哪一部分是外部，哪一部分是内部，机器不像我们人那么聪明，机器是如何判断内外呢？
 
@@ -115,7 +115,7 @@ path.setFillType(Path.FillType.EVEN_ODD);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/path-4 (1) (1) (1) (2) (1).jpeg>)
+![](<../../../.gitbook/assets/path-4 (1) (1) (1) (2).jpeg>)
 
 ![a点穿过path边的数目是3，所以属于内部，b点次数为2是外部，c点次数为1是内部](<../../../.gitbook/assets/even-odd-winding (2) (2) (2) (2) (2) (2) (1).png>)
 
@@ -149,11 +149,11 @@ path.setFillType(Path.FillType.WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/non-zero-winding-3 (1).jpeg>)
+![](<../../../.gitbook/assets/non-zero-winding-3 (1) (1).jpeg>)
 
 改变内圈的方向
 
-![](<../../../.gitbook/assets/non-zero-winding-2 (2) (2) (2) (1) (2) (2) (2) (1).png>)
+![](<../../../.gitbook/assets/non-zero-winding-2 (2) (2) (2) (1) (2) (2) (2) (1) (1).png>)
 
 A点：首先，内圆从左向右穿过射线，环绕数加一（-1）;然后内圆从右到左穿过射线，环绕数加一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -189,7 +189,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/inverse\_winding-2 (1) (1) (1).jpeg>)
+![](<../../../.gitbook/assets/inverse\_winding-2 (1) (1) (1) (1).jpeg>)
 
 ### 其他与填充模式相关的方法
 

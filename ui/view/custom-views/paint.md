@@ -37,7 +37,7 @@ public PorterDuffXfermode(PorterDuff.Mode mode)
 
 PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC\_OVER、DST\_OVER、SRC\_IN、DST\_IN、SRC\_OUT、DST\_OUT、SRC\_ATOP、DST\_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
 
-![黄色的圆先绘制是目标图，蓝色的矩形后绘制是目标图](<../../../.gitbook/assets/porterduffxfermode (2) (2) (2) (2) (2) (1).jpg>)
+![黄色的圆先绘制是目标图，蓝色的矩形后绘制是目标图](<../../../.gitbook/assets/porterduffxfermode (2) (2) (2) (2) (2) (1) (1).jpg>)
 
 ## PathEffect
 
@@ -93,7 +93,7 @@ mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.REPEAT, Shader.TileMo
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](<../../../.gitbook/assets/bitmapshader-repeat (1) (1).jpeg>)
+![](<../../../.gitbook/assets/bitmapshader-repeat (1) (1) (1).jpeg>)
 
 x轴和y轴设置都为MIRROR：
 
@@ -119,7 +119,7 @@ BitmapShader一个常用的场景就是绘制特殊图形的图片，比如圆�
 canvas.drawCircle(mBitmap.getWidth()/2, mBitmap.getWidth()/2, mBitmap.getWidth()/2, mPaint);
 ```
 
-![](<../../../.gitbook/assets/bitmapshader-circle (1) (2) (1).jpeg>)
+![](<../../../.gitbook/assets/bitmapshader-circle (1) (2).jpeg>)
 
 开源项目[CircleImageView](https://github.com/hdodenhof/CircleImageView)、[android-shape-imageview](https://github.com/siyamed/android-shape-imageview)本质都是利用BitmapShader实现的。
 
@@ -140,7 +140,7 @@ mPaint.setShader(new LinearGradient(0, 0, 100, 100, Color.RED, Color.YELLOW, Sha
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](<../../../.gitbook/assets/LinearGradient-1 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/LinearGradient-1 (1) (1) (1).jpeg>)
 
 第二个构造函数可以设置多种颜色。
 
@@ -172,7 +172,7 @@ mPaint.setShader(new LinearGradient(0, 0, 800, 800, new int[]{
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](<../../../.gitbook/assets/LinearGradient-2 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/LinearGradient-2 (1) (1) (1).jpeg>)
 
 ### RadialGradient
 
@@ -193,7 +193,7 @@ mPaint.setShader(new RadialGradient(400, 400,400, new int[] {
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](<../../../.gitbook/assets/RadialGradient (1).jpeg>)
+![](<../../../.gitbook/assets/RadialGradient (1) (1).jpeg>)
 
 ### SweepGradient
 
@@ -218,7 +218,7 @@ mPaint.setShader(new SweepGradient(400, 400, new int[] {
 canvas.drawCircle(400,400,400,mPaint);
 ```
 
-![](<../../../.gitbook/assets/SweepGradient (2) (1).jpeg>)
+![](<../../../.gitbook/assets/SweepGradient (2).jpeg>)
 
 ### ComposeShader
 
