@@ -41,6 +41,7 @@
   * [Broadcasts](components/broadcasts.md)
   * [Fragment](components/fragment.md)
   * [ContentProvider](components/contentprovider.md)
+* [权限](permissions.md)
 * [数据存储](data-storage/README.md)
   * [数据和文件存储](data-storage/shu-ju-he-wen-jian-cun-chu.md)
   * [将文件保存到外部存储中](data-storage/jiang-wen-jian-bao-cun-dao-wai-bu-cun-chu-zhong.md)
