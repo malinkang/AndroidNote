@@ -8,7 +8,7 @@ ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目�
 
 ## 2.特点
 
-ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 \(DASH\) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播\(HLS\)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
+ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
 
 缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
 
@@ -27,27 +27,25 @@ ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自�
 
 ### 1.添加ExoPlayer的依赖
 
-1. 首先确保工程根目录下build.gradle文件包含jcenter repository。
+1.  首先确保工程根目录下build.gradle文件包含jcenter repository。
 
-   ```groovy
-   repositories {
-    jcenter()
-   }
-   ```
+    ```groovy
+    repositories {
+     jcenter()
+    }
+    ```
+2.  添加一个gradle compile dependency到你的app下的build.gradle文件中。
 
-2. 添加一个gradle compile dependency到你的app下的build.gradle文件中。
+    ```groovy
+    compile 'com.google.android.exoplayer:exoplayer:r2.X.X'
+    ```
+3.  你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
 
-   ```groovy
-   compile 'com.google.android.exoplayer:exoplayer:r2.X.X'
-   ```
-
-3. 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
-
-   ```groovy
-   compile 'com.google.android.exoplayer:exoplayer-core:r2.X.X'
-   compile 'com.google.android.exoplayer:exoplayer-dash:r2.X.X'
-   compile 'com.google.android.exoplayer:exoplayer-ui:r2.X.X'
-   ```
+    ```groovy
+    compile 'com.google.android.exoplayer:exoplayer-core:r2.X.X'
+    compile 'com.google.android.exoplayer:exoplayer-dash:r2.X.X'
+    compile 'com.google.android.exoplayer:exoplayer-ui:r2.X.X'
+    ```
 
 可用模块包括如下：
 
@@ -122,11 +120,10 @@ player.prepare(videoSource);
 
 按照上面的步骤，我们可以实现一个视频播放的功能。
 
-![](../.gitbook/assets/exoplayer-1%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29%20%282%29.png)
+![](<../.gitbook/assets/exoplayer-1 (2) (2) (2) (1) (2) (2) (2) (1).png>)
 
 ## 扩展阅读
 
 * [项目主页](https://google.github.io/ExoPlayer/)
 * [The ExoPlayer developer blog](https://medium.com/google-exoplayer)
 * [视音频编解码技术零基础学习方法](http://blog.csdn.net/leixiaohua1020/article/details/18893769)
-

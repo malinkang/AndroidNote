@@ -10,7 +10,7 @@
 
 接下来，我们依次分析这三个方法。
 
-## with\(\)
+## with()
 
 ```java
 //Glide.java
@@ -33,7 +33,7 @@ private static RequestManagerRetriever getRetriever(@Nullable Context context) {
 
 ```
 
-### get\(\)
+### get()
 
 ```java
 @NonNull
@@ -57,7 +57,7 @@ public static Glide get(@NonNull Context context) {
 
 `ApiGlideModule`定义了在应用程序中初始化 `Glide` 时要使用的一系列依赖关系和选项。
 
-![](../.gitbook/assets/image%20%2852%29.png)
+![](<../.gitbook/assets/image (52).png>)
 
 ```java
 //GeneratedAppGlideModuleImpl
@@ -68,7 +68,7 @@ public static Glide get(@NonNull Context context) {
  }
 ```
 
-### checkAndInitializeGlide\(\)
+### checkAndInitializeGlide()
 
 ```java
 @GuardedBy("Glide.class")
@@ -87,7 +87,7 @@ private static void checkAndInitializeGlide(
 }
 ```
 
-### initializeGlide\(\)
+### initializeGlide()
 
 ```java
 @GuardedBy("Glide.class")
@@ -477,7 +477,7 @@ public final class GlideExecutor implements ExecutorService {
 
 ### 磁盘缓存
 
-![](../.gitbook/assets/image%20%2855%29.png)
+![](<../.gitbook/assets/image (55).png>)
 
 ```java
 public final class InternalCacheDiskCacheFactory extends DiskLruCacheFactory {
@@ -527,7 +527,7 @@ public final class InternalCacheDiskCacheFactory extends DiskLruCacheFactory {
   }
 ```
 
-### get\(\)
+### get()
 
 ```java
   @NonNull
@@ -550,7 +550,7 @@ public final class InternalCacheDiskCacheFactory extends DiskLruCacheFactory {
 
 Glide会添加一个透明的Fragment，当Fragment执行生命周期方法时，回调`Lifecycle`注册的`LifecycleListener`。
 
-![](../.gitbook/assets/image%20%2857%29%20%281%29.png)
+![](<../.gitbook/assets/image (57).png>)
 
 ```java
 @Deprecated
@@ -614,7 +614,7 @@ Glide会添加一个透明的Fragment，当Fragment执行生命周期方法时�
 
 ### LifecycleListener
 
-![](../.gitbook/assets/image%20%2860%29.png)
+![](<../.gitbook/assets/image (60).png>)
 
 ### RequestManager
 
@@ -694,7 +694,7 @@ Glide会添加一个透明的Fragment，当Fragment执行生命周期方法时�
 
 ```
 
-## load\(\)
+## load()
 
 通过`with()`方法返回了一个`RequestManager`对象，所以`load()`方法调用的是`RequestManager`的`load()`方法。
 
@@ -721,9 +721,9 @@ public <ResourceType> RequestBuilder<ResourceType> as(
 
 ### RequestBuilder
 
-![](../.gitbook/assets/image%20%2854%29.png)
+![](<../.gitbook/assets/image (54).png>)
 
-## into\(\)
+## into()
 
 `load()`比较简单就是创建一个`RequestBuilder`对象。`into()`方法就是调用`RequestBuilder`的`into()`。
 
@@ -808,7 +808,7 @@ public <ResourceType> RequestBuilder<ResourceType> as(
   }
 ```
 
-### obtainRequest\(\)
+### obtainRequest()
 
 ```java
   private Request obtainRequest(
@@ -844,11 +844,11 @@ public <ResourceType> RequestBuilder<ResourceType> as(
 
 ### Request
 
-![](../.gitbook/assets/image%20%2853%29.png)
+![](<../.gitbook/assets/image (53).png>)
 
-![&#x6574;&#x4F53;&#x6D41;&#x7A0B;](../.gitbook/assets/image%20%2858%29.png)
+![整体流程](<../.gitbook/assets/image (58).png>)
 
-![&#x7B2C;&#x4E00;&#x6B21;&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#x7684;&#x7F16;&#x89E3;&#x7801;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2859%29.png)
+![第一次加载网络图片的编解码过程](<../.gitbook/assets/image (59).png>)
 
 ### 缓存过程
 
@@ -923,7 +923,8 @@ public synchronized void onResourceReleased(Key cacheKey, EngineResource<?> reso
   }
 }
 ```
-```
+
+````
 
 ### ModelLoader
 
@@ -950,9 +951,9 @@ public synchronized void onResourceReleased(Key cacheKey, EngineResource<?> reso
     }
     return loadData;
   }
-```
+````
 
-### getModelLoaders\(\)
+### getModelLoaders()
 
 ```java
   @NonNull
@@ -1160,10 +1161,9 @@ int targetWidth = requestedWidth == Target.SIZE_ORIGINAL ? sourceWidth : request
 int targetHeight = requestedHeight == Target.SIZE_ORIGINAL ? sourceHeight : requestedHeight;
 ```
 
-### 
+###
 
 ## 参考
 
 * [Glide中文文档](https://muyangmin.github.io/glide-docs-cn/)
 * [面试官：简历上最好不要写Glide，不是问源码那么简单](https://juejin.im/post/6844903986412126216)
-

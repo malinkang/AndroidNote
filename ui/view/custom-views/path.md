@@ -1,6 +1,6 @@
 # Path使用
 
-Path封装了由直线和曲线\(二次，三次贝塞尔曲线\)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来\(同样支持Paint的不同绘制模式\)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线\(轮廓线仅是Path的一种使用方法，两者并不等价\)。
+Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
 
 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
 
@@ -26,7 +26,7 @@ path.lineTo(200, 0);                         // 添加(200,0)到(400,400)之间�
 canvas.drawPath(path, mPaint);              // 绘制Path
 ```
 
-![](../../../.gitbook/assets/path-1.jpeg)
+![](<../../../.gitbook/assets/path-1 (1) (1).jpeg>)
 
 ```java
 Path path = new Path();                     // 创建Path
@@ -37,7 +37,7 @@ path.close();                               // close
 canvas.drawPath(path, mPaint);              // 绘制Path
 ```
 
-![](../../../.gitbook/assets/path-2%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/path-2 (1) (1).jpeg>)
 
 ## 添加基本图形
 
@@ -86,7 +86,7 @@ path.addCircle(500,500,300,Path.Direction.CW);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-3%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/path-3 (1) (2) (1).jpeg>)
 
 但是得到的是一个实心圆。我们要给一个图形内部填充颜色，首先需要分清哪一部分是外部，哪一部分是内部，机器不像我们人那么聪明，机器是如何判断内外呢？
 
@@ -101,9 +101,9 @@ FillType是一个枚举类型，包括如下值
 * EVEN\_ODD
 * INVERSE\_EVEN\_ODD
 * WINDING
-* INVERSE\_WINDING
+*   INVERSE\_WINDING
 
-  **奇偶规则**
+    **奇偶规则**
 
 EVEN\_ODD遵从奇偶规则，即从任意位置p作一条射线， 若与该射线相交的图形边的数目为奇数，则p是图形内部点，否则是外部点。
 
@@ -115,9 +115,9 @@ path.setFillType(Path.FillType.EVEN_ODD);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-4%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/path-4 (1) (1) (1) (2) (1).jpeg>)
 
-![a&#x70B9;&#x7A7F;&#x8FC7;path&#x8FB9;&#x7684;&#x6570;&#x76EE;&#x662F;3&#xFF0C;&#x6240;&#x4EE5;&#x5C5E;&#x4E8E;&#x5185;&#x90E8;&#xFF0C;b&#x70B9;&#x6B21;&#x6570;&#x4E3A;2&#x662F;&#x5916;&#x90E8;&#xFF0C;c&#x70B9;&#x6B21;&#x6570;&#x4E3A;1&#x662F;&#x5185;&#x90E8;](../../../.gitbook/assets/even-odd-winding%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png)
+![a点穿过path边的数目是3，所以属于内部，b点次数为2是外部，c点次数为1是内部](<../../../.gitbook/assets/even-odd-winding (2) (2) (2) (2) (2) (2) (1).png>)
 
 INVERSE\_EVEN\_ODD遵从反奇偶规则。与奇偶规则相反。
 
@@ -129,13 +129,13 @@ path.setFillType(Path.FillType.EVEN_ODD);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-filltype-INVERSE_EVEN_ODD%20%281%29.jpeg)
+![](<../../../.gitbook/assets/path-filltype-INVERSE\_EVEN\_ODD (2) (1).jpeg>)
 
 ### 非零环绕数规则
 
 WINDING遵从非零环绕数规则，即首先使图形的边变为矢量（具有方向）。将环绕数初始化为零。再从任意位置p作一条射线。当从p点沿射线方向移动时，对在每个方向上穿过射线的边计数，每当图形的边从右到左穿过射线时，环绕数加1，从左到右时，环绕数减1。处理完图形的所有相关边之后，若环绕数为非零，则p为内部点，否则，p是外部点。
 
-![](../../../.gitbook/assets/non-zero-winding-1%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png)
+![](<../../../.gitbook/assets/non-zero-winding-1 (2) (2) (2) (2) (2) (2) (1).png>)
 
 A点：首先，内圆从右向左穿过射线，环绕数加一（1）;然后内圆从左到右穿过射线，环绕数减一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -149,11 +149,11 @@ path.setFillType(Path.FillType.WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/non-zero-winding-3.jpeg)
+![](<../../../.gitbook/assets/non-zero-winding-3 (1) (1).jpeg>)
 
 改变内圈的方向
 
-![](../../../.gitbook/assets/non-zero-winding-2%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29.png)
+![](<../../../.gitbook/assets/non-zero-winding-2 (2) (2) (2) (1) (2) (2) (2) (1) (1).png>)
 
 A点：首先，内圆从左向右穿过射线，环绕数加一（-1）;然后内圆从右到左穿过射线，环绕数加一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -167,7 +167,7 @@ path.setFillType(Path.FillType.WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/non-zero-winding-4%20%282%29.jpeg)
+![](<../../../.gitbook/assets/non-zero-winding-4 (1).jpeg>)
 
 INVERSE\_WINDING遵从反非零环绕数规则。与WINDING相反。
 
@@ -179,7 +179,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/inverse_winding-1%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/inverse\_winding-1 (1) (2).jpeg>)
 
 ```java
 Path path = new Path();
@@ -189,7 +189,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](../../../.gitbook/assets/inverse_winding-2%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/inverse\_winding-2 (1) (1) (1) (1).jpeg>)
 
 ### 其他与填充模式相关的方法
 
@@ -204,7 +204,7 @@ public boolean isInverseFillType()
 public void toggleInverseFillType()
 ```
 
-## 布尔操作（API&gt;19\)
+## 布尔操作（API>19)
 
 布尔操作是两个Path之间的运算，主要作用是用一些简单的图形通过一些规则合成一些相对比较复杂，或难以直接得到的图形。
 
@@ -219,13 +219,13 @@ boolean op (Path path1, Path path2, Path.Op op)
 
 两个方法中的返回值用于判断布尔运算是否成功。Path.Op可选的值包括如下：
 
-| 逻辑名称 | 类比 | 说明 | 示意图 |
-| :--- | :--- | :--- | :--- |
-| DIFFERENCE | 差集 | Path1中减去Path2后剩下的部分 | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43j85gcaqj305k03c0sn.jpg) |
-| REVERSE\_DIFFERENCE | 差集 | Path2中减去Path1后剩下的部分 | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbaaw80j305k03c0sn.jpg) |
-| INTERSECT | 交集 | Path1与Path2相交的部分 | ![](http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jbj4iddj305k03c746.jpg) |
-| UNION | 并集 | 包含全部Path1和Path2 | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbqk8rbj305k03cmx4.jpg) |
-| XOR | 异或 | 包含Path1与Path2但不包括两者相交的部分 | ![](http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jby8c60j305k03c0sp.jpg) |
+| 逻辑名称                | 类比 | 说明                       | 示意图                                                                   |
+| ------------------- | -- | ------------------------ | --------------------------------------------------------------------- |
+| DIFFERENCE          | 差集 | Path1中减去Path2后剩下的部分      | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43j85gcaqj305k03c0sn.jpg) |
+| REVERSE\_DIFFERENCE | 差集 | Path2中减去Path1后剩下的部分      | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbaaw80j305k03c0sn.jpg) |
+| INTERSECT           | 交集 | Path1与Path2相交的部分         | ![](http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jbj4iddj305k03c746.jpg) |
+| UNION               | 并集 | 包含全部Path1和Path2          | ![](http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbqk8rbj305k03cmx4.jpg) |
+| XOR                 | 异或 | 包含Path1与Path2但不包括两者相交的部分 | ![](http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jby8c60j305k03c0sp.jpg) |
 
 ```java
 int x = 80;
@@ -266,7 +266,7 @@ canvas.drawText("XOR", 240,0,mPaint);
 canvas.drawPath(pathOpResult,mPaint);
 ```
 
-![](../../../.gitbook/assets/path-op%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/path-op (1) (1) (1) (1).jpeg>)
 
 ## 计算边界
 
@@ -282,18 +282,17 @@ void computeBounds (RectF bounds, boolean exact)
 
 重置Path有两个方法，分别是reset和rewind，两者区别主要有以下两点：
 
-| 方法 | 是否保留FillType设置 | 是否保留原有数据结构 |
-| :--- | :---: | :---: |
-| reset | 是 | 否 |
-| rewind | 否 | 是 |
+| 方法     | 是否保留FillType设置 | 是否保留原有数据结构 |
+| ------ | :------------: | :--------: |
+| reset  |        是       |      否     |
+| rewind |        否       |      是     |
 
 这个两个方法应该何时选择呢？
 
-选择权重: FillType &gt; 数据结构
+选择权重: FillType > 数据结构
 
 因为“FillType”影响的是显示效果，而“数据结构”影响的是重建速度。
 
 ## 参考
 
 * [VectorDrawable Fill Windings](https://blog.stylingandroid.com/vectordrawable-fill-windings/)
-

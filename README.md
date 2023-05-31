@@ -2,19 +2,10 @@
 
 ## Android技术博客
 
-{% embed url="https://medium.com/androiddevelopers" %}
-
-{% embed url="http://gityuan.com/" %}
-
-{% embed url="https://androidperformance.com/" %}
-
-{% embed url="http://weishu.me/" %}
-
-{% embed url="https://blog.csdn.net/innost" %}
-
-{% embed url="https://glumes.com/" %}
-
-{% embed url="https://liuwangshu.cn/" %}
-
-
-
+* [https://medium.com/androiddevelopers](https://medium.com/androiddevelopers)
+* [http://gityuan.com/](http://gityuan.com/)
+* [https://weishu.me/](https://weishu.me/)
+* [https://androidperformance.com/](https://androidperformance.com/)
+* [https://glumes.com/](https://glumes.com/)
+* [https://blog.csdn.net/innost](https://blog.csdn.net/innost)
+* [https://liuwangshu.cn/](https://liuwangshu.cn/)

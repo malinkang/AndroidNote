@@ -41,9 +41,9 @@ public class CanvasView extends View {
 
 Canvas提供了三个绘制点的方法：
 
-* public void drawPoint\(float x, float y, @NonNull Paint paint\)；绘制单个点
-* public void drawPoints\(@Size\(multiple=2\) @NonNull float\[\] pts, @NonNull Paint paint\) 绘制多个点
-* public void drawPoints\(@Size\(multiple=2\) float\[\] pts, int offset, int count, @NonNull Paint paint\)
+* public void drawPoint(float x, float y, @NonNull Paint paint)；绘制单个点
+* public void drawPoints(@Size(multiple=2) @NonNull float\[] pts, @NonNull Paint paint) 绘制多个点
+* public void drawPoints(@Size(multiple=2) float\[] pts, int offset, int count, @NonNull Paint paint)
 
 ```java
 //在坐标(200,200)位置绘制一个点
@@ -56,7 +56,7 @@ canvas.drawPoints(new float[]{
 },mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-point%20%282%29.jpeg)
+![](<../../../.gitbook/assets/canvas-point (1).jpeg>)
 
 ### 绘制直线
 
@@ -64,9 +64,9 @@ canvas.drawPoints(new float[]{
 
 Canvas同样提供了三个绘制直线的方法：
 
-* public void drawLine\(float startX, float startY, float stopX, float stopY, @NonNull Paint paint\)
-* public void drawLines\(@Size\(multiple=4\) @NonNull float\[\] pts, int offset, int count,@NonNull Paint paint\)
-* public void drawLines\(@Size\(multiple=4\) @NonNull float\[\] pts, @NonNull Paint paint\)
+* public void drawLine(float startX, float startY, float stopX, float stopY, @NonNull Paint paint)
+* public void drawLines(@Size(multiple=4) @NonNull float\[] pts, int offset, int count,@NonNull Paint paint)
+* public void drawLines(@Size(multiple=4) @NonNull float\[] pts, @NonNull Paint paint)
 
 ```java
 canvas.drawLine(300, 300, 500, 600, mPaint);    // 在坐标(300,300)(500,600)之间绘制一条直线
@@ -75,7 +75,7 @@ canvas.drawLines(new float[] {               // 绘制一组线 每四数字(两
 }, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-line%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/canvas-line (1) (1) (1) (1) (1).jpeg>)
 
 ### 绘制矩形
 
@@ -83,9 +83,9 @@ canvas.drawLines(new float[] {               // 绘制一组线 每四数字(两
 
 Canvas提供了三个绘制矩形的方法：
 
-* public void drawRect\(float left, float top, float right, float bottom, @NonNull Paint paint\):前两个参数是左上角点的坐标，后两个参数是右下角坐标点
-* public void drawRect\(@NonNull Rect r, @NonNull Paint paint\)
-* public void drawRect\(@NonNull RectF rect, @NonNull Paint paint\)
+* public void drawRect(float left, float top, float right, float bottom, @NonNull Paint paint):前两个参数是左上角点的坐标，后两个参数是右下角坐标点
+* public void drawRect(@NonNull Rect r, @NonNull Paint paint)
+* public void drawRect(@NonNull RectF rect, @NonNull Paint paint)
 
 ```java
 canvas.drawRect(0,0,400,400,mPaint);
@@ -97,14 +97,14 @@ RectF rectF = new RectF(0,0,400,400);
 canvas.drawRect(rectF,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rect%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-rect (1) (1) (1) (1) (2) (1).jpeg>)
 
 ### 绘制圆角矩形
 
 Canvas提供了两个绘制圆角矩形的方法：
 
-* public void drawRoundRect\(float left, float top, float right, float bottom, float rx, float ry,@NonNull Paint paint\)：相比绘制矩形，我们需要提供一个圆角的半径，由于圆角是一个椭圆，所以需要提供椭圆的两个半径rx和ry。
-* public void drawRoundRect\(@NonNull RectF rect, float rx, float ry, @NonNull Paint paint\)
+* public void drawRoundRect(float left, float top, float right, float bottom, float rx, float ry,@NonNull Paint paint)：相比绘制矩形，我们需要提供一个圆角的半径，由于圆角是一个椭圆，所以需要提供椭圆的两个半径rx和ry。
+* public void drawRoundRect(@NonNull RectF rect, float rx, float ry, @NonNull Paint paint)
 
 ```java
 // API 21 提供
@@ -114,7 +114,7 @@ RectF rectF = new RectF(100,100,500,500);
 canvas.drawRoundRect(rectF,20,20,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-roundrect%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/canvas-roundrect (1) (1).jpeg>)
 
 当rx或者ry的值大于矩形的一半时，按照一半进行处理：
 
@@ -126,7 +126,7 @@ RectF rectF = new RectF(100,100,500,500);
 canvas.drawRoundRect(rectF,250,250,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-roundrect2.jpeg)
+![](<../../../.gitbook/assets/canvas-roundrect2 (1) (1).jpeg>)
 
 ### 绘制椭圆
 
@@ -138,7 +138,7 @@ RectF rectF = new RectF(100,100,800,400);
 canvas.drawOval(rectF,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-oval.jpeg)
+![](<../../../.gitbook/assets/canvas-oval (1) (1).jpeg>)
 
 ### 绘制圆
 
@@ -146,14 +146,14 @@ canvas.drawOval(rectF,mPaint);
 canvas.drawCircle(500,500,400,mPaint);  // 绘制一个圆心坐标在(500,500)，半径为400 的圆。
 ```
 
-![](../../../.gitbook/assets/canvas-circle%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.jpg)
+![](<../../../.gitbook/assets/canvas-circle (2) (2) (2) (2) (2) (2) (2) (1).jpg>)
 
 ### 绘制圆弧
 
 Canvas提供了两个绘制圆弧的方法：
 
-* public void drawArc\(@NonNull RectF oval, float startAngle, float sweepAngle, boolean useCenter, @NonNull Paint paint\)
-* public void drawArc\(float left, float top, float right, float bottom, float startAngle,float sweepAngle, boolean useCenter, @NonNull Paint paint\) 
+* public void drawArc(@NonNull RectF oval, float startAngle, float sweepAngle, boolean useCenter, @NonNull Paint paint)
+* public void drawArc(float left, float top, float right, float bottom, float startAngle,float sweepAngle, boolean useCenter, @NonNull Paint paint)
 
 从上面可以看出，相比于绘制椭圆，绘制圆弧还多了三个参数：
 
@@ -174,7 +174,7 @@ canvas.drawArc(rectF,0,90,true,mPaint);
 canvas.drawArc(rectF2,0,90,false,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-arc%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/canvas-arc (1) (1) (1) (1) (1) (1).jpeg>)
 
 ## 画布操作
 
@@ -188,28 +188,28 @@ canvas.translate(200,0);
 canvas.drawCircle(0,0,100,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-translate%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
+![](<../../../.gitbook/assets/canvas-translate (2) (2) (2) (2) (2) (2) (1) (1).jpg>)
 
 ### 缩放（scale）
 
 canvas提供了两个方法缩放的方法
 
-* public void scale \(float sx, float sy\)
-* public final void scale \(float sx, float sy, float px, float py\)
+* public void scale (float sx, float sy)
+* public final void scale (float sx, float sy, float px, float py)
 
 这两个方法中前两个参数是相同的分别为x轴和y轴的缩放比例。而第二种方法比前一种多了两个参数，用来控制缩放中心位置的。
 
-缩放比例\(sx,sy\)取值范围详解：
+缩放比例(sx,sy)取值范围详解：
 
-| 取值范围\(n\) | 说明 |
-| :--- | :--- |
-| \[-∞, -1\) | 先根据缩放中心放大n倍，再根据中心轴进行翻转 |
-| -1 | 根据缩放中心轴进行翻转 |
-| \(-1, 0\) | 先根据缩放中心缩小到n，再根据中心轴进行翻转 |
-| 0 | 不会显示，若sx为0，则宽度为0，不会显示，sy同理 |
-| \(0, 1\) | 根据缩放中心缩小到n |
-| 1 | 没有变化 |
-| \(1, +∞\) | 根据缩放中心放大n倍 |
+| 取值范围(n)   | 说明                         |
+| --------- | -------------------------- |
+| \[-∞, -1) | 先根据缩放中心放大n倍，再根据中心轴进行翻转     |
+| -1        | 根据缩放中心轴进行翻转                |
+| (-1, 0)   | 先根据缩放中心缩小到n，再根据中心轴进行翻转     |
+| 0         | 不会显示，若sx为0，则宽度为0，不会显示，sy同理 |
+| (0, 1)    | 根据缩放中心缩小到n                 |
+| 1         | 没有变化                       |
+| (1, +∞)   | 根据缩放中心放大n倍                 |
 
 如果在缩放时稍微注意一下就会发现**缩放的中心默认为坐标原点,而缩放中心轴就是坐标轴**，如下：
 
@@ -221,7 +221,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale1%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29.jpg)
+![](<../../../.gitbook/assets/canvas-scale1 (2) (2) (2) (2) (2) (1) (1).jpg>)
 
 设置缩放中心位置
 
@@ -234,7 +234,7 @@ canvas.drawRect(rect,mPaint);   // 绘制蓝色矩形
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale2%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
+![](<../../../.gitbook/assets/canvas-scale2 (2) (2) (2) (2) (2) (2) (1).jpg>)
 
 前面两个示例缩放的数值都是正数，按照表格中的说明，**当缩放比例为负数的时候会根据缩放中心轴进行翻转**，下面我们就来实验一下：
 
@@ -246,18 +246,18 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-scale3%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-scale3 (1) (2) (1).jpeg>)
 
-本次缩放可以看做是先根据缩放中心\(坐标原点\)缩放到原来的0.5倍，然后分别按照x轴和y轴进行翻转。
+本次缩放可以看做是先根据缩放中心(坐标原点)缩放到原来的0.5倍，然后分别按照x轴和y轴进行翻转。
 
 ### 旋转（rotate）
 
 canvas提供了两个旋转的方法：
 
-* public void rotate \(float degrees\)
-* public final void rotate \(float degrees, float px, float py\)
+* public void rotate (float degrees)
+*   public final void rotate (float degrees, float px, float py)
 
-  和缩放一样，第二种方法多出来的两个参数依旧是控制旋转中心点的。
+    和缩放一样，第二种方法多出来的两个参数依旧是控制旋转中心点的。
 
 默认的旋转中心依旧是坐标原点：
 
@@ -270,7 +270,7 @@ canvas.rotate(45);
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rotate1.jpeg)
+![](<../../../.gitbook/assets/canvas-rotate1 (1) (1).jpeg>)
 
 ```java
 canvas.translate(200,200);
@@ -281,7 +281,7 @@ canvas.rotate(45,100,100);
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-rotate2%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-rotate2 (2) (1).jpeg>)
 
 ### 错切（skew）
 
@@ -289,7 +289,7 @@ skew这里翻译为错切，错切是特殊类型的线性变换。
 
 错切只提供了一种方法：
 
-* public void skew \(float sx, float sy\)
+* public void skew (float sx, float sy)
 
 参数含义： float sx:将画布在x方向上倾斜相应的角度，sx倾斜角度的tan值. float sy:将画布在y轴方向上倾斜相应的角度，sy为倾斜角度的tan值.
 
@@ -304,7 +304,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-skew%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-skew (1) (1) (1) (1).jpeg>)
 
 ## 绘制图片
 
@@ -328,7 +328,7 @@ Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
 canvas.drawBitmap(bitmap, new Matrix(), mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-bitmap1%20%282%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-bitmap1 (2) (1) (1) (1) (1) (1).jpeg>)
 
 绘制部分区域
 
@@ -341,7 +341,7 @@ Rect dst = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
 canvas.drawBitmap(bitmap, src,dst, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-bitmap2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-bitmap2 (1) (1) (1) (1) (1) (1) (1) (2) (1).jpeg>)
 
 ## 绘制文字
 
@@ -367,7 +367,7 @@ mPaint.setTextSize(50);              // 设置字体大小
 canvas.drawText(str,2,5,200,500,mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-text%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/canvas-text (1) (1) (1) (1) (1) (1) (1) (1).jpeg>)
 
 为每个字符指定位置
 
@@ -384,10 +384,9 @@ canvas.drawPosText(str, new float[] {
 }, mPaint);
 ```
 
-![](../../../.gitbook/assets/canvas-text2%20%281%29.jpeg)
+![](<../../../.gitbook/assets/canvas-text2 (2) (1).jpeg>)
 
 ## 参考
 
 * [AndroidNote](https://github.com/GcsSloop/AndroidNote)
 * [Fun with Android Shaders and Filters](http://chiuki.github.io/android-shaders-filters/)
-

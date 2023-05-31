@@ -19,7 +19,7 @@ mPaint.setStyle(Paint.Style.FILL);
 canvas.drawCircle(192,192,128,mPaint);//绘制实心圆
 ```
 
-![](../../../.gitbook/assets/paint-stroke-width%20%281%29.jpeg)
+![](<../../../.gitbook/assets/paint-stroke-width (2) (1).jpeg>)
 
 ## MaskFilter
 
@@ -37,7 +37,7 @@ public PorterDuffXfermode(PorterDuff.Mode mode)
 
 PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC\_OVER、DST\_OVER、SRC\_IN、DST\_IN、SRC\_OUT、DST\_OUT、SRC\_ATOP、DST\_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
 
-![&#x9EC4;&#x8272;&#x7684;&#x5706;&#x5148;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;&#xFF0C;&#x84DD;&#x8272;&#x7684;&#x77E9;&#x5F62;&#x540E;&#x7ED8;&#x5236;&#x662F;&#x76EE;&#x6807;&#x56FE;](../../../.gitbook/assets/porterduffxfermode%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.jpg)
+![黄色的圆先绘制是目标图，蓝色的矩形后绘制是目标图](<../../../.gitbook/assets/porterduffxfermode (2) (2) (2) (2) (2) (1) (1).jpg>)
 
 ## PathEffect
 
@@ -93,7 +93,7 @@ mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.REPEAT, Shader.TileMo
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](../../../.gitbook/assets/bitmapshader-repeat%20%281%29.jpeg)
+![](<../../../.gitbook/assets/bitmapshader-repeat (1) (1) (1).jpeg>)
 
 x轴和y轴设置都为MIRROR：
 
@@ -101,7 +101,7 @@ x轴和y轴设置都为MIRROR：
 mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.MIRROR, Shader.TileMode.MIRROR));
 ```
 
-![](../../../.gitbook/assets/bitmapshader-mirror%20%281%29%20%281%29%20%281%29%20%282%29.jpeg)
+![](<../../../.gitbook/assets/bitmapshader-mirror (1) (1) (1) (1).jpeg>)
 
 x轴和y轴设置都为CLAMP：
 
@@ -109,7 +109,7 @@ x轴和y轴设置都为CLAMP：
 mPaint.setShader(new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
 ```
 
-![](../../../.gitbook/assets/bitmapshader-clamp%20%282%29.jpeg)
+![](<../../../.gitbook/assets/bitmapshader-clamp (1).jpeg>)
 
 BitmapShader一个常用的场景就是绘制特殊图形的图片，比如圆形图片和圆角矩形图片。
 
@@ -119,7 +119,7 @@ BitmapShader一个常用的场景就是绘制特殊图形的图片，比如圆�
 canvas.drawCircle(mBitmap.getWidth()/2, mBitmap.getWidth()/2, mBitmap.getWidth()/2, mPaint);
 ```
 
-![](../../../.gitbook/assets/bitmapshader-circle%20%281%29%20%281%29.jpeg)
+![](<../../../.gitbook/assets/bitmapshader-circle (1) (2) (1).jpeg>)
 
 开源项目[CircleImageView](https://github.com/hdodenhof/CircleImageView)、[android-shape-imageview](https://github.com/siyamed/android-shape-imageview)本质都是利用BitmapShader实现的。
 
@@ -140,7 +140,7 @@ mPaint.setShader(new LinearGradient(0, 0, 100, 100, Color.RED, Color.YELLOW, Sha
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](../../../.gitbook/assets/LinearGradient-1%20%281%29.jpeg)
+![](<../../../.gitbook/assets/LinearGradient-1 (1) (1) (1).jpeg>)
 
 第二个构造函数可以设置多种颜色。
 
@@ -172,7 +172,7 @@ mPaint.setShader(new LinearGradient(0, 0, 800, 800, new int[]{
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](../../../.gitbook/assets/LinearGradient-2%20%281%29.jpeg)
+![](<../../../.gitbook/assets/LinearGradient-2 (1) (1) (1).jpeg>)
 
 ### RadialGradient
 
@@ -193,7 +193,7 @@ mPaint.setShader(new RadialGradient(400, 400,400, new int[] {
 canvas.drawRect(0,0,800,800,mPaint);
 ```
 
-![](../../../.gitbook/assets/RadialGradient.jpeg)
+![](<../../../.gitbook/assets/RadialGradient (1) (1).jpeg>)
 
 ### SweepGradient
 
@@ -218,7 +218,7 @@ mPaint.setShader(new SweepGradient(400, 400, new int[] {
 canvas.drawCircle(400,400,400,mPaint);
 ```
 
-![](../../../.gitbook/assets/SweepGradient%20%281%29.jpeg)
+![](<../../../.gitbook/assets/SweepGradient (2) (1).jpeg>)
 
 ### ComposeShader
 
@@ -236,7 +236,7 @@ public ComposeShader(Shader shaderA, Shader shaderB, PorterDuff.Mode mode)
 
 BitmapShader使用的图片为下图：
 
-![](../../../.gitbook/assets/android%20%281%29.png)
+![](<../../../.gitbook/assets/android (2) (1).png>)
 
 ```java
 mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.android);
@@ -247,12 +247,11 @@ mPaint.setShader(composeShader);
 canvas.drawRect(0,0,mBitmap.getWidth(),mBitmap.getHeight(),mPaint);
 ```
 
-![](../../../.gitbook/assets/ComposeShader%20%281%29.jpeg)
+![](<../../../.gitbook/assets/ComposeShader (2) (1).jpeg>)
 
 ## 参考
 
 * [各个击破搞明白PorterDuff.Mode](http://www.jianshu.com/p/d11892bbe055)
 * [Shader](http://blog.csdn.net/aigestudio/article/details/41799811)
 * [Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解](http://blog.csdn.net/iispring/article/details/50472485)
-* [Android Paint 浅坑—— Style 模式](http://blog.csdn.net/ziwang_/article/details/72857650)
-
+* [Android Paint 浅坑—— Style 模式](http://blog.csdn.net/ziwang\_/article/details/72857650)
