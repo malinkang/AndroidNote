@@ -149,11 +149,11 @@ path.setFillType(Path.FillType.WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/non-zero-winding-3 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/non-zero-winding-3 (1).jpeg>)
 
 改变内圈的方向
 
-![](<../../../.gitbook/assets/non-zero-winding-2 (2) (2) (2) (1) (2) (2) (2) (1) (1).png>)
+![](<../../../.gitbook/assets/non-zero-winding-2 (2) (2) (2) (1) (2) (2) (2) (1).png>)
 
 A点：首先，内圆从左向右穿过射线，环绕数加一（-1）;然后内圆从右到左穿过射线，环绕数加一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。
 
@@ -189,7 +189,7 @@ path.setFillType(Path.FillType.INVERSE_WINDING);
 canvas.drawPath(path,mPaint);
 ```
 
-![](<../../../.gitbook/assets/inverse\_winding-2 (1) (1) (1) (1).jpeg>)
+![](<../../../.gitbook/assets/inverse\_winding-2 (1) (1) (1).jpeg>)
 
 ### 其他与填充模式相关的方法
 

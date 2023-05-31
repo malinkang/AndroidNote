@@ -126,7 +126,7 @@ RectF rectF = new RectF(100,100,500,500);
 canvas.drawRoundRect(rectF,250,250,mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-roundrect2 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/canvas-roundrect2 (1).jpeg>)
 
 ### 绘制椭圆
 
@@ -138,7 +138,7 @@ RectF rectF = new RectF(100,100,800,400);
 canvas.drawOval(rectF,mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-oval (1) (1).jpeg>)
+![](<../../../.gitbook/assets/canvas-oval (1).jpeg>)
 
 ### 绘制圆
 
@@ -188,7 +188,7 @@ canvas.translate(200,0);
 canvas.drawCircle(0,0,100,mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-translate (2) (2) (2) (2) (2) (2) (1) (1).jpg>)
+![](<../../../.gitbook/assets/canvas-translate (2) (2) (2) (2) (2) (2) (1).jpg>)
 
 ### 缩放（scale）
 
@@ -270,7 +270,7 @@ canvas.rotate(45);
 canvas.drawRect(rect,mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-rotate1 (1) (1).jpeg>)
+![](<../../../.gitbook/assets/canvas-rotate1 (1).jpeg>)
 
 ```java
 canvas.translate(200,200);
@@ -304,7 +304,7 @@ mPaint.setColor(getResources().getColor(R.color.purple));
 canvas.drawRect(rect,mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-skew (1) (1) (1) (1).jpeg>)
+![](<../../../.gitbook/assets/canvas-skew (1) (1) (1).jpeg>)
 
 ## 绘制图片
 
@@ -328,7 +328,7 @@ Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
 canvas.drawBitmap(bitmap, new Matrix(), mPaint);
 ```
 
-![](<../../../.gitbook/assets/canvas-bitmap1 (2) (1) (1) (1) (1) (1).jpeg>)
+![](<../../../.gitbook/assets/canvas-bitmap1 (2) (1) (1) (1) (1).jpeg>)
 
 绘制部分区域
 
