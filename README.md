@@ -1,6 +1,6 @@
 # Android学习资料
 
-## Android技术博客
+## 博客
 
 * [https://medium.com/androiddevelopers](https://medium.com/androiddevelopers)
 * [https://jakewharton.com/](https://jakewharton.com/)
@@ -12,4 +12,16 @@
 * [https://glumes.com/](https://glumes.com/)
 * [https://blog.csdn.net/innost](https://blog.csdn.net/innost)
 * [https://liuwangshu.cn/](https://liuwangshu.cn/)
-*
+
+## 工具
+
+* [MT管理器](https://mt2.cn/)
+* [chuck](https://github.com/jgilfelt/chuck)
+
+## 逆向
+
+* [BlackDex](https://github.com/CodingGay/BlackDex)
+* [BlackObfuscator](https://github.com/CodingGay/BlackObfuscator)
+* [StringFog](https://github.com/MegatronKing/StringFog)
+* [LSParanoid](https://github.com/LSPosed/LSParanoid)
+* [paranoid](https://github.com/MichaelRocks/paranoid)
