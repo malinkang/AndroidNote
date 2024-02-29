@@ -1,8 +1,8 @@
 ---
 title: Zygote进程启动流程
-date: '2020-01-11T15:01:48.000Z'
 tags:
   - 源码分析
+comments: true
 ---
 
 # Zygote进程启动流程

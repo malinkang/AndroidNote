@@ -30,7 +30,16 @@ fun readLines(file: File) {
 
 ### 流程图
 
-![image-20211112174416076](https://malinkang.cn/images/jvm/202111121744513.png)
+```mermaid
+classDiagram
+  class Source
+  <<interface>> Source
+  class BufferedSource
+  <<interface>> BufferedSource
+  Source <|.. BufferedSource
+  class RealBufferedSource
+  BufferedSource <|-- RealBufferedSource
+```
 
 ### source()
 

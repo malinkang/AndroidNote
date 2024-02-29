@@ -25,3 +25,6 @@
 * [StringFog](https://github.com/MegatronKing/StringFog)
 * [LSParanoid](https://github.com/LSPosed/LSParanoid)
 * [paranoid](https://github.com/MichaelRocks/paranoid)
+* [AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners)
+* https://github.com/microsoft/inshellisense
+
